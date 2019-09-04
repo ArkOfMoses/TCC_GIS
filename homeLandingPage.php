@@ -14,7 +14,6 @@ if(isset($_SESSION['logado'])){
 }
 
 */ 
-header('Content-Type: text/html; charset=UTF-8');
 
 require_once 'PHPMailer/src/PHPMailer.php';
 require_once 'PHPMailer/src/SMTP.php';
@@ -66,13 +65,13 @@ if($infoPost){
 
     //configuração do usuário do gmail
     $PHPMailer->SMTPAuth = true; 
-    $PHPMailer->Username = 'siqueiramoises14@gmail.com'; // usuario gmail.   
-    $PHPMailer->Password = 'Momo.879546213'; // senha do email.
+    $PHPMailer->Username = 'exodiadeini@gmail.com'; // usuario gmail.   
+    $PHPMailer->Password = 'gostosinhos123'; // senha do email.
     $PHPMailer->SingleTo = true; 
 
     // configuração do email a ver enviado.
-    $PHPMailer->setFrom("siqueiramoises14@gmail.com", "Gestão Institucional Simplificada");
-    $PHPMailer->addAddress("siqueiramoises14@gmail.com"); // email do destinatario.
+    $PHPMailer->setFrom("exodiadeini@gmail.com", "Gestão Institucional Simplificada");
+    $PHPMailer->addAddress("exodiadeini@gmail.com"); // email do destinatario.
     //$PHPMailer->addReplyTo('siqueiramoises14@gmail.com', "$nome");
 
     $PHPMailer->Subject = "Contato de $nome sobre o projeto GIS"; 
@@ -80,8 +79,9 @@ if($infoPost){
 
     if($PHPMailer->Send()){
       unset($PHPMailer);
+      $msg['msgEnviar'] = "Seu email foi enviado com sucesso!!";
     }else{
-      $msg['errEnviar'] = "Erro ao enviar Email:" . $PHPMailer->ErrorInfo;
+      $msg['msgEnviar'] = "Erro ao enviar Email:" . $PHPMailer->ErrorInfo;
     }
   }
 }
@@ -237,9 +237,9 @@ if($infoPost){
               <a href="#"><div class="btm-email"><i class="fas fa-user"></i> Já sou um cliente</div></a>
             </div>
               
-            <form class="enviar-email" id="enviar-email" method="post" >
+            <form class="enviar-email" id="enviar-email" method="post" action="#h3">
            
-              <h3>Tenha seu sistema, <br> Entre em contato conosco</h3>
+              <h3 id="h3">Tenha seu sistema, <br> Entre em contato conosco</h3>
               <input type="text" name="firstname" placeholder="Seu nome">
               <br>
               <input type="text" name="email" placeholder="Seu e-mail">
@@ -251,17 +251,17 @@ if($infoPost){
               <br>
               <textarea name="mais-info" placeholder="Mais informações"></textarea>
               <br>
-              <input type="submit" value="Enviar">
-            </form>
-            <?php
+              <?php
                 if(array_key_exists('camposVazios', $msg)){ 
                   echo $msg['camposVazios'];
                 }
 
-                if(array_key_exists('errEnviar', $msg)){
-                  echo $msg['errEnviar'];
+                if(array_key_exists('msgEnviar', $msg)){
+                  echo $msg['msgEnviar'];
                 }
               ?>
+              <input type="submit" value="Enviar">
+            </form>
 
         </main>
 
