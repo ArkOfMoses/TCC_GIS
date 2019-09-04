@@ -1,6 +1,5 @@
 <?php
 /* 
-include "bd/conexao.php";
 session_start();
 
 no TCA quando o usuário voltava pra landing a gente deslogava ele, a gente vai fazer isso dnv?
@@ -19,6 +18,56 @@ if(isset($_SESSION['logado'])){
 
 se não, não precisa de mais código na landing
 */ 
+
+
+require_once 'PHPMailer/src/PHPMailer.php';
+use PHPMailer\PHPMailer\PHPMailer;
+$PHPMailer = new PHPMailer();
+
+
+$err = false;
+$msg = array();
+
+$filterForm = [
+  "firstname" => FILTER_SANITIZE_SPECIAL_CHARS,
+  "email" => FILTER_VALIDATE_EMAIL,
+  "mais-info" => FILTER_SANITIZE_SPECIAL_CHARS
+];
+
+$infoPost = filter_input_array(INPUT_POST, $filterForm);
+
+
+if($infoPost){
+
+  $nome = $infoPost['firstname'];
+  $emailEnviando = $infoPost['email'];
+  $informacoes = substr($infoPost['mais-info'], 0, 16384);
+
+
+  if ($nome === '' || $emailEnviando === '' || $informacoes === '' ) {
+    $msg['camposVazios'] = "<p>É necessário preencher todos os campos!</p>";
+    $err = true;
+  }
+
+  // if($nome != $nomeOriginal){
+  //   $msg['errNome'] = "<p>O nome é inválido!</p>";
+  //   $err = true;
+  // }
+
+  if($emailEnviando === false){
+    $msg['errEmail'] = "<p>O Email é inválido!</p>";
+    $err = true;
+  }
+
+  // if($informacoes === false){
+  //   $msg['errInfo'] = "As informações são inválidas";
+  //   $err = true;
+  // }
+
+  if($err == false){
+    // código pra mandar o email!!
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +102,6 @@ se não, não precisa de mais código na landing
 
       <!-- Icon Font -->
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
-
   </head>
 
   <body>
@@ -171,18 +219,28 @@ se não, não precisa de mais código na landing
               <a href="#enviar-email" id="enviar-email"><div class="btm-email"><i class="fas fa-paper-plane"></i> Envie-nos um e-mail</div></a>
               <a href="#"><div class="btm-email"><i class="fas fa-user"></i> Já sou um cliente</div></a>
             </div>
-
-            <form class="enviar-email" id="enviar-email">
+              
+            <form class="enviar-email" id="enviar-email" method="post" >
+           
               <h3>Tenha seu sistema, <br> Entre em contato conosco</h3>
               <input type="text" name="firstname" placeholder="Seu nome">
               <br>
               <input type="text" name="email" placeholder="Seu e-mail">
+              <?php
+                if(array_key_exists('errEmail', $msg)){ 
+                  echo $msg['errEmail'];
+                }
+              ?>
               <br>
               <textarea name="mais-info" placeholder="Mais informações"></textarea>
               <br>
               <input type="submit" value="Enviar">
             </form>
-
+            <?php
+                if(array_key_exists('camposVazios', $msg)){ 
+                  echo $msg['camposVazios'];
+                }
+              ?>
 
         </main>
 
@@ -197,6 +255,7 @@ se não, não precisa de mais código na landing
         </footer>
 
     </div>
+    
 
   </body>
 
