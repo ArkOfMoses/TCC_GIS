@@ -1,0 +1,330 @@
+.header {
+  width: 100vw;
+  height: 80px;
+}
+
+.logo {
+  width: 2.7em;
+  height: 2.7em;
+  margin-left: 20px;
+}
+
+.hamburger{
+  width: 80px;
+  height: 100%;
+}
+
+.hamburger svg{width: 1.3em;}
+
+.fullnav {
+  bottom: 0%;
+  top: 0%;
+  flex-flow: column;
+  align-items: center;
+  right: -100vw;
+  background: #051523;
+}
+
+.menu {
+  width: 100vw;
+  overflow-y: scroll;
+}
+
+hr {
+  width: 60vw;
+  color: #c9c9c9;
+  margin: 50px 0;
+}
+
+.menu-buttons {min-height: 350px;}
+
+.menu-buttons li {font-size: 1.7em}
+
+.menu-buttons i {
+  font-size: .9em;
+  margin-right: 5px
+}
+
+.title, .subtitle {font-size: 1.4em;}
+
+.title {font-size: 1.5em}
+
+.profile-photo-menu {
+  width: 18%;
+  padding-top: 18%;
+  border-radius: 150px;
+  margin: 100px 0 20px;
+
+}
+
+.active-menu .fullnav {right: 0;}
+
+
+
+
+main {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 80px calc(10px + 7%) 0;
+  background: #F7FDFD; /*ou FAFEFE*/
+  display: inline-grid;
+  grid-template-columns: 25% 25% 20% 20%;
+  grid-template-rows: 100px calc(320px + 4%) 250px 200px;
+  grid-column-gap: 3.3%;
+  grid-row-gap: 25px;
+}
+
+.greetings {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1/5;
+  grid-row: 1/1;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 54px;
+  background-color: rgba(0, 204, 204, .5);
+  flex-shrink: 0;
+  position: relative;
+  margin: 0 15px;
+  order: 1;
+}
+
+.profile-photo a {
+    background: #f33;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.greetings h1 {
+  font-size: 1.75;
+  font-weight: bold;
+  color: #036;
+  width: 190px;
+  order: 2;
+}
+
+.block {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.scroll-box{
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+
+}
+
+.schedule {
+  height: 200px;
+  color: #f2f2f2;
+  margin: 10px;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #036;
+  text-align: left;
+  margin: 0 0 10px 0;
+}
+
+.um {
+  grid-column: 1/3;
+  grid-row: 2/3;
+}
+
+.um h2{
+  margin: 30px 0 10px 0;
+}
+
+.schedule .item {
+  max-width: 330px;
+  min-height: calc(75px + 1vh);
+  background-color: #c9c9c9;
+  margin-bottom: 5px;
+  display: flex;
+  flex-flow: row;
+  border-radius: 20px
+  }
+
+.schedule .select-item {
+  background-color: #0cc;
+  color: white;
+}
+
+.schedule .select-item i{
+  width: 38px;
+  height: 38px;
+  font-size: 1.1em;
+  border-radius: 19px;
+  color: #fff;
+  background-color: #036;
+  border: 4px solid #0cc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 5px;
+  top: 5px
+}
+
+.schedule .item .hour {
+  width: 100px;
+  font-size: 2.1em;
+  font-weight: bold;
+  border-right: solid 3px white;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.schedule .item div {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  position: relative;
+}
+
+.schedule .item div span{
+  font-size: 1.3em;
+  padding: 0 10px;
+  font-weight: normal;
+}
+
+.schedule .item div span:nth-child(3) {
+  font-weight: bold;
+}
+
+.standard-btn {
+  width: 220px;
+  height: 35px;
+  border-radius: 20px;
+  margin-top: 15px;
+  font-size: 0.9em;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #0cc;
+}
+
+
+
+
+.dois {
+  grid-column: 3/5;
+  grid-row: 2/4;
+}
+
+.calendario {
+  width: 100%;
+  height: 400px;
+  margin: 40px 0;
+  padding: 20px;
+  border-radius: 20px;
+  color: #434343;
+  background-color: rgba(0, 105, 205, .2);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendario h2 {
+  margin: 0 0 15px 0;
+}
+
+.calendario table {
+  width: 100%;
+}
+
+.calendario .mes_title td{
+  font-size: 1em;
+  font-weight: normal;
+  padding-bottom: 20px;
+}
+
+.calendario .ano td{
+  font-size: .9em;
+  font-weight: normal;
+  display: table-row;
+}
+
+.calendario .mes tr{
+  font-size: 0.9em;
+  font-weight: normal;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendario .mes td {
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33px;
+  height: 33px
+}
+
+.calendario .mes .select-date {
+  background-color: #0cc;
+  border-radius: 20px
+}
+
+
+
+
+
+.locked-background {
+  display: flex;
+  justify-content: center;
+  grid-column: 1/3;
+  grid-row: 3/4;
+}
+
+.notif {
+  width: 320px;
+  height: 400px;
+  padding: 20px;
+  position: relative;
+  background-color: #D5E7F4;
+  border-radius: 20px;
+}
+
+.notif .scroll-box {
+  width: 100%;
+  height: 100%;
+}
+
+.notif-item {
+  width: 100%;
+  height: 70px;
+  border-radius: 20px;
+  background-color: #B7D6EC;
+  margin-bottom: 10px;
+}
+
+.close i{
+  display: none;
+}

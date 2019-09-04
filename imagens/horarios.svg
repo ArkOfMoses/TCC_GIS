@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 841.9 595.3" style="enable-background:new 0 0 841.9 595.3;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.5;fill:#00CDCD;}
+	.st1{fill:#9999AD;}
+	.st2{opacity:0.8;fill:#F2F2F2;}
+	.st3{font-family:'Roboto-Black';}
+	.st4{font-size:47px;}
+	.st5{opacity:0.8;}
+	.st6{fill:#F2F2F2;}
+	.st7{font-size:20px;}
+	.st8{fill:#00CDCD;}
+</style>
+<circle id="Elipse1" class="st0" cx="263.8" cy="206" r="102.8"/>
+<circle id="Elipse2" class="st0" cx="581.6" cy="269.6" r="80.3"/>
+<circle id="Elipse3" class="st0" cx="314.7" cy="443.6" r="89.5"/>
+<g id="sete">
+	<path id="retangulo1" class="st1" d="M540.2,231H287.4c-17.1,0-31-14-31-31v-21.3c0-17.1,14-31,31-31h252.8c17.1,0,31,14,31,31
+		v21.3C571.2,217,557.3,231,540.2,231z"/>
+	<text transform="matrix(1 0 0 1 284.1853 205.9627)" class="st2 st3 st4">07:00</text>
+	<g class="st5">
+		<text transform="matrix(1 0 0 1 420.9449 193.4669)" class="st6 st3 st7">Primeira aula</text>
+	</g>
+</g>
+<g id="seteciquenta">
+	<path id="retangulo2" class="st8" d="M586.5,327.3H333.7c-17.1,0-31-14-31-31v-21.3c0-17.1,14-31,31-31h252.8c17.1,0,31,14,31,31
+		v21.3C617.5,313.3,603.6,327.3,586.5,327.3z"/>
+	<text transform="matrix(1 0 0 1 330.4812 300.4156)" class="st2 st3 st4">07:50</text>
+	<g class="st5">
+		<text transform="matrix(1 0 0 1 467.2417 288.8458)" class="st6 st3 st7">Segunda aula</text>
+	</g>
+</g>
+<g id="oitoequarenta">
+	<path id="retangulo3" class="st1" d="M561.5,423.6H308.7c-17.1,0-31-14-31-31v-21.3c0-17.1,14-31,31-31h252.8c17.1,0,31,14,31,31
+		v21.3C592.5,409.6,578.6,423.6,561.5,423.6z"/>
+	<text transform="matrix(1 0 0 1 305.4815 399.4812)" class="st2 st3 st4">08:40</text>
+	<g class="st5">
+		<text transform="matrix(1 0 0 1 442.2417 386.994)" class="st6 st3 st7">Terceira aula</text>
+	</g>
+</g>
+</svg>

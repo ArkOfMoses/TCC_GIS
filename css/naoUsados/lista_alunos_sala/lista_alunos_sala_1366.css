@@ -1,0 +1,564 @@
+.header {
+    width: calc(100% - 280px);
+    height: 7vh;
+  
+  }
+  
+  .logo {
+    position: relative;
+    left: calc(100% - (-15em));
+    top: 5px;
+    width: 2em;
+    height: 2em;
+  }
+  
+  .header .st0{fill:#fff;}
+  .header .st1{fill:#fff;}
+  .header .st2{fill:#fff;}
+  .header .st3{fill:#fff;}
+  
+  .hamburger{display: none!important;}
+  
+  .fullnav {
+    width: 280px;
+    bottom: 0%;
+    top: 0%;
+    right: 0;
+    background: rgba(0,204,204,1);
+    background: linear-gradient(to bottom, rgba(0,204,204,1) 0%, rgba(0,204,204,1) 30%, rgba(0,102,204,1) 100%);
+  }
+  
+  .menu {
+    width: 230px;
+    justify-content: space-around;
+    background: #051523;
+  }
+  
+  hr {display: none; border: none;}
+  
+  .menu-buttons {
+    margin-top: calc(60px + 5vh);
+    flex-grow: 2;
+    align-items: flex-end!important;
+    position: relative;
+    right: -57px
+  }
+  
+  .menu-buttons li a{
+    font-size: 1em;
+    display:flex;
+    flex-direction: row-reverse;
+    align-items:center;
+  }
+  
+  .menu-buttons i {
+    font-size: 1.3em;
+    margin-left: 60px
+  }
+  
+  .title, .subtitle {font-size: 1em;}
+  
+  .title {font-size: 1em}
+  
+  .profile-photo-menu {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    margin: calc(30px + 3vh) 0 30px;
+  }
+  
+  main {background-color: #f1f1f1; width: 100vw; height: 100vh; }
+  
+  
+ #pagina{
+    /*  width:79.3%;*/
+     /* margin-right:18.5%*/
+     position: relative;
+     width: calc(100% - 280px);
+  }
+
+  
+  /********* INICIO CABECALHO****************/
+  
+  #cabecalho{
+    padding-top:30px;
+      width: 100%;
+      height:240px;
+      background-color: #003366;
+     
+  }
+  #seta{
+    margin-left:20px;
+    margin-top: 20px;  
+  }
+   #sala{
+    color:white;
+    font-family: Roboto;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align:center;
+    padding:15px;
+    background-color:#00cccc;
+    width:90px;
+    height:90px;
+    border-radius: 50%;
+    position:absolute;
+    left:50%;
+    margin-left:-50px;
+  }
+  
+  #infoCurso{
+   text-align:center;
+   margin-top:95px;
+   color:white;
+   font-size:1.2em;
+
+  }
+  
+  
+ 
+  
+  /* ********** NAVEGAÇÃO DE ABAS ***********/
+  button:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none; }
+  
+  .tabs {
+    display: block;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0;
+    overflow: hidden;
+   }
+   #nometab{
+     color:#003366;
+   }
+ 
+  
+    .tabs [class^="tab"] label,
+    .tabs [class*=" tab"] label {
+      color: #003366;
+      cursor: pointer;
+      display: block;
+      font-size: 1.1em;
+      font-weight: bold;
+      line-height: 1em;
+      padding: 1rem 0;
+      text-align: center;
+      font-family:roboto;
+  }
+  
+    .tabs [class^="tab"] [type="radio"],
+    .tabs [class*=" tab"] [type="radio"] {
+      border-bottom: 1px solid rgba(239, 237, 239, 0.5);
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      display: block;
+      width: 100%;
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+   }
+   
+      .tabs [class^="tab"] [type="radio"]:hover, .tabs [class^="tab"] [type="radio"]:focus,
+      .tabs [class*=" tab"] [type="radio"]:hover,
+      .tabs [class*=" tab"] [type="radio"]:focus {
+        border-bottom: 3px solid #003366; 
+      
+  }
+  
+      .tabs [class^="tab"] [type="radio"]:checked,
+      .tabs [class*=" tab"] [type="radio"]:checked {
+        border-bottom: 3px solid #003366; 
+      }
+  
+      .tabs [class^="tab"] [type="radio"]:checked + div,
+      .tabs [class*=" tab"] [type="radio"]:checked + div {
+        opacity: 1; 
+      }
+  
+  
+      .tabs [class^="tab"] [type="radio"] + div,
+      .tabs [class*=" tab"] [type="radio"] + div {
+        display: block;
+        opacity: 0;
+        padding: 2rem 0;
+        width: 90%;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out; 
+      }
+  
+    .tabs .tab-2 {
+      width: 50%; 
+      
+  }
+  
+      .tabs .tab-2 [type="radio"] + div {
+        width: 200%;
+        margin-left: 200%;
+       }
+  
+      .tabs .tab-2 [type="radio"]:checked + div {
+        margin-left: 0; 
+      }
+      .tabs .tab-2:last-child [type="radio"] + div {
+        margin-left: 100%; 
+      }
+      .tabs .tab-2:last-child [type="radio"]:checked + div {
+        margin-left: -100%; 
+      }
+  
+  
+      /*************** LISTA DE ALUNOS *****************/
+  
+      #dadosAluno{
+        display: flex;
+      flex-direction: row;
+   justify-content: space-evenly;
+    align-items: center;
+    border-bottom:1px solid #ccc;
+    padding:10px;
+      }
+  
+      #imgAluno{
+        width:95px;
+        height: 95px;
+      }
+  
+      p{
+        text-align:center;
+        font-size:0.8em;
+      }
+  
+      #ocorrencia_nomeAluno{
+        font-size: 1.4em;
+      }
+
+
+
+
+      
+      /******** horario **********/
+
+      
+      main{
+        display:block;
+      }
+      
+      .header_profile{
+        background-color: #8DBFE8;
+        text-align: center;
+        padding: 5px;
+        color: #fff;
+        box-shadow:#ccc 2px 2px 5px;
+      }
+      
+      .header_profile img{
+        border-radius: 50px;
+        margin: 5px;
+        width: 105px;
+        height:105px;
+      
+      }
+      
+      .periodo,.semana{
+        text-align: center;
+        padding: 5px;
+       
+      }
+      .semana li{
+        display: inline-block;
+        padding: 5px;
+      }
+      .periodo a, .semana a{
+        color: #051523;
+        
+      }
+      
+      .segunda,.terca,.quarta,.quinta,.sexta{
+        height: 200px;
+        overflow: scroll
+      }
+      .topico_horario{
+       
+        margin:3px;
+        color: #fff;
+        width: auto;
+        height: 70px;
+        background-color: #169BD5;
+        text-align: center;
+        flex-wrap: wrap
+        }
+      
+      .hora, .outras_info{
+        display: inline-block;
+        padding: 3px;  
+        height: 70px; 
+        align-items: center;
+      }
+      .outras_info{
+       padding-top: 5%;
+      }
+      
+      .all{
+       
+        text-align: center;
+        padding: 10px;
+      
+      }
+      .horario {
+      margin-top: 15px;
+      }
+      .all input[type="radio"]{
+        display:inline-flex;
+        visibility: hidden;
+        margin-left: -10px;
+      }
+      
+      
+      #checkmanha:checked ~ #labelManha{
+          color: #169BD5;
+          font-weight: bold;
+          text-decoration: underline #169BD5;
+      }
+      
+      #checktarde:checked ~ #labelTarde{
+        color: #169BD5;
+        font-weight: bold;
+        text-decoration: underline #169BD5;
+      }
+      #checknoite:checked ~ #labelNoite{
+        color: #169BD5;
+        font-weight: bold;
+        text-decoration: underline #169BD5;
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+      #mseg:checked ~ #labelmseg{
+        color: #169BD5;
+        font-weight: bold;
+      }
+      #mter:checked ~ #labelmter{
+        color: #169BD5;
+        font-weight: bold;
+      }#mqua:checked ~ #labelmqua{
+        color: #169BD5;
+        font-weight: bold;
+      }#mqui:checked ~ #labelmqui{
+        color: #169BD5;
+        font-weight: bold;
+      }
+      #msex:checked ~ #labelmsex{
+        color: #169BD5;
+        font-weight: bold;
+      }
+      
+      
+      #tseg:checked ~ #labeltseg{
+        color: #169BD5;
+        font-weight: bold;
+      }
+      #tter:checked ~ #labeltter{
+        color: #169BD5;
+        font-weight: bold;
+      }#tqua:checked ~ #labeltqua{
+        color: #169BD5;
+        font-weight: bold;
+      }#tqui:checked ~ #labeltqui{
+        color: #169BD5;
+        font-weight: bold;
+      }
+      #tsex:checked ~ #labeltsex{
+        color: #169BD5;
+        font-weight: bold;
+      }
+      
+      
+      
+      #nseg:checked ~ #labelnseg{
+        color: #169BD5;
+        font-weight: bold;
+      }
+      #nter:checked ~ #labelnter{
+        color: #169BD5;
+        font-weight: bold;
+      }#nqua:checked ~ #labelnqua{
+        color: #169BD5;
+        font-weight: bold;
+      }#nqui:checked ~ #labelnqui{
+        color: #169BD5;
+        font-weight: bold;
+      }
+      #nsex:checked ~ #labelnsex{
+        color: #169BD5;
+        font-weight: bold;
+      }
+      
+      
+      
+      /**dando hide nos troço**/
+      /**PERIODO**/
+      
+      
+      
+      
+      #checkmanha:checked ~ .manha{
+        display:block;
+      
+      }
+      #checkmanha:not(:checked) ~ .manha{
+        display:none;
+      }
+      
+      
+      #checktarde:checked ~ .tarde{
+        display:block;
+      }
+      #checktarde:not(:checked) ~ .tarde{
+        display:none;
+      }
+      
+      
+      #checknoite:checked ~ .noite{
+        display:block;
+      }
+      #checknoite:not(:checked) ~ .noite{
+        display:none;
+      }
+      
+      
+      /**SEMANHA MANHÃ**/
+      
+      
+      #mseg:checked ~ .segunda{
+        display:block;
+      }
+      #mseg:not(:checked) ~ .segunda{
+        display:none;
+      }
+      
+      #mter:checked ~ .terca{
+        display:block;
+      }
+      #mter:not(:checked) ~ .terca{
+        display:none;
+      }
+      
+      #mqua:checked ~ .quarta{
+        display:block;
+      }
+      #mqua:not(:checked) ~ .quarta{
+        display:none;
+      }
+      
+      #mqui:checked ~ .quinta{
+        display:block;
+      }
+      #mqui:not(:checked) ~ .quinta{
+        display:none;
+      }
+      
+      #msex:checked ~ .sexta{
+        display:block;
+      }
+      #msex:not(:checked) ~ .sexta{
+        display:none;
+      }
+      
+      
+      
+      
+      
+      /**SEMANHA TARDE**/
+      
+      
+      #tseg:checked ~ .segunda{
+        display:block;
+      }
+      #tseg:not(:checked) ~ .segunda{
+        display:none;
+      }
+      
+      #tter:checked ~ .terca{
+        display:block;
+      }
+      #tter:not(:checked) ~ .terca{
+        display:none;
+      }
+      
+      #tqua:checked ~ .quarta{
+        display:block;
+      }
+      #tqua:not(:checked) ~ .quarta{
+        display:none;
+      }
+      
+      #tqui:checked ~ .quinta{
+        display:block;
+      }
+      #tqui:not(:checked) ~ .quinta{
+        display:none;
+      }
+      
+      #tsex:checked ~ .sexta{
+        display:block;
+      }
+      #tsex:not(:checked) ~ .sexta{
+        display:none;
+      }
+      
+      
+      /**SEMANHA NOITE**/
+      
+      
+      #nseg:checked ~ .segunda{
+        display:block;
+      }
+      #nseg:not(:checked) ~ .segunda{
+        display:none;
+      }
+      
+      #nter:checked ~ .terca{
+        display:block;
+      }
+      #nter:not(:checked) ~ .terca{
+        display:none;
+      }
+      
+      #nqua:checked ~ .quarta{
+        display:block;
+      }
+      #nqua:not(:checked) ~ .quarta{
+        display:none;
+      }
+      
+      #nqui:checked ~ .quinta{
+        display:block;
+      }
+      #nqui:not(:checked) ~ .quinta{
+        display:none;
+      }
+      
+      #nsex:checked ~ .sexta{
+        display:block;
+      }
+      #nsex:not(:checked) ~ .sexta{
+        display:none;
+      }
