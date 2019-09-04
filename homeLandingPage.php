@@ -4,25 +4,21 @@ session_start();
 
 no TCA quando o usuário voltava pra landing a gente deslogava ele, a gente vai fazer isso dnv?
 
-se sim:
 if(isset($_SESSION['logado'])){
     unset($_SESSION['logado']);
     session_destroy();
 }
 
-ou 
-
 if(isset($_SESSION['logado'])){
   $_SESSION = array();
 }
 
-se não, não precisa de mais código na landing
 */ 
-
+header('Content-Type: text/html; charset=UTF-8');
 
 require_once 'PHPMailer/src/PHPMailer.php';
+require_once 'PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
-$PHPMailer = new PHPMailer();
 
 
 $err = false;
@@ -38,8 +34,8 @@ $infoPost = filter_input_array(INPUT_POST, $filterForm);
 
 
 if($infoPost){
-
-  $nome = $infoPost['firstname'];
+  // não sei oq tá acontecendo aqui, mas dá certo
+  $nome = '=?UTF-8?B?'.base64_encode($infoPost['firstname']).'?=';
   $emailEnviando = $infoPost['email'];
   $informacoes = substr($infoPost['mais-info'], 0, 16384);
 
@@ -49,23 +45,44 @@ if($infoPost){
     $err = true;
   }
 
-  // if($nome != $nomeOriginal){
-  //   $msg['errNome'] = "<p>O nome é inválido!</p>";
-  //   $err = true;
-  // }
-
   if($emailEnviando === false){
     $msg['errEmail'] = "<p>O Email é inválido!</p>";
     $err = true;
   }
 
-  // if($informacoes === false){
-  //   $msg['errInfo'] = "As informações são inválidas";
-  //   $err = true;
-  // }
 
   if($err == false){
     // código pra mandar o email!!
+    $PHPMailer = new PHPMailer();
+
+    $PHPMailer->IsSMTP();
+    $PHPMailer->CharSet = 'UTF-8';
+
+    //configuração do gmail
+    $PHPMailer->Port = '465'; //porta usada pelo gmail.
+    $PHPMailer->Host = 'smtp.gmail.com'; 
+    $PHPMailer->IsHTML(true);  
+    $PHPMailer->SMTPSecure = 'ssl';
+
+    //configuração do usuário do gmail
+    $PHPMailer->SMTPAuth = true; 
+    $PHPMailer->Username = 'siqueiramoises14@gmail.com'; // usuario gmail.   
+    $PHPMailer->Password = 'Momo.879546213'; // senha do email.
+    $PHPMailer->SingleTo = true; 
+
+    // configuração do email a ver enviado.
+    $PHPMailer->setFrom("siqueiramoises14@gmail.com", "Gestão Institucional Simplificada");
+    $PHPMailer->addAddress("siqueiramoises14@gmail.com"); // email do destinatario.
+    //$PHPMailer->addReplyTo('siqueiramoises14@gmail.com', "$nome");
+
+    $PHPMailer->Subject = "Contato de $nome sobre o projeto GIS"; 
+    $PHPMailer->Body = "<p>".$informacoes."</p>Email para cadastrar: <p>".$emailEnviando."</p>";
+
+    if($PHPMailer->Send()){
+      unset($PHPMailer);
+    }else{
+      $msg['errEnviar'] = "Erro ao enviar Email:" . $PHPMailer->ErrorInfo;
+    }
   }
 }
 ?>
@@ -239,6 +256,10 @@ if($infoPost){
             <?php
                 if(array_key_exists('camposVazios', $msg)){ 
                   echo $msg['camposVazios'];
+                }
+
+                if(array_key_exists('errEnviar', $msg)){
+                  echo $msg['errEnviar'];
                 }
               ?>
 
