@@ -99,7 +99,7 @@ if($infoPost){
       <meta name=description content="">
       <meta name=keywords content="">
       <!-- Opcional -->
-      <meta name=author content='G4 INI3B GIS '>
+      <meta name=author content='G4 INI3B GIS'>
 
       <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
       <link rel="shortcut icon" href="" type="image/x-icon">
