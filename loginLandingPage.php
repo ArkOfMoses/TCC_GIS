@@ -1,7 +1,112 @@
 <?php
 
-// fazer o ajax para o tratamento de erros
-// ou só joga o codigo todo do cod_login aqui e é nois
+
+session_start();
+require_once 'bd/conexao.php';
+require_once 'classes/Bcrypt.php';
+
+$error = false;
+$msg = array();
+
+$filterFormLogin = [
+  "email" => FILTER_VALIDATE_EMAIL,
+  "senha" => FILTER_SANITIZE_SPECIAL_CHARS
+];
+
+$infoPost = filter_input_array(INPUT_POST, $filterFormLogin);
+
+if($infoPost){
+
+  $email = $infoPost['email'];
+  $senha = $infoPost['senha'];
+
+    if ($email === '' or $senha === '') {
+                $msg['camposVazios'] = "<p>Todos os campos devem ser preenchidos</p>";
+                $error = true;
+
+    }else if($email != false){
+
+
+  $comando = $pdo->prepare("select acesso.cod_acesso, senha, email, tipo_usuario.cod_tipo_usu, nome_tipo_usu, cod_status_tipo_usu_operacao, operacao.cod_operacao, nome_operacao, cod_status_operacao, usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, url_foto_usu, data_entrada, data_saida, cod_status_usu
+From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
+            inner join tipo_usu_operacao on (tipo_usuario.cod_tipo_usu = tipo_usu_operacao.cod_tipo_usu)
+            inner join operacao on (tipo_usu_operacao.cod_operacao = operacao.cod_operacao)
+            inner join usuario on (acesso.cod_acesso = usuario.cod_acesso) where email = '$email';");
+
+  $comando->execute();
+  $numeroDeLinhas = $comando->rowCount();
+  if ($numeroDeLinhas === 0) {
+      $msg['errUsuario'] = "<p>Usuário Inexistente!</p>";
+        $error = true;
+  }else if($numeroDeLinhas === 1){
+      while ($dados = $comando->fetch(PDO::FETCH_ASSOC)) {
+            $codAcesso = $dados['cod_acesso'];
+            $senhaUsu = $dados['senha'];
+            $emailUsu = $dados['email'];
+            $codTipoUsu = $dados['cod_tipo_usu'];
+            $nomeTipoUsu = $dados['nome_tipo_usu'];
+            $codStatusTipoUsuOperacao = $dados['cod_status_tipo_usu_operacao'];
+            $codOperacao = $dados['cod_operacao'];
+            $nomeOperacao = $dados['nome_operacao'];
+            $codStatusOperacao = $dados['cod_status_operacao'];
+            $codUsu = $dados['cod_usu'];
+            $nomeUsu = $dados['nome_usu'];
+            $cpfUsu = $dados['cpf_usu'];
+            $dataNascUsu = $dados['data_nasc_usu'];
+            $fotoUsu = $dados['url_foto_usu'];
+            $entradaUsu = $dados['data_entrada'];
+            $saidaUsu = $dados['data_saida'];
+            $codStatusUsu = $dados['cod_status_usu'];
+      }
+  }
+
+
+          
+
+            $obj = new Bcrypt();
+            if(isset($senhaUsu)){
+            if($obj->check($senha, $senhaUsu)){
+                $_SESSION['logado'] = true;
+                $_SESSION['dadosUsu'] = [
+                                        "codAcesso" => $codAcesso,
+                                        "senhaUsu" => $senhaUsu,
+                                        "emailUsu" => $emailUsu,
+                                        "codTipoUsu" => $codTipoUsu,
+                                        "nomeTipoUsu" => $nomeTipoUsu,
+                                        "codStatusTipoUsuOperacao" => $codStatusTipoUsuOperacao,
+                                        "codOperacao" => $codOperacao,
+                                        "nomeOperacao" => $nomeOperacao,
+                                        "codStatusOperacao" => $codStatusOperacao,
+                                        "codUsu" => $codUsu,
+                                        "nomeUsu" => $nomeUsu,
+                                        "cpfUsu" => $cpfUsu,
+                                        "dataNascUsu" => $dataNascUsu,
+                                        "fotoUsu" => $fotoUsu,
+                                        "entradaUsu" => $entradaUsu,
+                                        "saidaUsu" => $saidaUsu,
+                                        "codStatusUsu" => $codStatusUsu
+
+
+                                        ];
+                if($entradaUsu === NULL){
+                    // manda pra tela de confirmação de dados
+                    // por enquanto vou deixar o header aqui tmb
+                    header("Location: perfil".$nomeTipoUsu.".php");
+                }else{
+                    header("Location: perfil".$nomeTipoUsu.".php");
+                }
+              } else {  
+                session_destroy();
+                $msg['errPassword'] = "<p>Senha incorreta!!</p>";
+                $error = true;    
+              }
+            } 
+    }else{
+                session_destroy();
+                $msg['errMail'] = "<p>Email Inválido ou em branco!</p>";
+                $error = true;
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -86,13 +191,31 @@
 
         <main>
 
-            <form class="login" id="login" method="post" action="cod_login.php">
+            <form class="login" id="login" method="post" action="loginLandingPage.php">
               <h3>Entrar</h3>
               <input type="text" name="email" placeholder="Email">
               <br>
               <input type="password" name="senha" placeholder="Senha">
               <br>
               <input type="submit" value="Enviar">
+              <?php
+                if(array_key_exists('camposVazios', $msg)){ 
+                  echo $msg['camposVazios'];
+                }
+
+                if(array_key_exists('errUsuario', $msg)){
+                  echo $msg['errUsuario'];
+                }
+
+                if(array_key_exists('errPassword', $msg)){
+                  echo $msg['errPassword'];
+                }
+
+                if(array_key_exists('errMail', $msg)){
+                  echo $msg['errMail'];
+                }
+              ?>
+              <br>
               <p>Esqueceu sua senha? <a href="#"> clique aqui </a></p>
             </form>
 
