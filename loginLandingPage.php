@@ -1,3 +1,9 @@
+<?php
+
+// fazer o ajax para o tratamento de erros
+// ou só joga o codigo todo do cod_login aqui e é nois
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
