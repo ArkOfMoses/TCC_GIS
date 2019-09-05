@@ -1,6 +1,5 @@
 <?php
 
-
 session_start();
 require_once 'bd/conexao.php';
 require_once 'classes/Bcrypt.php';
@@ -60,47 +59,47 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
       }
   }
 
-
-          
-
-            $obj = new Bcrypt();
-            if(isset($senhaUsu)){
-            if($obj->check($senha, $senhaUsu)){
-                $_SESSION['logado'] = true;
-                $_SESSION['dadosUsu'] = [
-                                        "codAcesso" => $codAcesso,
-                                        "senhaUsu" => $senhaUsu,
-                                        "emailUsu" => $emailUsu,
-                                        "codTipoUsu" => $codTipoUsu,
-                                        "nomeTipoUsu" => $nomeTipoUsu,
-                                        "codStatusTipoUsuOperacao" => $codStatusTipoUsuOperacao,
-                                        "codOperacao" => $codOperacao,
-                                        "nomeOperacao" => $nomeOperacao,
-                                        "codStatusOperacao" => $codStatusOperacao,
-                                        "codUsu" => $codUsu,
-                                        "nomeUsu" => $nomeUsu,
-                                        "cpfUsu" => $cpfUsu,
-                                        "dataNascUsu" => $dataNascUsu,
-                                        "fotoUsu" => $fotoUsu,
-                                        "entradaUsu" => $entradaUsu,
-                                        "saidaUsu" => $saidaUsu,
-                                        "codStatusUsu" => $codStatusUsu
-
-
-                                        ];
-                if($entradaUsu === NULL){
-                    // manda pra tela de confirmação de dados
-                    // por enquanto vou deixar o header aqui tmb
-                    header("Location: perfil".$nomeTipoUsu.".php");
-                }else{
-                    header("Location: perfil".$nomeTipoUsu.".php");
-                }
-              } else {  
-                session_destroy();
-                $msg['errPassword'] = "<p>Senha incorreta!!</p>";
-                $error = true;    
-              }
-            } 
+      $obj = new Bcrypt();
+      if(isset($senhaUsu)){
+        if($obj->check($senha, $senhaUsu)){
+            $_SESSION['logado'] = true;
+            $_SESSION['dadosUsu'] = [
+                                    "codAcesso" => $codAcesso,
+                                    "senhaUsu" => $senhaUsu,
+                                    "emailUsu" => $emailUsu,
+                                    "codTipoUsu" => $codTipoUsu,
+                                    "nomeTipoUsu" => $nomeTipoUsu,
+                                    "codStatusTipoUsuOperacao" => $codStatusTipoUsuOperacao,
+                                    "codOperacao" => $codOperacao,
+                                    "nomeOperacao" => $nomeOperacao,
+                                    "codStatusOperacao" => $codStatusOperacao,
+                                    "codUsu" => $codUsu,
+                                    "nomeUsu" => $nomeUsu,
+                                    "cpfUsu" => $cpfUsu,
+                                    "dataNascUsu" => $dataNascUsu,
+                                    "fotoUsu" => $fotoUsu,
+                                    "entradaUsu" => $entradaUsu,
+                                    "saidaUsu" => $saidaUsu,
+                                    "codStatusUsu" => $codStatusUsu
+                                    ];
+            if($entradaUsu === NULL){
+                // manda pra tela de confirmação de dados
+                // por enquanto vou deixar o header aqui tmb
+                header("Location: perfil".$nomeTipoUsu.".php");
+            }else{
+                // aqui ou na página do perfil seria o lugar onde a gente iria fazer aquilo de deixar os campos enabled
+                //ou disabled, porém tem um problema que a gente tem que esclarecer com o rogério quando a gente for conversar
+                //com ele sobre isso, um usuário pode ter mais de uma operação com ele, eu fiz o teste e quando isso acontece
+                //o inner join retorna mais de uma linha, só q ai o $nomeOperação precisa ser um array, mas isso não acontece, ele
+                //só olha o ultimo resultado. 
+                header("Location: perfil".$nomeTipoUsu.".php");
+            }
+          } else {  
+            session_destroy();
+            $msg['errPassword'] = "<p>Senha incorreta!!</p>";
+            $error = true;    
+          }
+      } 
     }else{
                 session_destroy();
                 $msg['errMail'] = "<p>Email Inválido ou em branco!</p>";
