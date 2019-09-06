@@ -108,6 +108,7 @@
 
 .banner .bannerText p {
   font-weight: normal;
+  line-height: 1.35em;
   color: #666;
   font-size: 1em;
   margin: 5px 0 45px 0;
@@ -139,7 +140,7 @@
 .saibaMais i {margin-left: 10px;}
 
 .qual {
-  background-color: #012;
+  background-color: #012; /*#0067cc: Cor que o Daniel sugeril - ficou zoado :/ */
   font-size: .8em;
   color: #ccc;
   position: relative;
