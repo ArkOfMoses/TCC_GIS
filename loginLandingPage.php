@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 require_once 'bd/conexao.php';
 require_once 'classes/Bcrypt.php';
 
@@ -109,9 +108,9 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
           }
       } 
     }else{
-                session_destroy();
-                $msg['errMail'] = "<p>Email Inválido ou em branco!</p>";
-                $error = true;
+      session_destroy();
+      $msg['errMail'] = "<p>Email Inválido ou em branco!</p>";
+      $error = true;
     }
 }
 

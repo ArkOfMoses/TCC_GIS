@@ -1,3 +1,77 @@
+<?php
+
+require_once 'PHPMailer/src/PHPMailer.php';
+require_once 'PHPMailer/src/SMTP.php';
+use PHPMailer\PHPMailer\PHPMailer;
+
+
+$err = false;
+$msg = array();
+
+$filterForm = [
+  "firstname" => FILTER_SANITIZE_SPECIAL_CHARS,
+  "email" => FILTER_VALIDATE_EMAIL,
+  "mais-info" => FILTER_SANITIZE_SPECIAL_CHARS
+];
+
+$infoPost = filter_input_array(INPUT_POST, $filterForm);
+
+
+if($infoPost){
+  // não sei oq tá acontecendo aqui, mas dá certo
+  $nome = '=?UTF-8?B?'.base64_encode($infoPost['firstname']).'?=';
+  $emailEnviando = $infoPost['email'];
+  $informacoes = substr($infoPost['mais-info'], 0, 16384);
+
+
+  if ($nome === '' || $emailEnviando === '' || $informacoes === '' ) {
+    $msg['camposVazios'] = "<p>É necessário preencher todos os campos!</p>";
+    $err = true;
+  }
+
+  if($emailEnviando === false){
+    $msg['errEmail'] = "<p>O Email é inválido!</p>";
+    $err = true;
+  }
+
+
+  if($err == false){
+    // código pra mandar o email!!
+    $PHPMailer = new PHPMailer();
+
+    $PHPMailer->IsSMTP();
+    $PHPMailer->CharSet = 'UTF-8';
+
+    //configuração do gmail
+    $PHPMailer->Port = '465'; //porta usada pelo gmail.
+    $PHPMailer->Host = 'smtp.gmail.com'; 
+    $PHPMailer->IsHTML(true);  
+    $PHPMailer->SMTPSecure = 'ssl';
+
+    //configuração do usuário do gmail
+    $PHPMailer->SMTPAuth = true; 
+    $PHPMailer->Username = 'exodiadeini@gmail.com'; // usuario gmail.   
+    $PHPMailer->Password = 'gostosinhos123'; // senha do email.
+    $PHPMailer->SingleTo = true; 
+
+    // configuração do email a ver enviado.
+    $PHPMailer->setFrom("exodiadeini@gmail.com", "Gestão Institucional Simplificada");
+    $PHPMailer->addAddress("exodiadeini@gmail.com"); // email do destinatario.
+    //$PHPMailer->addReplyTo('siqueiramoises14@gmail.com', "$nome");
+
+    $PHPMailer->Subject = "Contato de $nome"; 
+    $PHPMailer->Body = "<p>".$informacoes."</p>Email para resposta: <p>".$emailEnviando."</p>";
+
+    if($PHPMailer->Send()){
+      unset($PHPMailer);
+      $msg['msgEnviar'] = "Seu email foi enviado com sucesso!!";
+    }else{
+      $msg['msgEnviar'] = "Erro ao enviar Email:" . $PHPMailer->ErrorInfo;
+    }
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -80,16 +154,28 @@
 
         <main>
 
-          <form class="contato" id="contato">
+          <form class="contato" id="contato" method="post">
             <h3>Contato</h3>
             <input type="text" name="firstname" placeholder="Seu nome">
             <br>
             <input type="text" name="email" placeholder="Seu e-mail">
-            <br>
-            <input type="telephone" name="telephone" placeholder="Telefone">
+            <?php
+                if(array_key_exists('errEmail', $msg)){ 
+                  echo $msg['errEmail'];
+                }
+              ?>
             <br>
             <textarea name="mais-info" placeholder="Mensagem"></textarea>
             <br>
+            <?php
+                if(array_key_exists('camposVazios', $msg)){ 
+                  echo $msg['camposVazios'];
+                }
+
+                if(array_key_exists('msgEnviar', $msg)){
+                  echo $msg['msgEnviar'];
+                }
+              ?>
             <input type="submit" value="Enviar">
           </form>
 
@@ -100,7 +186,7 @@
 
           <a href="homeLandingPage.php">Home</a>
           <a class="selecionado">Entrar na Conta</a>
-          <a href="#">Contato</a>
+          <a href="contatoLandingPage.php">Contato</a>
           <a href="#">Sobre Nós</a>
 
         </footer>
