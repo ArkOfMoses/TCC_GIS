@@ -221,7 +221,7 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
                 }
               ?>
               <br>
-              <p>Esqueceu sua senha? <a href="#"> clique aqui </a></p>
+              <p>Esqueceu sua senha? <a href="esqueceuSenha.php"> clique aqui </a></p>
             </form>
 
 

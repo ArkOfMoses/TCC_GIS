@@ -1,11 +1,7 @@
 <?php
 
-require_once 'PHPMailer/src/PHPMailer.php';
-require_once 'PHPMailer/src/SMTP.php';
-use PHPMailer\PHPMailer\PHPMailer;
+require_once 'functions/PHPMailer.php';
 
-
-$err = false;
 $msg = array();
 
 $filterForm = [
@@ -26,47 +22,22 @@ if($infoPost){
 
   if ($nome === '' || $emailEnviando === '' || $informacoes === '' ) {
     $msg['camposVazios'] = "<p>É necessário preencher todos os campos!</p>";
-    $err = true;
   }
 
   if($emailEnviando === false){
     $msg['errEmail'] = "<p>O Email é inválido!</p>";
-    $err = true;
   }
 
 
-  if($err == false){
-    // código pra mandar o email!!
-    $PHPMailer = new PHPMailer();
+  if(empty($msg)){
+    $assunto = "Contato de $nome";
+    $mensagem = "<p>".$informacoes."</p>Email para resposta: <p>".$emailEnviando."</p>";
+    $PHPMailer = PHPMailer($assunto, $mensagem);
 
-    $PHPMailer->IsSMTP();
-    $PHPMailer->CharSet = 'UTF-8';
-
-    //configuração do gmail
-    $PHPMailer->Port = '465'; //porta usada pelo gmail.
-    $PHPMailer->Host = 'smtp.gmail.com'; 
-    $PHPMailer->IsHTML(true);  
-    $PHPMailer->SMTPSecure = 'ssl';
-
-    //configuração do usuário do gmail
-    $PHPMailer->SMTPAuth = true; 
-    $PHPMailer->Username = 'exodiadeini@gmail.com'; // usuario gmail.   
-    $PHPMailer->Password = 'gostosinhos123'; // senha do email.
-    $PHPMailer->SingleTo = true; 
-
-    // configuração do email a ver enviado.
-    $PHPMailer->setFrom("exodiadeini@gmail.com", "Gestão Institucional Simplificada");
-    $PHPMailer->addAddress("exodiadeini@gmail.com"); // email do destinatario.
-    //$PHPMailer->addReplyTo('siqueiramoises14@gmail.com', "$nome");
-
-    $PHPMailer->Subject = "Contato de $nome"; 
-    $PHPMailer->Body = "<p>".$informacoes."</p>Email para resposta: <p>".$emailEnviando."</p>";
-
-    if($PHPMailer->Send()){
-      unset($PHPMailer);
-      $msg['msgEnviar'] = "Seu email foi enviado com sucesso!!";
+    if($PHPMailer === true){
+      $msg['msgEnviar'] = "<p>Seu email foi enviado com sucesso!</p>";
     }else{
-      $msg['msgEnviar'] = "Erro ao enviar Email:" . $PHPMailer->ErrorInfo;
+      $msg['msgEnviar'] = $PHPMailer;
     }
   }
 }
