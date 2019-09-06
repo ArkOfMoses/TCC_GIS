@@ -156,8 +156,8 @@ if($infoPost){
         <footer>
 
           <a href="homeLandingPage.php">Home</a>
-          <a class="selecionado">Entrar na Conta</a>
-          <a href="contatoLandingPage.php">Contato</a>
+          <a href="loginLandingPage.php">Entrar na Conta</a>
+          <a class="selecionado">Contato</a>
           <a href="#">Sobre Nós</a>
 
         </footer>

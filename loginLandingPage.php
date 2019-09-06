@@ -231,7 +231,7 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
 
           <a href="homeLandingPage.php">Home</a>
           <a class="selecionado">Entrar na Conta</a>
-          <a href="#">Contato</a>
+          <a href="contatoLandingPage.php">Contato</a>
           <a href="#">Sobre Nós</a>
 
         </footer>

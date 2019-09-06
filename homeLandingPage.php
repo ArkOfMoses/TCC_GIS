@@ -270,7 +270,7 @@ if($infoPost){
 
           <a class="selecionado">Home</a>
           <a href="loginLandingPage.php">Entrar na Conta</a>
-          <a href="#">Contato</a>
+          <a href="contatoLandingPage.php">Contato</a>
           <a href="#">Sobre Nós</a>
 
         </footer>
