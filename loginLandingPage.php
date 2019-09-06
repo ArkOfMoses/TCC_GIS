@@ -37,61 +37,69 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
   if ($numeroDeLinhas === 0) {
       $msg['errUsuario'] = "<p>Usuário Inexistente!</p>";
         $error = true;
-  }else if($numeroDeLinhas === 1){
-      while ($dados = $comando->fetch(PDO::FETCH_ASSOC)) {
-            $codAcesso = $dados['cod_acesso'];
-            $senhaUsu = $dados['senha'];
-            $emailUsu = $dados['email'];
-            $codTipoUsu = $dados['cod_tipo_usu'];
-            $nomeTipoUsu = $dados['nome_tipo_usu'];
-            $codStatusTipoUsuOperacao = $dados['cod_status_tipo_usu_operacao'];
-            $codOperacao = $dados['cod_operacao'];
-            $nomeOperacao = $dados['nome_operacao'];
-            $codStatusOperacao = $dados['cod_status_operacao'];
-            $codUsu = $dados['cod_usu'];
-            $nomeUsu = $dados['nome_usu'];
-            $cpfUsu = $dados['cpf_usu'];
-            $dataNascUsu = $dados['data_nasc_usu'];
-            $fotoUsu = $dados['url_foto_usu'];
-            $entradaUsu = $dados['data_entrada'];
-            $saidaUsu = $dados['data_saida'];
-            $codStatusUsu = $dados['cod_status_usu'];
+  }else if($numeroDeLinhas >= 1){
+      while ($dados = $comando->fetchAll(PDO::FETCH_ASSOC)) {
+        $dedos = $dados;
+
+        $codAcesso = $dados[0]['cod_acesso'];
+        $senhaUsu = $dados[0]['senha'];
+        $emailUsu = $dados[0]['email'];
+        $codTipoUsu = $dados[0]['cod_tipo_usu'];
+        $nomeTipoUsu = $dados[0]['nome_tipo_usu'];
+
+        $codUsu = $dados[0]['cod_usu'];
+        $nomeUsu = $dados[0]['nome_usu'];
+        $cpfUsu = $dados[0]['cpf_usu'];
+        $dataNascUsu = $dados[0]['data_nasc_usu'];
+        $fotoUsu = $dados[0]['url_foto_usu'];
+        $entradaUsu = $dados[0]['data_entrada'];
+        $saidaUsu = $dados[0]['data_saida'];
+        $codStatusUsu = $dados[0]['cod_status_usu'];
       }
   }
 
       $obj = new Bcrypt();
       if(isset($senhaUsu)){
         if($obj->check($senha, $senhaUsu)){
+          
+          $codStatusTipoUsuOperacao = array();
+          $codOperacao = array();
+          $nomeOperacao = array();
+          $codStatusOperacao = array();
+          
+          for($i = 0; $i <= ($numeroDeLinhas-1); $i++){
+            $codStatusTipoUsuOperacao[] = $dedos[$i]['cod_status_tipo_usu_operacao'];
+            $codOperacao[] = $dedos[$i]['cod_operacao'];
+            $nomeOperacao[] = $dedos[$i]['nome_operacao'];
+            $codStatusOperacao[] = $dedos[$i]['cod_status_operacao'];
+          }
+
             $_SESSION['logado'] = true;
             $_SESSION['dadosUsu'] = [
-                                    "codAcesso" => $codAcesso,
-                                    "senhaUsu" => $senhaUsu,
-                                    "emailUsu" => $emailUsu,
-                                    "codTipoUsu" => $codTipoUsu,
-                                    "nomeTipoUsu" => $nomeTipoUsu,
-                                    "codStatusTipoUsuOperacao" => $codStatusTipoUsuOperacao,
-                                    "codOperacao" => $codOperacao,
-                                    "nomeOperacao" => $nomeOperacao,
-                                    "codStatusOperacao" => $codStatusOperacao,
-                                    "codUsu" => $codUsu,
-                                    "nomeUsu" => $nomeUsu,
-                                    "cpfUsu" => $cpfUsu,
-                                    "dataNascUsu" => $dataNascUsu,
-                                    "fotoUsu" => $fotoUsu,
-                                    "entradaUsu" => $entradaUsu,
-                                    "saidaUsu" => $saidaUsu,
-                                    "codStatusUsu" => $codStatusUsu
-                                    ];
+                  "codAcesso" => $codAcesso,
+                  "senhaUsu" => $senhaUsu,
+                  "emailUsu" => $emailUsu,
+                  "codTipoUsu" => $codTipoUsu,
+                  "nomeTipoUsu" => $nomeTipoUsu,
+                  "codStatusTipoUsuOperacao" => $codStatusTipoUsuOperacao,
+                  "codOperacao" => $codOperacao,
+                  "nomeOperacao" => $nomeOperacao,
+                  "codStatusOperacao" => $codStatusOperacao,
+                  "codUsu" => $codUsu,
+                  "nomeUsu" => $nomeUsu,
+                  "cpfUsu" => $cpfUsu,
+                  "dataNascUsu" => $dataNascUsu,
+                  "fotoUsu" => $fotoUsu,
+                  "entradaUsu" => $entradaUsu,
+                  "saidaUsu" => $saidaUsu,
+                  "codStatusUsu" => $codStatusUsu
+              ];
+
             if($entradaUsu === NULL){
                 // manda pra tela de confirmação de dados
                 // por enquanto vou deixar o header aqui tmb
                 header("Location: perfil".$nomeTipoUsu.".php");
             }else{
-                // aqui ou na página do perfil seria o lugar onde a gente iria fazer aquilo de deixar os campos enabled
-                //ou disabled, porém tem um problema que a gente tem que esclarecer com o rogério quando a gente for conversar
-                //com ele sobre isso, um usuário pode ter mais de uma operação com ele, eu fiz o teste e quando isso acontece
-                //o inner join retorna mais de uma linha, só q ai o $nomeOperação precisa ser um array, mas isso não acontece, ele
-                //só olha o ultimo resultado. 
                 header("Location: perfil".$nomeTipoUsu.".php");
             }
           } else {  
@@ -145,7 +153,6 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
 
   <body>
       <div class="content">
-
         <header id="on_off">
           <div class="header">
 
