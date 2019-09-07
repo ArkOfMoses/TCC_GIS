@@ -44,3 +44,69 @@ jQuery(function () {
     }
   });
 });
+
+// Confirmar senha / email
+
+function confirmarSenha(){
+  var senha1 = document.getElementById("senha");
+  var senha2 = document.getElementById("confSenha");
+  var s1 = senha1.value;
+  var s2 = senha2.value;
+  if (s1 != s2) {
+    document.getElementById("senha").style.borderColor="red";
+    document.getElementById("confSenha").style.borderColor="red";
+    document.getElementById("enviar").style.backgroundColor="grey";
+    //$("form").submit(function () { return false; });
+    $("h4").show().removeClass("ok").addClass("erro")
+		.text('As senhas não batem.');
+  }else{
+      document.getElementById("senha").style.borderColor="grey";
+      document.getElementById("confSenha").style.borderColor="grey";
+      document.getElementById("enviar").style.backgroundColor="#012";
+      //$("form").submit(function () { return true; });
+      $("h4").show().removeClass("ok").addClass("erro")
+  		.text('');
+  }
+}
+
+function validaEmail(){
+  var email1 = document.getElementById("email");
+  var email = email1.value;
+  var emailFilter=/^.+@.+\..{2,}$/;
+	var illegalChars= /[\(\)\<\>\,\;\:\\\/\"\[\]]/
+	// condição
+	if(!(emailFilter.test(email))||email.match(illegalChars)){
+		$("h4").show().removeClass("ok").addClass("erro")
+		.text('Por favor, informe um email válido.');
+    document.getElementById("email").style.borderColor="red";
+    document.getElementById("enviar").style.backgroundColor="grey";
+    //$("form").submit(function () { return false; });
+	}else{
+    $("h4").show().removeClass("erro").text('');
+    document.getElementById("email").style.borderColor="grey";
+    document.getElementById("enviar").style.backgroundColor="#012";
+    //$("form").submit(function () { return true; });
+}
+}
+
+function confirmarEmail(){
+  var email1 = document.getElementById("email");
+  var email2 = document.getElementById("confEmail");
+  var e1 = email1.value;
+  var e2 = email2.value;
+  if (e1 != e2) {
+    document.getElementById("email").style.borderColor="red";
+    document.getElementById("confEmail").style.borderColor="red";
+    document.getElementById("enviar").style.backgroundColor="grey";
+    //$("form").submit(function () { return false; });
+    $("h4").show().removeClass("ok").addClass("erro")
+		.text('Os emails não batem.');
+  }else {
+    document.getElementById("email").style.borderColor="grey";
+    document.getElementById("confEmail").style.borderColor="grey";
+    document.getElementById("enviar").style.backgroundColor="#012";
+    //$("form").submit(function () { return true; });
+    $("h4").show().removeClass("erro")
+		.text('');
+  }
+}
