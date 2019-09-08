@@ -126,28 +126,21 @@ if($infoPost){
         <main>
 
           <form class="contato" id="contato" method="post">
-            <h3>Contato</h3>
+            <h3 id="h3">Contato</h3>
             <input type="text" name="firstname" placeholder="Seu nome">
             <br>
-            <input type="text" name="email" placeholder="Seu e-mail">
+            <input type="text" name="email" placeholder="Seu e-mail" id="email" onblur="return validaEmail()">
             <?php
-                if(array_key_exists('errEmail', $msg)){ 
-                  echo $msg['errEmail'];
-                }
-              ?>
+              if(array_key_exists('errEmail', $msg)){
+                echo $msg['errEmail'];
+              }
+            ?>
             <br>
             <textarea name="mais-info" placeholder="Mensagem"></textarea>
             <br>
-            <?php
-                if(array_key_exists('camposVazios', $msg)){ 
-                  echo $msg['camposVazios'];
-                }
-
-                if(array_key_exists('msgEnviar', $msg)){
-                  echo $msg['msgEnviar'];
-                }
-              ?>
-            <input type="submit" value="Enviar">
+            <h4></h4>
+            <br>
+            <input type="submit" value="Enviar" id="enviar">
           </form>
 
 
