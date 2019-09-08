@@ -1,120 +1,3 @@
-<?php
-
-require_once 'bd/conexao.php';
-require_once 'classes/Bcrypt.php';
-
-$error = false;
-$msg = array();
-
-$filterFormLogin = [
-  "email" => FILTER_VALIDATE_EMAIL,
-  "senha" => FILTER_SANITIZE_SPECIAL_CHARS
-];
-
-$infoPost = filter_input_array(INPUT_POST, $filterFormLogin);
-
-if($infoPost){
-
-  $email = $infoPost['email'];
-  $senha = $infoPost['senha'];
-
-    if ($email === '' or $senha === '') {
-                $msg['camposVazios'] = "<p>Todos os campos devem ser preenchidos</p>";
-                $error = true;
-
-    }else if($email != false){
-
-
-  $comando = $pdo->prepare("select acesso.cod_acesso, senha, email, tipo_usuario.cod_tipo_usu, nome_tipo_usu, cod_status_tipo_usu_operacao, operacao.cod_operacao, nome_operacao, cod_status_operacao, usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, url_foto_usu, data_entrada, data_saida, cod_status_usu
-From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
-            inner join tipo_usu_operacao on (tipo_usuario.cod_tipo_usu = tipo_usu_operacao.cod_tipo_usu)
-            inner join operacao on (tipo_usu_operacao.cod_operacao = operacao.cod_operacao)
-            inner join usuario on (acesso.cod_acesso = usuario.cod_acesso) where email = '$email';");
-
-  $comando->execute();
-  $numeroDeLinhas = $comando->rowCount();
-  if ($numeroDeLinhas === 0) {
-      $msg['errUsuario'] = "<p>Usuário Inexistente!</p>";
-        $error = true;
-  }else if($numeroDeLinhas >= 1){
-      while ($dados = $comando->fetchAll(PDO::FETCH_ASSOC)) {
-        $dedos = $dados;
-
-        $codAcesso = $dados[0]['cod_acesso'];
-        $senhaUsu = $dados[0]['senha'];
-        $emailUsu = $dados[0]['email'];
-        $codTipoUsu = $dados[0]['cod_tipo_usu'];
-        $nomeTipoUsu = $dados[0]['nome_tipo_usu'];
-
-        $codUsu = $dados[0]['cod_usu'];
-        $nomeUsu = $dados[0]['nome_usu'];
-        $cpfUsu = $dados[0]['cpf_usu'];
-        $dataNascUsu = $dados[0]['data_nasc_usu'];
-        $fotoUsu = $dados[0]['url_foto_usu'];
-        $entradaUsu = $dados[0]['data_entrada'];
-        $saidaUsu = $dados[0]['data_saida'];
-        $codStatusUsu = $dados[0]['cod_status_usu'];
-      }
-  }
-
-      $obj = new Bcrypt();
-      if(isset($senhaUsu)){
-        if($obj->check($senha, $senhaUsu)){
-          
-          $codStatusTipoUsuOperacao = array();
-          $codOperacao = array();
-          $nomeOperacao = array();
-          $codStatusOperacao = array();
-          
-          for($i = 0; $i <= ($numeroDeLinhas-1); $i++){
-            $codStatusTipoUsuOperacao[] = $dedos[$i]['cod_status_tipo_usu_operacao'];
-            $codOperacao[] = $dedos[$i]['cod_operacao'];
-            $nomeOperacao[] = $dedos[$i]['nome_operacao'];
-            $codStatusOperacao[] = $dedos[$i]['cod_status_operacao'];
-          }
-
-            $_SESSION['logado'] = true;
-            $_SESSION['dadosUsu'] = [
-                  "codAcesso" => $codAcesso,
-                  "senhaUsu" => $senhaUsu,
-                  "emailUsu" => $emailUsu,
-                  "codTipoUsu" => $codTipoUsu,
-                  "nomeTipoUsu" => $nomeTipoUsu,
-                  "codStatusTipoUsuOperacao" => $codStatusTipoUsuOperacao,
-                  "codOperacao" => $codOperacao,
-                  "nomeOperacao" => $nomeOperacao,
-                  "codStatusOperacao" => $codStatusOperacao,
-                  "codUsu" => $codUsu,
-                  "nomeUsu" => $nomeUsu,
-                  "cpfUsu" => $cpfUsu,
-                  "dataNascUsu" => $dataNascUsu,
-                  "fotoUsu" => $fotoUsu,
-                  "entradaUsu" => $entradaUsu,
-                  "saidaUsu" => $saidaUsu,
-                  "codStatusUsu" => $codStatusUsu
-              ];
-
-            if($entradaUsu === NULL){
-                // manda pra tela de confirmação de dados
-                // por enquanto vou deixar o header aqui tmb
-                header("Location: perfil".$nomeTipoUsu.".php");
-            }else{
-                header("Location: perfil".$nomeTipoUsu.".php");
-            }
-          } else {  
-            session_destroy();
-            $msg['errPassword'] = "<p>Senha incorreta!!</p>";
-            $error = true;    
-          }
-      } 
-    }else{
-      session_destroy();
-      $msg['errMail'] = "<p>Email Inválido ou em branco!</p>";
-      $error = true;
-    }
-}
-
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -147,7 +30,26 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
 
       <!-- Icon Font -->
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
-
+      <script src='js/jquery-3.3.1.min.js'></script>
+      <script>
+          $(function(){
+              $('.login').submit(function(){
+                  $.ajax({
+                      url: 'cod_loginLP.php',
+                      type: 'POST',
+                      data: $('.login').serialize(),
+                      success: function(data){
+                          if(data != ''){
+                              $('.recebeDados').html(data);
+                              document.getElementById('visor').value = '';
+                              document.getElementById('visor1').value = '';
+                          }
+                      }
+                  });
+                  return false;
+              });
+          });
+      </script>
   </head>
 
   <body>
@@ -196,30 +98,16 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
 
         <main>
 
-            <form class="login" id="login" method="post" action="loginLandingPage.php">
+            <form class="login" id="login" method="post">
               <h3>Entrar</h3>
-              <input type="text" name="email" placeholder="Email">
+              <input type="text" name="email" id="visor" placeholder="Email">
               <br>
-              <input type="password" name="senha" placeholder="Senha">
+              <input type="password" name="senha" id="visor1" placeholder="Senha">
               <br>
               <input type="submit" value="Enviar">
-              <?php
-                if(array_key_exists('camposVazios', $msg)){ 
-                  echo $msg['camposVazios'];
-                }
-
-                if(array_key_exists('errUsuario', $msg)){
-                  echo $msg['errUsuario'];
-                }
-
-                if(array_key_exists('errPassword', $msg)){
-                  echo $msg['errPassword'];
-                }
-
-                if(array_key_exists('errMail', $msg)){
-                  echo $msg['errMail'];
-                }
-              ?>
+              <div class='recebeDados'>
+                <!-- Aqui virá o conteúdo por ajax -->
+              </div>
               <br>
               <p>Esqueceu sua senha? <a href="esqueceuSenha.php"> clique aqui </a></p>
             </form>

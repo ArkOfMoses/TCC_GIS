@@ -185,7 +185,7 @@ if($infoPost){
             <ul class="menu-buttons">
               <li><a href="homeLandingPage.php">Home</a></li>
               <li><a href="loginLandingPage.php">Entrar</a></li>
-              <li><a href="#">Contato</a></li>
+              <li><a href="contatoLandingPage.php">Contato</a></li>
               <li><a href="#">Sobre Nós</a></li>
             </ul>
 
