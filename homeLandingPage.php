@@ -237,36 +237,45 @@ if($infoPost){
               <a href="#"><div class="btm-email"><i class="fas fa-user"></i> Já sou um cliente</div></a>
             </div>
               
-            <form class="enviar-email" id="enviar-email" method="post" action="#h3">
-           
-              <h3 id="h3">Tenha seu sistema, <br> Entre em contato conosco</h3>
-              <input type="text" name="firstname" placeholder="Seu nome">
-              <br>
-              <input type="text" name="email" placeholder="Seu e-mail">
-              <?php
-                if(array_key_exists('errEmail', $msg)){ 
-                  echo $msg['errEmail'];
-                }
-              ?>
-              <br>
-              <textarea name="mais-info" placeholder="Mais informações"></textarea>
-              <br>
-              <?php
-                if(array_key_exists('camposVazios', $msg)){ 
-                  echo $msg['camposVazios'];
-                }
+            <form class="registro" id="contato" method="post">
+            <h3 id="h3">Registre-se</h3>
+            <input type="text" name="firstname" placeholder="Seu nome">
+            <br>
+            <input type="text" name="email" placeholder="Seu e-mail" id="email" onblur="return validaEmail()">
+            <?php
+              if(array_key_exists('errEmail', $msg)){
+                echo $msg['errEmail'];
+              }
+            ?>
+            <br>
+            <input type="text" name="confEmail" placeholder="Confirme seu email" id="confEmail" onblur="return confirmarEmail()">
+            <?php
+            ?>
+            <br>
+            <input type="password" name="senha" placeholder="Crie uma senha" id="senha">
+            <br>
+            <input type="password" name="confSenha" placeholder="Confirme sua senha" id="confSenha" onblur="return confirmarSenha()">
+            <br>
+            <?php
+              if(array_key_exists('camposVazios', $msg)){
+                echo $msg['camposVazios'];
+              }
 
-                if(array_key_exists('msgEnviar', $msg)){
-                  echo $msg['msgEnviar'];
-                }
-              ?>
-              <input type="submit" value="Enviar">
-            </form>
-
+              if(array_key_exists('msgEnviar', $msg)){
+                echo $msg['msgEnviar'];
+              }
+            ?>
+            <h4></h4>
+            <br>
+            <input type="submit" value="Enviar" id="enviar">
+            <br>
+                <p>Ao se cadastrar, você concorda com nossos <a>Termos de uso</a></p>
+          </form>
+                
         </main>
 
         <footer>
-          <a href="#header"><i class="fas fa-chevron-up"></i></a>
+          <a href="#banner"><i class="fas fa-chevron-up"></i></a>
 
           <a class="selecionado">Home</a>
           <a href="loginLandingPage.php">Entrar na Conta</a>
