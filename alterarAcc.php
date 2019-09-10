@@ -2,11 +2,11 @@
 session_start();
 
 if(isset($_SESSION['logado'])){
-  $dados[] =  $_SESSION['dadosUsu'];
-
+  $dados =  $_SESSION['dadosUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
     session_destroy();
+    header("Location: homeLandingPage.php");
 }
 
 
@@ -31,6 +31,32 @@ if(isset($_SESSION['logado'])){
               href="css/cssPrimeiroAcesso/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="css/cssPrimeiroAcesso/style1366.css">
 
+        <!-- SCRIPT COM O AJAX -->
+        <script src='js/jquery-3.3.1.min.js'></script>
+        <script>
+          $(function(){
+              $('.form').submit(function(){
+                  $.ajax({
+                      url: 'cod_alterarAcc.php',
+                      type: 'POST',
+                      data: $('.form').serialize(),
+                      success: function(data){
+                          if(data != ''){
+                              $('.recebeDados').html(data);
+                              document.getElementById('visor1').value = '<?= $dados['nomeUsu']; ?>';
+                              document.getElementById('visor2').value = '<?= $dados['emailUsu']; ?>';
+                              document.getElementById('visor3').value = '<?= $dados['emailUsu']; ?>';
+                              document.getElementById('visor4').value = '';
+                              document.getElementById('visor5').value = '';
+                              document.getElementById('visor6').value = '';
+                              document.getElementById('visor7').value = '';
+                          }
+                      }
+                  });
+                  return false;
+              });
+          });
+      </script>
     </head>
     <body>
         <div class="content">
@@ -49,47 +75,40 @@ if(isset($_SESSION['logado'])){
                         <img id="alteraFoto" src="imagens/alteraFoto.png">
                     </a>
 
-                    <form class='form' method='post' action=''>
+                    <form class='form' method='post' action='cod_alterarAcc.php'>
+                        <!---FAZER COM TODOS OS CAMPOS QUANDO TIVER-->
+                        <!---tomar cuidado com esses "altere", pode soar errado ao usuário-->
+                        <!---também nn entendi o sentido de colocar value na senha se o usuário nn vai poder ver a senha e conferir-->
                         <label>Confirme seu nome:</label>
-                        <input type="text" value="Fulano de tal">
-
+                        <input type="text" id="visor1" name="nome_usu" value="<?= $dados['nomeUsu']; ?>">
+  
                         <label>Altere seu email:</label>
-                        <input type="email" value="email@gmail.com">
+                        <input type="email" id="visor2" name="email" value="<?= $dados['emailUsu']; ?>">
                         
                         <label>Confirme seu email:</label>
-                        <input type="email" value="email@gmail.com">
+                        <input type="email" id="visor3" name="confirmaEmail" value="<?= $dados['emailUsu']; ?>">
                         
-                        <label>Altere sua senha:</label>
-                        <input type="password" value="12345">
+                        <label>Sua senha:</label>
+                        <input type="password" id="visor4" name="senha" >
                         
                         <label>Confirme sua senha:</label>
-                        <input type="password" value="12345">
+                        <input type="password" id="visor5" name="confirmaSenha" >
 
-                    </form>
+                        <label>Insira seu cpf:</label>
+                        <input type="text" id="visor6" name="cpf_usu">
 
-                    <?php
-                    $nomeTipoUsu = $dados[0]['nomeTipoUsu'];
-                    switch ($nomeTipoUsu) {
-                        case 'Master':
-                           echo "<a href='../cadastroDeInst/cadastroDeInst.php' class='buttonNext'>Proximo passo</a>";
-                        break;
+                        <label>Insira sua data de nascimento:</label>
+                        <input type="date" id="visor7" name="data_nasc">
 
-                        case 'Professor':
-                           echo "<a href='perfilProfessor.php' class='buttonNext'>Ir para perfil</a>";
-                        break;
+                        <div class='recebeDados'>
+                            <!-- Aqui virá o conteúdo por ajax -->
+                        </div>
 
-                        case 'Saude':
-                           echo "<a href='perfilSaude.php' class='buttonNext'>Ir para perfil</a>";
-                        break;
-                    
-                    }
-
-                    ?>
-                    
+                        <input type="submit" value="confirmar">
+                        <!--o formulário precisa de um submit, ou um antes do botão de próximo/ir pro perfil ou um só input q dps a gente manda por header no código dps-->
+                    </form>                    
                 </div>
-                
-                
-                
+                          
                 <div class="acessDenied">
                     <img src="imagens/error.png">
                     <p>Ops! </p>

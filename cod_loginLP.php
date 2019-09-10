@@ -1,9 +1,9 @@
 <?php
-
 require_once 'bd/conexao.php';
 require_once 'classes/Bcrypt.php';
-
 session_start();
+
+
 
 $filterFormLogin = [
   "email" => FILTER_VALIDATE_EMAIL,
