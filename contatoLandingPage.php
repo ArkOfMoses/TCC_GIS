@@ -1,48 +1,3 @@
-<?php
-
-require_once 'functions/PHPMailer.php';
-
-$msg = array();
-
-$filterForm = [
-  "firstname" => FILTER_SANITIZE_SPECIAL_CHARS,
-  "email" => FILTER_VALIDATE_EMAIL,
-  "mais-info" => FILTER_SANITIZE_SPECIAL_CHARS
-];
-
-$infoPost = filter_input_array(INPUT_POST, $filterForm);
-
-
-if($infoPost){
-  // não sei oq tá acontecendo aqui, mas dá certo
-  $nome = '=?UTF-8?B?'.base64_encode($infoPost['firstname']).'?=';
-  $emailEnviando = $infoPost['email'];
-  $informacoes = substr($infoPost['mais-info'], 0, 16384);
-
-
-  if ($nome === '' || $emailEnviando === '' || $informacoes === '' ) {
-    $msg['camposVazios'] = "<p>É necessário preencher todos os campos!</p>";
-  }
-
-  if($emailEnviando === false){
-    $msg['errEmail'] = "<p>O Email é inválido!</p>";
-  }
-
-
-  if(empty($msg)){
-    $assunto = "Contato de $nome";
-    $mensagem = "<p>".$informacoes."</p>Email para resposta: <p>".$emailEnviando."</p>";
-    $PHPMailer = PHPMailer($assunto, $mensagem);
-
-    if($PHPMailer === true){
-      $msg['msgEnviar'] = "<p>Seu email foi enviado com sucesso!</p>";
-    }else{
-      $msg['msgEnviar'] = $PHPMailer;
-    }
-  }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -75,7 +30,27 @@ if($infoPost){
 
       <!-- Icon Font -->
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
-
+      <script src='js/jquery-3.3.1.min.js'></script>
+      <script>
+          $(function(){
+              $('.contato').submit(function(){
+                  $.ajax({
+                      url: 'cod_contatoLP.php',
+                      type: 'POST',
+                      data: $('.contato').serialize(),
+                      success: function(data){
+                          if(data != ''){
+                              $('.recebeDados').html(data);
+                              document.getElementById('visor').value = '';
+                              document.getElementById('visor1').value = '';
+                              document.getElementById('visor2').value = '';
+                          }
+                      }
+                  });
+                  return false;
+              });
+          });
+      </script>
   </head>
 
   <body>
@@ -126,21 +101,17 @@ if($infoPost){
         <main>
 
           <form class="contato" id="contato" method="post">
-            <h3 id="h3">Contato</h3>
-            <input type="text" name="firstname" placeholder="Seu nome">
+            <h3>Contato</h3>
+            <input type="text" id="visor" name="firstname" placeholder="Seu nome">
             <br>
-            <input type="text" name="email" placeholder="Seu e-mail" id="email" onblur="return validaEmail()">
-            <?php
-              if(array_key_exists('errEmail', $msg)){
-                echo $msg['errEmail'];
-              }
-            ?>
+            <input type="text" name="email" id="visor1" placeholder="Seu e-mail">
+            <textarea name="mais-info" id="visor2" placeholder="Mensagem"></textarea>
             <br>
-            <textarea name="mais-info" placeholder="Mensagem"></textarea>
-            <br>
-            <h4></h4>
-            <br>
-            <input type="submit" value="Enviar" id="enviar">
+            <div class='recebeDados'>
+                <!-- Aqui virá o conteúdo por ajax -->
+            </div>
+            <input type="submit" value="Enviar">
+
           </form>
 
 
