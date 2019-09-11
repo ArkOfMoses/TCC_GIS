@@ -110,5 +110,6 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
       echo "<p>Email Inválido ou em branco!</p>";
     }
 }
+/**/
 
 ?>
