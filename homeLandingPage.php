@@ -27,6 +27,29 @@
       <!-- Script -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="js/script.js"></script>
+      <script>
+          $(function(){
+              $('.registro').submit(function(){
+                  $.ajax({
+                      url: 'cadastroMaster.php',
+                      type: 'POST',
+                      data: $('.registro').serialize(),
+                      success: function(data){
+                          if(data != ''){
+                              $("h4").html(data);
+                              document.getElementsByName('firstname').value = '';
+                              document.getElementsByName('email').value = '';
+                              document.getElementsByName('confEmail').value = '';
+                              document.getElementsByName('senha').value = '';
+                              document.getElementsByName('confSenha').value = '';
+                              document.getElementsByName('dataNasc').value = '';
+                          }
+                      }
+                  });
+                  return false;
+              });
+          });
+      </script>
 
       <!-- Icon Font -->
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
@@ -148,7 +171,7 @@
               <a href="#"><div class="btm-email"><i class="fas fa-user"></i> Já sou um cliente</div></a>
             </div>
               
-            <form class="registro" id="contato" method="post">
+            <form class="registro" id="contato" method="post" action="cadastroMaster.php">
             <h3 id="h3">Registre-se</h3>
             <input type="text" name="firstname" placeholder="Seu nome">
             <br>
@@ -159,6 +182,8 @@
             <input type="password" name="senha" placeholder="Crie uma senha" id="senha">
             <br>
             <input type="password" name="confSenha" placeholder="Confirme sua senha" id="confSenha" onblur="return confirmarSenha()">
+            <br>
+            <input type="date" name="dataNasc" placeholder="Data de Nascimento">
             <br>
             <h4></h4>
             <br>

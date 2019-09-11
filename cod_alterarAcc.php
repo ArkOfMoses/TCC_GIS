@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once 'bd/conexao.php';
 require_once 'classes/Bcrypt.php'; // n sei se vai usar
-session_start();
 
 /*
 informações que a gente precisa pegar através da sessão dadosUsu:
@@ -14,8 +14,7 @@ $filterForm = [
     "confirmaEmail" => FILTER_VALIDATE_EMAIL,
     "senha" => FILTER_SANITIZE_SPECIAL_CHARS,
     "confirmaSenha" => FILTER_SANITIZE_SPECIAL_CHARS,
-    "cpf_usu" => FILTER_SANITIZE_SPECIAL_CHARS, //talvez a validação seja por JS
-    "data_nasc" => FILTER_DEFAULT //talvez a validação seja por JS
+    "cpf_usu" => FILTER_SANITIZE_SPECIAL_CHARS //talvez a validação seja por JS
 ];  
 
 $infoPost = filter_input_array(INPUT_POST, $filterForm);
@@ -42,7 +41,7 @@ if($infoPost){
             //date_default_timezone_set('Etc/UTC');
             //se a gente não for usar o type=date, a gente precisa fazer o rolê de inverter pra ficar no padrão do banco
             $comando1 = $pdo->prepare("update acesso set senha = '$senhaEncript', email = '{$infoPost['email']}' where cod_acesso = $codAcesso");
-            $comando2 = $pdo->prepare("update usuario set nome_usu = '{$infoPost['nome_usu']}', cpf_usu = '{$infoPost['cpf_usu']}', data_nasc_usu = '{$infoPost['data_nasc']}', /*url_foto_usu = 'rolê da foto',*/ data_entrada = (cast(NOW() as Date)) where cod_acesso = $codUsu");
+            $comando2 = $pdo->prepare("update usuario set nome_usu = '{$infoPost['nome_usu']}', cpf_usu = '{$infoPost['cpf_usu']}', /*url_foto_usu = 'rolê da foto',*/ data_entrada = (cast(NOW() as Date)) where cod_acesso = $codUsu");
             
             if($comando1->execute() && $comando2->execute()){                
                 $nomeTipoUsu = $_SESSION['dadosUsu']['nomeTipoUsu'];
