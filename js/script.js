@@ -110,3 +110,14 @@ function confirmarEmail(){
 		.text('');
   }
 }
+
+
+//Alterar horário
+
+$(document).ready(function(){
+  $('.botaoSemana').click(function(){
+   var semanavalue = $(this).val(); 
+      $("div.semana").hide();
+      $("#semana"+semanavalue).show();
+  });
+});
