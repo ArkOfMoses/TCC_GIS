@@ -1,0 +1,334 @@
+.header {
+    width: 100vw;
+    height: 80px;
+  }
+  
+  .logo {
+    width: 2.7em;
+    height: 2.7em;
+    margin-left: 20px;
+  }
+  
+  .hamburger{
+    width: 80px;
+    height: 100%;
+  }
+  
+  .hamburger svg{width: 1.3em;}
+  
+  .fullnav {
+    bottom: 0%;
+    top: 0%;
+    flex-flow: column;
+    align-items: center;
+    right: -100vw;
+    background: #051523;
+  }
+  
+  .menu {
+    width: 100vw;
+    overflow-y: scroll;
+  }
+  
+  hr {
+    width: 60vw;
+    color: #c9c9c9;
+    margin: 50px 0;
+  }
+  
+  .menu-buttons {min-height: 350px;}
+  
+  .menu-buttons li {font-size: 1.7em}
+  
+  .menu-buttons i {
+    font-size: .9em;
+    margin-right: 5px
+  }
+  
+  .title, .subtitle {font-size: 1.4em;}
+  
+  .title {font-size: 1.5em}
+  
+  .profile-photo-menu {
+    width: 18%;
+    padding-top: 18%;
+    border-radius: 150px;
+    margin: 100px 0 20px;
+  
+  }
+  
+  .active-menu .fullnav {right: 0;}
+/*horario*/
+/*Display e hidden*/
+.semana{
+    display:none
+}
+
+#semanaSegunda{
+    display: block;
+    
+}
+.botaoSemana{
+    color: #169BD5;
+    display: inline-block;
+}
+.horario input[type="radio"]{
+    display: none;
+}
+
+/*Cabeçalho*/
+.header_profile{
+  background-color: #169bd5;
+  text-align: center;
+  padding: 5px;
+  color: #fff;
+  box-shadow:#ccc 2px 2px 5px;
+  height: 270px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1%;
+}
+
+.header_profile img{
+  border-radius: 100px;
+  margin: 5px;
+  width: 180px;
+  height:180px;
+
+}
+
+.header_profile h2{
+    font-size: 26px;
+}
+.header_profile p{
+    font-size: 20px;
+    font-weight: lighter
+}
+/*Estilizando a passagem do horário*/
+.horario{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.labelBotao{
+    display:inline-flex;
+    padding: 6px 12px;
+    font-size: 26px;
+    color: #169bd5;            
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.horario input[type="radio"]:checked + .labelBotao{
+    border-bottom: 3px solid #169bd5; 
+    font-weight: bolder;
+}
+/*Estilizando o horário*/
+.semana{
+    text-align: center;
+    overflow-y:auto;
+    
+}
+.topico_horario{ 
+  display:flex;
+  width: 700px;
+  margin-top: 3%;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(0,204,204,1) 0%, rgba(22,155,213,1) 100%); 
+  text-align: center;
+  height: 150px; 
+  align-items: center;
+  justify-content: space-around
+}
+
+.hora, .info_horario{
+    display: inline-block;
+    align-content: center;
+    align-items: center;
+    margin: 3%;
+}
+.info_horario{
+}
+
+.topico_horario p{
+    font-size: 30px;
+    font-weight: bolder;
+}
+.topico_horario span{
+    font-weight: lighter;
+}
+  /********* INICIO CABECALHO****************/
+  
+  #cabecalho{
+    padding-top:60px;
+      width: 100%;
+      height:260px;
+      background-color: #003366;
+     
+  }
+  #seta{
+    margin-left:20px;
+    margin-top: 20px;  
+  }
+   #sala{
+    color:white;
+    font-family: Roboto;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align:center;
+    padding:15px;
+    background-color:#00cccc;
+    width:90px;
+    height:90px;
+    border-radius: 50%;
+    position:absolute;
+    left:50%;
+    margin-left:-50px;
+  }
+  
+  #infoCurso{
+   text-align:center;
+   margin-top:95px;
+   color:white;
+   font-size:1.2em;
+
+  }
+  
+  
+ 
+  
+  /* ********** NAVEGAÇÃO DE ABAS ***********/
+  button:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none; }
+  
+  .tabs {
+    display: block;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0;
+    overflow: hidden;
+   }
+   #nometab{
+     color:#003366;
+   }
+ 
+  
+     .tabs [class^="tab"] .labelTab,
+    .tabs [class*=" tab"] .labelTab {
+      color: #003366;
+      cursor: pointer;
+      display: block;
+      font-size: 1.1em;
+      font-weight: bold;
+      line-height: 1em;
+      padding: 1rem 0;
+      text-align: center;
+      font-family:roboto;
+  }
+  
+    .tabs [class^="tab"] [type="radio"]:not(.botaoSemana) ,
+    .tabs [class*=" tab"] [type="radio"]:not(.botaoSemana) {
+      border-bottom: 1px solid rgba(239, 237, 239, 0.5);
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      display: block;
+      width: 100%;
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+   }
+   
+      .tabs [class^="tab"] [type="radio"]:hover, .tabs [class^="tab"] [type="radio"]:focus,
+      .tabs [class*=" tab"] [type="radio"]:hover,
+      .tabs [class*=" tab"] [type="radio"]:focus {
+        border-bottom: 3px solid #003366; 
+      
+  }
+  
+      .tabs [class^="tab"] [type="radio"]:checked,
+      .tabs [class*=" tab"] [type="radio"]:checked {
+        border-bottom: 3px solid #003366; 
+      }
+  
+      .tabs [class^="tab"] [type="radio"]:checked + div,
+      .tabs [class*=" tab"] [type="radio"]:checked + div {
+        opacity: 1; 
+      }
+  
+  
+      .tabs [class^="tab"] [type="radio"] + div,
+      .tabs [class*=" tab"] [type="radio"] + div {
+        display: block;
+        opacity: 0;
+        padding: 2rem 0;
+        width: 90%;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out; 
+      }
+  
+    .tabs .tab-2 {
+      width: 50%; 
+      
+  }
+  
+      .tabs .tab-2 [type="radio"] + div {
+        width: 200%;
+        margin-left: 200%;
+       }
+  
+      .tabs .tab-2 [type="radio"]:checked + div {
+        margin-left: 0; 
+      }
+      .tabs .tab-2:last-child [type="radio"] + div {
+        margin-left: 100%; 
+      }
+      .tabs .tab-2:last-child [type="radio"]:checked + div {
+        margin-left: -100%; 
+      }
+  
+  
+      /*************** LISTA DE ALUNOS *****************/
+  
+      #dadosAluno{
+        display: flex;
+      flex-direction: row;
+   justify-content: space-evenly;
+    align-items: center;
+    border-bottom:1px solid #ccc;
+    padding:15px;
+      }
+  
+      #imgAluno{
+        width:95px;
+        height: 95px;
+      }
+  
+      p{
+        text-align:center;
+        font-size:0.8em;
+      }
+  
+      #ocorrencia_nomeAluno{
+        font-size: 1.4em;
+      }  
+
+
+
+      

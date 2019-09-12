@@ -1,0 +1,161 @@
+.header {
+  width: 100vw;
+  height: 60px;
+  position: relative;
+}
+
+.logo {
+  width: 2.5em;
+  height: 2.5em;
+  margin: 0 15px;
+}
+
+.hamburger{
+  width: 60px;
+  height: 100%;
+}
+
+.hamburger svg{width: 1.2em;}
+
+.fullnav {
+  bottom: 0%;
+  top: 0%;
+  flex-flow: column;
+  align-items: center;
+  right: -100vw;
+  background: #051523;
+}
+
+.menu {
+  width: 100vw;
+  overflow-y: scroll;
+  justify-content: space-around;
+  
+}
+
+hr {
+  width: 75vw;
+  color: #c9c9c9;
+  margin: 15px 0;
+}
+
+.menu-buttons {min-height: 50vh;}
+
+.menu-buttons li {font-size: 1.5em}
+
+.menu-buttons i {
+  font-size: .8em;
+  margin-right: 4px
+}
+
+.title, .subtitle {font-size: 1.2em;}
+
+.title {font-size: 1.3em}
+
+.profile-photo-menu {
+  width: 33%;
+  padding-top: 33%;
+  border-radius: 70px;
+  margin: 60px 0 10px;
+}
+
+.active-menu .fullnav {right: 0;}
+
+
+
+/*Display e hidden*/
+.semana{
+    display:none
+}
+
+#semanaSegunda{
+    display: block;
+    
+}
+.botaoSemana{
+    color: #169BD5;
+    display: inline-block;
+}
+.horario input[type="radio"]{
+    display: none;
+}
+
+/*Cabeçalho*/
+.header_profile{
+  background-color: #169bd5;
+  text-align: center;
+  padding: 5px;
+  color: #fff;
+  box-shadow:#ccc 2px 2px 5px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+
+.header_profile img{
+  border-radius: 50px;
+  margin: 5px;
+  width: 105px;
+  height:105px;
+
+}
+/*Estilizando a passagem do horário*/
+.horario{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.labelBotao{
+    display:inline-flex;
+    padding: 3px 6px;
+    font-size: 16px;
+    color: #169bd5;            
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.horario input[type="radio"]:checked + .labelBotao{
+    border-bottom: 3px solid #169bd5; 
+    font-weight: bolder;
+}
+/*Estilizando o horário*/
+.semana{
+    text-align: center;
+    overflow-y:auto;
+    height: 250px;
+    
+}
+.topico_horario{ 
+  display:flex;
+    width: 300px;
+  margin-top: 3%;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(0,204,204,1) 0%, rgba(22,155,213,1) 100%); 
+  text-align: center;
+  height: 70px;
+  align-items: center;
+  justify-content: space-around
+  }
+
+.hora, .info_horario{
+    display: inline-block;
+    align-content: center;
+    align-items: center;
+    margin: 3%;
+}
+.info_horario{
+}
+
+.topico_horario p{
+    font-size: 20px;
+    font-weight: bolder;
+}
+.topico_horario span{
+    font-weight: lighter;
+}
