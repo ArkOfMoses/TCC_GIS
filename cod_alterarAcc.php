@@ -49,7 +49,7 @@ if($infoPost){
                 switch ($nomeTipoUsu) {
                     case 'Master':
                        //header("Location: cadastroDeInst.php");
-                       echo "<script type='text/javascript'> window.location.href='perfilAluno.php';</script>";
+                       echo "<script type='text/javascript'> window.location.href='primeiroCadastroMaster/cadastroDeInst/cadastroDeInst.php';</script>";
                     break;
 
                     case 'Professor':

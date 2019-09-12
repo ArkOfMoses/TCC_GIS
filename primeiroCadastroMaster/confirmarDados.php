@@ -7,16 +7,15 @@
         <link rel="stylesheet" href="../css/default.css">    
         <script src='../js/jquery-3.3.1.min.js'></script>
         <!-- CSS PADRÃO -->
-        <link href="css/default.css" rel=stylesheet>
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="css/style480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../css/cssCadastroMaster/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="css/style768.css">
+              href="../css/cssCadastroMaster/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="css/style1366.css">
+              href="../css/cssCadastroMaster/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../css/cssCadastroMaster/style1366.css">
 
 
     </head>
@@ -24,11 +23,11 @@
         <div class="content">
 
             <header class="headerPrimeiroAcesso">
-            <a href="alterarAcc/alterarAcc.php"><img src="img/alteraImg.png"></a>
+            <!-- <a href="alterarAcc/alterarAcc.php"><img src="img/alteraImg.png"></a>
             <a href="cadastroDeInst/cadastroDeInst.php"><img src="img/instImg.png"></a>
             <a href="cadastroDeUnid/cadastroDeUnid.php"><img src="img/unidImg.png"></a>
             <a href="cadastroDeDir/cadastroDir.php"><img src="img/dirImg.png"></a>
-            <a href="enviarEmail.php"><img src="img/emailImg.png"></a>                
+            <a href="enviarEmail.php"><img src="img/emailImg.png"></a>  -->               
             <a href="confirmarDados.php"><img src="img/confirmaImg.png"></a>
 
 
