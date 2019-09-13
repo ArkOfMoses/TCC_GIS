@@ -33,6 +33,27 @@
             }
         </style> -->
 
+        <script src='../js/jquery-3.3.1.min.js'></script>
+        <script>
+          $(function(){
+              $('.form').submit(function(){
+                  $.ajax({
+                      url: 'cod_cadastroInst.php',
+                      type: 'POST',
+                      data: $('.form').serialize(),
+                      success: function(data){
+                          if(data != ''){
+                              $('.recebeDados').html(data);
+                              document.getElementsByName('nomeFant').value = '';
+                              document.getElementsByName('razaoSoci').value = '';
+                              document.getElementsByName('cnpj').value = '';
+                          }
+                      }
+                  });
+                  return false;
+              });
+          });
+      </script>
     </head>
     <body>
         <div class="content">
@@ -65,11 +86,11 @@
                         <label>Adicione o CNPJ da instituição:</label>
                         <input type="number" name="cnpj">
 
+                        <div class='recebeDados'></div>
                         <input type="submit" name="Cadastrar">
                         
                         <!--ADICIONAR MASCARA NO CNPJ-->
                     </form>
-
                     <!-- <a href='../../alterarAcc.php' class="buttonNext">Voltar</a> -->
                     <!-- <a href='../cadastroDeUnid/cadastroDeUnid.php' class="buttonNext">Proximo passo</a> -->
             </main>    

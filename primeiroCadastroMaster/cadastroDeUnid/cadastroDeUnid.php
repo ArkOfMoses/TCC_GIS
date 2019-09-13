@@ -30,6 +30,7 @@
                 display:none;
             }
         </style> -->
+        <script src='../js/jquery-3.3.1.min.js'></script>
         <script>
                 $(function () {
                     $('.form').submit(function () {
@@ -44,8 +45,6 @@
                                     document.getElementById('visor1').value = '';
                                     document.getElementById('visor2').value = '';
                                     document.getElementById('complUnid').value = '';
-                                } else {
-                                    alert('Existem campos em branco!');
                                 }
                             }
                         });
