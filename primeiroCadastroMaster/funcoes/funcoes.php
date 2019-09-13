@@ -62,7 +62,7 @@ function adicionar_unid($nomeUnid, $cepUnid, $complUnid, $numUnid, $codInst, $co
 
 
 function adicionar_usu($nomeUsu, $emailUsu, $senhaUsu, $codTipoUsu, $codUnid, $pdo){
-    
+
     $inserir_acesso = $pdo->prepare("insert into acesso (cod_tipo_usu, senha, email) values ('$codTipoUsu', '$senhaUsu', '$emailUsu');");
     if($inserir_acesso->execute()){
         $codAcesso = get_id($pdo, 'cod_acesso', 'acesso');
@@ -82,8 +82,8 @@ function adicionar_usu($nomeUsu, $emailUsu, $senhaUsu, $codTipoUsu, $codUnid, $p
 }
 
 
-function adicionar_inst($nomeInst, $pdo){
-    $inserir_inst = $pdo->prepare("insert into instituicao (nomeInst) values ('$nomeInst')");
+function adicionar_inst($nomeFantInst, $razaoSocial, $CNPJ, $pdo){
+    $inserir_inst = $pdo->prepare("insert into instituicao (nome_fantasia_inst, razao_social_inst, CNPJ_inst) values ('$nomeFantInst', 'razaoSocial', '$CNPJ')");
     if($inserir_inst->execute()){
         return true;
     }else{

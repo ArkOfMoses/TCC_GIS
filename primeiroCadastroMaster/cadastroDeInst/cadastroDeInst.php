@@ -55,21 +55,23 @@
                         que cadastre as informações de sua instituição de ensino.</p>
                     <img src="../img/avatar_test.jpg">
 
-                    <form class='form' method='post' action=''>
+                    <form class='form' method='post' action='cod_cadastroInst.php'>
                         <label>Adicione o nome da sua instituição:</label>
-                        <input type="text" value="Aqui está o nome da instituição">
+                        <input type="text" name="nomeFant">
 
                         <label>Adicione a razão social da sua intituição:</label>
-                        <input type="text" value="Aqui está o razão social da instituição">
+                        <input type="text" name="razaoSoci">
                         
                         <label>Adicione o CNPJ da instituição:</label>
-                        <input type="number" value="xx.xxx.xxx/xxxx-xx">
+                        <input type="number" name="cnpj">
+
+                        <input type="submit" name="Cadastrar">
                         
                         <!--ADICIONAR MASCARA NO CNPJ-->
                     </form>
 
                     <!-- <a href='../../alterarAcc.php' class="buttonNext">Voltar</a> -->
-                    <a href='../cadastroDeUnid/cadastroDeUnid.php' class="buttonNext">Proximo passo</a>
+                    <!-- <a href='../cadastroDeUnid/cadastroDeUnid.php' class="buttonNext">Proximo passo</a> -->
             </main>    
     </body>
 </html>

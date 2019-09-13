@@ -42,7 +42,7 @@
 
                 
 
-
+                if(get_unid($pdo)){
                 if (get_usu_unid($pdo)) {
                     $unid = get_unid($pdo);
                    
@@ -54,16 +54,21 @@
             <label>Nome do Diretor: </label><input type='text' name='nome_" . $i . "' />
             <label>Email do Diretor: </label><input type='text' name='email_" . $i . "' />
             <label>Senha do Diretor: </label><input type='text' name='senha_" . $i . "' /><br><br>";
+                        echo "<input type='submit' value='Cadastrar'>";
                     }
                     // }
                 } else {
-                    echo 'Diretores Já Cadastrados';
+                    echo 'Diretores Já Cadastrados<br><br><br><br>';
+                    echo '<a href="../enviarEmail.php" class="buttonNext">Próximo passo</a>';
+                }
+                } else {
+                    echo 'Não existem instituições<br><a href="../cadastroDeUnid/cadastroDeUnid.php">Cadastrar Instituições</a><br>';
                 }
                 ?>
-                <input type='submit' value='Cadastrar'>
+                
             </form>
             <a href="../cadastroDeUnid/cadastroDeUnid.php" class="buttonNext">Voltar</a>
-            <!-- <a href="../enviarEmail.php" class="buttonNext">Próximo passo</a> -->
+            
 
 
         </form>
