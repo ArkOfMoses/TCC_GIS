@@ -23,68 +23,63 @@ $infoPost = filter_input_array(INPUT_POST, $filterForm);
 
 if($infoPost) {
 
-     //if(isset($_FILES['img'])){
+        $extensao = strtolower(substr($_FILES['img']['name'], -4));
+        $novo_nome = sha1(time()) . $extensao;
+        $diretorio = "imgsBanco/";
+        $ext =  strtolower(substr($_FILES['img']['name'], -3));
+        $tipos = array("png","jpg","gif");
+        $imagem = $diretorio.$novo_nome;
 
-            $extensao = strtolower(substr($_FILES['img']['name'], -4));
-            $novo_nome = sha1(time()) . $extensao;
-            $diretorio = "imgsBanco/";
-            $ext =  strtolower(substr($_FILES['img']['name'], -3));
-            $tipos = array("png","jpg","gif");
-            $imagem = $diretorio.$novo_nome;
-
-            var_dump($_FILES);
-    
-    if(in_array("", $infoPost)){
-        echo "<p>É necessário preencher todos os campos!</p>";
-    }else{
-        if($infoPost['email'] === false || $infoPost['confirmaEmail'] === false){
-            echo "<p>Email inválido!</p>";
-        }else if($infoPost['email'] != $infoPost['confirmaEmail']){
-            echo "<p>Emails não batem!</p>";
-        }else if($infoPost['senha'] != $infoPost['confirmaSenha']){
-            echo "<p>Senhas não batem!</p>";
+        
+        if(in_array("", $infoPost)){
+            echo "<p>É necessário preencher todos os campos!</p>";
         }else{
+            if($infoPost['email'] === false || $infoPost['confirmaEmail'] === false){
+                echo "<p>Email inválido!</p>";
+            }else if($infoPost['email'] != $infoPost['confirmaEmail']){
+                echo "<p>Emails não batem!</p>";
+            }else if($infoPost['senha'] != $infoPost['confirmaSenha']){
+                echo "<p>Senhas não batem!</p>";
+            }else{
 
-        if (in_array($ext, $tipos)) {
-            if (move_uploaded_file($_FILES['img']['tmp_name'], $imagem)) { //talvez fosse bom o sistema só aceitar maiores de 18 anos, já que a gente sabe a data de nascimento dele, 
-                // mas se esse for o caso a data de nascimento tem q entrar no cadastro da landing.
-            
-            $codAcesso = $_SESSION['dadosUsu']['codAcesso'];
-            $codUsu = $_SESSION['dadosUsu']['codUsu'];
-            $senhaEncript = Bcrypt::hash($infoPost['senha']);
+            if (in_array($ext, $tipos)) {
+                if (move_uploaded_file($_FILES['img']['tmp_name'], $imagem)) { 
 
-            
+                $codAcesso = $_SESSION['dadosUsu']['codAcesso'];
+                $codUsu = $_SESSION['dadosUsu']['codUsu'];
+                $senhaEncript = Bcrypt::hash($infoPost['senha']);
+
+                
 
 
-            //date_default_timezone_set('Etc/UTC');
-            //se a gente não for usar o type=date, a gente precisa fazer o rolê de inverter pra ficar no padrão do banco
-            $comando1 = $pdo->prepare("update acesso set senha = '$senhaEncript', email = '{$infoPost['email']}' where cod_acesso = $codAcesso");
-            $comando2 = $pdo->prepare("update usuario set nome_usu = '{$infoPost['nome_usu']}', cpf_usu = '{$infoPost['cpf_usu']}', url_foto_usu = '$imagem', data_entrada = (cast(NOW() as Date)) where cod_acesso = $codUsu");
-            
-            if($comando1->execute() && $comando2->execute()){                
-                $nomeTipoUsu = $_SESSION['dadosUsu']['nomeTipoUsu'];
-            
-                        switch ($nomeTipoUsu) {
-                            case 'Master':
-                               //header("Location: cadastroDeInst.php");
-                               echo "<script type='text/javascript'> window.location.href='primeiroCadastroMaster/cadastroDeInst/cadastroDeInst.php';</script>";
-                            break;
+                //date_default_timezone_set('Etc/UTC');
+                //se a gente não for usar o type=date, a gente precisa fazer o rolê de inverter pra ficar no padrão do banco
+                $comando1 = $pdo->prepare("update acesso set senha = '$senhaEncript', email = '{$infoPost['email']}' where cod_acesso = $codAcesso");
+                $comando2 = $pdo->prepare("update usuario set nome_usu = '{$infoPost['nome_usu']}', cpf_usu = '{$infoPost['cpf_usu']}', url_foto_usu = '$imagem', data_entrada = (cast(NOW() as Date)) where cod_acesso = $codUsu");
+                
+                if($comando1->execute() && $comando2->execute()){                
+                    $nomeTipoUsu = $_SESSION['dadosUsu']['nomeTipoUsu'];
+                
+                            switch ($nomeTipoUsu) {
+                                case 'Master':
+                                //header("Location: cadastroDeInst.php");
+                                echo "<script type='text/javascript'> window.location.href='primeiroCadastroMaster/cadastroDeInst/cadastroDeInst.php';</script>";
+                                break;
 
-                            case 'Professor':
-                                echo "<script type='text/javascript'> window.location.href='perfilProfessor.php';</script>";
-                            break;
+                                case 'Professor':
+                                    echo "<script type='text/javascript'> window.location.href='perfilProfessor.php';</script>";
+                                break;
 
-                            case 'Saude':
-                                echo "<script type='text/javascript'> window.location.href='perfilSaude.php';</script>";
-                            break;
+                                case 'Saude':
+                                    echo "<script type='text/javascript'> window.location.href='perfilSaude.php';</script>";
+                                break;
+                            }
+
+                        }else{
+                            echo "<p>Não foi possível atualizar suas informações!</p>";
                         }
-
-                    }else{
-                        echo "<p>Não foi possível atualizar suas informações!</p>";
                     }
-                }
-            } 
+                } 
+            }
         }
     }
-//}
-}

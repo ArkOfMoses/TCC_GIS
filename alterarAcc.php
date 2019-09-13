@@ -34,27 +34,32 @@ if(isset($_SESSION['logado'])){
         <!-- SCRIPT COM O AJAX -->
         <script src='js/jquery-3.3.1.min.js'></script>
         <script>
-          $(function(){
-              $('.form').submit(function(){
-                  $.ajax({
-                      url: 'cod_alterarAcc.php',
-                      type: 'POST',
-                      data: $('.form').serialize(),
-                      success: function(data){
-                          if(data != ''){
-                              $('.recebeDados').html(data);
-                              document.getElementById('visor1').value = '<?= $dados['nomeUsu']; ?>';
-                              document.getElementById('visor2').value = '<?= $dados['emailUsu']; ?>';
-                              document.getElementById('visor3').value = '<?= $dados['emailUsu']; ?>';
-                              document.getElementById('visor4').value = '';
-                              document.getElementById('visor5').value = '';
-                              document.getElementById('visor6').value = '';
-                          }
-                      }
-                  });
-                  return false;
-              });
-          });
+          $('.form').submit(function(e){
+            e.preventDefault();    // Preventing the default action of the form
+            var myForm = document.getElementById('form');
+            var formData = new FormData(myForm); // So you don't need call serialize()
+
+            $.ajax({
+                url: 'cod_alterarAcc.php',
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    console.log(data);
+                    if(data != ''){
+                        $('.recebeDados').html(data);
+                        document.getElementById('visor1').value = '<?= $dados['nomeUsu']; ?>';
+                        document.getElementById('visor2').value = '<?= $dados['emailUsu']; ?>';
+                        document.getElementById('visor3').value = '<?= $dados['emailUsu']; ?>';
+                        document.getElementById('visor4').value = '';
+                        document.getElementById('visor5').value = '';
+                        document.getElementById('visor6').value = '';
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
       </script>
 
       <style type="text/css">
@@ -124,7 +129,7 @@ if(isset($_SESSION['logado'])){
                     <p>Por favor, confirme suas informações abaixo.</p>
                     
 
-                    <form enctype="multipart/form-data" class='form' method='post' action='cod_alterarAcc.php'>
+                    <form enctype="multipart/form-data" class='form' id='form' method='post' action='cod_alterarAcc.php'>
                       <div id="img-perfil">
                       <img src="imagens/perfil.png"  id="dup"/>
                         <label for="selecao-arquivo" class="selecionar-img">+</label>
