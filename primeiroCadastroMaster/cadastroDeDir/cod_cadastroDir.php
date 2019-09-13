@@ -2,6 +2,7 @@
 
 require_once '../funcoes/funcoes.php';
 require_once '../../bd/conexao.php';
+require_once '../../classes/Bcrypt.php';
 
 $unid1 = get_unid($pdo);
 if(isset($_POST)){     
@@ -35,15 +36,17 @@ if(isset($_POST)){
                         $emailDir = $unid['email'];
                         $senhaDir = $unid['senha'];
                         $codDaUnidDir = $unid['codUnid'];
+
+                        $senhaEncript1 = Bcrypt::hash($senhaDir);
     
-                        if(adicionar_usu($nomeDir, $emailDir, $senhaDir, 3, $codDaUnidDir, $pdo)){
+                        if(adicionar_usu($nomeDir, $emailDir, $senhaEncript1, 3, $codDaUnidDir, $pdo)){
                             //echo "<script type='text/javascript'>alert('Diretores cadastrados com sucesso'); window.location.href='cadastroDir.php';</script>";
                         }else{
                             //echo  'erro<br>';
                         }
                     }
-
-                    if(adicionar_usu($nome, $email, $senha, 3, $codDaUnid, $pdo)){
+                    $senhaEncript2 = Bcrypt::hash($senha);
+                    if(adicionar_usu($nome, $email, $senhaEncript2, 3, $codDaUnid, $pdo)){
                         echo "<script type='text/javascript'>alert('Diretores cadastrados com sucesso'); window.location.href='../enviarEmail.php';</script>";
                     }else{
                         //echo  'erro<br>';

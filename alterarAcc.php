@@ -49,7 +49,6 @@ if(isset($_SESSION['logado'])){
                               document.getElementById('visor4').value = '';
                               document.getElementById('visor5').value = '';
                               document.getElementById('visor6').value = '';
-                              document.getElementById('visor7').value = '';
                           }
                       }
                   });
@@ -57,6 +56,59 @@ if(isset($_SESSION['logado'])){
               });
           });
       </script>
+
+      <style type="text/css">
+        
+        #dup{
+          width: 250px;
+          height: 250px;
+          border: 4px solid;
+          border-color: #666;
+          border-radius: 50%;
+        }
+        #img-perfil{
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+        }
+        label.selecionar-img{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          width: 45px;
+          height: 45px;
+          font-size: 50px;
+          top: 411px;
+          left: 426px;
+          background-color: #003366;
+          border-radius: 50%;
+          color: white;
+          z-index: 1;
+        }
+
+        .botao-img{
+          display: none;
+        }
+      </style>
+       <script>
+            function previewImagem() {
+                var imagem = document.querySelector('input[name=img]').files[0];
+                var preview = document.querySelector('img[id=dup]');
+
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                }
+
+                if (imagem) {
+                    reader.readAsDataURL(imagem);
+                } else {
+                    preview.src = "";
+                }
+            }
+        </script>
     </head>
     <body>
         <div class="content">
@@ -70,41 +122,41 @@ if(isset($_SESSION['logado'])){
                     <!---PERGUNTAR SE O UPLOAD DE FOTOS É NECESSÁRIO-->
                     <h1>Bem vindo(a)!</h1>
                     <p>Por favor, confirme suas informações abaixo.</p>
-                    <img src="imagens/avatar_test1.jpg">
-                    <a href="#">
-                        <img id="alteraFoto" src="imagens/alteraFoto.png">
-                    </a>
+                    
 
-                    <form class='form' method='post' action='cod_alterarAcc.php'>
+                    <form enctype="multipart/form-data" class='form' method='post' action='cod_alterarAcc.php'>
+                      <div id="img-perfil">
+                      <img src="imagens/perfil.png"  id="dup"/>
+                        <label for="selecao-arquivo" class="selecionar-img">+</label>
+                        <input id="selecao-arquivo" type="file" name="img" class="botao-img" onchange="previewImagem()" />
+                      </div>
                         <!---FAZER COM TODOS OS CAMPOS QUANDO TIVER-->
                         <!---tomar cuidado com esses "altere", pode soar errado ao usuário-->
                         <!---também nn entendi o sentido de colocar value na senha se o usuário nn vai poder ver a senha e conferir-->
                         <label>Confirme seu nome:</label>
-                        <input type="text" id="visor1" name="nome_usu" value="<?= $dados['nomeUsu']; ?>">
+                        <input type="text" id="visor1" name="nome_usu" value="<?= $dados['nomeUsu']; ?>" />
   
                         <label>Altere seu email:</label>
-                        <input type="email" id="visor2" name="email" value="<?= $dados['emailUsu']; ?>">
+                        <input type="email" id="visor2" name="email" value="<?= $dados['emailUsu']; ?>" />
                         
                         <label>Confirme seu email:</label>
-                        <input type="email" id="visor3" name="confirmaEmail" value="<?= $dados['emailUsu']; ?>">
+                        <input type="email" id="visor3" name="confirmaEmail" value="<?= $dados['emailUsu']; ?>" />
                         
                         <label>Sua senha:</label>
-                        <input type="password" id="visor4" name="senha" >
+                        <input type="password" id="visor4" name="senha" />
                         
                         <label>Confirme sua senha:</label>
-                        <input type="password" id="visor5" name="confirmaSenha" >
+                        <input type="password" id="visor5" name="confirmaSenha" />
 
                         <label>Insira seu cpf:</label>
-                        <input type="text" id="visor6" name="cpf_usu">
+                        <input type="text" id="visor6" name="cpf_usu" />
 
-                        <label>Insira sua data de nascimento:</label>
-                        <input type="date" id="visor7" name="data_nasc">
 
                         <div class='recebeDados'>
                             <!-- Aqui virá o conteúdo por ajax -->
                         </div>
 
-                        <input type="submit" value="confirmar">
+                        <input type="submit" value="confirmar" />
                         <!--o formulário precisa de um submit, ou um antes do botão de próximo/ir pro perfil ou um só input q dps a gente manda por header no código dps-->
                     </form>                    
                 </div>
