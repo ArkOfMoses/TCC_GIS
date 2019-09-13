@@ -17,11 +17,17 @@
                 display:none;
             }
         </style> -->
-        <link rel="stylesheet" href="../../css/cssCadastroMaster/style1366.css">
+        <link rel="stylesheet" href="../../css/default.css"> 
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssCadastroMaster/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
+              href="../../css/cssCadastroMaster/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
+              href="../../css/cssCadastroMaster/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssCadastroMaster/style1366.css">
     </head>
     <body><div class="acessoUm">
-            <!-- <header class="headerPrimeiroAcesso">
-            <a href="../../alterarAcc.php"><img src="../img/alteraImg.png"></a>
+             <header class="headerPrimeiroAcesso">
+            <!--<a href="../../alterarAcc.php"><img src="../img/alteraImg.png"></a>
             <a href="../cadastroDeInst/cadastroDeInst.php"><img src="../img/instImg.png"></a>
             <a href="../cadastroDeUnid/cadastroDeUnid.php"><img src="../img/unidImg.png"></a> -->
             <a href="../cadastroDeDir/cadastroDir.php"><img src="../img/dirImg.png"></a>
@@ -54,8 +60,9 @@
             <label>Nome do Diretor: </label><input type='text' name='nome_" . $i . "' />
             <label>Email do Diretor: </label><input type='text' name='email_" . $i . "' />
             <label>Senha do Diretor: </label><input type='text' name='senha_" . $i . "' /><br><br>";
-                        echo "<input type='submit' value='Cadastrar'>";
+                        
                     }
+                    echo "<input type='submit' value='Cadastrar'>";
                     // }
                 } else {
                     echo 'Diretores Já Cadastrados<br><br><br><br>';

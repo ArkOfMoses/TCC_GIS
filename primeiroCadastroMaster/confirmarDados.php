@@ -42,19 +42,78 @@
                     
 
                     <form class='form' method='post' action=''>
-                        <h2>Instituição</h2>
-                        
-                        <h3>Unidade:</h3>
+                        <?php
 
-                        <label>Confirme o diretor:</label>
-                        <input type="text" value="Nome do diretor">
+                            require_once 'funcoes/funcoes.php';
+                            require_once '../bd/conexao.php';
+
+
+                            $inst = get_inst($pdo);
+
+
+                        echo '<h2>Instituição</h2>';
+                        echo "<label>Nome Fantasia: </label><input type='' name='' value='".$inst[0]['nomeFant']."'>";
+                        echo "<label>Razão Social: </label><input type='' name='' value='".$inst[0]['razaoSocial']."'>'";
+                        echo "<label>CNPJ: </label><input type='' name='' value='".$inst[0]['CNPJ']."'>'";
+
+                            $unid = get_unid($pdo);
+
+                            $selecionar = ("select usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, url_foto_usu, data_entrada, data_saida, cod_status_usu, acesso.cod_acesso, tipo_usuario.cod_tipo_usu, nome_tipo_usu, senha, email
+From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
+             inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_tipo_usu) where nome_tipo_usu = 'Diretor';");
+                            $comando = $pdo->prepare($selecionar);
+                            $comando->execute();
+                              
+
+                            $numeroDeLinhas = $comando->rowCount();
+                              if ($numeroDeLinhas === 0) {
+
+                                  echo "<p>Usuário Inexistente!</p>";
+
+                              }else if($numeroDeLinhas >= 1){
+                                while($dados = $comando->fetchAll(PDO::FETCH_ASSOC)){
+                                     $dedos = $dados;
+                                    // $nomeDir = $dados['nome_usu'];
+                                    // $emailDir = $dados['email'];
+                                    // $senhaDir = $dados['senha'];
+                                } 
+                              $nomeDir = array();
+                              $emailDir = array();
+                              $senhaDir = array();
+                              
+                              for($i = 0; $i <= ($numeroDeLinhas-1); $i++){
+                                $nomeDir[] = $dedos[$i]['nome_usu'];
+                                $emailDir[] = $dedos[$i]['email'];
+                                $senhaDir[] = $dedos[$i]['senha'];
+                              }
+
+                            
+                            for ($i = 0; $i < count($unid); $i++) { 
+                                echo '
+                                        <h3>Unidade:</h3>
+                                        <label>Nome da Unidade: </label><input type="text" value="'.$unid[$i]['nomeUnid'].'" name="nomeUnid">
+                                        <label>CEP da Unidade: </label><input type="text" value="'.$unid[$i]['cepUnid'].'" name="cepUnid">
+                                        <label>Número da Unidade: </label><input type="text" value="'.$unid[$i]['numUnid'].'" name="numUnid">
+                                        <label>Complemento da Unidade: </label><input type="text" value="'.$unid[$i]['complUnid'].'" name="complUnid">
+
+
+                                        <h4>Diretores:</h4>
+
+                                        <label>Confirme o diretor:</label>
+                                        <input type="text" value="'.$nomeDir[$i].'">
+                                        
+                                        <label>Confirme o email do diretor:</label>
+                                        <input type="email" value="'.$emailDir[$i].'">';
+                                        
+                                        // <label>Confirme a senha:</label>
+                                        // <input type="password" value="'.$senhaDir.'">';
+
+
+                            }
+
+                        }
                         
-                        <label>Confirme o email do diretor:</label>
-                        <input type="email" value="email@gmail.com">
-                        
-                        <label>Confirme a senha:</label>
-                        <input type="password" value="12345">
-                       
+                       ?>
                     </form>
                     <a href='enviarEmail.php' class="buttonNext">Voltar</a>
                     <a href='#' class="buttonNext">Finalizar</a>
@@ -66,4 +125,3 @@
             </main>    
     </body>
 </html>
-
