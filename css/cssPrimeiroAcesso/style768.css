@@ -45,16 +45,16 @@ body{
     color: #666;
     max-width: 500px;
 }
-.acessoUm img{
-    width: 176px;
-    height:176px;
-    border-radius: 25px;
-    z-index: 1;
-}
+
 .acessoUm form{
     text-align: left;
     padding: 30px;
 }
+.acessoUm form h2{
+    font-size: 30px;
+    color: #003366;
+    margin: 5px;
+    text-align: center;}
 
 .acessoUm label{
 

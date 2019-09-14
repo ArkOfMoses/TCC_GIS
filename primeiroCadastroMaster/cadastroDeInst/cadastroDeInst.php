@@ -1,3 +1,14 @@
+<?php
+
+ session_start();
+    if(!isset($_SESSION['logado'])){
+     
+    }else{
+      $img = $_SESSION['dadosUsu']['fotoUsu'];
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -54,6 +65,19 @@
               });
           });
       </script>
+
+      <style type="text/css">
+        
+        img.perfil-foto{
+
+            width: 176px;
+            height:176px;
+            border-radius: 100%;
+            border: 3px solid;
+            border-color: #666;
+            z-index: 1;
+        }
+      </style>
     </head>
     <body>
         <div class="content">
@@ -74,7 +98,10 @@
                     <h1>Bem vindo(a)!</h1>
                     <p>Este é seu primeiro acesso, agora precisamos 
                         que cadastre as informações de sua instituição de ensino.</p>
-                    <img src="../img/avatar_test.jpg">
+                    <?php                      
+                        echo '<img src=../../'.$img.' class="perfil-foto">';
+                    // echo $img;
+                    ?>
 
                     <form class='form' method='post' action='cod_cadastroInst.php'>
                         <label>Adicione o nome da sua instituição:</label>

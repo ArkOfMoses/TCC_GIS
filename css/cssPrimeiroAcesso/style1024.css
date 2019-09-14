@@ -45,12 +45,7 @@ body{
     color: #666;
     max-width: 500px;
 }
-.acessoUm img{
-    width: 176px;
-    height:176px;
-    border-radius: 25px;
-    z-index: 1;
-}
+
 .acessoUm form{
     text-align: left;
     padding: 30px;
