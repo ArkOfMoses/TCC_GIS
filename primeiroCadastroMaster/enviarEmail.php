@@ -8,6 +8,33 @@ if(isset($_SESSION['logado'])){
     session_destroy();
     header("Location: homeLandingPage.php");
 }
+
+require_once '../PHPMailer/src/PHPMailer.php';
+require_once '../PHPMailer/src/SMTP.php';
+require_once '../functions/PHPMailer.php';
+use PHPMailer\PHPMailer\PHPMailer;
+$msg = array();
+
+if(isset($_SESSION['EmailDirs'])){
+    if(isset($_POST['enviado'])){
+
+        $arraySession = $_SESSION['EmailDirs'];
+        $PHPMailer = new PHPMailer();
+        $testEnviar = PHPMailerList($PHPMailer, $arraySession);
+
+        if($testEnviar === true){
+            unset($_SESSION['EmailDirs']);
+            $msg[] = "todas os emails foram enviados corretamente";
+        }else{
+            for($n = 0; $n < count($testEnviar) ; $n++){
+                $msg[] = $testEnviar[$n];
+            }
+        }
+    }
+}else{
+    //algo deu errado no passo anterior
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -57,6 +84,18 @@ if(isset($_SESSION['logado'])){
                     <p>Envie um email com o login para os diretores poderem 
                         entrar e realizar seu trabalho alterando as 
                         configurações necessárias, cadastrando funcionários, alunos e etc.</p>
+                        <a href='cadastroDeDir/cadastroDeDir' class="buttonNext">Voltar</a>
+
+                    <form method="post" >
+                        <input type="submit" name="enviado" value="Enviar email" />
+                        <?php
+                        if(!empty($msg)){
+                            foreach ($msg as $key => $value) {
+                                echo "<p>$value</p>";
+                            }
+                        }
+                        ?>
+                    </form>
                         <!-- <a href='cadastroDeDir/cadastroDeDir' class="buttonNext">Voltar</a> -->
                     <a href='' class="buttonNext">Enviar email</a>
                     <a href='#' class="buttonNext">Finalizar</a>

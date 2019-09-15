@@ -105,8 +105,7 @@ if(isset($_SESSION['logado'])){
                         echo "
             <h4>" . $xis['nomeUnid'] . "</h4>
             <label>Nome do Diretor: </label><input type='text' name='nome_" . $i . "' />
-            <label>Email do Diretor: </label><input type='text' name='email_" . $i . "' />
-            <label>Senha do Diretor: </label><input type='text' name='senha_" . $i . "' /><br><br>";
+            <label>Email do Diretor: </label><input type='text' name='email_" . $i . "' /><br><br>";
                         
                     }
                     echo "<input type='submit' value='Cadastrar'>";
