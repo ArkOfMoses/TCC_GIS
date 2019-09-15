@@ -23,6 +23,7 @@ if($infoPost){
     $invalido = array();
     $posts = array();
     $erros = array();
+    $emailCad = array();
 
     for($n = 0; $n < count($unid1); $n++){
         $numUnid = $unid1[$n];
@@ -39,13 +40,24 @@ if($infoPost){
             
                 if(!empty($vazio)){
                     echo "<p>Existem campos vazios</p>";
-                }else {
+                }else if(!empty($emailCad)){
+                    for($j = 0; $j < count($emailCad); $j++){
+                        echo "<p>o email do Diretor $emailCad[$j] já foi cadastrado</p>";
+                    }                    
+                }else{
 
                     if($email === false){
                         echo "<p>Existem emails invalidos ou vazios</p>";
                     }else if($nome == '' || $email == '' || $senha == ''){
                         echo "<p>Existem campos vazios</p>";
                     }else{
+
+                        $selectAcesso = $pdo->prepare("select * from acesso where email = '$email'");
+                        $selectAcesso->execute();
+                        $numLinhas = $selectAcesso->rowCount();
+            
+                        if($numLinhas == 0){
+    
                         for($k = 0; $k < count($posts); $k++){
                             $unid = $posts[$k];
         
@@ -74,6 +86,10 @@ if($infoPost){
                             echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaUnid, $addi<p>";
                         }
 
+                      }else{
+                          echo "<p>o email do Diretor $nome já foi cadastrado</p>";
+                      }
+
                     }
                 }
             }else{
@@ -84,14 +100,25 @@ if($infoPost){
                 $invalido[] = $codDaUnid;
             }else if($nome == '' || $email == '' || $senha == ''){
                 $vazio[] = $codDaUnid;
-            }else {
-                $posts[] = [
-                    "nome" => $nome,
-                    "email" => $email,
-                    "senha" => $senha,
-                    "codUnid" => $codDaUnid,
-                    "nomeUnid" => $nomeDaUnid
-                ];   
+            }else{
+
+                $selectAcesso = $pdo->prepare("select * from acesso where email = '$email'");
+                $selectAcesso->execute();
+                $numLinhas = $selectAcesso->rowCount();
+    
+                if($numLinhas == 0){
+
+                    $posts[] = [
+                        "nome" => $nome,
+                        "email" => $email,
+                        "senha" => $senha,
+                        "codUnid" => $codDaUnid,
+                        "nomeUnid" => $nomeDaUnid
+                    ];   
+
+                }else{
+                    $emailCad[] = $nome;
+                }
             }
         }
     }        

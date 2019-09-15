@@ -61,7 +61,7 @@ if($infoPost) {
                 
                 if($comando1->execute() && $comando2->execute()){                
                     $nomeTipoUsu = $_SESSION['dadosUsu']['nomeTipoUsu'];
-                
+                    $_SESSION['dadosUsu']['fotoUsu'] = $imagem;
                             switch ($nomeTipoUsu) {
                                 case 'Master':
                                 //header("Location: cadastroDeInst.php");
