@@ -17,7 +17,7 @@ if(isset($_SESSION['logado'])){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Primeiro cadastro</title>    
         <link rel="stylesheet" href="../../css/default.css">    
-        <script src='../js/jquery-3.3.1.min.js'></script>
+        <script src='../../js/jquery-3.3.1.min.js'></script>
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
@@ -122,7 +122,7 @@ if(isset($_SESSION['logado'])){
                         ?>
                     </div>
 
-                    <a href='../cadastroDeInst/cadastroDeInst.php' class="buttonNext">Voltar</a>
+                    <!-- <a href='../cadastroDeInst/cadastroDeInst.php' class="buttonNext">Voltar</a> -->
                     <a href='../cadastroDeDir/cadastroDeDir.php' class="buttonNext">Proximo passo</a>
             </main>    
     </body>

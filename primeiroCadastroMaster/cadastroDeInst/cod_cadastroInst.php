@@ -24,7 +24,8 @@
             if(adicionar_inst($nomeFant, $razaoSoci, $cnpj, $pdo)){
                 echo "<script type='text/javascript'> window.location.href='../cadastroDeUnid/cadastroDeUnid.php';</script>";
             }else{
-                echo "<p>Não foi possível cadastrar a instituição</p>";
+                var_dump($infoPost);
+                //echo "<p>Não foi possível cadastrar a instituição</p>";
             }   
         }
     } 

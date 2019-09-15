@@ -63,9 +63,9 @@ if(isset($_SESSION['logado'])){
 
 
                         echo '<h2>Instituição</h2>';
-                        echo "<label>Nome Fantasia: </label><input type='' name='' value='".$inst[0]['nomeFant']."'>";
-                        echo "<label>Razão Social: </label><input type='' name='' value='".$inst[0]['razaoSocial']."'>'";
-                        echo "<label>CNPJ: </label><input type='' name='' value='".$inst[0]['CNPJ']."'>'";
+                        echo "<label>Nome Fantasia: </label><input type='text' name='nomeFant' value='".$inst[0]['nomeFant']."'>";
+                        echo "<label>Razão Social: </label><input type='text' name='razaoSoci' value='".$inst[0]['razaoSocial']."'>";
+                        echo "<label>CNPJ: </label><input type='text' name='cnpj' value='".$inst[0]['CNPJ']."'>";
 
                             $unid = get_unid($pdo);
 
@@ -102,19 +102,19 @@ From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
                             for ($i = 0; $i < count($unid); $i++) { 
                                 echo '
                                         <h3>Unidade:</h3>
-                                        <label>Nome da Unidade: </label><input type="text" value="'.$unid[$i]['nomeUnid'].'" name="nomeUnid">
-                                        <label>CEP da Unidade: </label><input type="text" value="'.$unid[$i]['cepUnid'].'" name="cepUnid">
-                                        <label>Número da Unidade: </label><input type="text" value="'.$unid[$i]['numUnid'].'" name="numUnid">
-                                        <label>Complemento da Unidade: </label><input type="text" value="'.$unid[$i]['complUnid'].'" name="complUnid">
+                                        <label>Nome da Unidade: </label><input type="text" value="'.$unid[$i]['nomeUnid'].'" name="nomeUnid'.$i.'">
+                                        <label>CEP da Unidade: </label><input type="text" value="'.$unid[$i]['cepUnid'].'" name="cepUnid'.$i.'">
+                                        <label>Número da Unidade: </label><input type="text" value="'.$unid[$i]['numUnid'].'" name="numUnid'.$i.'">
+                                        <label>Complemento da Unidade: </label><input type="text" value="'.$unid[$i]['complUnid'].'" name="complUnid'.$i.'">
 
 
                                         <h4>Diretores:</h4>
 
                                         <label>Confirme o diretor:</label>
-                                        <input type="text" value="'.$nomeDir[$i].'">
+                                        <input type="text" name="nomeDir'.$i.'" value="'.$nomeDir[$i].'">
                                         
                                         <label>Confirme o email do diretor:</label>
-                                        <input type="email" value="'.$emailDir[$i].'">';
+                                        <input type="email" name="emailDir'.$i.'" value="'.$emailDir[$i].'">';
                                         
                                         // <label>Confirme a senha:</label>
                                         // <input type="password" value="'.$senhaDir.'">';
@@ -126,7 +126,7 @@ From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
                         
                        ?>
                     </form>
-                    <a href='enviarEmail.php' class="buttonNext">Voltar</a>
+                    <!-- <a href='enviarEmail.php' class="buttonNext">Voltar</a> -->
                     <a href='#' class="buttonNext">Finalizar</a>
                 </div>
                     

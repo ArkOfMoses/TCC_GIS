@@ -96,6 +96,8 @@ if(isset($_SESSION['EmailDirs'])){
                         }
                         ?>
                     </form>
+                        <!-- <a href='cadastroDeDir/cadastroDeDir' class="buttonNext">Voltar</a> -->
+                    <a href='' class="buttonNext">Enviar email</a>
                     <a href='confirmarDados.php' class="buttonNext">Proximo passo</a>
                 </div>
             </main>    
