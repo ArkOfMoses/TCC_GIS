@@ -122,7 +122,7 @@ if(isset($_SESSION['logado'])){
                         ?>
                     </div>
 
-                    <a href='../cadastroDeInst/cadastroDeInst.php' class="buttonNext">Voltar</a>
+                    <!-- <a href='../cadastroDeInst/cadastroDeInst.php' class="buttonNext">Voltar</a> -->
                     <a href='../cadastroDeDir/cadastroDeDir.php' class="buttonNext">Proximo passo</a>
             </main>    
     </body>

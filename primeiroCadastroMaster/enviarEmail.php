@@ -57,7 +57,7 @@ if(isset($_SESSION['logado'])){
                     <p>Envie um email com o login para os diretores poderem 
                         entrar e realizar seu trabalho alterando as 
                         configurações necessárias, cadastrando funcionários, alunos e etc.</p>
-                        <a href='cadastroDeDir/cadastroDeDir' class="buttonNext">Voltar</a>
+                        <!-- <a href='cadastroDeDir/cadastroDeDir' class="buttonNext">Voltar</a> -->
                     <a href='' class="buttonNext">Enviar email</a>
                     <a href='confirmarDados.php' class="buttonNext">Proximo passo</a>
                 </div>
