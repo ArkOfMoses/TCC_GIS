@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../funcoes/funcoes.php';
 require_once '../../bd/conexao.php';
 require_once '../../classes/Bcrypt.php';
@@ -10,7 +10,6 @@ $arrayPost = array();
 for($i = 0; $i < count($unid1); $i++){
         $arrayPost["nome_$i"] = FILTER_SANITIZE_SPECIAL_CHARS;
         $arrayPost["email_$i"] = FILTER_VALIDATE_EMAIL;
-        $arrayPost["senha_$i"] = FILTER_SANITIZE_SPECIAL_CHARS;
 }
 
 
@@ -31,8 +30,7 @@ if($infoPost){
         $nomeDaUnid =  $numUnid['nomeUnid'];
 
         $nome = $infoPost['nome_'.$n];
-        $email = $infoPost['email_'.$n];      
-        $senha = $infoPost['senha_'.$n];
+        $email = $infoPost['email_'.$n];     
 
         if($n == (count($unid1)-1)){
 
@@ -48,7 +46,7 @@ if($infoPost){
 
                     if($email === false){
                         echo "<p>Existem emails invalidos ou vazios</p>";
-                    }else if($nome == '' || $email == '' || $senha == ''){
+                    }else if($nome == '' || $email == ''){
                         echo "<p>Existem campos vazios</p>";
                     }else{
 
@@ -57,34 +55,63 @@ if($infoPost){
                         $numLinhas = $selectAcesso->rowCount();
             
                         if($numLinhas == 0){
-    
+                            
+                            $sessao = array();
+
                         for($k = 0; $k < count($posts); $k++){
                             $unid = $posts[$k];
         
                             $nomeDir = $unid['nome'];
                             $emailDir = $unid['email'];
-                            $senhaDir = $unid['senha'];
                             $codDaUnidDir = $unid['codUnid'];
                             $nomeDaunidDir = $unid['nomeUnid'];
 
+                            $senhaDir =  substr(md5(rand()), 0, 7);
                             $senhaEncript1 = Bcrypt::hash($senhaDir);
+
+                            $sessao[] = [
+                                "nome" => $nomeDir,
+                                "emailDir" => $emailDir,
+                                "senha" => $senhaDir,
+                                "unidade" => $nomeDaunidDir
+                            ]; 
+
+
                             
                             $addi = adicionar_usu($nomeDir, $emailDir, $senhaEncript1, 3, $codDaUnidDir, $pdo);
 
                             if($addi === true){
+                                //echo "Bytes: $senhaDir Encript: $senhaEncript1 <br>";
                                 //echo "<script type='text/javascript'>alert('Diretores cadastrados com sucesso'); window.location.href='cadastroDir.php';</script>";
                             }else{
+                                array_pop($sessao);
                                 echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaunidDir, $addi<p>";
                             }
                         }
 
+                        
+                        $senha =  substr(md5(rand()), 0, 7);
                         $senhaEncript2 = Bcrypt::hash($senha);
+
+                        $sessao[] = [
+                            "nome" => $nome,
+                            "emailDir" => $email,
+                            "senha" => $senha,
+                            "unidade" => $nomeDaUnid
+                        ]; 
+
+                       
+
                         $add = adicionar_usu($nome, $email, $senhaEncript2, 3, $codDaUnid, $pdo);
                         if($add === true){
+                            //echo "Bytes: $senha Encript: $senhaEncript1 <br>";
                             echo "<script type='text/javascript'> window.location.href='../enviarEmail.php';</script>";
                         }else{
+                            array_pop($sessao);
                             echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaUnid, $addi<p>";
                         }
+
+                        $_SESSION['EmailDirs'] = $sessao;
 
                       }else{
                           echo "<p>o email do Diretor $nome já foi cadastrado</p>";
@@ -98,7 +125,7 @@ if($infoPost){
         }else{
             if($email === false){
                 $invalido[] = $codDaUnid;
-            }else if($nome == '' || $email == '' || $senha == ''){
+            }else if($nome == '' || $email == ''){
                 $vazio[] = $codDaUnid;
             }else{
 
@@ -111,7 +138,6 @@ if($infoPost){
                     $posts[] = [
                         "nome" => $nome,
                         "email" => $email,
-                        "senha" => $senha,
                         "codUnid" => $codDaUnid,
                         "nomeUnid" => $nomeDaUnid
                     ];   

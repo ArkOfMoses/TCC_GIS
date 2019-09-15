@@ -1,7 +1,10 @@
 <?php
 require_once 'bd/conexao.php';
 require_once 'classes/Bcrypt.php';
+require_once 'PHPMailer/src/PHPMailer.php';
+require_once 'PHPMailer/src/SMTP.php';
 require_once 'functions/PHPMailer.php';
+use PHPMailer\PHPMailer\PHPMailer;
 
 $filterForm = array("email" => FILTER_VALIDATE_EMAIL);
 $infoPost = filter_input_array(INPUT_POST, $filterForm);
@@ -28,7 +31,9 @@ if($infoPost){
                 //código PHPMailer
                 $assunto = "Sua nova senha do sistema GIS";
                 $mensagem = "<p>recebemos a solicitação de uma nova senha para a sua conta no sistema GIS, sua nova senha provisória é ".$novaSenhaDescript.", por favor entre na sua conta para modifica-la!</p>";
-                $PHPMailer = PHPMailer($assunto, $mensagem, $email);
+                
+                $mailer = new PHPMailer();
+                $PHPMailer = PHPMailer($mailer, $assunto, $mensagem, $email);
 
                 if($PHPMailer === true){
                     echo "Foi lhe enviado um email com sua senha provisória, por favor entre no seu email para conferir";
