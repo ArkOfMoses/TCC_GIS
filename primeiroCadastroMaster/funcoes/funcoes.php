@@ -74,9 +74,13 @@ function adicionar_usu($nomeUsu, $emailUsu, $senhaUsu, $codTipoUsu, $codUnid, $p
                 return true;
 
             }else{
-                return false;
+                return "erro inserir_UsuNaUnidade";
             }
+        }else{
+            return "erro inserir_usuario";
         }
+    }else{
+        return "erro inserir_acesso";
     }
     
 }

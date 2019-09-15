@@ -14,7 +14,7 @@ $filterForm = [
     "confirmaEmail" => FILTER_VALIDATE_EMAIL,
     "senha" => FILTER_SANITIZE_SPECIAL_CHARS,
     "confirmaSenha" => FILTER_SANITIZE_SPECIAL_CHARS,
-    "cpf_usu" => FILTER_SANITIZE_SPECIAL_CHARS //talvez a validação seja por JS
+    "cpf_usu" => FILTER_SANITIZE_SPECIAL_CHARS 
 ];  
 
 $infoPost = filter_input_array(INPUT_POST, $filterForm);
@@ -31,9 +31,12 @@ if($infoPost) {
         $imagem = $diretorio.$novo_nome;
 
         
+
         if(in_array("", $infoPost)){
             echo "<p>É necessário preencher todos os campos!</p>";
-        }else{
+        }else if($_FILES['img']['name'] === ''){
+            echo "<p>Insira uma imagem</p>";
+        }else {
             if($infoPost['email'] === false || $infoPost['confirmaEmail'] === false){
                 echo "<p>Email inválido!</p>";
             }else if($infoPost['email'] != $infoPost['confirmaEmail']){
@@ -79,6 +82,8 @@ if($infoPost) {
                             echo "<p>Não foi possível atualizar suas informações!</p>";
                         }
                     }
+                }else{
+                    echo "<p>O formato da imagem é inválido</p>";
                 } 
             }
         }

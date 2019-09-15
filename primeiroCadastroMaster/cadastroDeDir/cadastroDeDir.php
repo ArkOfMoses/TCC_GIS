@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: homeLandingPage.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -24,6 +35,26 @@
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
               href="../../css/cssCadastroMaster/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssCadastroMaster/style1366.css">
+    
+        <script src='../../js/jquery-3.3.1.min.js'></script>
+        <script>
+          $(function(){
+              $('.form').submit(function(){
+                  $.ajax({
+                      url: 'cod_cadastroDir.php',
+                      type: 'POST',
+                      data: $('.form').serialize(),
+                      success: function(data){
+                          if(data != ''){
+                              $('.recebeDados').html(data);
+                          }
+                      }
+                  });
+                  return false;
+              });
+          });
+      </script>
+    
     </head>
     <body><div class="acessoUm">
              <header class="headerPrimeiroAcesso">
@@ -43,14 +74,13 @@
             <img src="../img/avatar_test.jpg">
             <form method='post' action='cod_cadastroDir.php' class='form'>
                 <?php
+        
                 require_once '../funcoes/funcoes.php';
                 require_once '../../bd/conexao.php';
 
-                
-
-                if(get_unid($pdo)){
-                if (get_usu_unid($pdo)) {
-                    $unid = get_unid($pdo);
+                $unid = get_unid($pdo);
+                if($unid){
+                     if (get_usu_unid($pdo)) {
                    
                     for ($i = 0; $i < count($unid); $i++) {
                         $xis = $unid[$i];
@@ -72,13 +102,16 @@
                     echo 'Não existem instituições<br><a href="../cadastroDeUnid/cadastroDeUnid.php">Cadastrar Instituições</a><br>';
                 }
                 ?>
+
+                <div class='recebeDados'>
+                </div>
                 
             </form>
             <a href="../cadastroDeUnid/cadastroDeUnid.php" class="buttonNext">Voltar</a>
             
 
 
-        </form>
+        
 
         <div>
             </body>

@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: homeLandingPage.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -45,8 +56,7 @@
                     <h1>Tudo pronto por agora!</h1>
                     <p>Envie um email com o login para os diretores poderem 
                         entrar e realizar seu trabalho alterando as 
-                        configurações necessárias, cadastrando funcionários 
-                        e alunos e etc.</p>
+                        configurações necessárias, cadastrando funcionários, alunos e etc.</p>
                         <a href='cadastroDeDir/cadastroDeDir' class="buttonNext">Voltar</a>
                     <a href='' class="buttonNext">Enviar email</a>
                     <a href='confirmarDados.php' class="buttonNext">Proximo passo</a>

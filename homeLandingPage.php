@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['logado'])){
+  unset($_SESSION['dadosUsu']);
+  unset($_SESSION['logado']);
+  session_destroy();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -37,12 +45,6 @@
                       success: function(data){
                           if(data != ''){
                               $("h4").html(data);
-                              document.getElementsByName('firstname').value = '';
-                              document.getElementsByName('email').value = '';
-                              document.getElementsByName('confEmail').value = '';
-                              document.getElementsByName('senha').value = '';
-                              document.getElementsByName('confSenha').value = '';
-                              document.getElementsByName('dataNasc').value = '';
                           }
                       }
                   });

@@ -1,15 +1,13 @@
 <?php
 session_start();
-
 if(isset($_SESSION['logado'])){
-  $dados =  $_SESSION['dadosUsu'];
+    $dados =  $_SESSION['dadosUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
     session_destroy();
     header("Location: homeLandingPage.php");
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -34,32 +32,30 @@ if(isset($_SESSION['logado'])){
         <!-- SCRIPT COM O AJAX -->
         <script src='js/jquery-3.3.1.min.js'></script>
         <script>
-          $('.form').submit(function(e){
-            e.preventDefault();    // Preventing the default action of the form
-            var myForm = document.getElementById('form');
-            var formData = new FormData(myForm); // So you don't need call serialize()
 
-            $.ajax({
-                url: 'cod_alterarAcc.php',
-                type: 'POST',
-                data: formData,
-                success: function (data) {
-                    console.log(data);
-                    if(data != ''){
-                        $('.recebeDados').html(data);
-                        document.getElementById('visor1').value = '<?= $dados['nomeUsu']; ?>';
-                        document.getElementById('visor2').value = '<?= $dados['emailUsu']; ?>';
-                        document.getElementById('visor3').value = '<?= $dados['emailUsu']; ?>';
-                        document.getElementById('visor4').value = '';
-                        document.getElementById('visor5').value = '';
-                        document.getElementById('visor6').value = '';
-                    }
-                },
-                cache: false,
-                contentType: false,
-                processData: false
-            });
+            $(function (){
+                $('.form').submit(function(e){
+                    e.preventDefault();    // Preventing the default action of the form
+                    var myForm = document.getElementById('form');
+                    var formData = new FormData(myForm); // So you don't need call serialize()
+
+                $.ajax({
+                    url: 'cod_alterarAcc.php',
+                    type: 'POST',
+                    data: formData,
+                    success: function (data) {
+                        if(data != ''){
+                            $('.recebeDados').html(data);
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+                return false;
+            });      
         });
+                
       </script>
 
       <style type="text/css">

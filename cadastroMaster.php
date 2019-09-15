@@ -14,15 +14,15 @@ $filterForm = [
 $infoPost = filter_input_array(INPUT_POST, $filterForm);
 
 if($infoPost){
-    if(in_array("", $infoPost)){
+    if($infoPost['email'] === false || $infoPost['confEmail'] === false){
+        echo "Por favor, informe um email válido.";
+    }else if(in_array("", $infoPost)){
         echo "É necessário preencher todos os campos!";
     }else{
-        if($infoPost['email'] === false || $infoPost['confEmail'] === false){
-            echo "Email inválido!";
-        }else if($infoPost['email'] != $infoPost['confEmail']){
-            echo "Emails não batem!";
+        if($infoPost['email'] != $infoPost['confEmail']){
+            echo "Os emails não batem.";
         }else if($infoPost['senha'] != $infoPost['confSenha']){
-            echo "Senhas não batem!";
+            echo "As senhas não batem.";
         }else{ 
             
             $selectAcesso = $pdo->prepare("select * from acesso where email = '{$infoPost['email']}'");
