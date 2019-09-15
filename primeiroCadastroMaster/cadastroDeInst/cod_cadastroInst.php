@@ -4,9 +4,9 @@
  require_once '../../bd/conexao.php';
 
     $arrayPost = [
-        "nomeFant" => FILTER_SANITIZE_SPECIAL_CHARS,
-        "razaoSoci" => FILTER_SANITIZE_SPECIAL_CHARS,
-        "cnpj" => FILTER_SANITIZE_NUMBER_INT
+        "nomeFant" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "razaoSoci" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "cnpj" => FILTER_SANITIZE_FULL_SPECIAL_CHARS
     ];
 
     $infoPost = filter_input_array(INPUT_POST, $arrayPost);
@@ -18,7 +18,7 @@
 
         if(in_array("", $infoPost)){
             echo "<p>É necessário preencher todos os campos!</p>";
-        }else{
+        }else  /*  if(validaCNPJ($cnpj))  */ {
             if(adicionar_inst($nomeFant, $razaoSoci, $cnpj, $pdo)){
                 echo "<script type='text/javascript'> window.location.href='../cadastroDeUnid/cadastroDeUnid.php';</script>";
             }else{

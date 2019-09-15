@@ -2,11 +2,8 @@
 session_start();
 require_once 'bd/conexao.php';
 require_once 'classes/Bcrypt.php'; // n sei se vai usar
+require_once 'primeiroCadastroMaster/funcoes/funcoes.php';
 
-/*
-informações que a gente precisa pegar através da sessão dadosUsu:
-cod_tipo_usu
-*/
 
 $filterForm = [
     "nome_usu" => FILTER_SANITIZE_SPECIAL_CHARS,
@@ -43,7 +40,9 @@ if($infoPost) {
                 echo "<p>Emails não batem!</p>";
             }else if($infoPost['senha'] != $infoPost['confirmaSenha']){
                 echo "<p>Senhas não batem!</p>";
-            }else{
+            }else  /*  if(!validaCPF($infoPost['cpf_usu'])){
+                echo "<p>CPF inválido!</p>";
+            }else */ {
 
             if (in_array($ext, $tipos)) {
                 if (move_uploaded_file($_FILES['img']['tmp_name'], $imagem)) { 

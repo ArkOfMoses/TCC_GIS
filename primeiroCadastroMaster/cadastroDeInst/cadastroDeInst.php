@@ -99,7 +99,7 @@ if(isset($_SESSION['logado'])){
                     <p>Este é seu primeiro acesso, agora precisamos 
                         que cadastre as informações de sua instituição de ensino.</p>
                     <?php                      
-                        echo '<img src=../../'.$img.' class="perfil-foto">';
+                        echo "<img src='../../$img' class='perfil-foto'>";
                     // echo $img;
                     ?>
 
@@ -111,7 +111,7 @@ if(isset($_SESSION['logado'])){
                         <input type="text" name="razaoSoci">
                         
                         <label>Adicione o CNPJ da instituição:</label>
-                        <input type="number" name="cnpj">
+                        <input type="text" name="cnpj">
 
                         <div class='recebeDados'></div>
                         <input type="submit" name="Cadastrar">
