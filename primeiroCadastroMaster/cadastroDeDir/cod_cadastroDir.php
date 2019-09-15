@@ -81,7 +81,7 @@ if($infoPost){
                         $senhaEncript2 = Bcrypt::hash($senha);
                         $add = adicionar_usu($nome, $email, $senhaEncript2, 3, $codDaUnid, $pdo);
                         if($add === true){
-                            echo "<script type='text/javascript'> window.location.href='../enviarEmail.php';</script>";
+                            echo "<script type='text/javascript'> window.location.href='../confirmarDados.php';</script>";
                         }else{
                             echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaUnid, $addi<p>";
                         }

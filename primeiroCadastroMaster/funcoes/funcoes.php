@@ -1,5 +1,10 @@
 <?php
 
+function update(){
+    
+}
+
+
 function get_inst($pdo){
     $inst = array();
 

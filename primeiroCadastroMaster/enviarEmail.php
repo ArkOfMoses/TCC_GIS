@@ -59,7 +59,7 @@ if(isset($_SESSION['logado'])){
                         configurações necessárias, cadastrando funcionários, alunos e etc.</p>
                         <!-- <a href='cadastroDeDir/cadastroDeDir' class="buttonNext">Voltar</a> -->
                     <a href='' class="buttonNext">Enviar email</a>
-                    <a href='confirmarDados.php' class="buttonNext">Proximo passo</a>
+                    <a href='#' class="buttonNext">Finalizar</a>
                 </div>
             </main>    
     </body>

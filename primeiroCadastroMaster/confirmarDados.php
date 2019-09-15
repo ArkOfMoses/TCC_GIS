@@ -52,7 +52,7 @@ if(isset($_SESSION['logado'])){
                     <img src="img/avatar_test.jpg">
                     
 
-                    <form class='form' method='post' action=''>
+                    <form class='form' method='post' action='cod_confirmarDados.php'>
                         <?php
 
                             require_once 'funcoes/funcoes.php';
@@ -95,7 +95,7 @@ From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
                               for($i = 0; $i <= ($numeroDeLinhas-1); $i++){
                                 $nomeDir[] = $dedos[$i]['nome_usu'];
                                 $emailDir[] = $dedos[$i]['email'];
-                                $senhaDir[] = $dedos[$i]['senha'];
+                                //$senhaDir[] = $dedos[$i]['senha'];
                               }
 
                             
@@ -125,9 +125,10 @@ From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
                         }
                         
                        ?>
+                       <input type="submit" value="Atualizar">
                     </form>
                     <!-- <a href='enviarEmail.php' class="buttonNext">Voltar</a> -->
-                    <a href='#' class="buttonNext">Finalizar</a>
+                    <a href='enviarEmail.php' class="buttonNext">Proximo Passo</a>
                 </div>
                     
                     

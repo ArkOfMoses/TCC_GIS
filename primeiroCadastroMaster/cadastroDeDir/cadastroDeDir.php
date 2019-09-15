@@ -113,7 +113,7 @@ if(isset($_SESSION['logado'])){
                     // }
                 } else {
                     echo 'Diretores Já Cadastrados<br><br><br><br>';
-                    echo '<a href="../enviarEmail.php" class="buttonNext">Próximo passo</a>';
+                    echo '<a href="../confirmarDados.php" class="buttonNext">Próximo passo</a>';
                 }
                 } else {
                     echo 'Não existem instituições<br><a href="../cadastroDeUnid/cadastroDeUnid.php">Cadastrar Instituições</a><br>';
