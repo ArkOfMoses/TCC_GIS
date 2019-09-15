@@ -52,7 +52,6 @@ if(isset($_SESSION['logado'])){
                     <img src="img/avatar_test.jpg">
                     
 
-                    <form class='form' method='post' action='cod_confirmarDados.php'>
                         <?php
 
                             require_once 'funcoes/funcoes.php';
@@ -62,10 +61,10 @@ if(isset($_SESSION['logado'])){
                             $inst = get_inst($pdo);
 
 
-                        echo '<h2>Instituição</h2>';
-                        echo "<label>Nome Fantasia: </label><input type='text' name='nomeFant' value='".$inst[0]['nomeFant']."'>";
-                        echo "<label>Razão Social: </label><input type='text' name='razaoSoci' value='".$inst[0]['razaoSocial']."'>";
-                        echo "<label>CNPJ: </label><input type='text' name='cnpj' value='".$inst[0]['CNPJ']."'>";
+                        echo '<h2>Instituição:</h2>';
+                        echo "<label>Nome Fantasia: </label><p>".$inst[0]['nomeFant']."</p>";
+                        echo "<label>Razão Social: </label><p>".$inst[0]['razaoSocial']."</p>";
+                        echo "<label>CNPJ: </label><p>".$inst[0]['CNPJ']."</p>";
 
                             $unid = get_unid($pdo);
 
@@ -101,20 +100,26 @@ From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
                             
                             for ($i = 0; $i < count($unid); $i++) { 
                                 echo '
+                                        <br>
+                                        <br>
+                                        <br>
                                         <h3>Unidade:</h3>
-                                        <label>Nome da Unidade: </label><input type="text" value="'.$unid[$i]['nomeUnid'].'" name="nomeUnid'.$i.'">
-                                        <label>CEP da Unidade: </label><input type="text" value="'.$unid[$i]['cepUnid'].'" name="cepUnid'.$i.'">
-                                        <label>Número da Unidade: </label><input type="text" value="'.$unid[$i]['numUnid'].'" name="numUnid'.$i.'">
-                                        <label>Complemento da Unidade: </label><input type="text" value="'.$unid[$i]['complUnid'].'" name="complUnid'.$i.'">
+                                        <p>Nome da Unidade: '.$unid[$i]['nomeUnid'].'</p>
+                                        <p>CEP da Unidade: '.$unid[$i]['cepUnid'].'</p>
+                                        <p>Número da Unidade: '.$unid[$i]['numUnid'].'</p>
+                                        <p>Complemento da Unidade: '.$unid[$i]['complUnid'].'</p>
 
 
                                         <h4>Diretores:</h4>
 
-                                        <label>Confirme o diretor:</label>
-                                        <input type="text" name="nomeDir'.$i.'" value="'.$nomeDir[$i].'">
+                                        <p>Nome do diretor:</p>
+                                        <p>'.$nomeDir[$i].'</p>
                                         
-                                        <label>Confirme o email do diretor:</label>
-                                        <input type="email" name="emailDir'.$i.'" value="'.$emailDir[$i].'">';
+                                        <p>Email do diretor:</p>
+                                        <p>'.$emailDir[$i].'</p>
+                                        <br>
+                                        <br>';
+
                                         
                                         // <label>Confirme a senha:</label>
                                         // <input type="password" value="'.$senhaDir.'">';
@@ -125,8 +130,6 @@ From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
                         }
                         
                        ?>
-                       <input type="submit" value="Atualizar">
-                    </form>
                     <!-- <a href='enviarEmail.php' class="buttonNext">Voltar</a> -->
                     <a href='enviarEmail.php' class="buttonNext">Proximo Passo</a>
                 </div>

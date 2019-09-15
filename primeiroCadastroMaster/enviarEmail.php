@@ -31,8 +31,6 @@ if(isset($_SESSION['EmailDirs'])){
             }
         }
     }
-}else{
-    //algo deu errado no passo anterior
 }
 
 ?>
