@@ -11,7 +11,7 @@ $filterForm = [
     "confirmaEmail" => FILTER_VALIDATE_EMAIL,
     "senha" => FILTER_SANITIZE_SPECIAL_CHARS,
     "confirmaSenha" => FILTER_SANITIZE_SPECIAL_CHARS,
-    "cpf_usu" => FILTER_SANITIZE_SPECIAL_CHARS 
+    "cpf_usu" => FILTER_DEFAULT 
 ];  
 
 $infoPost = filter_input_array(INPUT_POST, $filterForm);
@@ -27,7 +27,7 @@ if($infoPost) {
         $tipos = array("png","jpg","gif");
         $imagem = $diretorio.$novo_nome;
 
-        
+        $cpfValidado = validaCPF($infoPost['cpf_usu']);
 
         if(in_array("", $infoPost)){
             echo "<p>É necessário preencher todos os campos!</p>";
@@ -40,9 +40,9 @@ if($infoPost) {
                 echo "<p>Emails não batem!</p>";
             }else if($infoPost['senha'] != $infoPost['confirmaSenha']){
                 echo "<p>Senhas não batem!</p>";
-            }else  /*  if(!validaCPF($infoPost['cpf_usu'])){
+            }else if($cpfValidado === false){
                 echo "<p>CPF inválido!</p>";
-            }else */ {
+            }else{
 
             if (in_array($ext, $tipos)) {
                 if (move_uploaded_file($_FILES['img']['tmp_name'], $imagem)) { 
@@ -57,7 +57,7 @@ if($infoPost) {
                 //date_default_timezone_set('Etc/UTC');
                 //se a gente não for usar o type=date, a gente precisa fazer o rolê de inverter pra ficar no padrão do banco
                 $comando1 = $pdo->prepare("update acesso set senha = '$senhaEncript', email = '{$infoPost['email']}' where cod_acesso = $codAcesso");
-                $comando2 = $pdo->prepare("update usuario set nome_usu = '{$infoPost['nome_usu']}', cpf_usu = '{$infoPost['cpf_usu']}', url_foto_usu = '$imagem', data_entrada = (cast(NOW() as Date)) where cod_acesso = $codUsu");
+                $comando2 = $pdo->prepare("update usuario set nome_usu = '{$infoPost['nome_usu']}', cpf_usu = '$cpfValidado', url_foto_usu = '$imagem', data_entrada = (cast(NOW() as Date)) where cod_acesso = $codUsu");
                 
                 if($comando1->execute() && $comando2->execute()){                
                     $nomeTipoUsu = $_SESSION['dadosUsu']['nomeTipoUsu'];

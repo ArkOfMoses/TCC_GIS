@@ -188,7 +188,7 @@ function validaCPF($campo){
                 }
 
                 if($check == $segundoDV){
-                    return true;
+                    return $numeroCPF;
                 }else{
                     return false;
                 }
@@ -245,7 +245,7 @@ function validaCNPJ($campo){
             $resto = $soma % 11;
 
             if($resto < 2 && $segundoDV == 0 || $segundoDV == (11 - $resto)){
-                return true;
+                return $numCNPJ;
             }else{
                 return false;
             }
