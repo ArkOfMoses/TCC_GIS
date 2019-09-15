@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: homeLandingPage.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
