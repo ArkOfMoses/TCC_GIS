@@ -2,8 +2,9 @@
 
 function get_inst($pdo){
     $inst = array();
-    
-        $selecionar = ('select * from instituicao');
+
+    $key = get_id($pdo, 'cod_inst', 'instituicao');
+        $selecionar = ("select * from instituicao where cod_inst = $key");
         $comando = $pdo->prepare($selecionar);
         $comando->execute();
         
@@ -24,8 +25,8 @@ function get_inst($pdo){
 
 function get_unid($pdo){
     $unid = array();
-    
-        $selecionar = ('select * from unidade');
+    $key = get_id($pdo, 'cod_inst', 'instituicao');
+        $selecionar = ("select * from unidade where cod_inst = $key");
         $comando = $pdo->prepare($selecionar);
         $comando->execute();
         
