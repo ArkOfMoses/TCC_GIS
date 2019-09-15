@@ -2,6 +2,7 @@
 session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
+    $img = $dados['fotoUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -27,7 +28,18 @@ if(isset($_SESSION['logado'])){
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
               href="../../css/cssCadastroMaster/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssCadastroMaster/style1366.css">
+        <style type="text/css">
+                
+                img.perfil-foto{
 
+                    width: 176px;
+                    height:176px;
+                    border-radius: 100%;
+                    border: 3px solid;
+                    border-color: #666;
+                    z-index: 1;
+                }
+        </style>
 
         <!-- <style>
             
@@ -83,7 +95,10 @@ if(isset($_SESSION['logado'])){
 
 
 
-                    <img src="../img/avatar_test.jpg">
+                    <?php                      
+                        echo '<img src=../../'.$img.' class="perfil-foto">';
+                    // echo $img;
+                    ?>
                     <p>Cadastre as unidades de sua instituição:</p>
                     <form class='form' method='post' action=''>
                         

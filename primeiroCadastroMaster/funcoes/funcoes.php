@@ -97,32 +97,6 @@ function adicionar_inst($nomeFantInst, $razaoSocial, $CNPJ, $pdo){
 
 
 
-// function get_usu($pdo){
-//     $Usu = array();
-    
-//         $selecionar = ('select codUsu, nomeUsu, emailUsu, senhaUsu, nomeInst, instituicao.codInst from usuarios inner join instituicao on(usuarios.codInst = instituicao.codInst);');
-//         $comando = $pdo->prepare($selecionar);
-//         $comando->execute();       
-        
-//         while($dados = $comando->fetch(PDO::FETCH_ASSOC)){
-//             $codUsu = $dados['codUsu'];
-//             $nomeUsu = $dados['nomeUsu'];
-//             $emailUsu = $dados['emailUsu'];
-//             $senhaUsu = $dados['senhaUsu'];
-//             $codInst = $dados['codInst'];
-//             $nomeInst = $dados['nomeInst'];
-//             $Usu[] = array(
-//                 'codUsu' => $codUsu,
-//                 'nomeUsu' => $nomeUsu,
-//                 'emailUsu' => $emailUsu,
-//                 'senhaUsu' => $senhaUsu,
-//                 'codInst' => $codInst,
-//                 'nomeInst' => $nomeInst
-//             );
-//         }
-//         return $Usu;
-// }
-
 function get_id($pdo, $chave, $table){
 
     $selecionar = ("select $chave from $table");

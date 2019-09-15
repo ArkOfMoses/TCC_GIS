@@ -2,6 +2,7 @@
 session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
+    $img = $dados['fotoUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -55,6 +56,19 @@ if(isset($_SESSION['logado'])){
           });
       </script>
     
+
+        <style type="text/css">
+        
+        img.perfil-foto{
+
+            width: 176px;
+            height:176px;
+            border-radius: 100%;
+            border: 3px solid;
+            border-color: #666;
+            z-index: 1;
+        }
+      </style>
     </head>
     <body><div class="acessoUm">
              <header class="headerPrimeiroAcesso">
@@ -71,7 +85,10 @@ if(isset($_SESSION['logado'])){
 
             </p>
 
-            <img src="../img/avatar_test.jpg">
+            <?php                      
+                        echo '<img src=../../'.$img.' class="perfil-foto">';
+                    // echo $img;
+                    ?>
             <form method='post' action='cod_cadastroDir.php' class='form'>
                 <?php
         
