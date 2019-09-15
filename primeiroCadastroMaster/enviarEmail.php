@@ -82,7 +82,7 @@ if(isset($_SESSION['EmailDirs'])){
                     <p>Envie um email com o login para os diretores poderem 
                         entrar e realizar seu trabalho alterando as 
                         configurações necessárias, cadastrando funcionários, alunos e etc.</p>
-                        <a href='cadastroDeDir/cadastroDeDir' class="buttonNext">Voltar</a>
+                        <!-- <a href='cadastroDeDir/cadastroDeDir' class="buttonNext">Voltar</a> -->
 
                     <form method="post" >
                         <input type="submit" name="enviado" value="Enviar email" />
@@ -95,7 +95,7 @@ if(isset($_SESSION['EmailDirs'])){
                         ?>
                     </form>
                         <!-- <a href='cadastroDeDir/cadastroDeDir' class="buttonNext">Voltar</a> -->
-                    <a href='' class="buttonNext">Enviar email</a>
+                    <!-- <a href='' class="buttonNext">Enviar email</a> -->
                     <a href='#' class="buttonNext">Finalizar</a>
                 </div>
             </main>    

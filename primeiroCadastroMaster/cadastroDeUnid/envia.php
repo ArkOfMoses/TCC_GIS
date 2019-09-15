@@ -4,7 +4,7 @@
 
     $arrayPost = [
         "unid" => FILTER_SANITIZE_SPECIAL_CHARS,
-        "cepUnid" => FILTER_SANITIZE_SPECIAL_CHARS,
+        "cepUnid" => FILTER_SANITIZE_NUMBER_INT,
         "numUnid" => FILTER_SANITIZE_NUMBER_INT,
         "complUnid" => FILTER_SANITIZE_SPECIAL_CHARS
     ];
