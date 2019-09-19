@@ -70,6 +70,7 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
             $codOperacao[] = $dedos[$i]['cod_operacao'];
             $nomeOperacao[] = $dedos[$i]['nome_operacao'];
             $codStatusOperacao[] = $dedos[$i]['cod_status_operacao'];
+            $linkOperacao[] = $dedos[$i]['link_operacao'];
           }
 
             $_SESSION['logado'] = true;
@@ -83,6 +84,7 @@ From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_t
                   "codOperacao" => $codOperacao,
                   "nomeOperacao" => $nomeOperacao,
                   "codStatusOperacao" => $codStatusOperacao,
+                  "linkOperacao" => $linkOperacao,
                   "codUsu" => $codUsu,
                   "nomeUsu" => $nomeUsu,
                   "cpfUsu" => $cpfUsu,
