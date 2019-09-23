@@ -1,4 +1,58 @@
 .header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, .97);
+  position: fixed;
+  z-index: 3;
+  transition: ease .2s;
+}
+
+.hamburger{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*
+.active-menu .header {background-color: rgba(255, 255, 255, 0)}*/
+
+.fullnav {
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  transition: all .4s;
+}
+
+.menu {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  -webkit-overflow-scrolling: touch;
+}
+
+.menu ul li, .menu ul a {
+  list-style: none;
+  color: #012;
+}
+
+.menu ul {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.menu-buttons {justify-content: space-around;}
+
+.title, .subtitle {margin: 0px;}
+
+.title {font-weight: normal;}
+
+
+.header {
   width: 100vw;
   height: 60px;
 }
@@ -66,13 +120,6 @@
 .title, .subtitle {font-size: 1.2em;}
 
 .title {font-size: 1.3em}
-
-.profile-photo-menu {
-  width: 33%;
-  padding-top: 33%;
-  border-radius: 70px;
-  margin: 60px 0 10px;
-}
 
 .active-menu .fullnav {right: 0;}
 
@@ -154,7 +201,7 @@
 .animHome {
   width: 100vw;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -168,6 +215,7 @@
   flex-direction: column;
   align-items: center;
   width: 35%;
+  margin: 30px;
 }
 
 .animHome .notas-icon {margin-bottom: 50px;}
@@ -290,7 +338,65 @@ footer .selecionado {color: #ccc;}
 
 
 
+.registro{
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 25px;
+  margin: auto;
+}
 
+.registro h3{
+  margin: 0 0 30px 5px;
+  font-weight: 300;
+  color: #012;
+  font-size: 2.2em;
+}
+
+.registro input, .registro textarea{
+  width: 100%;
+  height: 45px;
+  border: solid 1px grey;
+  border-radius: 25px;
+  padding: 0 20px;
+  transition: .4s;
+  font-size: 1em
+}
+
+.registro textarea{
+  height: 100px;
+  padding: 15px 20px;
+  border-radius: 20px;
+}
+
+.registro input:focus, .registro textarea:focus{
+  border-color: #0cc;
+  outline: none;
+}
+
+.registro input[type=submit]{
+  height: 45px;
+  border: none;
+  background-color: #012;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.registro p, .registro a, .registro .erro{
+  font-weight: 300;
+  color: grey;
+  text-align: center;
+  max-width: 250px;
+  margin-bottom: 5px;
+}
+
+.registro a {
+  color: #09f;
+}
 
 
 

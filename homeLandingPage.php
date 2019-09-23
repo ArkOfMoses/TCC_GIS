@@ -10,7 +10,7 @@ if(isset($_SESSION['logado'])){
 <html lang="pt-br">
   <head>
 
-      <title>pag</title>
+      <title> GIS | Gestão Institucional Simplificada</title>
 
       <meta charset=UTF-8>
       <!-- ISO-8859-1 -->
@@ -21,7 +21,7 @@ if(isset($_SESSION['logado'])){
       <meta name=author content='G4 INI3B GIS'>
 
       <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-      <link rel="shortcut icon" href="" type="image/x-icon">
+      <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
       <!-- CSS PADRÃO -->
       <link href="css/landingPage/default.css" rel=stylesheet>
@@ -120,7 +120,7 @@ if(isset($_SESSION['logado'])){
 
             <ul class="menu-buttons">
               <li><a href="homeLandingPage.php">Home</a></li>
-              <li><a href="loginLandingPage.php">Entrar</a></li>
+              <li class="login-btn"><a href="loginLandingPage.php">Entrar</a></li>
               <li><a href="contatoLandingPage.php">Contato</a></li>
               <li><a href="#">Sobre Nós</a></li>
             </ul>
@@ -136,7 +136,7 @@ if(isset($_SESSION['logado'])){
               <div class="bannerText">
                 <h1>GIS</h1>
                 <h2>Gestão Institucional Simplificada</h2>
-                <p>Gerencie sua instituição com o GIS, criamos sistemas completos para sua escola, creche ou universidade. </p>
+                <p>Gerencie sua instituição com o GIS, criamos sistemas completos para sua escola, creche ou universidade</p>
                 <div class="botao-banner"><a href="#enviar-email">Comece agora</a></div>
               </div>
               <img src="imagens/ilustracao1.svg" alt="Ilustração sistema GIS" class="bannerIlus">
@@ -169,31 +169,35 @@ if(isset($_SESSION['logado'])){
                 </div>
               </div>
 
-              <a href="#enviar-email" id="enviar-email"><div class="btm-email"><i class="fas fa-paper-plane"></i> Envie-nos um e-mail</div></a>
-              <a href="#"><div class="btm-email"><i class="fas fa-user"></i> Já sou um cliente</div></a>
+              <a href="#enviar-email" id="enviar-email"><div class="btm-email"><i class="fas fa-paper-plane"></i> Entre em contato conosco!</div></a>
+              <a href="loginLandingPage.php"><div class="btm-email"><i class="fas fa-user"></i> Já sou um cliente</div></a>
             </div>
-              
-            <form class="registro" id="contato" method="post" action="cadastroMaster.php">
-            <h3 id="h3">Registre-se</h3>
-            <input type="text" name="firstname" placeholder="Seu nome">
-            <br>
-            <input type="text" name="email" placeholder="Seu e-mail" id="email" onblur="return validaEmail()">
-            <br>
-            <input type="text" name="confEmail" placeholder="Confirme seu email" id="confEmail" onblur="return confirmarEmail()">
-            <br>
-            <input type="password" name="senha" placeholder="Crie uma senha" id="senha">
-            <br>
-            <input type="password" name="confSenha" placeholder="Confirme sua senha" id="confSenha" onblur="return confirmarSenha()">
-            <br>
-            <input type="date" name="dataNasc" placeholder="Data de Nascimento">
-            <br>
-            <h4></h4>
-            <br>
-            <input type="submit" value="Enviar" id="enviar">
-            <br>
-                <p>Ao se cadastrar, você concorda com nossos <a>Termos de uso</a></p>
-          </form>
-                
+
+            <div class="registro">
+
+              <form class="form-registro" id="contato" method="post" action="cadastroMaster.php">
+                <h3 id="h3">Registre-se</h3>
+                <input type="text" name="firstname" placeholder="Seu nome">
+                <br>
+                <input type="text" name="email" placeholder="Seu e-mail" id="email" onblur="return validaEmail()">
+                <br>
+                <input type="text" name="confEmail" placeholder="Confirme seu email" id="confEmail" onblur="return confirmarEmail()">
+                <br>
+                <input type="password" name="senha" placeholder="Crie uma senha" id="senha">
+                <br>
+                <input type="password" name="confSenha" placeholder="Confirme sua senha" id="confSenha" onblur="return confirmarSenha()">
+                <br>
+                <input type="date" name="dataNasc" placeholder="Data de Nascimento">
+                <br>
+                <h4></h4>
+                <br>
+                <input type="submit" value="Enviar" id="enviar">
+                <br>
+                    <p>Ao se cadastrar, você concorda com nossos <a>Termos de uso</a></p>
+              </form>
+
+            </div>
+
         </main>
 
         <footer>
@@ -207,7 +211,7 @@ if(isset($_SESSION['logado'])){
         </footer>
 
     </div>
-    
+
 
   </body>
 
