@@ -13,7 +13,7 @@
       <meta name=author content='G4 INI3B GIS '>
 
       <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-      <link rel="shortcut icon" href="" type="image/x-icon">
+      <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
       <!-- CSS PADRÃO -->
       <link href="css/TelaSaude/default.css" rel=stylesheet>
@@ -156,15 +156,15 @@
                                 <option></option>
                                 <option selected="selected">INI</option>
                             </select>
-    
+
                         </div>
 
-  
-    
+
+
                     <input type="submit" value="Salvar consulta" class="submitButton">
 
                 </form>
-</div> 
+</div>
 </div>
 
 

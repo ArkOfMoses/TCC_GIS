@@ -13,7 +13,7 @@
         <meta name=author content='G4 INI3B GIS '>
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="" type="image/x-icon">
+        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
         <link href="css/default.css" rel=stylesheet>
@@ -228,7 +228,7 @@
 
                         <!--Seção - Horário -->
                         <div class="tab-2">
-                            
+
                             <label for="tab2-2" class="labelTab"><a id="nometab">Horário</a></label>
                             <input id="tab2-2" name="tabs-two" type="radio">
 
@@ -251,7 +251,7 @@
                                     <label for="sexta" class="labelBotao">Sexta</label>
 
 
-                                    <div class="semana" id="semanaSegunda">                
+                                    <div class="semana" id="semanaSegunda">
                                         <div class="topico_horario">
                                             <div class="hora">
                                                 <p>Hora</p>
@@ -259,7 +259,7 @@
                                             </div>
                                             <div class="info_horario">
                                                 <p>Nome da pessoa</p>
-                                                <span>Sala</span>                        
+                                                <span>Sala</span>
                                             </div>
                                         </div>
 
@@ -273,7 +273,7 @@
                                             </div>
                                             <div class="info_horario">
                                                 <p>Nome da pessoa</p>
-                                                <span>Sala</span>                        
+                                                <span>Sala</span>
                                             </div>
                                         </div><div class="topico_horario">
                                             <div class="hora">
@@ -282,7 +282,7 @@
                                             </div>
                                             <div class="info_horario">
                                                 <p>Nome da pessoa</p>
-                                                <span>Sala</span>                        
+                                                <span>Sala</span>
                                             </div>
                                         </div><div class="topico_horario">
                                             <div class="hora">
@@ -291,7 +291,7 @@
                                             </div>
                                             <div class="info_horario">
                                                 <p>Nome da pessoa</p>
-                                                <span>Sala</span>                        
+                                                <span>Sala</span>
                                             </div>
                                         </div>
 
@@ -311,7 +311,7 @@
                                             </div>
                                             <div class="info_horario">
                                                 <p>Nome da pessoa</p>
-                                                <span>Sala</span>                        
+                                                <span>Sala</span>
                                             </div>
                                         </div>
                                     </div>
@@ -324,7 +324,7 @@
                                             </div>
                                             <div class="info_horario">
                                                 <p>Nome da pessoa</p>
-                                                <span>Sala</span>                        
+                                                <span>Sala</span>
                                             </div>
                                         </div>
                                     </div>
@@ -337,7 +337,7 @@
                                             </div>
                                             <div class="info_horario">
                                                 <p>Nome da pessoa</p>
-                                                <span>Sala</span>                        
+                                                <span>Sala</span>
                                             </div>
                                         </div>
                                     </div>
@@ -350,7 +350,7 @@
                                             </div>
                                             <div class="info_horario">
                                                 <p>Nome da pessoa</p>
-                                                <span>Sala</span>                        
+                                                <span>Sala</span>
                                             </div>
                                         </div>
                                     </div>

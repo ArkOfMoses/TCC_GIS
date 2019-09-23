@@ -15,11 +15,13 @@ if(isset($_SESSION['logado'])){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Primeiro cadastro</title>    
+        <title>Primeiro cadastro</title>
         <link rel="stylesheet" href="css/default.css">
         <!-- CSS PADRÃO -->
         <link href="css/default.css" rel=stylesheet>
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
+        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
         <!-- Telas Responsivas -->
         <link rel=stylesheet media="screen and (max-width:480px)" href="css/cssPrimeiroAcesso/style480.css">
@@ -53,13 +55,13 @@ if(isset($_SESSION['logado'])){
                     processData: false
                 });
                 return false;
-            });      
+            });
         });
-                
+
       </script>
 
       <style type="text/css">
-        
+
         #dup{
           width: 250px;
           height: 250px;
@@ -123,7 +125,7 @@ if(isset($_SESSION['logado'])){
                     <!---PERGUNTAR SE O UPLOAD DE FOTOS É NECESSÁRIO-->
                     <h1>Bem vindo(a)!</h1>
                     <p>Por favor, confirme suas informações abaixo.</p>
-                    
+
 
                     <form enctype="multipart/form-data" class='form' id='form' method='post' action='cod_alterarAcc.php'>
                       <div id="img-perfil">
@@ -136,16 +138,16 @@ if(isset($_SESSION['logado'])){
                         <!---também nn entendi o sentido de colocar value na senha se o usuário nn vai poder ver a senha e conferir-->
                         <label>Confirme seu nome:</label>
                         <input type="text" id="visor1" name="nome_usu" value="<?= $dados['nomeUsu']; ?>" />
-  
+
                         <label>Altere seu email:</label>
                         <input type="email" id="visor2" name="email" value="<?= $dados['emailUsu']; ?>" />
-                        
+
                         <label>Confirme seu email:</label>
                         <input type="email" id="visor3" name="confirmaEmail" value="<?= $dados['emailUsu']; ?>" />
-                        
+
                         <label>Sua senha:</label>
                         <input type="password" id="visor4" name="senha" />
-                        
+
                         <label>Confirme sua senha:</label>
                         <input type="password" id="visor5" name="confirmaSenha" />
 
@@ -159,14 +161,14 @@ if(isset($_SESSION['logado'])){
 
                         <input type="submit" value="confirmar" />
                         <!--o formulário precisa de um submit, ou um antes do botão de próximo/ir pro perfil ou um só input q dps a gente manda por header no código dps-->
-                    </form>                    
+                    </form>
                 </div>
-                          
+
                 <div class="acessDenied">
                     <img src="imagens/error.png">
                     <p>Ops! </p>
                     <span>Parece que o dispositivo usado não é compatível com o site!</span>
                 </div>
-            </main>    
+            </main>
     </body>
 </html>

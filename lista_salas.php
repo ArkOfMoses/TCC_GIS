@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
     <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
     <!-- CSS PADRÃO -->
     <link href="css/default.css" rel=stylesheet>
@@ -296,13 +296,13 @@
                                 <a href="#"> Horário </a>
                             </div>
                         </div>
-                       
+
                     </section>
                 </div>
             </div>
 
             <!-- Início do rodapé -->
-            
+
 </body>
 
 </html>

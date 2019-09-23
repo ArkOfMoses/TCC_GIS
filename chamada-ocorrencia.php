@@ -13,7 +13,7 @@
   <meta name=author content='G4 INI3B GIS '>
 
   <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-  <link rel="shortcut icon" href="" type="image/x-icon">
+  <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
   <!-- CSS PADRÃO -->
   <link href="css/default.css" rel=stylesheet>
@@ -269,7 +269,7 @@
                 </span>
               </div>
 
-              
+
             </div>
           </div>
         </div>
