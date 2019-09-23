@@ -34,6 +34,12 @@ jQuery(function () {
     } else if (width <= 768) {
         var i = 780;
         var f = 1900;
+    } else if (width <= 1024) {
+        var i = 780;
+        var f = 1900;
+    } else if (width >= 1025) {
+        var i = 780;
+        var f = 1900;
     }
 
 
@@ -116,7 +122,7 @@ function confirmarEmail(){
 
 $(document).ready(function(){
   $('.botaoSemana').click(function(){
-   var semanavalue = $(this).val(); 
+   var semanavalue = $(this).val();
       $("div.semana").hide();
       $("#semana"+semanavalue).show();
   });
