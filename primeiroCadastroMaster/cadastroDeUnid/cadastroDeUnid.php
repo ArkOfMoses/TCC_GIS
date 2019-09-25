@@ -10,6 +10,7 @@ if(isset($_SESSION['logado'])){
     header("Location: homeLandingPage.php");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -17,7 +18,8 @@ if(isset($_SESSION['logado'])){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Primeiro cadastro</title>    
         <link rel="stylesheet" href="../../css/default.css">    
-        <script src='../../js/jquery-3.3.1.min.js'></script>
+        <script src='../js/jquery-3.3.1.min.js'></script>
+        <script src="../js/script.js" type="text/javascript"></script>
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
@@ -41,40 +43,8 @@ if(isset($_SESSION['logado'])){
                 }
         </style>
 
-        <!-- <style>
-            
-            .headerPrimeiroAcesso a:nth-child(4){
-                display:none;
-            }
-            .headerPrimeiroAcesso a:nth-child(5){
-                display:none;
-            }
-            .headerPrimeiroAcesso a:nth-child(6){
-                display:none;
-            }
-        </style> -->
-        <script src='../../js/jquery-3.3.1.min.js'></script>
-        <script>
-                $(function () {
-                    $('.form').submit(function () {
-                        $.ajax({
-                            url: 'envia.php',
-                            type: 'POST',
-                            data: $('.form').serialize(),
-                            success: function (data) {
-                                if (data != '') {
-                                    $('.recebeDados').html(data);
-                                    document.getElementById('visor').value = '';
-                                    document.getElementById('visor1').value = '';
-                                    document.getElementById('visor2').value = '';
-                                    document.getElementById('complUnid').value = '';
-                                }
-                            }
-                        });
-                        return false;
-                    });
-                });
-            </script>
+        
+        
     </head>
     <body>
         <div class="content">
@@ -102,26 +72,27 @@ if(isset($_SESSION['logado'])){
                     <p>Cadastre as unidades de sua instituição:</p>
                     <form class='form' method='post' action=''>
                         
-                        <label>Unidades de ensino:</label>
-                        <label>Nome da Unidade: </label><input class='unid' id='visor' name='unid' type='text' />
-                        <label>CEP da Unidade: </label><input class='unid' id='visor1' name='cepUnid' type='text' />
-                        <label>Número da Unidade: </label><input class='unid' id='visor2' name='numUnid' type='number' />
-                        <label>Complemento da Unidade: </label><input class='unid' name='complUnid' id='complUnid' type='text'/>
-                        <input name='enviar' id="plus" value="+" type='submit'>
+                        <label id="unidade">Unidades de ensino:</label>
+
+                        <label id="nome_label">Nome da Unidade: </label>
+                        <input class='unid' id='visor' name='unid0' type='text' />
+
+                        <label id="cep_label">CEP da Unidade: </label>
+                        <input class='unid' id='visor1' name='cepUnid0' type='text' />
+
+                        <label id="num_label">Número da Unidade: </label>
+                        <input class='unid' id='visor2' name='numUnid0' type='number' />
+
+                        <label id="compl_label">Complemento da Unidade: </label>
+                        <input class='unid' name='complUnid0' id='complUnid' type='text'/>
+                        
+                        
+
+                        <div id="rightDiv"></div>
+
                     </form>
-                    <div class='recebeDados' id='div'>
-                        <?php
-                        require_once '../funcoes/funcoes.php';
-                        require_once '../../bd/conexao.php';
-
-                        $dadosUnid = get_unid($pdo);
-                        for($i = 0; $i < count($dadosUnid); $i++){
-                            $xis = $dadosUnid[$i];
-                            echo $xis['nomeUnid'] . " - " . $xis['cepUnid'] . " - " . $xis['numUnid'] . " - " . $xis['complUnid'] ."<br>";   
-                        }
-                        ?>
-                    </div>
-
+                    
+                    <span id="eventBtn"><img src="../img/more.png" alt=""></span>
                     <!-- <a href='../cadastroDeInst/cadastroDeInst.php' class="buttonNext">Voltar</a> -->
                     <a href='../cadastroDeDir/cadastroDeDir.php' class="buttonNext">Proximo passo</a>
             </main>    
