@@ -68,6 +68,7 @@ header {
   font-size: 1.15em;
   margin: 10px;
   font-weight: 600;
+  text-align: center;
 }
 
 .login-btn {order: 1;}
@@ -91,14 +92,13 @@ main {
 .banner {
   position: relative;
   min-height: calc(100vh - 90px);
-  width: 55%;
+  width: 50%;
   order: -2
 }
 
-.bannerIlus {width: 55vw;}
 
 .banner .bannerText {
-  min-height: 50vh;
+  min-height: 53vh;
   text-align: center;
   padding: 90px 40px 0;
   background-color: #ebfaff;
@@ -129,18 +129,17 @@ main {
 
 .banner .botao-banner a {display: none;}
 
-.saibaMais {
-  background-color: white;
-  width: 100vw;
-  height: 90px;
-  color: white;
-}
+.saibaMais {display: none;}
+
+
+
 
 .qual {
   background-color: #012;
   font-size: .8em;
   color: #ccc;
   position: relative;
+  z-index: 2;
   border-radius: 30px 30px 0 50px;
   padding: 50px 0 30px 0;
   display: flex;
@@ -165,7 +164,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 35%;
+  width: 200px;
   margin: 30px;
 }
 
@@ -190,9 +189,7 @@ main {
 .btm-email{
   background-color: rgba(255, 255, 255, .2);
   border-radius: 30px 0 0 30px;
-  min-width: 50vw;
-  width: 300px;
-  max-width: 80vw;
+  min-width: 30vw;
   height: 50px;
   display: flex;
   align-items: center;
@@ -216,58 +213,8 @@ main {
 
 
 
-.enviar-email {
-  padding: 40px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.enviar-email h3{
-  margin-bottom: 35px;
-  text-align: center;
-  font-weight: 300;
-  color: #036;
-  font-size: 1.5em;
-}
-
-.enviar-email input, .enviar-email textarea{
-  width: 380px;
-  height: 50px;
-  border: solid 1px grey;
-  border-radius: 25px;
-  margin-bottom: 10px;
-  padding: 0 20px;
-  transition: .4s;
-  font-size: 1em
-}
-
-.enviar-email textarea{
-  height: 100px;
-  padding: 15px 20px;
-  border-radius: 20px;
-}
-
-.enviar-email input:focus, .enviar-email textarea:focus{
-  border-color: #0cc;
-  outline: none;
-}
-
-.enviar-email input:last-child{
-  border: none;
-  background-color: #0cc;
-  color: #fff;
-  font-size: 1em;
-  font-weight: bold;
-}
-
-
-
-
-
 footer {
-  margin: 50px;
-  border-top: solid #ccc 1px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -293,11 +240,13 @@ footer .selecionado {color: #ccc;}
   padding: 90px 25px 0 25px;
   padding: auto;
   order: -1;
-  width: 45%;
+  width: 50%;
   background-color: #ebfaff;
 }
 
 .form-registro {
+  max-width: 360px;
+  margin: auto;
   position: relative;
   display: flex;
   flex-flow: column;
