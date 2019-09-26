@@ -64,6 +64,35 @@ if(isset($_SESSION['logado'])){
                   return false;
               });
           });
+
+
+
+          
+var increment=1;
+/** Função duplicar formulários - cadastro de unidades */
+$(document).ready(function() {
+
+  
+      $("#eventBtn").click(function(){
+        
+
+      $('#unidade').clone().appendTo("#rightDiv");
+      
+      $('#nome_label').clone().appendTo('#rightDiv').removeAttr('id');
+      $('#nome').clone().appendTo('#rightDiv').attr("name","nome"+ increment).attr("value","").removeAttr('id');
+
+      $('#razao_label').clone().appendTo('#rightDiv');
+      $('#razao').clone().appendTo('#rightDiv').removeAttr('id').attr("name",'razao'+ increment).attr("value","");
+
+      $('#cnpj_label').clone().appendTo('#rightDiv');
+      $('#cnpj').clone().appendTo('#rightDiv').removeAttr('id').attr("name",'cnpj'+ increment).attr("value","");
+
+      increment++;
+      
+  });
+   
+});
+
       </script>
 
       <style type="text/css">
@@ -104,20 +133,21 @@ if(isset($_SESSION['logado'])){
                     ?>
 
                     <form class='form' method='post' action='cod_cadastroInst.php'>
-                        <label>Adicione o nome da sua instituição:</label>
-                        <input type="text" name="nomeFant">
+                        <label  id="">Adicione o nome da sua instituição:</label>
+                        <input type="text" name="nomeFant0">
 
                         <label>Adicione a razão social da sua intituição:</label>
-                        <input type="text" name="razaoSoci">
+                        <input type="text" name="razaoSoci0">
                         
                         <label>Adicione o CNPJ da instituição:</label>
-                        <input type="text" name="cnpj">
+                        <input type="text" name="cnpj0">
 
-                        <div class='recebeDados'></div>
-                        <input type="submit" name="Cadastrar">
+                        <div id="rightDiv"></div>
                         
                         <!--ADICIONAR MASCARA NO CNPJ-->
                     </form>
+
+                    <span id="eventBtn"><img src="../img/more.png" alt=""></span>
                     <!-- <a href='../../alterarAcc.php' class="buttonNext">Voltar</a> -->
                     <!-- <a href='../cadastroDeUnid/cadastroDeUnid.php' class="buttonNext">Proximo passo</a> -->
             </main>    

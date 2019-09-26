@@ -128,34 +128,3 @@ $(document).ready(function(){
   });
 });
 
-
-
-var increment=1;
-/** Função duplicar formulários - cadastro de unidades */
-$(document).ready(function() {
-
-  
-      $("#eventBtn").click(function(){
-        
-
-      $('#unidade').clone().appendTo("#rightDiv").removeAttr('id');
-
-      $('#select_funcionario').clone().appendTo('#rightDiv').removeAttr('id');
-      
-      $('#nome_label').clone().appendTo('#rightDiv').removeAttr('id');
-      $('#visor').clone().appendTo('#rightDiv').attr("name","unid"+ increment).attr("value","").removeAttr('id');
-
-      $('#cep_label').clone().appendTo('#rightDiv');
-      $('#visor1').clone().appendTo('#rightDiv').removeAttr('id').attr("name",'email'+ increment).attr("value","");
-
-      $('#num_label').clone().appendTo('#rightDiv');
-      $('#visor2').clone().appendTo('#rightDiv').removeAttr('id').attr("name",'email'+ increment).attr("value","");
-
-      $('#compl_label').clone().appendTo('#rightDiv');
-      $('#complUnid').clone().appendTo('#rightDiv').removeAttr('id').attr("name",'email'+ increment).attr("value","");
-     
-      increment++;
-      
-  });
-   
-});
