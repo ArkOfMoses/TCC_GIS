@@ -39,21 +39,7 @@ if(isset($_SESSION['logado'])){
     
         <script src='../../js/jquery-3.3.1.min.js'></script>
         <script>
-          $(function(){
-              $('.form').submit(function(){
-                  $.ajax({
-                      url: 'cod_cadastroDir.php',
-                      type: 'POST',
-                      data: $('.form').serialize(),
-                      success: function(data){
-                          if(data != ''){
-                              $('.recebeDados').html(data);
-                          }
-                      }
-                  });
-                  return false;
-              });
-          });
+         
       </script>
     
 
