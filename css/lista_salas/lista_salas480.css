@@ -1,0 +1,186 @@
+.header {
+	width: 100vw;
+	height: 60px;
+   margin-top:-25px;
+  }
+  
+  .logo {
+	width: 2.5em;
+	height: 2.5em;
+	margin: 0 15px;
+  }
+  
+  .hamburger{
+	width: 60px;
+	height: 100%;
+  }
+  
+  .hamburger svg{width: 1.2em;}
+  
+  .fullnav {
+	bottom: 0%;
+	top: 0%;
+	flex-flow: column;
+	align-items: center;
+	right: -100vw;
+	background: #051523;
+	color:white;
+  }
+  
+  .menu {
+	width: 100vw;
+	overflow-y: scroll;
+	justify-content: space-around;
+	color:white;
+  }
+  
+  hr {
+	width: 75vw;
+	color: #c9c9c9;
+	margin: 15px 0;
+  }
+  
+  .menu-buttons {min-height: 50vh; color:white}
+  
+  
+  .menu-buttons li {font-size: 1.5em}
+  
+  .menu-buttons i {
+	font-size: .8em;
+	margin-right: 4px
+  }
+  
+  .title, .subtitle {font-size: 1.2em;}
+  
+  .title {font-size: 1.3em}
+  
+  .profile-photo-menu {
+	width: 33%;
+	padding-top: 33%;
+	border-radius: 70px;
+	margin: 60px 0 10px;
+  }
+  
+  .active-menu .fullnav {right: 0;}
+  
+
+
+
+h1{
+	padding-top:60px;
+    color: #003366;
+    text-align:center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.7em;
+    margin-top:25px;
+}
+/* ****** PESQUISA ******* */
+input {
+    outline: none;
+    margin-left:10%;
+    margin-top:5%;
+	
+}
+input[type=search] {
+	-webkit-appearance: textfield;
+	box-sizing: content-box;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none; 
+}
+
+
+input[type=search] {
+	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+	border: solid 1px #ccc;
+	padding: 9px 10px 9px 32px;
+	width: 68%;
+	
+	-webkit-border-radius: 10em;
+	-moz-border-radius: 10em;
+	border-radius: 10em;
+	
+	/*-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;*/
+}
+input[type=search]:focus {
+	background-color: #fff;
+	border-color: rgb(37, 120, 230);
+
+}
+
+
+input:-moz-placeholder {
+	color: #999;
+}
+input::-webkit-input-placeholder {
+	color: #999;
+}
+/********** Seção principal - lista ********** */
+#centralizaSection{
+	display: flex;
+	flex-direction: row;
+	justify-content: center; 
+	align-items: center
+}
+
+#secaoLista{
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: scroll; /* Add vertical scrollbar */
+  width: auto;
+  height: 620px;
+  margin-top: 29px;
+}
+
+
+#box-lista{
+	width: 250px;
+	height: 90px;
+	background-color: #00CCCC;
+	padding: 15px;
+	margin: 10px;
+	margin-bottom:30px;
+    border-radius: 25px;
+}
+
+#circulo-box{
+	width: 70px;
+	height:70px;
+	background-color: #003366;
+	border-radius: 50%;
+	color:white;
+	line-height:1;
+	font-family: Roboto;
+	text-align: center;
+	padding: 2px;
+	margin-top:-5px
+}
+
+h2{
+	margin-top:9px;
+	font-size: 1.3em;
+}
+
+#links{
+	float: right;
+	margin-top: -73px;
+	margin-right: 4px;
+	line-height:2;
+
+	font-family: Roboto;
+	font-size: 1.125em;
+	text-align: justify;
+	
+}
+a{
+	text-decoration: none;
+	color:white;
+	font-weight: bold;
+}
+
+/* ******* FOOTER ******* */
+

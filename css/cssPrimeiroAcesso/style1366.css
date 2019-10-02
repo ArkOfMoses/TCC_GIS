@@ -1,0 +1,118 @@
+.recebeDados{
+    border: 1px solid #000;
+    margin-top: 10px;
+}
+
+
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-color: #fff
+}
+
+.headerPrimeiroAcesso{
+    background-color: #003366;
+    width: 100%;
+    height: 60px;
+    border-bottom: 10px solid #00CCCC;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+.headerPrimeiroAcesso a img{
+    width: 80px;
+    height: 80px;
+
+}
+
+.acessoUm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    flex-wrap: wrap;
+
+}
+.acessoUm p {
+    font-size: 20px;
+    color: #666;
+    max-width: 500px;
+}
+
+.acessoUm form{
+    text-align: left;
+    padding: 30px;
+}
+
+.acessoUm label{
+
+    font-size: 20px;
+    display: block;
+}
+.acessoUm #visor, #visor1, #visor2, #visor3, #visor4, #visor5, #visor6{
+    margin-bottom: 10px;
+    height: 30px;
+    width: 700px;
+    border:none;
+    border-bottom: 3px solid #666;
+
+}
+.recebeDados{
+    text-align: left;
+    font-size: 20px;
+}
+
+
+#plus{
+    font-size: 30px;
+    color: #fff;
+    font-weight: 900;
+    background-color: #003366;
+    border: none;
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+    display: block;
+
+}    
+
+
+/****/
+
+
+
+.buttonNext {
+    display: block;
+    text-align: center;
+    width: 200px!important;
+    height: 50px!important;
+    font-size: 26px;
+    background: #00CCCC;
+    font-weight: bold;
+    color: white;
+    border: 0 none!important;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px auto;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+
+#alteraFoto{
+    z-index: 2;
+    width: 35px;
+    height:35px;
+    position: relative;
+    top: -50px;
+    right: -50px;
+}
+
+.acessDenied{
+    display: none
+}

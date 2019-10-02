@@ -1,0 +1,208 @@
+.header {
+    width: calc(100% - 280px);
+    height: 7vh;
+  }
+  
+  .logo {
+    position: relative;
+    left: calc(100% - (-15em));
+    top: 5px;
+    width: 2em;
+    height: 2em;
+  }
+  
+  .header .st0{fill:#fff;}
+  .header .st1{fill:#fff;}
+  .header .st2{fill:#fff;}
+  .header .st3{fill:#fff;}
+  
+  .hamburger{display: none!important;}
+  
+  .fullnav {
+    width: 280px;
+    bottom: 0%;
+    top: 0%;
+    right: 0;
+    background: rgba(0,204,204,1);
+    background: linear-gradient(to bottom, rgba(0,204,204,1) 0%, rgba(0,204,204,1) 30%, rgba(0,102,204,1) 100%);
+  }
+  
+  .menu {
+    width: 230px;
+    justify-content: space-around;
+    background: #051523;
+  }
+  
+  hr {display: none; border: none;}
+  
+  .menu-buttons {
+    margin-top: calc(60px + 5vh);
+    flex-grow: 2;
+    align-items: flex-end!important;
+    position: relative;
+    right: -57px
+  }
+  
+  .menu-buttons li a{
+    font-size: 1em;
+    display:flex;
+    flex-direction: row-reverse;
+    align-items:center;
+  }
+  
+  .menu-buttons i {
+    font-size: 1.3em;
+    margin-left: 60px
+  }
+  
+  .title, .subtitle {font-size: 1em;}
+  
+  .title {font-size: 1em}
+  
+  .profile-photo-menu {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    margin: calc(30px + 3vh) 0 30px;
+  }
+  
+  main {background-color: #f1f1f1; width: 100vw; height: 100vh; }
+
+ #pagina{
+    /*  width:79.3%;*/
+     /* margin-right:18.5%*/
+     position: relative;
+     width: calc(100% - 280px);
+  }
+
+
+  
+  h1{
+	padding-top:60px;
+    color: #003366;
+    text-align:center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.7em;
+ 
+}
+/* ****** PESQUISA ******* */
+input {
+    outline: none;
+   position: relative;
+   left:15%;
+   margin-left:-15px;
+   margin-top:15px;
+  
+    
+	
+}
+input[type=search] {
+	-webkit-appearance: textfield;
+	box-sizing: content-box;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none; 
+}
+
+
+input[type=search] {
+	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+	border: solid 1px #ccc;
+	padding: 9px 10px 9px 32px;
+	width: 68%;
+	
+	-webkit-border-radius: 10em;
+	-moz-border-radius: 10em;
+	border-radius: 10em;
+	
+	/*-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;*/
+}
+input[type=search]:focus {
+	background-color: #fff;
+	border-color: rgb(37, 120, 230);
+
+}
+
+
+input:-moz-placeholder {
+	color: #999;
+}
+input::-webkit-input-placeholder {
+	color: #999;
+}
+/********** Seção principal - lista ********** */
+#centralizaSection{
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center; 
+	align-items:center;
+}
+
+#secaoLista{
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: hidden; /* Add vertical scrollbar */
+  width: auto;
+  margin-top: 29px;
+  display: flex;
+	flex-direction: row;
+   justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start
+
+
+}
+
+
+#box-lista{
+	width: 250px;
+	height: 90px;
+	background-color: #00CCCC;
+	padding: 15px;
+    margin-left: 10px;
+    margin-right:10px;
+	margin-bottom:25px;
+    border-radius: 25px;
+}
+
+#circulo-box{
+	width: 70px;
+	height:70px;
+	background-color: #003366;
+	border-radius: 50%;
+	color:white;
+	line-height:1;
+	font-family: Roboto;
+	text-align: center;
+	padding: 2px;
+	margin-top:-5px
+}
+
+h2{
+	margin-top:9px;
+	font-size: 1.3em;
+}
+
+#links{
+	float: right;
+	margin-top: -73px;
+	margin-right: 4px;
+	line-height:2;
+
+	font-family: Roboto;
+	font-size: 1.125em;
+	text-align: justify;
+	
+}
+a{
+	text-decoration: none;
+	color:white;
+/*	font-weight: bold;*/
+}
+
+/* ******* FOOTER ******* */
+
