@@ -34,7 +34,9 @@ body{
     float: right
 }   
 
-
+.blank{
+    margin-bottom: 50px;
+}
 .acessoUm{
     display: flex;
     align-items: center;

@@ -1,8 +1,3 @@
-.recebeDados{
-    border: 1px solid #000;
-    margin-top: 10px;
-}
-
 
 *{
     margin:0;
@@ -29,6 +24,16 @@ body{
 
 }
 
+.recebeDados{
+    border:none;
+    display: flex;
+    justify-content: center;
+
+}
+
+.blank{
+    margin-bottom: 50px;
+}
 
 .table-remove{
     float: right
@@ -44,13 +49,12 @@ body{
 }
 .acessoUm p {
     font-size: 20px;
-    color: #666;
+    
     max-width: 500px;
 }
 p.vsf{
-    font-size: 20px;
+    font-size: 16px;
     color: #666;
-    max-width: 500px;
     padding: 10px;
     text-align: center;
 }
@@ -86,19 +90,7 @@ p.vsf{
 }
 
 
-
-#plus{
-    font-size: 30px;
-    color: #fff;
-    font-weight: 900;
-    background-color: #003366;
-    border: none;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-    display: block;
-
-}    
+ 
 
 
 /****/

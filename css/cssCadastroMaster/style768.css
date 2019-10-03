@@ -10,6 +10,9 @@
 
 }
 
+.blank{
+    margin-bottom: 50px;
+}
 body{
     background-color: #fff;
     overflow-x: hidden;
@@ -45,11 +48,12 @@ body{
 }
 .acessoUm p {
     font-size: 20px;
-    color: #666;
+    
 }
 p.vsf{
-    font-size: 20px;
+    font-size: 16px;
     color: #666;
+    padding: 10px;
     text-align: center;
 }
 .perfil-foto{

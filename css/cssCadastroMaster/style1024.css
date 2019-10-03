@@ -37,6 +37,9 @@ body{
     float: right
 }   
 
+.blank{
+    margin-bottom: 50px;
+}
 .acessoUm{
     display: flex;
     align-items: center;
@@ -48,17 +51,15 @@ body{
 }
 .acessoUm p {
     font-size: 20px;
-    color: #666;
+    
     max-width: 500px;
 }
 p.vsf{
-    font-size: 20px;
+    font-size: 16px;
     color: #666;
-    max-width: 500px;
     padding: 10px;
     text-align: center;
 }
-
 .perfil-foto{
     width: 176px;
     height:176px;
