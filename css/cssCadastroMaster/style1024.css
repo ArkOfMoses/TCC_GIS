@@ -1,19 +1,22 @@
+*{
+    margin:0;
+    padding:0;
+}
 .recebeDados{
     border: 1px solid #000;
     margin-top: 10px;
 }
 
 
-*{
-    margin:0;
-    padding:0;
-}
 
 body{
     background-color: #fff
 }
-.acessDenied{
-    display: none
+.recebeDados{
+    border:none;
+    display: flex;
+    justify-content: center;
+
 }
 .headerPrimeiroAcesso{
     background-color: #003366;
@@ -30,6 +33,9 @@ body{
     height: 80px;
 
 }
+.table-remove{
+    float: right
+}   
 
 .acessoUm{
     display: flex;

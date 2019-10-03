@@ -1,18 +1,18 @@
-.recebeDados{
-    border: 1px solid #000;
-    margin-top: 10px;
-}
-.acessDenied{
-    display: none
-}
-
 *{
     margin:0;
     padding:0;
 }
 
+.recebeDados{
+    border:none;
+    display: flex;
+    justify-content: center;
+
+}
+
 body{
-    background-color: #fff
+    background-color: #fff;
+    overflow-x: hidden;
 }
 
 .headerPrimeiroAcesso{
@@ -23,14 +23,17 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-bottom: 50px;
+    margin: 0 0 50px 0;
 }
 .headerPrimeiroAcesso a img{
     width: 80px;
     height: 80px;
 
 }
-
+.table-remove{
+    float: right
+}   
+ 
 .acessoUm{
     display: flex;
     align-items: center;
@@ -43,13 +46,10 @@ body{
 .acessoUm p {
     font-size: 20px;
     color: #666;
-    max-width: 500px;
 }
 p.vsf{
     font-size: 20px;
     color: #666;
-    max-width: 500px;
-    padding: 10px;
     text-align: center;
 }
 .perfil-foto{
@@ -60,7 +60,7 @@ p.vsf{
 }
 .acessoUm form{
     text-align: left;
-    padding: 30px;
+    margin:10px;
 }
 .acessoUm form h2{
     font-size: 30px;
@@ -69,8 +69,8 @@ p.vsf{
     text-align: center;}
 
 .acessoUm label{
-
-    font-size: 20px;
+    color: #666;
+    font-size: 18px;
     display: block;
 }
 .acessoUm input{

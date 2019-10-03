@@ -29,6 +29,11 @@ body{
 
 }
 
+
+.table-remove{
+    float: right
+}   
+
 .acessoUm{
     display: flex;
     align-items: center;
@@ -79,11 +84,7 @@ p.vsf{
     border-bottom: 3px solid #666;
 
 }
-.recebeDados{
-    text-align: left;
-    font-size: 20px;
-    margin: 15px;
-}
+
 
 
 #plus{
@@ -155,6 +156,9 @@ a.buttonNext {
     right: -50px;
 }
 
-.acessDenied{
-    display: none
+.recebeDados{
+    border:none;
+    display: flex;
+    justify-content: center;
+
 }
