@@ -65,8 +65,8 @@ if(isset($_SESSION['logado'])){
 
                     <?php                      
                     if($img === NULL){
-                        echo "<img src='../../imagens/perfil.png' class='perfil-foto'/>";
-                    }else{
+                       echo "<img src='../../imagens/perfil.png' class='perfil-foto'/>";
+                   }else{
                         echo "<img src='../../$img' class='perfil-foto'>";
                     }
                     ?>
@@ -74,7 +74,7 @@ if(isset($_SESSION['logado'])){
                     <p class="vsf">Os campos que estiverem com * são de preenchimento obrigatório:</p>
                     <form class='form' method='post' action='envia.php'>
                         
-                        <label id="unidade">Unidades de ensino:</label>
+                        
 
                         <label id="nome_label">*Nome da Unidade: </label>
                         <input class='unid' id='IdnomeUnid0' name='unid0' type='text' />
@@ -88,10 +88,12 @@ if(isset($_SESSION['logado'])){
 
                         <label id="compl_label">Complemento da Unidade: </label>
                         <input class='unid' name='complUnid0' id='IdcomplUnid0' type='text'/>
-                        
+                        <div class="blank"></div>
+
                         <div id="rightDiv"></div> <!-- div q recebe os novos inputs -->
                         <div class='recebeDados' id='div'></div> <!-- div que recebe dados do ajax -->
-                        <span id="eventBtn"><img src="../img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                        <span id="eventBtn"><img src="../../imagens/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                        <span class="table-remove"><img src="../../imagens/exclude.png" alt=""></span> <!-- botão pra remover inputs  -->
                         <div class="puto"><input type="submit" value="Proximo passo" class="buttonNext" id="submitUnid"/></div> <!-- botão subtmit do formulário -->
                         
                         <input type="hidden" value="1" name="unidades" id="hidden"/>
@@ -153,7 +155,7 @@ if(isset($_SESSION['logado'])){
         $("#eventBtn").click(function(){
             
 
-            $('#unidade').clone().appendTo("#rightDiv").removeAttr('id');
+            
 
             
             $('#nome_label').clone().appendTo('#rightDiv').removeAttr('id');
@@ -175,6 +177,8 @@ if(isset($_SESSION['logado'])){
             $('#IdcomplUnid0').clone().appendTo('#rightDiv').removeAttr('id').attr("name",'complUnid'+ increment).attr("id", "IdcomplUnid"+increment);
             document.getElementById('IdcomplUnid'+increment).value = '';
 
+            $('.blank').clone().appendTo('#rightDiv');
+
             increment++;
             
             $('#hidden').attr("value", increment);
@@ -185,7 +189,17 @@ if(isset($_SESSION['logado'])){
                 addCEPBlur(increment, i);
             }
         });
+        $(".table-remove").click(function(){
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > input:last").remove();
 
+            $("#rightDiv > label:last").remove();
+            $("#rightDiv > label:last").remove();
+            $("#rightDiv > label:last").remove();
+            $("#rightDiv > label:last").remove();
+        });
     function addCEPBlur(increment, n){
 
         //Quando o campo cep perde o foco.
