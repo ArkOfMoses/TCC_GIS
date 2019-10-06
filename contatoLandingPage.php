@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
 
-      <title>pag</title>
+      <title>Contato | GIS</title>
 
       <meta charset=UTF-8>
       <!-- ISO-8859-1 -->
@@ -59,7 +59,7 @@
         <header id="on_off">
           <div class="header">
 
-            <a class="logo">
+            <a class="logo" href="homeLandingPage.php">
               <?xml version="1.0" encoding="utf-8"?>
               <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
               <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -103,7 +103,6 @@
           <form class="contato" id="contato" method="post">
             <h3>Contato</h3>
             <input type="text" id="visor" name="firstname" placeholder="Seu nome">
-            <br>
             <input type="text" name="email" id="visor1" placeholder="Seu e-mail">
             <textarea name="mais-info" id="visor2" placeholder="Mensagem"></textarea>
             <br>
