@@ -1,17 +1,34 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
-        <link href="css/default.css" rel="stylesheet" type="text/css"/>
-        <link href="css/telaNotas/style1366.css" rel="stylesheet" type="text/css"/>
         
+      <title>pag</title>
+      
+            <meta charset=UTF-8>
+            <!-- ISO-8859-1 -->
+            <meta name=viewport content="width=device-width, initial-scale=1.0">
+            <meta name=description content="">
+            <meta name=keywords content="">
+            <!-- Opcional -->
+            <meta name=author content='G4 INI3B GIS '>
+      
+            <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
+            <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+      
+            <!-- CSS PADRÃO -->
+            <link href="css/default.css" rel=stylesheet>
+      
+            <!-- Telas Responsivas -->
+            
+            <link rel=stylesheet media="screen and (min-width:1025px)" href="css/telaNotas/style1366.css">
+      
+            <!-- Script -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="js/script.js"></script>
+      
+            <!-- Icon Font -->
+            <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
+      
     </head>
 
 
@@ -151,34 +168,70 @@ and open the template in the editor.
                         </td>
 
                     </tr>
+                    <tr>
+
+                        <td>
+                            <input type="number" disabled value="12"/>
+                        </td>
+                        <td>
+                            <input type="text" disabled value="Mariazinha Delicia Silva sauro"/>
+                        </td>
+                        <td>
+                            <input type="number" disabled/>
+                        </td>
+                        <td>
+                            <input type="number" disabled/>
+                        </td>
+                        <td>
+                            <input type="number" disabled/>
+                        </td>
+                        <td>
+                            <input type="number" disabled/>
+                        </td>
+                        <td>
+                            <input type="number" disabled value="0"/>
+                        </td>
+
+                    </tr>
 
 
                 </table>
 
                 <script type="text/javascript">
-                    var increment = 1;
+                    var incrementTabela=2;
+                    var countUsu= 2;
 
                     $(document).ready(function () {
+
                         $("#addTable").click(function () {
+                            
+                            
+                            
 
-                            $('#addNotas').clone().appendTo('#tabelasNotas').removeAttr("id");
-                            $('#nota').attr("value", "").attr("name", "nota" + increment).attr("id", "nota" + increment);
-
-
-                            increment++;
+                            for(var i = 1; i <= countUsu; i++){     
+                                var clone= $('#addNotas_hidden').clone().appendTo('#tabelasNotas').removeAttr('id'); //clone simples da tabela
+                                var attr = '#nome_' + i; //variavel nome+numero de usuarios
+                                clone.find('.nota').attr('id', attr + '_' + incrementTabela);                   
+                            }
+                            
+                            
+                            incrementTabela++;
 
 
                         });
+
                         $(".table-remove").click(function () {
                             $("#tabelasNotas > table:last").remove();
+                            increment--;
                         });
+
                     });
                 </script>
 
                 <span id="addTable"><img src="imagens/more.png"></span>
                 <span class="table-remove"><img src="imagens/exclude.png"></span>
                 <div>
-                    <table id="addNotas">
+                    <table id="addNotas_hidden">
                         <tr>
                             <th>
                                 <select>
@@ -190,8 +243,8 @@ and open the template in the editor.
                             </th>
                         </tr>
                         <tr>
-                            <td>
-                                <input type='number' name='nota' id="nota" value='0'/>
+                            <td >
+                                <input type='number' name='nota' class="nota" value='0'/>
                             </td>
                         </tr>
                     </table>
