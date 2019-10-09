@@ -79,6 +79,10 @@
       
       
   }
+
+  #addNotas_hidden{
+      display:none;
+  }
   .headerNotas{
       width:100%;
       height: 15vh;
