@@ -39,10 +39,15 @@ if($infoPost){
                 $now = new DateTime();
                 $age = $now->diff($date);
 
+                $anoPost = $date->format('Y');
+                $anoAtual = $now->format('Y');
+
                 if($age->y < 18){
                     echo "É necessário ter mais de 18 anos para se cadastrar!";
+                }else if($anoPost >= $anoAtual){
+                    echo "Não aceitamos viajantes do tempo em nosso site, por favor insira uma data válida";
                 }else{
-                    // insert into acesso (cod_tipo_usu, senha, email) values (2, '$2y$12$rHeX2KwxK2dM66f4AYLW9u.n4Auf7Yd1UWUNjqKY5fUFqbJMccsxW', 'master@gmail.com');
+                    //insert into acesso (cod_tipo_usu, senha, email) values (2, '$2y$12$rHeX2KwxK2dM66f4AYLW9u.n4Auf7Yd1UWUNjqKY5fUFqbJMccsxW', 'master@gmail.com');
                     $senhaEncript = Bcrypt::hash($infoPost['senha']);
                     $insertAcesso = $pdo->prepare("insert into acesso (cod_tipo_usu, senha, email) values (2, '$senhaEncript', '{$infoPost['email']}')");
                     

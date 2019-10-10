@@ -107,6 +107,7 @@ if(isset($_SESSION['logado'])){
         function addmsg(){
             $('.recebeDados').text("por favor corrija os CEPs que não foram encontrados");
         }
+        
         var increment=1;
         /** Função duplicar formulários - cadastro de unidades */
         $(document).ready(function() {
@@ -154,10 +155,6 @@ if(isset($_SESSION['logado'])){
 
         $("#eventBtn").click(function(){
             
-
-            
-
-            
             $('#nome_label').clone().appendTo('#rightDiv').removeAttr('id');
             $('#IdnomeUnid0').clone().appendTo('#rightDiv').attr("name","unid"+ increment).attr("id", "IdnomeUnid"+increment);
             document.getElementById('IdnomeUnid'+increment).value = '';
@@ -180,7 +177,6 @@ if(isset($_SESSION['logado'])){
             $('.blank').clone().appendTo('#rightDiv');
 
             increment++;
-            
             $('#hidden').attr("value", increment);
 
             var i;
@@ -189,6 +185,7 @@ if(isset($_SESSION['logado'])){
                 addCEPBlur(increment, i);
             }
         });
+
         $(".table-remove").click(function(){
             $("#rightDiv > input:last").remove();
             $("#rightDiv > input:last").remove();
@@ -199,6 +196,13 @@ if(isset($_SESSION['logado'])){
             $("#rightDiv > label:last").remove();
             $("#rightDiv > label:last").remove();
             $("#rightDiv > label:last").remove();
+            
+            $("#rightDiv > div:last").remove();
+            increment--;
+            $('#hidden').attr("value", increment);
+            
+            $("#getCEP"+increment).remove();
+            
         });
     function addCEPBlur(increment, n){
 
