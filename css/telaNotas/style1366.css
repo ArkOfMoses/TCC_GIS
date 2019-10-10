@@ -2,8 +2,8 @@
     width: calc(100vw - 280px);
     height: 7vh;
     position: absolute;
+    float: right;
     background: none;
-    
   }
   
   .logo {
@@ -74,18 +74,28 @@
   
   
   /****/
-  table{
+ 
+  span{
+      display: inline;
+      padding: 0px 20px;
+  }
+  table.table{
+      float: left;
+  }
+  #allTables{
       display:inline-block;
-      
-      
+  }
+  #tabelasNotas{
+    display:flex
   }
 
   #addNotas_hidden{
       display:none;
   }
+ 
   .headerNotas{
       width:100%;
-      height: 15vh;
+      height: 10vh;
       background-color: #006699;
       display: flex;
       justify-content: flex-start;
@@ -123,6 +133,7 @@
       height: 30px;
       text-align: center;
       margin: 0.5px;
+      display: block;
   }
   
   th{
