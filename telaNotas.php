@@ -127,11 +127,11 @@
                             <h2 id="turma">2B</h2>
                         </a>
                     </div>
-
-
+                    
                 </div>
-
-
+                <span id="addTable"><img src="imagens/more.png"></span>
+                <span class="table-remove"><img src="imagens/exclude.png"></span>
+                <br>
                 <table class="table">
                     <tr>
                         <th>Nº</th>
@@ -206,12 +206,13 @@
                         $("#addTable").click(function () {
                             
                             
-                            
+                            var clone= $('#addNotas_hidden').clone().appendTo('#tabelasNotas').removeAttr('id');//clone simples da tabela
+                            clone.find('.nota').remove();
+                            nota= $('#nota');
 
-                            for(var i = 1; i <= countUsu; i++){     
-                                var clone= $('#addNotas_hidden').clone().appendTo('#tabelasNotas').removeAttr('id'); //clone simples da tabela
-                                var attr = '#nome_' + i; //variavel nome+numero de usuarios
-                                clone.find('.nota').attr('id', attr + '_' + incrementTabela);                   
+                            for(var i = 1; i <= countUsu; i++){                                   
+                                var attr = 'nome_' + i; //variavel nome+numero de usuarios                                                  
+                                nota.clone().attr('id', attr + '_' + incrementTabela).appendTo(clone);
                             }
                             
                             
@@ -222,15 +223,14 @@
 
                         $(".table-remove").click(function () {
                             $("#tabelasNotas > table:last").remove();
-                            increment--;
+                            incrementTabela--;
                         });
 
                     });
                 </script>
 
-                <span id="addTable"><img src="imagens/more.png"></span>
-                <span class="table-remove"><img src="imagens/exclude.png"></span>
-                <div>
+                
+                <div id="allTables">
                     <table id="addNotas_hidden">
                         <tr>
                             <th>
@@ -244,14 +244,14 @@
                         </tr>
                         <tr>
                             <td >
-                                <input type='number' name='nota' class="nota" value='0'/>
+                                <input type='number' name='nota' id="nota" class="nota" value='0'/>
                             </td>
                         </tr>
                     </table>
-                </div>
+                    
                 <div id="tabelasNotas">
                 </div>
-
+                
             </main>  
         </div>
     </body>
