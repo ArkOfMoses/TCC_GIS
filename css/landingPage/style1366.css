@@ -150,7 +150,7 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
 }
@@ -171,17 +171,20 @@ main {
 
 .animHome h1 {
   width: 100%;
-  margin: 10px 0;
+  margin: 20px 0;
   color: #fff;
   font-weight: 300;
 
 }
 
-.animHome h2 {
-  margin: 15px 0;
+.qual p {
+  font-size: 1.5em;
+  margin: 30px 0;
   width: 200px;
   font-weight: 300;
 }
+
+#enviar-email {margin-top: 90px}
 
 .btm-email{
   background-color: rgba(255, 255, 255, .2);
@@ -255,7 +258,7 @@ footer .selecionado {color: #ccc;}
   z-index: 1;
 }
 
-.registro h3{
+.registro h2{
   margin: 0 0 30px 0;
   font-weight: 300;
   color: #012;
