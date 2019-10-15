@@ -60,9 +60,6 @@ if(isset($_SESSION['logado'])){
 
             <main>
                 <div class="acessoUm">
-
-
-
                     <?php                      
                     if($img === NULL){
                        echo "<img src='../../imagens/perfil.png' class='perfil-foto'/>";
@@ -98,8 +95,6 @@ if(isset($_SESSION['logado'])){
                         
                         <input type="hidden" value="1" name="unidades" id="hidden"/>
                     </form>
-
-                    
                     <!-- <a href='../cadastroDeInst/cadastroDeInst.php' class="buttonNext">Voltar</a> -->
                     
             </main>  
