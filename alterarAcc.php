@@ -153,7 +153,7 @@ if(isset($_SESSION['logado'])){
                         <label>Confirme sua senha:</label>
                         <input type="password" id="visor5" name="confirmaSenha" />
 
-                        <label>Insira seu cpf:</label>
+                        <label>Insira seu CPF:</label>
                         <input type="text" id="visor6" name="cpf_usu" />
 
 

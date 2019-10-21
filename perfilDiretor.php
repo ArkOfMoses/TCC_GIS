@@ -112,7 +112,8 @@
 
             <ul class="menu-buttons">
               <!-- <li><a href="funcionalidades/operacaoCursos/cursos.php"><i class="fas fa-list"></i> Cursos</a></li> -->
-              <li><a href="funcionalidades/operacaoTurmas/turmas.php"><i class="far fa-clock"></i> Turmas</a></li>
+              <li><a href="funcionalidades/operacaoCursos/cursos.php"><i class="far fa-clock"></i> Cursos</a></li>
+              <li><a href="funcionalidades/operacaoDisciplinas/verCursos.php"><i class="far fa-clock"></i> Disciplinas</a></li>
               <li><a href="#"><i class="far fa-calendar-alt"></i> Eventos</a></li>
               <li><a href="#"><i class="fas fa-cogs"></i> Configurações</a></li>
               <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>

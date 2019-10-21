@@ -1,3 +1,18 @@
+<?php
+// session_start();
+// if(isset($_SESSION['logado'])){
+//     $dados =  $_SESSION['dadosUsu'];
+//     $img = $dados['fotoUsu'];
+// }else{
+//     unset($_SESSION['dadosUsu']);
+//     unset($_SESSION['logado']);
+//     session_destroy();
+//     header("Location: ../../homeLandingPage.php");
+// }
+
+require_once 'bd/conexao.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -125,7 +140,7 @@
                     <hr>
 
                     <ul class="menu-buttons">
-                        <li><a href="#"><i class="fas fa-list"></i> Lista de Salas</a></li>
+                        <li><a href="#"><i class="fas fa-list"></i> Lista de Turmas</a></li>
                         <li><a href="#"><i class="far fa-clock"></i> Horário</a></li>
                         <li><a href="#"><i class="far fa-calendar-alt"></i> Eventos</a></li>
                         <li><a href="#"><i class="fas fa-cogs"></i> Configurações</a></li>
@@ -138,7 +153,7 @@
             <div id="pagina">
                 <!-- Início conteúdo principal-->
                 <div>
-                    <h1>Lista de salas</h1>
+                    <h1>Lista de Turmas</h1>
                 </div>
 
                 <!-- Campo de busca -->
@@ -151,151 +166,46 @@
                 <!-- Seção - lista de salas -->
                 <div id="centralizaSection">
                     <section id="secaoLista">
-
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="lista_alunos_sala-horario.php"> Lista de Alunos</a>
-                                </br>
-                                <a href="chamada-ocorrencia.php"> Chamada</a>
-                            </div>
-                        </div>
-
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
+                    <?php
 
 
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
+                $codProf = 3;
+                $selecionar = ("select turma.cod_tur, sigla_tur, prof_turma.cod_usu, cod_status_prof_tur,  cursos.cod_curso, nome_curso, cod_status_cursos
+                from cursos inner join turma on (cursos.cod_curso = turma.cod_curso)
+                            inner join prof_turma on (turma.cod_tur = prof_turma.cod_tur) where cod_usu = $codProf;");
+                $comando = $pdo->prepare($selecionar);
+                $comando->execute();
 
+                $numDeLinhas = $comando->rowCount();
+                if($numDeLinhas > 0){
+                    while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
+                        $codTur = $dedos['cod_tur'];
+                        $nomeCurso = $dedos['nome_curso'];
+                        $nomeTurma = $dedos['sigla_tur'];
 
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
+                       echo  "<div id='box-lista'>
+                       <div id='circulo-box'>
+                           <h2 id='turma'>$nomeTurma</h2>
+                       </div>
+                       <div id=links>
+                           <a href='lista_alunos_sala-horario.php?codTurma=$codTur'> Lista de Alunos</a>
+                           </br>
+                           <a href='chamada-ocorrencia.php?codTurma=$codTur'> Chamada</a>
+                       </div>
+                   </div>";
 
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
+                        
+                    }
+                    
+                    
+                }else{
+                    echo "<p style='text-align:center'>Você ainda não escolheu as turmas para dar aula!</p>";
+                }
 
+                ?>
+                        
 
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
-
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
-
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
-
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
-
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
-                        <div id="box-lista">
-                            <div id="circulo-box">
-                                <h2 id="curso">INI</h2>
-                                <h2 id="turma">3B</h2>
-                            </div>
-                            <div id=links>
-                                <a href="#"> Lista de alunos</a>
-                                </br>
-                                <a href="#"> Horário </a>
-                            </div>
-                        </div>
+                        
 
                     </section>
                 </div>

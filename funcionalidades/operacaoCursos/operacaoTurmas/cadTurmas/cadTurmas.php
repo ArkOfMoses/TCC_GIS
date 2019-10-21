@@ -1,14 +1,17 @@
 <?php
-// session_start();
-// if(isset($_SESSION['logado'])){
-//     $dados =  $_SESSION['dadosUsu'];
-//     $img = $dados['fotoUsu'];
-// }else{
-//     unset($_SESSION['dadosUsu']);
-//     unset($_SESSION['logado']);
-//     session_destroy();
-//     header("Location: ../../homeLandingPage.php");
-//}
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+    $img = $dados['fotoUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: ../../../../../homeLandingPage.php");
+}
+
+$codCurso = $_REQUEST['codCurso'];
+
 ?>
 
 <!DOCTYPE html>
@@ -17,18 +20,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Primeiro cadastro</title>    
-        <link rel="stylesheet" href="../../../css/default.css">    
-        <script src='../../../js/jquery-3.3.1.min.js'></script>
+        <link rel="stylesheet" href="../../../../css/default.css">    
+        <script src='../../../../js/jquery-3.3.1.min.js'></script>
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../css/cssCadastroMaster/style480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../../css/cssCadastroMaster/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="../../../css/cssCadastroMaster/style768.css">
+              href="../../../../css/cssCadastroMaster/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="../../../css/cssCadastroMaster/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../css/cssCadastroMaster/style1366.css">
+              href="../../../../css/cssCadastroMaster/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../../css/cssCadastroMaster/style1366.css">
         <style type="text/css">
                 
                 img.perfil-foto{
@@ -64,7 +67,7 @@
         $(function () {
             $('.form').submit(function () {
                 $.ajax({
-                    url: 'codCadAlunos.php',
+                    <?php echo "url: 'codCadTurmas.php?codCurso=$codCurso',";?>
                     type: 'POST',
                     data: $('.form').serialize(),
                     success: function (data) {
@@ -88,7 +91,7 @@
             <header class="headerPrimeiroAcesso">
             <!-- <a href="../../alterarAcc.php"><img src="../img/alteraImg.png"></a>
             <a href="../cadastroDeInst/cadastroDeInst.php"><img src="../img/instImg.png"></a> -->
-            <a href="cadastroDeCoord.php"><img src="../../../primeiroCadastroMaster/img/unidImg.png"></a>
+            <a href="cadastroDeCoord.php"><img src="../../../../primeiroCadastroMaster/img/unidImg.png"></a>
             <!-- <a href="../cadastroDeDir/cadastroDir.php"><img src="../img/dirImg.png"></a>
             <a href="../enviarEmail.php"><img src="../img/emailImg.png"></a>                
             <a href="../confirmarDados.php"><img src="../img/confirmaImg.png"></a> -->
@@ -103,19 +106,17 @@
 
                     <?php                      
                     // if($img === NULL){
-                        echo "<img src='../../../imagens/perfil.png' class='perfil-foto'/>";
+                        echo "<img src='../../../../imagens/perfil.png' class='perfil-foto'/>";
                     // }else{
                     //     echo "<img src='../$img' class='perfil-foto'>";
                     // }
                     ?>
                     <p>Cadastre os alunos:</p>
                     
-                    <form class='form' method='post' action='codCadAlunos.php?alunos='>
+                  <?php echo "<form class='form' method='post' action='' autocomplete='off'>";?>
                         
                         <label id="coordenadores">Turma:</label>
 
-                        <label id="curso_label">Curso da Turma: </label>
-                        <select name ="curso0" id="select_cursos0"></select>
 
                         <label id="sigla_label">Sigla da Turma: </label>
                         <input class='unid' id='IdSigla0' name='sigla0' type='text' />
@@ -131,7 +132,7 @@
 
                         <div id="rightDiv"></div> <!-- div q recebe os novos inputs -->
                         <div class='recebeDados' id='div'></div> <!-- div que recebe dados do ajax -->
-                        <span id="eventBtn"><img src="../../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                        <span id="eventBtn"><img src="../../../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
                         <div class="puto"><input type="submit" value="Cadastrar Turmas" class="VAISEFUDE" /></div> <!-- botão subtmit do formulário -->
                         
                         <input type="hidden" value="1" name="AcoordA" id="hidden"/>
@@ -155,10 +156,6 @@
             
 
             $('#coordenadores').clone().appendTo("#rightDiv").removeAttr('id');
-
-            $('#curso_label').clone().appendTo('#rightDiv').removeAttr('id');
-            $('#select_cursos0').clone().appendTo('#rightDiv').attr("name","curso"+ increment).attr("id", "select_cursos"+increment);
-            document.getElementById('select_cursos'+increment).value = '';
 
 
             $('#sigla_label').clone().appendTo('#rightDiv').removeAttr('id');

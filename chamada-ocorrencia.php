@@ -1,3 +1,21 @@
+<?php
+require_once 'bd/conexao.php';
+$codTur = $_REQUEST['codTurma'];
+
+
+$selecionar = ("select turma.cod_tur, sigla_tur, prof_turma.cod_usu, cod_status_prof_tur,  cursos.cod_curso, nome_curso, cod_status_cursos
+from cursos inner join turma on (cursos.cod_curso = turma.cod_curso)
+            inner join prof_turma on (turma.cod_tur = prof_turma.cod_tur) where turma.cod_tur = $codTur;");
+$comando = $pdo->prepare($selecionar);
+$comando->execute();
+
+while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
+  $nomeTurma = $dedos['sigla_tur'];
+
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -33,6 +51,23 @@
 
   <!-- Icon Font -->
   <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
+      <script>
+          $(function(){
+              $('.form').submit(function(){
+                  $.ajax({
+                      <?php echo "url: 'codChamada.php?codTurma=$codTur',"?>
+                      type: 'POST',
+                      data: $('.form').serialize(),
+                      success: function(data){
+                          if(data != ''){
+                              $('.erros').html(data);
+                          }
+                      }
+                  });
+                  return false;
+              });
+          });
+      </script>
 </head>
 
 <body>
@@ -49,6 +84,11 @@
             x="0px" y="0px" viewBox="0 0 595.2 595.3" style="enable-background:new 0 0 595.2 595.3;"
             xml:space="preserve">
             <style type="text/css">
+              .wow{
+                list-style: none;
+                text-decoration: none;
+                color: black;
+              }
               .st0 {
                 fill: url(#LetraG_2_);
               }
@@ -141,8 +181,8 @@
             <img id="seta" src="imagens/voltar.png">
           </a>
           <div id="sala">
-            <h2 id="curso">INI</h2>
-            <h2 id="turma">3B</h2>
+            
+           <?php echo "<h2 id='turma'>$nomeTurma</h2>" ?>
           </div>
           <div id="horaSala">
             <div id="hora">
@@ -168,58 +208,51 @@
                   <div id="verde"> <span id="ausPres">Presente</span> </div>
                 </div>
               </div>
+              <?php echo "<form class='form' method='post' action=''>" ?>
+              <select name="materias">
+              <option>Escolha a Matéria</option>
+              <?php
+              $codUsu = 3;
+              $comand = $pdo->prepare("select disciplina.cod_disc, nome_disc from disciplina inner join prof_turma_disc on (disciplina.cod_disc = prof_turma_disc.cod_disc) where cod_usu = $codUsu and cod_status_prof_tur_disc = 'A' and cod_tur = $codTur;");
+              $comand->execute();
 
+              $numDeLinhas = $comand->rowCount();
+              if ($numDeLinhas >= 1) {
+                  while ($dados = $comand->fetch(PDO::FETCH_ASSOC)) {
+                      $nomeDisc = $dados['nome_disc'];
+                      $codDisc = $dados['cod_disc'];
+                      echo "<option value='$codDisc'>$nomeDisc</option>";
+                  }
+              }
+          
+              ?>
+          </select>
 
+              <?php
+               $selecionar = ("select usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur;");
+               $comando = $pdo->prepare($selecionar);
+               $comando->execute();
 
-
-              <div id="lista">
-                <div id="infoaluno">
-                  <span id="numAluno"> 01 - <span id="nomeAluno"><b>Nome do aluno</b></span> </span>
+               while($dodois = $comando->fetch(PDO::FETCH_ASSOC)){
+                $nomeAluno = $dodois['nome_usu'];
+                $codAluno = $dodois['cod_usu'];
+                echo "<div id='lista'>
+                <div id='infoaluno'>
+                  <span id='numAluno'> 01 - <span id='nomeAluno'><b>$nomeAluno</b></span> </span>
                 </div>
-                <input class="apple-switch" type="checkbox" checked>
-              </div>
+                <input class='apple-switch' name='opcao[]' value='$codAluno' type='checkbox'>
+              </div>";
+              }
+              
+              ?>
 
-              <div id="lista">
-                <div id="infoaluno">
-                  <span id="numAluno"> 01 - <span id="nomeAluno"><b>Nome do aluno</b></span> </span>
-                </div>
-                <input class="apple-switch" type="checkbox" checked>
-              </div>
 
-              <div id="lista">
-                <div id="infoaluno">
-                  <span id="numAluno"> 01 - <span id="nomeAluno"><b>Nome do aluno</b></span> </span>
-                </div>
-                <input class="apple-switch" type="checkbox" checked>
-              </div>
+              
 
-              <div id="lista">
-                <div id="infoaluno">
-                  <span id="numAluno"> 01 - <span id="nomeAluno"><b>Nome do aluno</b></span> </span>
-                </div>
-                <input class="apple-switch" type="checkbox" checked>
-              </div>
-
-              <div id="lista">
-                <div id="infoaluno">
-                  <span id="numAluno"> 01 - <span id="nomeAluno"><b>Nome do aluno</b></span> </span>
-                </div>
-                <input class="apple-switch" type="checkbox" checked>
-              </div>
-              <div id="lista">
-                <div id="infoaluno">
-                  <span id="numAluno"> 01 - <span id="nomeAluno"><b>Nome do aluno</b></span> </span>
-                </div>
-                <input class="apple-switch" type="checkbox" checked>
-              </div>
-              <div id="lista">
-                <div id="infoaluno">
-                  <span id="numAluno"> 01 - <span id="nomeAluno"><b>Nome do aluno</b></span> </span>
-                </div>
-                <input class="apple-switch" type="checkbox" checked>
-              </div>
+             
               <input type="submit" value="Confirmar">
-
+              <div class="erros"></div>
+              </form>
 
             </div>
           </div>
@@ -231,45 +264,24 @@
             <input id="tab2-2" name="tabs-two" type="radio">
 
             <div id="conteudotab2">
+              <?php
+               $select = ("select usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur;");
+               $comandoo = $pdo->prepare($select);
+               $comandoo->execute();
+              while($dedeis = $comandoo->fetch(PDO::FETCH_ASSOC)){
+                $nomeAAluno = $dedeis['nome_usu'];
+                $codUsuAluno = $dedeis['cod_usu'];
 
-              <div id="dadosAluno">
-                <img src="imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                  <p id="ocorrencia_numAluno">Número 01</p>
+                echo "<a href='codOcorrencia.php?codTurma=$codTur&codAluno=$codUsuAluno' class='wow'>
+              <div id='dadosAluno'>
+                <img src='imagens/pessoa.png' alt='Imagem do aluno' id='imgAluno'>
+                <span id='ocorrencia_nomeAluno'><b>$nomeAAluno</b>
+                  <p id='ocorrencia_numAluno'>Número 01</p>
                 </span>
               </div>
-              <div id="dadosAluno">
-                <img src="imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                  <p id="ocorrencia_numAluno">Número 01</p>
-                </span>
-              </div>
-              <div id="dadosAluno">
-                <img src="imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                  <p id="ocorrencia_numAluno">Número 01</p>
-                </span>
-              </div>
-              <div id="dadosAluno">
-                <img src="imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                  <p id="ocorrencia_numAluno">Número 01</p>
-                </span>
-              </div>
-              <div id="dadosAluno">
-                <img src="imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                  <p id="ocorrencia_numAluno">Número 01</p>
-                </span>
-              </div>
-              <div id="dadosAluno">
-                <img src="imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                  <p id="ocorrencia_numAluno">Número 01</p>
-                </span>
-              </div>
-
-
+              </a>";
+              }
+              ?>
             </div>
           </div>
         </div>

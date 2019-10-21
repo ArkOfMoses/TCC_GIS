@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: bdgis
 -- ------------------------------------------------------
--- Server version	5.7.16-log
+-- Server version 5.7.16-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -284,6 +284,8 @@ CREATE TABLE `prof_turma_disc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+
 --
 -- Dumping data for table `prof_turma_disc`
 --
@@ -408,7 +410,6 @@ DROP TABLE IF EXISTS `turma`;
 CREATE TABLE `turma` (
   `cod_tur` int(11) NOT NULL AUTO_INCREMENT,
   `sigla_tur` varchar(10) DEFAULT NULL,
-  `sem_ano_tur` int(11) DEFAULT NULL,
   `turno_tur` char(1) DEFAULT NULL,
   `cod_curso` int(11) DEFAULT NULL,
   `cod_status_tur` char(1) DEFAULT NULL,
@@ -462,11 +463,12 @@ DROP TABLE IF EXISTS `turma_aluno_disc_falta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `turma_aluno_disc_falta` (
+  `cod_falta` int(11) auto_increment NOT NULL,
   `cod_usu` int(11) NOT NULL,
   `cod_tur` int(11) NOT NULL,
   `cod_turma_disc` int(11) NOT NULL,
   `data_falta` date NOT NULL,
-  PRIMARY KEY (`cod_usu`,`cod_tur`,`cod_turma_disc`,`data_falta`),
+  PRIMARY KEY (`cod_falta`),
   KEY `cod_turma_disc` (`cod_turma_disc`),
   KEY `turma_aluno_disc_falta_ibfk_1` (`cod_tur`,`cod_usu`),
   CONSTRAINT `turma_aluno_disc_falta_ibfk_1` FOREIGN KEY (`cod_tur`, `cod_usu`) REFERENCES `turma_aluno` (`cod_tur`, `cod_usu`),
@@ -682,11 +684,15 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-08-20  7:48:19
-
-#insert into instituicao (nome_fantasia_inst, razao_social_inst, CNPJ_inst) values ('Fieb', 'Funda&ccedil;&atilde;o Instituto de Educa&ccedil;&atilde;o de Barueri', 65700239000110);
+/*
+insert into instituicao (nome_fantasia_inst, razao_social_inst, CNPJ_inst) values ('Fieb', 'Funda&ccedil;&atilde;o Instituto de Educa&ccedil;&atilde;o de Barueri', 65700239000110);
+insert into unidade (nome_unid, cep_unid, compl_unid, num_unid, cod_inst, cod_status_unid) values ('Engenho', 06515220, 'CANSEI', 55, 1, 'A');
+insert into unidade (nome_unid, cep_unid, compl_unid, num_unid, cod_inst, cod_status_unid) values ('Belval', 06515220, 'CANSADO', 54, 1, 'A');*/
 insert into tipo_usuario (nome_tipo_usu) values ('Admin');
 insert into tipo_usuario (nome_tipo_usu) values ('Master');
 insert into tipo_usuario (nome_tipo_usu) values ('Diretor');
+insert into tipo_usuario (nome_tipo_usu) values ('Coordenador');
+insert into tipo_usuario (nome_tipo_usu) values ('Professor');
 
 insert into operacao (nome_operacao, cod_status_operacao, link_operacao) values ('dar o popo', 'A', 'darPopo.php');
 insert into operacao (nome_operacao, cod_status_operacao, link_operacao) values ('dar o bumbum', 'A', 'darBumbum.php');
@@ -696,21 +702,98 @@ insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_o
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 2, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 1, 'A');
 
-insert into cursos (nome_curso, cod_status_cursos) values ('Informática Para Cornos', 'A');
-insert into cursos (nome_curso, cod_status_cursos) values ('Químicorno', 'A');
-insert into cursos (nome_curso, cod_status_cursos) values ('Farmácorno', 'A');
-insert into cursos (nome_curso, cod_status_cursos) values ('Análises de Cornos', 'A');
 
 
 /*
+insert into acesso (cod_tipo_usu, senha, email) values (3, 'batata', 'batata@gmail.com');
+insert into usuario (nome_usu, cod_acesso) values ('Batata', 1);
+insert into usuario_unidade (cod_unid, cod_usu) values (1, 1);
+
+insert into acesso (cod_tipo_usu, senha, email) values (3, 'potato', 'potato@gmail.com');
+insert into usuario (nome_usu, cod_acesso) values ('Potato', 2);
+insert into usuario_unidade (cod_unid, cod_usu) values (2, 2);
+
+insert into acesso (cod_tipo_usu, senha, email) values (5, 'prof', 'prof1@gmail.com');
+insert into usuario (nome_usu, cod_acesso) values ('Professor 1', 3);
+insert into usuario_unidade (cod_unid, cod_usu) values (1, 3);
+
+insert into cursos (nome_curso, cod_status_cursos) values ('Informática para Internet', 'A');
+insert into cursos_unidade (cod_curso, cod_unid, cod_status_cursos_unid) values (1, 1, 'A');
+
+insert into cursos (nome_curso, cod_status_cursos) values ('Farmácia', 'A');
+insert into cursos_unidade (cod_curso, cod_unid, cod_status_cursos_unid) values (2, 1, 'A');
+
+insert into turma (sigla_tur, turno_tur, cod_curso, cod_status_tur) values ('INI3B', 'M', 1, 'A');
+insert into turma (sigla_tur, turno_tur, cod_curso, cod_status_tur) values ('FAR3A', 'M', 2, 'A');
+
+insert into prof_turma (cod_tur, cod_usu, cod_status_prof_tur) values (1, 3, 'A');
+insert into prof_turma (cod_tur, cod_usu, cod_status_prof_tur) values (2, 3, 'A');
+
+insert into disciplina (nome_disc, carga_horaria_disc, cod_status_disc) values ('Matemática', 120, 'A');
+insert into disciplina (nome_disc, carga_horaria_disc, cod_status_disc) values ('Português', 120, 'A');
+insert into disciplina (nome_disc, carga_horaria_disc, cod_status_disc) values ('História', 120, 'A');
+insert into disciplina (nome_disc, carga_horaria_disc, cod_status_disc) values ('Geografia', 120, 'A');
+insert into disciplina (nome_disc, carga_horaria_disc, cod_status_disc) values ('Física', 120, 'A');
+insert into disciplina (nome_disc, carga_horaria_disc, cod_status_disc) values ('Química', 120, 'A');
+
+insert into prof_turma_disc (cod_tur, cod_usu, cod_disc, semestre_ano, cod_status_prof_tur_disc) values (1, 3, 1, 1, 'A');
+insert into prof_turma_disc (cod_tur, cod_usu, cod_disc, semestre_ano, cod_status_prof_tur_disc) values (2, 3, 4, 1, 'A');
+insert into prof_turma_disc (cod_tur, cod_usu, cod_disc, semestre_ano, cod_status_prof_tur_disc) values (2, 3, 5, 1, 'I');
+
+
+insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (1, 1, 'A');
+insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (1, 2, 'A');
+insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (1, 3, 'A');
+
+insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (2, 4, 'A');
+insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (2, 5, 'A');
+insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (2, 6, 'A');
+
+
+
+insert into usuario (nome_usu) values ('Batata');
+insert into usuario_unidade (cod_unid, cod_usu) values (1, 4);
+insert into turma_aluno (cod_tur, cod_usu, cod_status) values (1, 4, 'A');
+
+insert into usuario (nome_usu) values ('Potato');
+insert into usuario_unidade (cod_unid, cod_usu) values (1, 5);
+insert into turma_aluno (cod_tur, cod_usu, cod_status) values (1, 5, 'A');
+
+insert into usuario (nome_usu) values ('Moises');
+insert into usuario_unidade (cod_unid, cod_usu) values (1, 6);
+insert into turma_aluno (cod_tur, cod_usu, cod_status) values (1, 6, 'A');
+
+
+insert into usuario (nome_usu) values ('Luiz');
+insert into usuario_unidade (cod_unid, cod_usu) values (2, 7);
+insert into turma_aluno (cod_tur, cod_usu, cod_status) values (2, 7, 'A');
+
+insert into usuario (nome_usu) values ('Laura');
+insert into usuario_unidade (cod_unid, cod_usu) values (2, 8);
+insert into turma_aluno (cod_tur, cod_usu, cod_status) values (2, 8, 'A');
+
+insert into usuario (nome_usu) values ('Maria');
+insert into usuario_unidade (cod_unid, cod_usu) values (2, 9);
+insert into turma_aluno (cod_tur, cod_usu, cod_status) values (2, 9, 'A');
+
+
+select turma.cod_tur, sigla_tur, prof_turma.cod_usu, cod_status_prof_tur,  cursos.cod_curso, nome_curso, cod_status_cursos
+from cursos inner join turma on (cursos.cod_curso = turma.cod_curso)
+            inner join prof_turma on (turma.cod_tur = prof_turma.cod_tur) where turma.cod_tur = 1; 
+
+select disciplina.cod_disc, nome_disc from disciplina inner join prof_turma_disc on (disciplina.cod_disc = prof_turma_disc.cod_disc) where cod_usu = 3 and cod_status_prof_tur_disc = 'A';
+
+
+
+
 select acesso.cod_acesso, senha, email, tipo_usuario.cod_tipo_usu, nome_tipo_usu, cod_status_tipo_usu_operacao, operacao.cod_operacao, nome_operacao, cod_status_operacao, usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, url_foto_usu, data_entrada, data_saida, cod_status_usu
 From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
             inner join tipo_usu_operacao on (tipo_usuario.cod_tipo_usu = tipo_usu_operacao.cod_tipo_usu)
             inner join operacao on (tipo_usu_operacao.cod_operacao = operacao.cod_operacao)
-            inner join usuario on (acesso.cod_acesso = usuario.cod_acesso) where email = 'moises@gmail.com';
+            inner join usuario on (acesso.cod_acesso = usuario.cod_acesso) where email = 'batata@gmail.com';
             
             
 select usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, url_foto_usu, data_entrada, data_saida, cod_status_usu, acesso.cod_acesso, tipo_usuario.cod_tipo_usu, nome_tipo_usu, senha, email
 From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
-			 inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_tipo_usu) where nome_tipo_usu = 'Diretor';
-            */
+       inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_tipo_usu) where nome_tipo_usu = 'Professor';
+         */

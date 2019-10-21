@@ -1,14 +1,16 @@
 <?php
-// session_start();
-// if(isset($_SESSION['logado'])){
-//     $dados =  $_SESSION['dadosUsu'];
-//     $img = $dados['fotoUsu'];
-// }else{
-//     unset($_SESSION['dadosUsu']);
-//     unset($_SESSION['logado']);
-//     session_destroy();
-//     header("Location: ../../homeLandingPage.php");
-//}
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+    $img = $dados['fotoUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: ../../homeLandingPage.php");
+}
+
+require_once '../../bd/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -68,18 +70,32 @@
 
             <main>
             <div class="alunos">
-                <h1>Lista de Turmas</h1>
+                <h1>Lista de Cursos</h1>
                 <?php
+                $codUnid = $dados['codUnidadeUsu'];
+                $selecionar = ("select cursos.cod_curso, nome_curso, cod_status_cursos, cursos_unidade.cod_unid, cod_status_cursos_unid
+From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_curso) where cod_unid = $codUnid and cod_status_cursos = 'A' and cod_status_cursos_unid = 'A';");
+                $comando = $pdo->prepare($selecionar);
+                $comando->execute();
 
-                /*if(não ter turmas cadastradas){
-                    echo 'Você ainda não cadastrou suas turmas, cadastre-as no botão abaixo';
+                $numDeLinhas = $comando->rowCount();
+
+                if($numDeLinhas == 0){
+                    echo 'Você ainda não cadastrou seus cursos, cadastre-os no botão abaixo';
                 }else{
-    
-                mostrar a lista das turmas cadastradas
-                }*/
+                    while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
+                        $codCurso = $dedos['cod_curso'];
+                        $nomeCurso = $dedos['nome_curso'];
+
+                       echo  "<a href='operacaoTurmas/turmas.php?codCurso=$codCurso'>$nomeCurso</a><br>";
+                    }
+                    
+                    
+                    
+                }
 
                 ?>
-                <a href='cadTurmas/cadTurmas.php' >Adicionar Turmas</a>
+                <a href='cadCursos/cadCursos.php' >Adicionar Cursos</a>
             </div>
             </main>  
         

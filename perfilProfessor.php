@@ -102,7 +102,7 @@
             <hr>
 
             <ul class="menu-buttons">
-              <li><a href="#"><i class="fas fa-list"></i> Lisa de Salas</a></li>
+              <li><a href="lista_salas.php"><i class="fas fa-list"></i> Lista de Turmas</a></li>
               <li><a href="#"><i class="far fa-clock"></i> Horário</a></li>
               <li><a href="#"><i class="far fa-calendar-alt"></i> Eventos</a></li>
               <li><a href="#"><i class="fas fa-cogs"></i> Configurações</a></li>
