@@ -124,7 +124,7 @@ function array_push_keys($array1, $array2){
 function get_id($pdo, $chave, $table, $key = null, $param = null){
 
     if($chave !== null && $param !== null){
-        $selecionar = ("select $chave from $table where $key = $param");
+        $selecionar = ("select $chave from $table where $key = '$param'");
     }else{
         $selecionar = ("select $chave from $table");
     }
