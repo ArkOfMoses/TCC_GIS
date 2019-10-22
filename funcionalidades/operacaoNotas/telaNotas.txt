@@ -1,20 +1,17 @@
 NOTAS******
 
 VARCHAR 50 NO NOME_AVAL********
+TIREI O PESO_AVAL********
+FLOAT 11 NO VL_NOTA********
 
 avaliacao_numeroDoAluno_numeroDaAvaliação
 
-preciso lembrar de quando puxar os alunos o count usu tem q mudar do mesmo jeito q o count aval muda*
-
 pedir pra arrumar o front pq tá super cagado (ps: eu super caguei)
-perguntar se o type=hidden na tabela tem problema
-
-posso usar array_slice pra alguma coisa
-
-ver como a média vai ser calculada com o pessoal e colocar no lado true do if($checkTurAlunNotaDis->rowCount() > 0)
-
-countAval sempre vai ser um a menos pq to sem saco já
-
 o retorno do codNotas vai ser um json e o javascript vai colocar cada coisa no lugar q tem que tá
 
-os input q tão dentro da div não tão enviando
+o select tem q mudar o name (quase) do mesmo jeito que os input que vem embaixo
+saber qual matéria q tá selecionada
+
+o fato de estar em ordem pode ferrar um pouco as coisas (um pouco muito)
+type number step='0.01' min='0' max='10'
+nn deixa entrar vazio ou deixa (update)
