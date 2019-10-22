@@ -1,49 +1,16 @@
 <?php
-//session_start();
+session_start();
 require_once '../../bd/conexao.php';
 require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
-// if(isset($_SESSION['logado'])){
-    $dados =  [
-        "codAcesso" => 3,
-        "senhaUsu" => "prof",
-        "emailUsu" => "prof1@gmail.com",
-        "codTipoUsu" => 5,
-        "nomeTipoUsu" => "Professor",
-        "codStatusTipoUsuOperacao" => "A",
-        "codOperacao" => [
-            1,
-            2 
-        ],
-        "nomeOperacao" => [
-            "dar o popo",
-            "dar o bumbum"
-        ],
-        "codStatusOperacao" => [
-            "A",
-            "A"
-        ],
-        "linkOperacao" => [
-            "darPopo.php",
-            "darBumbum.php"
-        ],
-        "codUsu" => 3,
-        "nomeUsu" => "Professor 1",
-        "cpfUsu" => null,
-        "dataNascUsu" => null,
-        "fotoUsu" => null,
-        "entradaUsu" => null,
-        "saidaUsu" => null,
-        "codStatusUsu" => "A"
-    ];
-
-
-//     $img = $dados['fotoUsu'];
-// }else{
-//     unset($_SESSION['dadosUsu']);
-//     unset($_SESSION['logado']);
-//     session_destroy();
-//     header("Location: ../../homeLandingPage.php");
-// }
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+    $img = $dados['fotoUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: ../../homeLandingPage.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -173,8 +140,8 @@ require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
                 <!--Desculpa Front, de verdade memo-->
 
                 <?php
-                $codUnid = 1; // isso vem da sessão
-                $codProf = $dados['codUsu']; //isso vem da sessão
+                $codUnid = $dados['codUnidadeUsu'];
+                $codProf = $dados['codUsu'];
 
                 /*esse pedaço é 100% só pra nn dar erro*/
                 if(isset($_REQUEST['codTurma'])){
@@ -198,7 +165,7 @@ require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
                 $command->execute();
                 $numLinhas = $command->rowCount();
                 if($numLinhas == 0){
-                    $output = '<h2>As turmas dessa unidade ainda não foram cadastradas ou você não dá aula a nenhuma turma dessa unidade</h2>';
+                    $outputExtra = '<h2>As turmas dessa unidade ainda não foram cadastradas ou você não dá aula a nenhuma turma dessa unidade</h2>';
                 }else{         
 
                     if(isset($_REQUEST['codTurma']) && isset($_REQUEST['codDis'])){
@@ -256,22 +223,15 @@ require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
                             echo "<div class='circulo-box'>";
                             echo "<button class='disc_$codTurma' value='$s' onclick='changeDisc($s, $codUnid, $codProf)'>$siglaTurm</button>";
                             echo "</div>";
-                        }
-                    
-                        
-                                        
+                        }                
                 }
 
                 ?>
 
-                
-
                 </div>
                 <div class="recebeDisc"></div>
-                
 
-
-        <?php
+                <?php
         
         $output = "
             <table class='table'>
@@ -283,6 +243,7 @@ require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
                     <th>A.A.</th>
             ";
 
+if(!isset($outputExtra)){
     if(isset($_REQUEST['codTurma'])){
         if(isset($_REQUEST['codDis'])){
 
@@ -330,270 +291,291 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
             $outputExtra = "<h2>Essa turma não possui essa disciplina!</h2>";
         }
 
-    if(!isset($outputExtra)){
-            $selectDisc = $pdo->prepare("select prof_turma_disc.cod_disc, nome_disc from prof_turma_disc 
-            inner join disciplina on (disciplina.cod_disc = prof_turma_disc.cod_disc) where cod_tur = $codTur and cod_usu = $codProf and cod_status_disc = 'A' and cod_status_prof_tur_disc = 'A'");
-            $selectDisc->execute();
 
-            if($selectDisc->rowCount() == 0){
-            $output = "<h2>Você não dá aula nessa turma ou a turma foi excluída!</h2>";
+        $selectDisc = $pdo->prepare("select prof_turma_disc.cod_disc, nome_disc from prof_turma_disc 
+        inner join disciplina on (disciplina.cod_disc = prof_turma_disc.cod_disc) where cod_tur = $codTur and cod_usu = $codProf and cod_status_disc = 'A' and cod_status_prof_tur_disc = 'A'");
+        $selectDisc->execute();
+
+        if($selectDisc->rowCount() == 0){
+        $output = "<h2>Você não dá aula nessa turma ou a turma foi excluída!</h2>";
+        }else{
+
+            if(isset($qtdAMais)){
+                $selectMudarCount = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur;");
+                $selectMudarCount->execute();
+                $numAlunos = $selectMudarCount->rowCount();
+                $mudarCountUsu = "mudarCountUsu($numAlunos);";
+
+                $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu, turma_aluno_nota_disc.cod_aval, vl_nota 
+                from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) 
+                                inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc order by nome_usu");
+                $selectAlun->execute();
+
+                $homicide = $selectAlun->fetchAll(PDO::FETCH_ASSOC);
+
+                $arrayAlunoNota = array();
+                $codAlunAnt = 0;
+
+                $count = 2;
+                ################################
+                for($i = 0; $i < count($homicide); $i++) {
+                    $codAlun = $homicide[$i]['cod_usu'];
+                    $nomeAlun = $homicide[$i]['nome_usu'];
+                    $codAval = $homicide[$i]['cod_aval'];
+                    $vlNota = $homicide[$i]['vl_nota'];
+
+                    
+                    //é muito dificil explicar e entender oq tá acontecendo aqui, mas confia q dá bom
+                    if($codAlun == $codAlunAnt){
+                        $keyLast = array_key_last($arrayAlunoNota);
+
+                        $beforPush = $arrayAlunoNota[$keyLast]["Notas"];
+                        $beforPush[$count] = [
+                            $codAval => $vlNota
+                        ];
+                        
+                        $arrayAlunoNota[$keyLast]["Notas"] = $beforPush;
+                        $count++;
+                    }else{
+                        $count = 2;
+                        $arrayAlunoNota[] = [
+                            "codAlun" => $codAlun,
+                            "nomeAlun" => $nomeAlun,
+                            "Notas" => [
+                                1 => [$codAval => $vlNota]
+                            ]
+                        ];
+                        $codAlunAnt = $codAlun;
+                    }
+                }
+
+                for($l = 0; $l < count($arrayAlunoNota); $l++){
+                    $infoAlun = $arrayAlunoNota[$l];
+                    $codAlun = $infoAlun['codAlun'];
+                    $nomeAlun = $infoAlun['nomeAlun'];
+
+                    $output .= "
+                    <input type='hidden' value='$codAlun' name='codUsu_$l'/>
+                    <tr>
+                        <td>
+                            <input type='text' disabled value='$nomeAlun'/>
+                        </td>";
+
+                    $diversificativa = array();
+                    $obrigatoria = array();
+                    $atitudinal = array();
+
+                    for($z = 1; $z <= count($infoAlun['Notas']); $z++){
+                        $arrayAval = $infoAlun['Notas'][$z];
+                        foreach ($arrayAval as $cod => $nota) {
+                        $output .= "<td>
+                                        <input type='number' value='$nota' name='avaliacao_{$l}_$z'/>
+                                    </td>";
+
+                        $selecTipo = $pdo->prepare("select cod_tipo_aval from avaliacao where cod_aval = $cod;");
+                        $selecTipo->execute();
+                        $dadsTip = $selecTipo->fetch(PDO::FETCH_ASSOC);
+                        $tip = $dadsTip['cod_tipo_aval'];
+                        switch ($tip) {
+                            case 1:
+                                $diversificativa[] = $nota;
+                                break;
+
+                            case 2:
+                                $obrigatoria[] = $nota;
+                                break;
+
+                            case 3:
+                                $atitudinal[] = $nota;
+                                break;
+                        }
+
+                    }
+                        if($z > 3){
+                            $output .= "<input type='hidden' value='$cod' name='codAval_$z'/>";
+                        }
+                    }
+
+                    $mediaDivers = array_sum($diversificativa)/count($diversificativa);
+                    $mediaObrig = array_sum($obrigatoria)/count($obrigatoria);
+                    $mediaAtit = array_sum($atitudinal)/count($atitudinal);
+
+                    $media = substr((($mediaDivers * 0.7 + $mediaObrig * 0.9) / 2) + $mediaAtit, 0, 4);
+
+                    //aqui a gente seleciona as faltas de cada um e coloca de value
+
+                $output .= "<td>
+                                <input type='number' disabled id='media_$l' value='$media'/>
+                            </td>
+                            <td>
+                                <input type='number' disabled id='Faltas_$l' value='0'/>
+                            </td>
+                        </tr>";
+                }
+
+            $output .= "
+                <input type='hidden' value='$codTur' name='codTurma'/>
+                <input type='hidden' value='$codTurmDisc' name='codTurmDisc'/>
+            </table>";
+
+
             }else{
+                $checkTurAlunNotaDis = $pdo->prepare("select * from turma_aluno_nota_disc where cod_tur = $codTur and cod_turma_disc = $codTurmDisc;");
+                $checkTurAlunNotaDis->execute();
 
-                if(isset($qtdAMais)){
+                if($checkTurAlunNotaDis->rowCount() > 0){
+
+                    $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu, turma_aluno_nota_disc.cod_aval, vl_nota 
+                    from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) 
+                                    inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc order by nome_usu;");
+                    $selectAlun->execute();
+
+
+                    $massMurder = $selectAlun->fetchAll(PDO::FETCH_ASSOC); //EU JÁ NÃO SEI MAIS OQ EU TO FAZENDO
+
+
+                    //muda o input type hidden countAlunos
                     $selectMudarCount = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur;");
                     $selectMudarCount->execute();
                     $numAlunos = $selectMudarCount->rowCount();
                     $mudarCountUsu = "mudarCountUsu($numAlunos);";
-
-                    $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu, turma_aluno_nota_disc.cod_aval, vl_nota 
-                    from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) 
-                                    inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc;");
-                    $selectAlun->execute();
-
-                    $homicide = $selectAlun->fetchAll(PDO::FETCH_ASSOC);
+                    ////////////
 
                     $arrayAlunoNota = array();
                     $codAlunAnt = 0;
 
-                    $count = 2;
-                    ################################
-                    for($i = 0; $i < count($homicide); $i++) {
-                        $codAlun = $homicide[$i]['cod_usu'];
-                        $nomeAlun = $homicide[$i]['nome_usu'];
-                        $codAval = $homicide[$i]['cod_aval'];
-                        $vlNota = $homicide[$i]['vl_nota'];
+                    for($i = 0; $i < count($massMurder); $i++) {
+                        $codAlun = $massMurder[$i]['cod_usu'];
+                        $nomeAlun = $massMurder[$i]['nome_usu'];
+                        $codAval = $massMurder[$i]['cod_aval'];
+                        $vlNota = $massMurder[$i]['vl_nota'];
 
-                        if($vlNota == null){
-                            $vlNota = '';
-                        }
-                        
-                        //é muito dificil explicar e entender oq tá acontecendo aqui, mas confia q dá bom
                         if($codAlun == $codAlunAnt){
                             $keyLast = array_key_last($arrayAlunoNota);
-
                             $beforPush = $arrayAlunoNota[$keyLast]["Notas"];
-                            $beforPush[$count] = [
-                                $codAval => $vlNota
-                            ];
+                            $beforPush[$codAval] = $vlNota;
+                            /*eu não sei oq eu to fazendo hsuahsuahsuah*/
                             
                             $arrayAlunoNota[$keyLast]["Notas"] = $beforPush;
-                            $count++;
                         }else{
-                            $count = 2;
                             $arrayAlunoNota[] = [
                                 "codAlun" => $codAlun,
                                 "nomeAlun" => $nomeAlun,
                                 "Notas" => [
-                                    1 => [$codAval => $vlNota]
+                                    $codAval => $vlNota
                                 ]
                             ];
                             $codAlunAnt = $codAlun;
                         }
                     }
 
-                    for($l = 0; $l < count($arrayAlunoNota); $l++){
-                        $infoAlun = $arrayAlunoNota[$l];
+
+                    for($p = 0; $p < count($arrayAlunoNota); $p++){
+                        $infoAlun = $arrayAlunoNota[$p];
                         $codAlun = $infoAlun['codAlun'];
                         $nomeAlun = $infoAlun['nomeAlun'];
 
                         $output .= "
-                        <input type='hidden' value='$codAlun' name='codUsu_$l'/>
+                        <input type='hidden' value='$codAlun' name='codUsu_$p'/>
                         <tr>
                             <td>
                                 <input type='text' disabled value='$nomeAlun'/>
                             </td>";
 
-                        for($z = 1; $z <= count($infoAlun['Notas']); $z++){
-                            $arrayAval = $infoAlun['Notas'][$z];
+                        $count = 1;
 
+                        foreach($infoAlun['Notas'] as $codAv => $nota){
 
-                            foreach ($arrayAval as $cod => $nota) {
-                            $output .= "<td>
-                                            <input type='number' value='$nota' name='avaliacao_{$l}_$z'/>
-                                        </td>";
+                            if($codAv == $count){
+                                $output .= "<td>
+                                                <input type='number' value='$nota' name='avaliacao_{$p}_$codAv'/>
+                                            </td>";
+                            }else{
+                                $output .= "<td>
+                                                <input type='number' name='avaliacao_{$p}_$count'/>
+                                            </td>";
                             }
-
-                            if($z > 3){
-                                $output .= "<input type='hidden' value='$cod' name='coAval_$z'/>";
-                            }
+                            $count++;
                         }
+
+                        $media = (($infoAlun['Notas'][1] * 0.7 + $infoAlun['Notas'][2] * 0.9) / 2) + $infoAlun['Notas'][3];
 
                         //aqui a gente seleciona as faltas de cada um e coloca de value
 
-                    $output .= "<td>
-                                    <input type='number' disabled id='media_$l'/>
-                                </td>
-                                <td>
-                                    <input type='number' disabled id='Faltas_$l' value='0'/>
-                                </td>
-                            </tr>";
+                        $output .= "<td>
+                                        <input type='number' disabled id='media_$p' value='$media'/>
+                                    </td>
+                                    <td>
+                                        <input type='number' disabled id='Faltas_$p' value='0'/>
+                                    </td>
+                                </tr>";
                     }
 
-                $output .= "
+                    $output .= "
                     <input type='hidden' value='$codTur' name='codTurma'/>
                     <input type='hidden' value='$codDisciplin' name='codDisciplina'/>
                 </table>";
 
-
                 }else{
-                    $checkTurAlunNotaDis = $pdo->prepare("select * from turma_aluno_nota_disc where cod_tur = $codTur and cod_turma_disc = $codTurmDisc;");
-                    $checkTurAlunNotaDis->execute();
 
-                    if($checkTurAlunNotaDis->rowCount() > 0){
+                    $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur order by nome_usu;");
+                    $selectAlun->execute();
+                    $numAlunos = $selectAlun->rowCount();
+                    $massMurder = $selectAlun->fetchAll(PDO::FETCH_ASSOC); // EU JÁ NÃO SEI MAIS OQ EU TO FAZENDO
 
-                        $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu, turma_aluno_nota_disc.cod_aval, vl_nota 
-                        from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) 
-                                        inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc;");
-                        $selectAlun->execute();
+                    $mudarCountUsu = "mudarCountUsu($numAlunos);";
 
 
-                        $massMurder = $selectAlun->fetchAll(PDO::FETCH_ASSOC); //EU JÁ NÃO SEI MAIS OQ EU TO FAZENDO
+                    for($i = 0; $i < count($massMurder); $i++) {
+                        $codAlun = $massMurder[$i]['cod_usu'];
+                        $nomeAlun = $massMurder[$i]['nome_usu'];
 
-                        $selectMudarCount = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur;");
-                        $selectMudarCount->execute();
-                        $numAlunos = $selectMudarCount->rowCount();
-
-                        $mudarCountUsu = "mudarCountUsu($numAlunos);";
-
-                        $arrayAlunoNota = array();
-                        $codAlunAnt = 0;
-
-                        for($i = 0; $i < count($massMurder); $i++) {
-                            $codAlun = $massMurder[$i]['cod_usu'];
-                            $nomeAlun = $massMurder[$i]['nome_usu'];
-                            $codAval = $massMurder[$i]['cod_aval'];
-                            $vlNota = $massMurder[$i]['vl_nota'];
-
-                            if($vlNota == null){
-                                $vlNota = '';
-                            }
-
-                            if($codAlun == $codAlunAnt){
-                                $keyLast = array_key_last($arrayAlunoNota);
-                                $beforPush = $arrayAlunoNota[$keyLast]["Notas"];
-                                $beforPush[$codAval] = $vlNota;
-                                /*eu não sei oq eu to fazendo hsuahsuahsuah*/
-                                
-                                $arrayAlunoNota[$keyLast]["Notas"] = $beforPush;
-                            }else{
-                                $arrayAlunoNota[] = [
-                                    "codAlun" => $codAlun,
-                                    "nomeAlun" => $nomeAlun,
-                                    "Notas" => [
-                                        $codAval => $vlNota
-                                    ]
-                                ];
-                                $codAlunAnt = $codAlun;
-                            }
-                        }
-
-                        for($p = 0; $p < count($arrayAlunoNota); $p++){
-                            $infoAlun = $arrayAlunoNota[$p];
-                            $codAlun = $infoAlun['codAlun'];
-                            $nomeAlun = $infoAlun['nomeAlun'];
-
-                            $output .= "
-                            <input type='hidden' value='$codAlun' name='codUsu_$p'/>
-                            <tr>
-                                <td>
-                                    <input type='text' disabled value='$nomeAlun'/>
-                                </td>";
-
-                            $count = 1;
-
-                            foreach($infoAlun['Notas'] as $codAv => $nota){
-                                if($nota == null){
-                                    $nota = '';
-                                }
-                                if($codAv == $count){
-                                    $output .= "<td>
-                                                    <input type='number' value='$nota' name='avaliacao_{$p}_$codAv'/>
-                                                </td>";
-                                }else{
-                                    $output .= "<td>
-                                                    <input type='number' name='avaliacao_{$p}_$count'/>
-                                                </td>";
-                                }
-                                $count++;
-                            }
-
-                            //aqui a gente seleciona as faltas de cada um e coloca de value
-
-                            $output .= "<td>
-                                            <input type='number' disabled id='media_$p'/>
-                                        </td>
-                                        <td>
-                                            <input type='number' disabled id='Faltas_$p' value='0'/>
-                                        </td>
-                                    </tr>";
-                        }
+                        //aqui a gente seleciona as faltas de cada um e coloca de value
 
                         $output .= "
+                        <input type='hidden' value='$codAlun' name='codUsu_$i'/>
+                        <tr>
+                            <td>
+                                <input type='text' disabled value='$nomeAlun'/>
+                            </td>
+                            <td>
+                                <input type='number' name='avaliacao_{$i}_1'/>
+                            </td>
+                            <td>
+                                <input type='number' name='avaliacao_{$i}_2'/>
+                            </td>
+                            <td>
+                                <input type='number' name='avaliacao_{$i}_3'/>
+                            </td>
+                            <td>
+                                <input type='number' disabled id='media_$i'/>
+                            </td>
+                            <td>
+                                <input type='number' disabled id='Faltas_$i' value='0'/>
+                            </td>
+                        </tr>
+                        ";
+                    }
+
+                    $output .= "
                         <input type='hidden' value='$codTur' name='codTurma'/>
                         <input type='hidden' value='$codDisciplin' name='codDisciplina'/>
                     </table>";
-
-                    }else{
-
-                        $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur;");
-                        $selectAlun->execute();
-                        $numAlunos = $selectAlun->rowCount();
-                        $massMurder = $selectAlun->fetchAll(PDO::FETCH_ASSOC); // EU JÁ NÃO SEI MAIS OQ EU TO FAZENDO
-
-                        $mudarCountUsu = "mudarCountUsu($numAlunos);";
-
-
-                        for($i = 0; $i < count($massMurder); $i++) {
-                            $codAlun = $massMurder[$i]['cod_usu'];
-                            $nomeAlun = $massMurder[$i]['nome_usu'];
-
-                            //aqui a gente seleciona as faltas de cada um e coloca de value
-
-                            $output .= "
-                            <input type='hidden' value='$codAlun' name='codUsu_$i'/>
-                            <tr>
-                                <td>
-                                    <input type='text' disabled value='$nomeAlun'/>
-                                </td>
-                                <td>
-                                    <input type='number' name='avaliacao_{$i}_1'/>
-                                </td>
-                                <td>
-                                    <input type='number' name='avaliacao_{$i}_2'/>
-                                </td>
-                                <td>
-                                    <input type='number' name='avaliacao_{$i}_3'/>
-                                </td>
-                                <td>
-                                    <input type='number' disabled id='media_$i'/>
-                                </td>
-                                <td>
-                                    <input type='number' disabled id='Faltas_$i' value='0'/>
-                                </td>
-                            </tr>
-                            ";
-                        }
-
-                        $output .= "
-                            <input type='hidden' value='$codTur' name='codTurma'/>
-                            <input type='hidden' value='$codDisciplin' name='codDisciplina'/>
-                        </table>";
-                    }                                    
-                }
-
+                }                                    
             }
 
+        }
 
         }else{
-            $output = $outputExtra;
+            $output = "<h2>Selecione uma disciplina!</h2>";
         }
 
     }else{
-        $output = "<h2>Selecione uma disciplina!</h2>";
+    $output = "<h2>Selecione uma turma!</h2>";
     }
 
 }else{
-    $output = "<h2>Selecione uma turma!</h2>";
+    $output = $outputExtra;
 }
 
 if(strlen($output) < 150){
@@ -624,15 +606,15 @@ if(isset($mudarCountUsu)){
                         <tr>
                             <th>
                                 <select>
-                                    <option>Tipo:</option>
-                                    <option>A.D.</option>
-                                    <option>A.O.</option>
-                                    <option>A.A.</option>
+                                    <option value="0">Tipo:</option>
+                                    <option value="1">A.D.</option>
+                                    <option value="2">A.O.</option>
+                                    <option value="3">A.A.</option>
                                 </select>
                             </th>
                         </tr>
                         <tr>
-                            <td >
+                            <td>
                                 <input type='number' name='nota' id="nota" class="nota" value='0'/>
                             </td>
                         </tr>
@@ -645,7 +627,7 @@ if(isset($mudarCountUsu)){
                     }
 
                     function mudarCountAval(countAMais){
-                        count = countAMais + 2;
+                        count = countAMais + 4;
                         $('#hiddenAval').attr("value", count);
                     }
 
@@ -663,7 +645,7 @@ if(isset($mudarCountUsu)){
                                     var codTurm = arrayResponse['codTur'];
                                     var arrayDisc = arrayResponse['Disc'];
 
-                                    var halfLink = "<a href='telaNotas?codTurma="+codTurm+"&codDis=";
+                                    var halfLink = "<a href='telaNotas.php?codTurma="+codTurm+"&codDis=";
                                     
                                     $('.recebeDisc').html('');
 
@@ -722,7 +704,7 @@ if(isset($mudarCountUsu)){
 
                             for(var i = 0; i < countUsu; i++){                                   
                                 var attr = 'avaliacao_' + i; //variavel nome+numero de usuarios                                                  
-                                nota.clone().attr('id', attr + '_' + incrementTabela).appendTo(clone);
+                                nota.clone().attr('name', attr + '_' + incrementTabela).appendTo(clone);
                             }
                             
                             

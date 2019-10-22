@@ -1,16 +1,16 @@
 <?php
-// session_start();
 require_once '../../bd/conexao.php';
 require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
-// if(isset($_SESSION['logado'])){
-//     $dados =  $_SESSION['dadosUsu'];
-//     $img = $dados['fotoUsu'];
-// }else{
-//     unset($_SESSION['dadosUsu']);
-//     unset($_SESSION['logado']);
-//     session_destroy();
-//     header("Location: ../../homeLandingPage.php");
-//}
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+    $img = $dados['fotoUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: ../../homeLandingPage.php");
+}
 
 ?>
 
@@ -73,9 +73,8 @@ require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
             <div class="alunos">
                 <h1>Olá professor, qual nota você irá lançar?</h1>
                 <?php
-                $codUnid = 1; //isso vem da sessão
-                $codProf = 3; //isso tbm vem da sessão
-
+                $codUnid = $dados['codUnidadeUsu'];
+                $codProf = $dados['codUsu']; 
 
                 $command = $pdo->prepare("select turma.cod_tur, sigla_tur, cod_status_tur, prof_turma_disc.cod_disc, disciplina.nome_disc
                 from cursos inner join turma on (cursos.cod_curso = turma.cod_curso)

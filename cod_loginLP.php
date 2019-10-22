@@ -101,8 +101,6 @@ if($infoPost){
                 break;
 
                 case 'Professor':
-                break;
-
                 case 'Diretor':
                           $codUnid = get_id($pdo, "cod_unid", "usuario_unidade", "cod_usu", $codUsu);
                           $_SESSION['dadosUsu']['codUnidadeUsu'] = $codUnid;

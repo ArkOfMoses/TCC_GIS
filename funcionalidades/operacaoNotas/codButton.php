@@ -38,7 +38,6 @@ while($data = $command->fetch(PDO::FETCH_ASSOC)){
                 $codDisc => $nomeDisc
             ]
         ];
-
         $codTurAnt = $codTur;
     }
 }
