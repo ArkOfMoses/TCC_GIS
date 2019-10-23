@@ -25,14 +25,14 @@ if(isset($_SESSION['EmailList'])){
 
     switch($tipoList){
         case 'Master':
-                $link = "perfilMaster.php";
+                $link = "../perfilMaster.php";
                 $texto = "Envie um email com o login para os diretores poderem 
                         entrar e realizar seu trabalho alterando as 
                         configurações necessárias, cadastrando funcionários, alunos e etc.";
         break;
 
         case 'Diretor':
-                $link = "perfilDiretor.php";
+                $link = "../perfilDiretor.php";
                 $texto = "Envie um email com o login para os coordenadores e professores poderem 
                         entrar e realizar seu trabalho alterando as 
                         configurações necessárias.";
