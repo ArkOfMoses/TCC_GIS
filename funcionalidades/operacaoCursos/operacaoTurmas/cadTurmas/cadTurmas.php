@@ -122,11 +122,11 @@ $codCurso = $_REQUEST['codCurso'];
                         <input class='unid' id='IdSigla0' name='sigla0' type='text' />
 
                         <label id="turno_label">Escolha o turno: </label>
-                        <p id="puxar1">Manhã</p><input type="checkbox" id="IdCheck0" value="M" name="opcao0[]">
+                        <p id="puxar1">Manhã</p><input type="radio" id="IdCheck0" value="M" name="opcao0[]">
 
-                        <p id="puxar2">Tarde</p><input type="checkbox" id="IdChecke0" value="T" name="opcao0[]">
+                        <p id="puxar2">Tarde</p><input type="radio" id="IdChecke0" value="T" name="opcao0[]">
 
-                        <p id="puxar3">Noite</p><input type="checkbox" id="IdCheckee0" value="N" name="opcao0[]">
+                        <p id="puxar3">Noite</p><input type="radio" id="IdCheckee0" value="N" name="opcao0[]">
                         
 
 
@@ -164,11 +164,14 @@ $codCurso = $_REQUEST['codCurso'];
 
 
             $('#turno_label').clone().appendTo('#rightDiv').removeAttr('id');
-            $('#puxar1').clone().appendTo('#rightDiv').removeAttr('id');$('#IdCheck0').clone().appendTo('#rightDiv').attr("name",'opcao'+ increment+'[]').attr("id", "IdCheck"+increment);
+            $('#puxar1').clone().appendTo('#rightDiv').removeAttr('id');
+            $('#IdCheck0').clone().attr("name",'opcao'+ increment+'[]').attr("id", "IdCheck"+increment).prop('checked', false).appendTo('#rightDiv');
 
-            $('#puxar2').clone().appendTo('#rightDiv').removeAttr('id');$('#IdChecke0').clone().appendTo('#rightDiv').attr("name",'opcao'+ increment+'[]').attr("id", "IdChecke"+increment);
+            $('#puxar2').clone().appendTo('#rightDiv').removeAttr('id');
+            $('#IdChecke0').clone().attr("name",'opcao'+ increment+'[]').attr("id", "IdChecke"+increment).prop('checked', false).appendTo('#rightDiv');
 
-            $('#puxar3').clone().appendTo('#rightDiv').removeAttr('id');$('#IdCheckee0').clone().appendTo('#rightDiv').attr("name",'opcao'+ increment+'[]').attr("id", "IdCheckee"+increment);
+            $('#puxar3').clone().appendTo('#rightDiv').removeAttr('id');
+            $('#IdCheckee0').clone().attr("name",'opcao'+ increment+'[]').attr("id", "IdCheckee"+increment).prop('checked', false).appendTo('#rightDiv');
             // $('#email_label').clone().appendTo('#rightDiv');
             // 
             // document.getElementById('IdemailCoord'+increment).value = '';
