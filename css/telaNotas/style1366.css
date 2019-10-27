@@ -1,9 +1,5 @@
 .header {
-    width: calc(100vw - 280px);
-    height: 7vh;
-    position: absolute;
-    float: right;
-    background: none;
+    display:none;
   }
   
   .logo {
@@ -144,4 +140,14 @@
   select{
       font-size: 20px;
       text-align: center;
+  }
+
+  /*área do Moisés fingindo que sabe css*/
+
+  .Selecionado {
+    color : black;
+  }
+
+  .NotSelecionado {
+    color : red;
   }

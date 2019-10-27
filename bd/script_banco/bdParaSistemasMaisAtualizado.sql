@@ -54,7 +54,6 @@ DROP TABLE IF EXISTS `avaliacao`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `avaliacao` (
   `cod_aval` int(11) NOT NULL AUTO_INCREMENT,
-  `peso_aval` int(11) DEFAULT NULL,
   `nome_aval` varchar(50) DEFAULT NULL,
   `cod_tipo_aval` int(11) NOT NULL,
   `cod_status_aval` char(1) DEFAULT NULL,
@@ -527,7 +526,7 @@ CREATE TABLE `turma_aluno_nota_disc` (
   `cod_tur` int(11) NOT NULL,
   `cod_turma_disc` int(11) NOT NULL,
   `cod_aval` int(11) NOT NULL,
-  `vl_nota` int(11) DEFAULT NULL,
+  `vl_nota` float(11) DEFAULT NULL,
   PRIMARY KEY (`cod_usu`,`cod_tur`,`cod_turma_disc`,`cod_aval`),
   KEY `fk_Turma_Aluno_Disc_Nota_turma_aluno1_idx` (`cod_tur`,`cod_usu`),
   KEY `fk_Turma_Aluno_Disc_Nota_turma_disciplina1_idx` (`cod_turma_disc`),
@@ -700,20 +699,18 @@ insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_o
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (2, 2, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 2, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 1, 'A');
-insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (5, 2, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (5, 1, 'A');
 
-
-insert into acesso (cod_tipo_usu, senha, email) values (3, '$2y$12$tzXy4Rs6RP7lTJwkSJrFg.Mf/Opd0dymNxnyzrY4qQ77svLZZ7Ji6', 'batata@gmail.com');
-insert into usuario (nome_usu, cod_acesso, data_entrada) values ('Batata', 1, '2019-10-25');
+insert into acesso (cod_tipo_usu, senha, email) values (3, 'batata', 'batata@gmail.com');
+insert into usuario (nome_usu, cod_acesso) values ('Batata', 1);
 insert into usuario_unidade (cod_unid, cod_usu) values (1, 1);
 
-insert into acesso (cod_tipo_usu, senha, email) values (3, '$2y$12$tzXy4Rs6RP7lTJwkSJrFg.Mf/Opd0dymNxnyzrY4qQ77svLZZ7Ji6', 'potato@gmail.com');
+insert into acesso (cod_tipo_usu, senha, email) values (3, 'potato', 'potato@gmail.com');
 insert into usuario (nome_usu, cod_acesso) values ('Potato', 2);
 insert into usuario_unidade (cod_unid, cod_usu) values (2, 2);
 
-insert into acesso (cod_tipo_usu, senha, email) values (5, '$2y$12$tzXy4Rs6RP7lTJwkSJrFg.Mf/Opd0dymNxnyzrY4qQ77svLZZ7Ji6', 'prof1@gmail.com');
-insert into usuario (nome_usu, cod_acesso, data_entrada) values ('Professor 1', 3, '2019-10-25');
+insert into acesso (cod_tipo_usu, senha, email) values (5, '$2y$12$t3oMJGIhcKjPslEoKfmFAetuM1e255HYIsMe1Dp3MFvOadA7xBowi', 'prof1@gmail.com');
+insert into usuario (nome_usu, cod_acesso) values ('Professor 1', 3);
 insert into usuario_unidade (cod_unid, cod_usu) values (1, 3);
 
 insert into cursos (nome_curso, cod_status_cursos) values ('Informática para Internet', 'A');
@@ -737,7 +734,7 @@ insert into disciplina (nome_disc, carga_horaria_disc, cod_status_disc) values (
 
 insert into prof_turma_disc (cod_tur, cod_usu, cod_disc, semestre_ano, cod_status_prof_tur_disc) values (1, 3, 1, 1, 'A');
 insert into prof_turma_disc (cod_tur, cod_usu, cod_disc, semestre_ano, cod_status_prof_tur_disc) values (2, 3, 4, 1, 'A');
-insert into prof_turma_disc (cod_tur, cod_usu, cod_disc, semestre_ano, cod_status_prof_tur_disc) values (2, 3, 5, 1, 'I');
+insert into prof_turma_disc (cod_tur, cod_usu, cod_disc, semestre_ano, cod_status_prof_tur_disc) values (2, 3, 5, 1, 'A');
 
 
 insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (1, 1, 'A');
@@ -778,9 +775,10 @@ insert into turma_aluno (cod_tur, cod_usu, cod_status) values (2, 9, 'A');
 insert into tipo_avaliacao (nome_tipo_aval) values ("A.D");
 insert into tipo_avaliacao (nome_tipo_aval) values ("A.O");
 insert into tipo_avaliacao (nome_tipo_aval) values ("A.A");
-insert into avaliacao (peso_aval, nome_aval, cod_tipo_aval, cod_status_aval) values (2, "A.D.", 1, "A");
-insert into avaliacao (peso_aval, nome_aval, cod_tipo_aval, cod_status_aval) values (2, "A.O.", 2, "A");
-insert into avaliacao (peso_aval, nome_aval, cod_tipo_aval, cod_status_aval) values (2, "A.A.", 3, "A");
+insert into avaliacao (nome_aval, cod_tipo_aval, cod_status_aval) values ("A.D.", 1, "A");
+insert into avaliacao (nome_aval, cod_tipo_aval, cod_status_aval) values ("A.O.", 2, "A");
+insert into avaliacao (nome_aval, cod_tipo_aval, cod_status_aval) values ("A.A.", 3, "A");
+
 
 insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (7, 2, 5, 1, 2);
 insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (8, 2, 5, 1, 3);
@@ -792,3 +790,19 @@ insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, v
 insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (8, 2, 5, 3, null);
 insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (9, 2, 5, 3, 2);
 
+insert into avaliacao (nome_aval, cod_tipo_aval, cod_status_aval) values ("A.O. 2", 2, "A");
+insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (7, 2, 5, 4, 7);
+insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (8, 2, 5, 4, 9);
+insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (9, 2, 5, 4, 2.0);
+
+
+insert into avaliacao (nome_aval, cod_tipo_aval, cod_status_aval) values ("A.D. 2", 1, "A");
+insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (7, 2, 5, 5, 5);
+insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (8, 2, 5, 5, 4);
+insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (9, 2, 5, 5, null);
+
+
+insert into avaliacao (nome_aval, cod_tipo_aval, cod_status_aval) values ("A.D. 3", 1, "A");
+insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (7, 2, 5, 6, 10);
+insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (8, 2, 5, 6, 10);
+insert into turma_aluno_nota_disc (cod_usu, cod_tur, cod_turma_disc, cod_aval, vl_nota) values (9, 2, 5, 6, 2);

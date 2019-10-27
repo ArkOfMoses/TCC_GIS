@@ -51,7 +51,6 @@ if(isset($_SESSION['logado'])){
                 .NotSelecionado {
                     color: black;
                 }
-            
             </style>
     </head>
 
@@ -144,15 +143,14 @@ if(isset($_SESSION['logado'])){
                 $codProf = $dados['codUsu'];
 
                 /*esse pedaço é 100% só pra nn dar erro*/
+                $codTur = 0;
+                $codDisciplin = 0;
+
                 if(isset($_REQUEST['codTurma'])){
                     $codTur = filter_var($_REQUEST['codTurma'], FILTER_VALIDATE_INT);
                     if(isset($_REQUEST['codDis'])){
                         $codDisciplin = filter_var($_REQUEST['codDis'], FILTER_VALIDATE_INT);
-                    }else{
-                        $codDisciplin = 0;
                     }
-                }else{
-                    $codTur = 0;
                 }
 
                 $command = $pdo->prepare("select turma.cod_tur, sigla_tur, cod_status_tur, prof_turma_disc.cod_disc, disciplina.nome_disc
@@ -221,7 +219,7 @@ if(isset($_SESSION['logado'])){
                             $siglaTurm = $turma['siglaTurm'];
                 
                             echo "<div class='circulo-box'>";
-                            echo "<button class='disc_$codTurma' value='$s' onclick='changeDisc($s, $codUnid, $codProf)'>$siglaTurm</button>";
+                            echo "<button class='disc_$codTurma' value='$s' onclick='changeDisc($s, $codUnid, $codProf, $codDisciplin)'>$siglaTurm</button>";
                             echo "</div>";
                         }                
                 }
@@ -236,7 +234,7 @@ if(isset($_SESSION['logado'])){
         $output = "
             <table class='table'>
                 <tr>
-                    <!--<th>Nº</th>-->
+                    <th>Nº</th>
                     <th>Nome</th>
                     <th>A.D.</th>
                     <th>A.O.</th>
@@ -308,7 +306,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
 
                 $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu, turma_aluno_nota_disc.cod_aval, vl_nota 
                 from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) 
-                                inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc order by nome_usu");
+                                inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc order by nome_usu, cod_aval;"); //  order by nome_usu
                 $selectAlun->execute();
 
                 $homicide = $selectAlun->fetchAll(PDO::FETCH_ASSOC);
@@ -324,7 +322,6 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                     $codAval = $homicide[$i]['cod_aval'];
                     $vlNota = $homicide[$i]['vl_nota'];
 
-                    
                     //é muito dificil explicar e entender oq tá acontecendo aqui, mas confia q dá bom
                     if($codAlun == $codAlunAnt){
                         $keyLast = array_key_last($arrayAlunoNota);
@@ -354,9 +351,14 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                     $codAlun = $infoAlun['codAlun'];
                     $nomeAlun = $infoAlun['nomeAlun'];
 
+                    $numero = $l + 1;
+
                     $output .= "
                     <input type='hidden' value='$codAlun' name='codUsu_$l'/>
                     <tr>
+                        <td>
+                            <input type='text' disabled value='$numero'/>
+                        </td>
                         <td>
                             <input type='text' disabled value='$nomeAlun'/>
                         </td>";
@@ -369,7 +371,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                         $arrayAval = $infoAlun['Notas'][$z];
                         foreach ($arrayAval as $cod => $nota) {
                         $output .= "<td>
-                                        <input type='number' value='$nota' name='avaliacao_{$l}_$z'/>
+                                        <input type='number' step='0.01' min='0' max='10' value='$nota' name='avaliacao_{$l}_$z'/>
                                     </td>";
 
                         $selecTipo = $pdo->prepare("select cod_tipo_aval from avaliacao where cod_aval = $cod;");
@@ -403,14 +405,17 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                     $media = substr((($mediaDivers * 0.7 + $mediaObrig * 0.9) / 2) + $mediaAtit, 0, 4);
 
                     //aqui a gente seleciona as faltas de cada um e coloca de value
+                    $selectFaltas = $pdo->prepare("select data_falta from turma_aluno_disc_falta where cod_usu = $codAlun and cod_tur = $codTur and cod_turma_disc = $codTurmDisc;");
+                    $selectFaltas->execute();
+                    $faltas = $selectFaltas->rowCount();
 
-                $output .= "<td>
-                                <input type='number' disabled id='media_$l' value='$media'/>
-                            </td>
-                            <td>
-                                <input type='number' disabled id='Faltas_$l' value='0'/>
-                            </td>
-                        </tr>";
+                    $output .= "<td>
+                                    <input type='number' disabled id='media_$l' value='$media'/>
+                                </td>
+                                <td>
+                                    <input type='number' disabled id='Faltas_$l' value='$faltas'/>
+                                </td>
+                            </tr>";
                 }
 
             $output .= "
@@ -427,7 +432,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
 
                     $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu, turma_aluno_nota_disc.cod_aval, vl_nota 
                     from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) 
-                                    inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc order by nome_usu;");
+                                    inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc order by nome_usu;"); //order by nome_usu
                     $selectAlun->execute();
 
 
@@ -474,10 +479,14 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                         $infoAlun = $arrayAlunoNota[$p];
                         $codAlun = $infoAlun['codAlun'];
                         $nomeAlun = $infoAlun['nomeAlun'];
+                        $numero = $p + 1;
 
                         $output .= "
                         <input type='hidden' value='$codAlun' name='codUsu_$p'/>
                         <tr>
+                            <td>
+                                <input type='text' disabled value='$numero'/>
+                            </td>
                             <td>
                                 <input type='text' disabled value='$nomeAlun'/>
                             </td>";
@@ -488,37 +497,39 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
 
                             if($codAv == $count){
                                 $output .= "<td>
-                                                <input type='number' value='$nota' name='avaliacao_{$p}_$codAv'/>
+                                                <input type='number' step='0.01' min='0' max='10' value='$nota' name='avaliacao_{$p}_$codAv'/>
                                             </td>";
                             }else{
                                 $output .= "<td>
-                                                <input type='number' name='avaliacao_{$p}_$count'/>
+                                                <input type='number' step='0.01' min='0' max='10' name='avaliacao_{$p}_$count'/>
                                             </td>";
                             }
                             $count++;
                         }
-
-                        $media = (($infoAlun['Notas'][1] * 0.7 + $infoAlun['Notas'][2] * 0.9) / 2) + $infoAlun['Notas'][3];
-
+                        
+                        $media = substr((($infoAlun['Notas'][1] * 0.7 + $infoAlun['Notas'][2] * 0.9) / 2) + $infoAlun['Notas'][3], 0, 4);
                         //aqui a gente seleciona as faltas de cada um e coloca de value
+                        $selectFaltas = $pdo->prepare("select data_falta from turma_aluno_disc_falta where cod_usu = $codAlun and cod_tur = $codTur and cod_turma_disc = $codTurmDisc;");
+                        $selectFaltas->execute();
+                        $faltas = $selectFaltas->rowCount();
 
                         $output .= "<td>
                                         <input type='number' disabled id='media_$p' value='$media'/>
                                     </td>
                                     <td>
-                                        <input type='number' disabled id='Faltas_$p' value='0'/>
+                                        <input type='number' disabled id='Faltas_$p' value='$faltas'/>
                                     </td>
                                 </tr>";
                     }
 
                     $output .= "
                     <input type='hidden' value='$codTur' name='codTurma'/>
-                    <input type='hidden' value='$codDisciplin' name='codDisciplina'/>
+                    <input type='hidden' value='$codTurmDisc' name='codTurmDisc'/>
                 </table>";
 
                 }else{
 
-                    $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur order by nome_usu;");
+                    $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur order by nome_usu;"); // order by nome_usu
                     $selectAlun->execute();
                     $numAlunos = $selectAlun->rowCount();
                     $massMurder = $selectAlun->fetchAll(PDO::FETCH_ASSOC); // EU JÁ NÃO SEI MAIS OQ EU TO FAZENDO
@@ -531,27 +542,35 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                         $nomeAlun = $massMurder[$i]['nome_usu'];
 
                         //aqui a gente seleciona as faltas de cada um e coloca de value
+                        $selectFaltas = $pdo->prepare("select data_falta from turma_aluno_disc_falta where cod_usu = $codAlun and cod_tur = $codTur and cod_turma_disc = $codTurmDisc;");
+                        $selectFaltas->execute();
+                        $faltas = $selectFaltas->rowCount();
+
+                        $numero = $i + 1;
 
                         $output .= "
                         <input type='hidden' value='$codAlun' name='codUsu_$i'/>
                         <tr>
                             <td>
+                                <input type='text' disabled value='$numero'/>
+                            </td>
+                            <td>
                                 <input type='text' disabled value='$nomeAlun'/>
                             </td>
                             <td>
-                                <input type='number' name='avaliacao_{$i}_1'/>
+                                <input type='number' step='0.01' min='0' max='10' name='avaliacao_{$i}_1'/>
                             </td>
                             <td>
-                                <input type='number' name='avaliacao_{$i}_2'/>
+                                <input type='number' step='0.01' min='0' max='10' name='avaliacao_{$i}_2'/>
                             </td>
                             <td>
-                                <input type='number' name='avaliacao_{$i}_3'/>
+                                <input type='number' step='0.01' min='0' max='10' name='avaliacao_{$i}_3'/>
                             </td>
                             <td>
                                 <input type='number' disabled id='media_$i'/>
                             </td>
                             <td>
-                                <input type='number' disabled id='Faltas_$i' value='0'/>
+                                <input type='number' disabled id='Faltas_$i' value='$faltas'/>
                             </td>
                         </tr>
                         ";
@@ -559,7 +578,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
 
                     $output .= "
                         <input type='hidden' value='$codTur' name='codTurma'/>
-                        <input type='hidden' value='$codDisciplin' name='codDisciplina'/>
+                        <input type='hidden' value='$codTurmDisc' name='codTurmDisc'/>
                     </table>";
                 }                                    
             }
@@ -571,7 +590,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
         }
 
     }else{
-    $output = "<h2>Selecione uma turma!</h2>";
+        $output = "<h2>Selecione uma turma!</h2>";
     }
 
 }else{
@@ -605,7 +624,7 @@ if(isset($mudarCountUsu)){
                     <table id="addNotas_hidden">
                         <tr>
                             <th>
-                                <select>
+                                <select id='select' class='select'>
                                     <option value="0">Tipo:</option>
                                     <option value="1">A.D.</option>
                                     <option value="2">A.O.</option>
@@ -615,7 +634,7 @@ if(isset($mudarCountUsu)){
                         </tr>
                         <tr>
                             <td>
-                                <input type='number' name='nota' id="nota" class="nota" value='0'/>
+                                <input type='number'  step='0.01' min='0' max='10' name='nota' id="nota" class="nota" value='0'/>
                             </td>
                         </tr>
                     </table>
@@ -631,32 +650,49 @@ if(isset($mudarCountUsu)){
                         $('#hiddenAval').attr("value", count);
                     }
 
-                    function changeDisc(index, codUnid, codProf){
-
+                    function changeDisc(index, codUnid, codProf, position){
                         $.ajax({
-                            type      : 'post',
-                            url       : 'codButton.php',
-                            data      :  {index: index, codUnid: codUnid, codProf: codProf},
-
+                            type : 'post',
+                            url  : 'codButton.php',
+                            //ele manda essas informações pelo ajax pra o codButton.php pra o back pegar as informações do banco
+                            data :  {index: index, codUnid: codUnid, codProf: codProf},
                             success: function (response) {
-
                                 if(response != ''){
+                                    //o back retorna um json que o js transforma em array
                                     var arrayResponse = JSON.parse(response);
+                                    //pega o cod da turma que vai ser igual pra todas as disciplinas daquela turma
                                     var codTurm = arrayResponse['codTur'];
+                                    //pega o array das disciplinas
                                     var arrayDisc = arrayResponse['Disc'];
-
+                                    //aqui é o começo do link que é igual pra todos
                                     var halfLink = "<a href='telaNotas.php?codTurma="+codTurm+"&codDis=";
                                     
+                                    //limpa a div que vai receber as disciplinas
                                     $('.recebeDisc').html('');
 
+
                                     $.each(arrayDisc, function( index, value ) {
+                                        //pra cada disciplina que tá no array ArrayDisc ele pega o link que é padrão e concatena
+                                        //as coisas que vão mudar, eu coloquei um <br> no final pra ficar melhor pra mim, mas eu acho
+                                        //que vc vai precisar tirar, se vc precisar colocar esses <a> dentro de alguma tag
+                                        // vc tem que abrir no começo do halfLink lá em cima e feixar no final aqui em baixo
                                         var fullLink = halfLink.concat(index+"' id='disc_"+index+"'>"+value+"</a><br>");
+                                        //aqui ele transforma a string em html que pode ser interpretado pelo browser
                                         var html = $.parseHTML(fullLink);
-                                        $(html).css('color','black')
                                         $('.recebeDisc').append(html);  
+
+                                        //checa se a disciplina que a gente tá olhando agr é igual a disciplina que tá selecionada no momento
+                                        if(index == position){
+                                            //se cair aqui significa que essa é a disciplina selecionada
+                                            //então a gente remove a classe de nn selecionado e adiciona a classe de selecionado
+                                            $('#disc_'+position).removeClass('NotSelecionado');
+                                            $('#disc_'+position).addClass('Selecionado');
+                                        }else{
+                                            //se cair aqui é pq essa nn é a disciplina selecionada então a gente só adiciona a classe de nn selecionado
+                                            $('#disc_'+index).addClass('NotSelecionado');
+                                        }
+                                        
                                     });                                   
-                                    
-                                    //$('.recebeDisc').html(response); 
                                 }
                                                                             
                             },
@@ -666,17 +702,31 @@ if(isset($mudarCountUsu)){
                         });
                     }
 
-                    var incrementTabela= $("#hiddenAval").attr("value");
+                    function getCookie(cname) {
+                        var name = cname + "=";
+                        var decodedCookie = decodeURIComponent(document.cookie);
+                        var ca = decodedCookie.split(';');
+                        for(var i = 0; i <ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                            c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                            return c.substring(name.length, c.length);
+                            }
+                        }
+                        return "";
+                    }
 
+                    var incrementTabela= $("#hiddenAval").attr("value");
+                    
 
                     <?php
                     if(isset($_REQUEST['codTurma']) && isset($_REQUEST['codDis'])){
                         $codTurco = filter_var($_REQUEST['codTurma'], FILTER_VALIDATE_INT);
                         $codDisco = filter_var($_REQUEST['codDis'], FILTER_VALIDATE_INT);
                         echo "var valButton = $('.disc_$codTurco').attr('value');";
-                        echo "changeDisc(valButton, $codUnid, $codProf);";
-                        // echo "$('#disc_$codDisco').attr('style', '');";
-                        // echo "$('#disc_$codDisco').css('color', 'red');";
+                        echo "changeDisc(valButton, $codUnid, $codProf, $codDisco);";
                     }
 
 
@@ -691,23 +741,25 @@ if(isset($mudarCountUsu)){
                         echo "var countUsu = $('#hiddenUsu').attr('value');";
                     }   
                     ?>
+                   
+                   
 
                     $(document).ready(function () {
-                        // $('#disc_4').attr('style', '');
-                        // $('#disc_4').css('color', 'red');
-
                         $("#addTable").click(function () {
                             
                             var clone= $('#addNotas_hidden').clone().appendTo('#tabelasNotas').removeAttr('id');//clone simples da tabela
                             clone.find('.nota').remove();
                             nota= $('#nota');
+                            clone.find('.select').remove();
+                            select=$('#select');
+                            select.clone().attr('name','tipoAval_' + incrementTabela).appendTo(clone);
+
 
                             for(var i = 0; i < countUsu; i++){                                   
-                                var attr = 'avaliacao_' + i; //variavel nome+numero de usuarios                                                  
+                                var attr = 'avaliacao_' + i;
                                 nota.clone().attr('name', attr + '_' + incrementTabela).appendTo(clone);
                             }
-                            
-                            
+
                             incrementTabela++;
                             $('#hiddenAval').attr("value", incrementTabela);
 
@@ -723,19 +775,29 @@ if(isset($mudarCountUsu)){
                         });
 
                         $('#formNotas').submit(function () {
-                            $.ajax({
+                             $.ajax({
                                 url: 'codNotas.php',
                                 type: 'POST',
                                 data: $('#formNotas').serialize(),
                                 success: function (data) {
                                     if (data != '') {
-                                        //dá pra chamar uma função javascript aqui
-                                        $('.recebeDados').html(data);
+                                        if(data == 'reloadTipo'){
+                                            document.cookie =  'msg=<p>por favor selecione o tipo de avaliacao de todos os novos campos, algumas avaliações podem já ter sido cadastradas, confira e cadastre as que faltaram se atentando ao tipo da avaliação</p>;';
+                                            window.location.reload();
+                                            //$('.recebeDados').html('<p>por favor selecione o tipo de avaliacao de todos os novos campos</p>');
+                                        }else if(data == 'sucesso'){
+                                            document.cookie =  'msg=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+                                            $('.recebeDados').html('');
+                                            window.location.reload();
+                                        }
                                     }
                                 }
                             });
                             return false;
                         });
+                        
+                        var msg = getCookie('msg');
+                        $('.recebeDados').html(msg);
                     });
                 </script>      
         </main>

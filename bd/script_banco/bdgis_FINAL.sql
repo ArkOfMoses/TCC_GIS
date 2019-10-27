@@ -54,8 +54,7 @@ DROP TABLE IF EXISTS `avaliacao`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `avaliacao` (
   `cod_aval` int(11) NOT NULL AUTO_INCREMENT,
-  `peso_aval` int(11) DEFAULT NULL,
-  `nome_aval` varchar(20) DEFAULT NULL,
+  `nome_aval` varchar(50) DEFAULT NULL,
   `cod_tipo_aval` int(11) NOT NULL,
   `cod_status_aval` char(1) DEFAULT NULL,
   PRIMARY KEY (`cod_aval`),
@@ -528,7 +527,7 @@ CREATE TABLE `turma_aluno_nota_disc` (
   `cod_tur` int(11) NOT NULL,
   `cod_turma_disc` int(11) NOT NULL,
   `cod_aval` int(11) NOT NULL,
-  `vl_nota` int(11) DEFAULT NULL,
+  `vl_nota` float(11) DEFAULT NULL,
   PRIMARY KEY (`cod_usu`,`cod_tur`,`cod_turma_disc`,`cod_aval`),
   KEY `fk_Turma_Aluno_Disc_Nota_turma_aluno1_idx` (`cod_tur`,`cod_usu`),
   KEY `fk_Turma_Aluno_Disc_Nota_turma_disciplina1_idx` (`cod_turma_disc`),
@@ -701,6 +700,7 @@ insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_o
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (2, 2, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 2, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 1, 'A');
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (5, 1, 'A');
 
 
 
