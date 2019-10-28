@@ -52,8 +52,9 @@ $filterForm = [
   }
 
 }else{
-  echo 'Escolha uma matéria para a chamada!';
+  echo 'Escolha uma matéria para realizar a ocorrência!';
 }
   
 
 ?>
+

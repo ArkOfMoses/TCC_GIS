@@ -1,64 +1,68 @@
+
 .header {
-    width: 100vw;
-    height: 70px;
-  }
-  
-  .logo {
-    width: 2.6em;
-    height: 2.6em;
-    margin-left: 15px;
-  }
-  
-  .hamburger{
-    width: 70px;
-    height: 100%;
-  }
-  
-  .hamburger svg{
-    width: 1.2em;
-  }
-  
-  .fullnav {
-    bottom: 0%;
-    top: 0%;
-    flex-flow: column;
-    align-items: center;
-    right: -100vw;
-    background: #051523;
-  }
-  
-  .menu {
-    width: 100vw;
-    overflow-y: scroll;
-  }
-  
-  hr {
-    width: 75vw;
-    color: #c9c9c9;
-    margin: 30px 0;
-  }
-  
-  .menu-buttons {min-height: 350px;}
-  
-  .menu-buttons li {font-size: 1.6em}
-  
-  .menu-buttons i {
-    font-size: .9em;
-    margin-right: 4px
-  }
-  
-  .title, .subtitle {font-size: 1.3em;}
-  
-  .title {font-size: 1.4em}
-  
-  .profile-photo-menu {
-    width: 25%;
-    padding-top: 25%;
-    border-radius: 160px;
-    margin: 70px 0 20px;
-  }
-  
-  .active-menu .fullnav {right: 0;}
+  width: 100vw;
+  height: 60px;
+ 
+}
+
+.logo {
+  width: 2.5em;
+  height: 2.5em;
+  margin: 0 15px;
+}
+
+.hamburger{
+  width: 60px;
+  height: 100%;
+}
+
+.hamburger svg{width: 1.2em;}
+
+.fullnav {
+  bottom: 0%;
+  top: 0%;
+  flex-flow: column;
+  align-items: center;
+  right: -100vw;
+  background: #051523;
+  color:white;
+}
+
+.menu {
+  width: 100vw;
+  overflow-y: scroll;
+  justify-content: space-around;
+  color:white;
+}
+
+hr {
+  width: 75vw;
+  color: #c9c9c9;
+  margin: 15px 0;
+}
+
+.menu-buttons {min-height: 50vh; color:white}
+
+
+.menu-buttons li {font-size: 1.5em}
+
+.menu-buttons i {
+  font-size: .8em;
+  margin-right: 4px
+}
+
+.title, .subtitle {font-size: 1.2em;}
+
+.title {font-size: 1.3em}
+
+.profile-photo-menu {
+  width: 33%;
+  padding-top: 33%;
+  border-radius: 70px;
+  margin: 60px 0 10px;
+}
+
+.active-menu .fullnav {right: 0;}
 
   
   /********* INICIO CABECALHO****************/
@@ -73,21 +77,26 @@
     margin-left:20px;
     margin-top: 15px;  
   }
-   #sala{
+  #sala{
     color:white;
     font-family: Roboto;
-    font-size: 1.3em;
-    margin-left: 20%;
+    font-size: 1.4em;
     display:flex;
+   flex-flow:column;
+  align-items: center;
     font-weight: bold;
+    margin-top:-5px;
   }
   
   #horaSala {
-      float:right;
+      
       color:white;
       font-family: Roboto;
-      margin-top: -40px;
-      margin-right: 20%;
+    
+      display:flex;
+      flex-flow:column;
+     align-items: center;
+       font-weight: bold;
       font-weight: bold;
       line-height: 1.3;
   }
@@ -322,25 +331,60 @@ select:focus {
             font-size: 1.4em;
           }
 
-
-          input[type=submit]{
-            background-color: #00cccc;
+          input[type="submit"]{
+            color:white;
+            background-color: rgb(0, 205, 205);
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            width: 50%;
+            margin-left:25%;
+            margin-top: 20px;
+            font-size:1.165em;
             outline: none;
-            margin-left:22%;
-            margin-top:5%;
-            box-sizing: content-box;
-          font-family: Roboto;
-          font-size: 1.25em;
-          border: solid 1px #ccc;
-          padding: 10px 10px 9px 10px;
-          width: 50%;
-          border-radius: 50px;
-          background-color: #00cccc;
-          border-color: #007acc;
-          color:white;
-          }
-      
-          input[type=submit]:hover{
-            background-color:#007acc
-          }
-      
+          border:none;
+            }
+
+
+               
+            .select-style {
+              border: none;
+              border-bottom: 2px solid white;
+              width: 55%;
+              border-radius: 3px;
+              overflow: hidden;
+              background: none;
+              font-weight: bold;
+              font-size: 1.125em;
+              margin-top:5px;
+              text-align:center;
+              color:white;
+              display:flex;
+             flex-flow: column;
+            align-items: center;
+            
+                
+             
+            }
+            
+            .select-style select {
+             
+              width: 100%;
+              border: none;
+              font-size: 1.125em;
+            
+              /*box-shadow: none;
+              background: transparent;
+              background-image: none;*/
+              /*-webkit-appearance: none;*/
+            }
+            .select-style option{
+              color:black
+            }
+                  
+.erros{
+    margin-top:15px;
+    color:rgb(109, 108, 108);
+    text-align:center;
+}

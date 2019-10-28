@@ -186,7 +186,7 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
            <?php echo "<h2 id='turma'>$nomeTurma</h2>" ?>
           </div>
           <div id="horaSala">
-            <select name="materias">
+            <select class="select-style" name="materias">
               <option>Escolha a Matéria</option>
               <?php
               $codUsu = 3;
