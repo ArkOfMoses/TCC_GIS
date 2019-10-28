@@ -701,16 +701,16 @@ insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_o
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 1, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (5, 1, 'A');
 
-insert into acesso (cod_tipo_usu, senha, email) values (3, 'batata', 'batata@gmail.com');
-insert into usuario (nome_usu, cod_acesso) values ('Batata', 1);
+insert into acesso (cod_tipo_usu, senha, email) values (3, '$2y$12$tzXy4Rs6RP7lTJwkSJrFg.Mf/Opd0dymNxnyzrY4qQ77svLZZ7Ji6', 'batata@gmail.com');
+insert into usuario (nome_usu, cod_acesso, data_entrada) values ('Batata', 1, '2019-10-25');
 insert into usuario_unidade (cod_unid, cod_usu) values (1, 1);
 
 insert into acesso (cod_tipo_usu, senha, email) values (3, 'potato', 'potato@gmail.com');
 insert into usuario (nome_usu, cod_acesso) values ('Potato', 2);
 insert into usuario_unidade (cod_unid, cod_usu) values (2, 2);
 
-insert into acesso (cod_tipo_usu, senha, email) values (5, '$2y$12$t3oMJGIhcKjPslEoKfmFAetuM1e255HYIsMe1Dp3MFvOadA7xBowi', 'prof1@gmail.com');
-insert into usuario (nome_usu, cod_acesso) values ('Professor 1', 3);
+insert into acesso (cod_tipo_usu, senha, email) values (5, '$2y$12$tzXy4Rs6RP7lTJwkSJrFg.Mf/Opd0dymNxnyzrY4qQ77svLZZ7Ji6', 'prof1@gmail.com');
+insert into usuario (nome_usu, cod_acesso, data_entrada) values ('Professor 1', 3, '2019-10-25');
 insert into usuario_unidade (cod_unid, cod_usu) values (1, 3);
 
 insert into cursos (nome_curso, cod_status_cursos) values ('Informática para Internet', 'A');
