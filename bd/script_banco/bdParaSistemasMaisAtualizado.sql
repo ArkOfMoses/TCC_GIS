@@ -747,6 +747,7 @@ insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (2,
 
 
 
+
 insert into usuario (nome_usu) values ('Moises');
 insert into usuario_unidade (cod_unid, cod_usu) values (1, 4);
 insert into turma_aluno (cod_tur, cod_usu, cod_status) values (1, 4, 'A');
