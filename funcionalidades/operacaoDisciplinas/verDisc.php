@@ -71,10 +71,10 @@ require_once '../../bd/conexao.php';
 
             <main>
             <div class="alunos">
-                <h1></h1>
+            
                 <?php
 
-                $selecionar = ("select nome_disc, disciplina.cod_disc from turma_disciplina inner join disciplina on(turma_disciplina.cod_disc = disciplina.cod_disc) where cod_status_disc = 'A' and cod_status_tur_disc = 'A' and cod_tur = $codTurma;");
+                $selecionar = ("select carga_horaria_disc, nome_disc, disciplina.cod_disc from turma_disciplina inner join disciplina on(turma_disciplina.cod_disc = disciplina.cod_disc) where cod_status_disc = 'A' and cod_status_tur_disc = 'A' and cod_tur = $codTurma;");
                 $comando = $pdo->prepare($selecionar);
                 $comando->execute();
 
@@ -83,16 +83,29 @@ require_once '../../bd/conexao.php';
                 if($numDeLinhas == 0){
                     echo 'As disciplinas ainda não foram cadastradas nesta turma, cadastre elas clicando no botão abaixo!!';
                 }else{
+                    echo "<table>
+                    <caption>Lista de Disciplinas</caption>
+                    <tr>
+                        <th>Nome da Disciplina</th>
+                        <th>Carga Horária</th>
+                        <th colspan='2'>Ações</th>
+                    </tr>";
                     while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
-                        $codTurma = $dedos['cod_disc'];
-                        $nomeTurma = $dedos['nome_disc'];
+                        $codDisc = $dedos['cod_disc'];
+                        $nomeDisc = $dedos['nome_disc'];
+                        $cargHora = $dedos['carga_horaria_disc'];
 
-                       echo  "<a href='verDisc.php?codTurma=$codTurma'>$nomeTurma</a><br>";
+                        echo '<tr>';
+                        echo '<td>'.$nomeDisc.'</td>';
+                        echo '<td>'.$cargHora.'</td>';
+                        echo '<td><a href="#">Editar</a></td><form method="post" action=""><td><input type="submit" value="Excluir" name="Excluir" /></td></form>';
+                        echo '</tr>';
                     }
-                    
+                    echo "</table>";
                      
                     
                 }
+                
                 echo "<a href='cadDisc/cadDisc.php?codTurma=$codTurma' >Adicionar Disciplinas</a>";
                 ?>
                
