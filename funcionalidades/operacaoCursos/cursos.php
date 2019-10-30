@@ -24,12 +24,12 @@ require_once '../../bd/conexao.php';
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssCadastroMaster/style480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssOperacaoCurso/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="../../css/cssCadastroMaster/style768.css">
+              href="../../css/cssOperacaoCurso/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="../../css/cssCadastroMaster/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssCadastroMaster/style1366.css">
+              href="../../css/cssOperacaoCurso/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssOperacaoCurso/style1366.css">
         
     </head>
     <body>

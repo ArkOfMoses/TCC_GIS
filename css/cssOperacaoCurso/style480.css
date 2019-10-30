@@ -1,0 +1,144 @@
+body{
+    background-color: black;
+}
+/**{
+    margin:0;
+    padding:0;
+}
+
+.recebeDados{
+    border:none;
+    display: flex;
+    justify-content: center;
+
+}
+
+body{
+    background-color: #fff
+}
+
+.headerPrimeiroAcesso{
+    background-color: #003366;
+    width: 100%;
+    height: 60px;
+    border-bottom: 10px solid #00CCCC;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+.headerPrimeiroAcesso a img{
+    width: 80px;
+    height: 80px;
+
+}
+
+.table-remove{
+    float: right
+}   
+
+.blank{
+    margin-bottom: 50px;
+}
+.acessoUm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    flex-wrap: wrap;
+
+}
+
+p.vsf{
+    font-size: 16px;
+    color: #666;
+    padding: 10px;
+    text-align: center;
+}
+.perfil-foto{
+    border-radius: 25px;
+    z-index: 1;
+}
+.form{
+    margin-top: 10px;
+    padding:10px;
+
+    text-align: left;
+}
+.acessoUm form h2{
+    font-size: 30px;
+    color: #003366;
+    margin: 5px;
+    text-align: center;}
+
+.acessoUm label{
+    font-size: 14px;
+    color: #666;
+    display: block;
+}
+.acessoUm input{
+    margin-bottom: 10px;
+    height: 30px;
+    width: 280px;
+    border:none;
+    border-bottom: 3px solid #666;
+
+}
+.recebeDados{
+    text-align: left;
+    font-size: 20px;
+   
+}
+/****/
+
+.puto {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+input.buttonNext {
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    font-size: 26px;
+    background: #00CCCC;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+    text-decoration: none;
+    border-radius: 15px;
+}
+
+a.buttonNext {
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    font-size: 26px;
+    background: #00CCCC;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+    text-decoration: none;
+    border-radius: 15px;
+}
+
+
+
+#alteraFoto{
+    z-index: 2;
+    width: 35px;
+    height:35px;
+    position: relative;
+    top: -50px;
+    right: -50px;
+}*/
