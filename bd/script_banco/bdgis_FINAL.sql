@@ -222,7 +222,8 @@ CREATE TABLE `operacao` (
   `cod_operacao` int(11) NOT NULL AUTO_INCREMENT,
   `nome_operacao` varchar(30) DEFAULT NULL,
   `cod_status_operacao` char(1) DEFAULT NULL,
-  `link_operacao` varchar(30) DEFAULT NULL,
+  `link_operacao` varchar(100) DEFAULT NULL,
+  `classeOperacao` varchar(70) DEFAULT NULL,
   PRIMARY KEY (`cod_operacao`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
