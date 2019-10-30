@@ -69,7 +69,7 @@ if($infoPost) {
                                     break;
     
                                     case 'Professor':
-                                        echo "<script type='text/javascript'> window.location.href='perfilProfessor.php';</script>";
+                                        echo "<script type='text/javascript'> window.location.href='primeiroCadastroProf/escolherTurma.php';</script>";
                                     break;
     
                                     case 'Saude':

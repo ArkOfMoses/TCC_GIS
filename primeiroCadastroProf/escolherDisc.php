@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
-    $codUnid = $dados['codUnidadeUsu'];
+    $codUsu = $dados['codUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -32,7 +32,7 @@ if(isset($_SESSION['logado'])){
           $(function(){
               $('.form').submit(function(){
                   $.ajax({
-                      url: 'codEscolherTurma.php',
+                      url: 'codEscolherDisc.php',
                       type: 'POST',
                       data: $('.form').serialize(),
                       success: function(data){
@@ -65,7 +65,7 @@ if(isset($_SESSION['logado'])){
             <a href="escolherTurma.php"><img src="../primeiroCadastroMaster/img/dirImg.png"></a>
             </header>
 
-            <P class="vsf">Escolha os cursos que você leciona
+            <P class="vsf">Escolha as disciplinas que você leciona
             </p>
 
             <?php                      
@@ -77,37 +77,30 @@ if(isset($_SESSION['logado'])){
             ?>
             	<div class='recebeDados'>
                 </div>
+                <form class="form" method="post">
                 <?php
         
                 require_once '../bd/conexao.php';
-                // cursos na unidade
+               	// cursos na unidade
                 
-				$selecionar = ("select nome_curso, cursos.cod_curso from cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_curso) where cod_status_cursos_unid = 'A' and cod_status_cursos = 'A' and cod_unid = $codUnid;");
-                $dadosCurso = $pdo->prepare($selecionar);
-                $dadosCurso->execute();
+				$selecionar = ("select sigla_tur, turma.cod_tur from turma inner join prof_turma on (turma.cod_tur = prof_turma.cod_tur) where cod_status_prof_tur = 'A' and cod_status_tur = 'A' and cod_usu = $codUsu;");
+                $dadosTurma = $pdo->prepare($selecionar);
+                $dadosTurma->execute();
 
+                	while($dedinhos = $dadosTurma->fetch(PDO::FETCH_ASSOC)){
+                		$nomeTurma = $dedinhos['sigla_tur'];
+                		$codTurma = $dedinhos['cod_tur'];
 
+                		echo $nomeTurma;
 
-                if($dadosCurso == NULL){
-                	echo "<p>Fale com seu diretor para adicionar as turmas</p>";
-                	echo "<a href='perfilProfessor.php'>Ir para seu perfil</a>";
+                		$selecionara = ("select nome_disc, disciplina.cod_disc from disciplina inner join turma_disciplina on (disciplina.cod_disc = turma_disciplina.cod_disc) where cod_status_disc = 'A' and cod_status_tur_disc = 'A' and cod_tur = $codTurma;");
+                		$dadosDisc = $pdo->prepare($selecionara);
+                		$dadosDisc->execute();
+                		while ($dedoes = $dadosDisc->fetch(PDO::FETCH_ASSOC)) {
+                			$nomeDisc = $dedoes['nome_disc'];
+                			$codDisc = $dedoes['cod_disc'];
 
-                }else{
-                	echo "<form class='form' method='post'>";
-                	while($dedinhos = $dadosCurso->fetch(PDO::FETCH_ASSOC)){
-                		$nomeCurso = $dedinhos['nome_curso'];
-                		$codCurso = $dedinhos['cod_curso'];
-
-                		echo $nomeCurso;
-
-                		$selecionara = ("select sigla_tur, cod_tur from turma where cod_curso = $codCurso and cod_status_tur = 'A';");
-                		$dadosTurma = $pdo->prepare($selecionara);
-                		$dadosTurma->execute();
-                		while ($dedoes = $dadosTurma->fetch(PDO::FETCH_ASSOC)) {
-                			$nomeTurma = $dedoes['sigla_tur'];
-                			$codTurma = $dedoes['cod_tur'];
-
-                			echo "<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codTurma'/></label>";
+                			echo "<label>$nomeDisc<input type='checkbox' name='opcao[]' value='$codDisc'/></label>";
 
 
 
@@ -115,14 +108,13 @@ if(isset($_SESSION['logado'])){
 
 
                 	}
-                	echo "<input type='submit' value='Enviar'/>
-                		  </form>";
-                }
+                
 
                 ?>
 
                 
-                
+                <input type='submit' value='Enviar'/>
+            </form>
         <div>
     </body>
 </html>

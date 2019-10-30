@@ -274,7 +274,6 @@ CREATE TABLE `prof_turma_disc` (
   `cod_tur` int(11) NOT NULL,
   `cod_usu` int(11) NOT NULL,
   `cod_disc` int(11) NOT NULL,
-  `semestre_ano` int(11) DEFAULT NULL,
   `cod_status_prof_tur_disc` char(1) DEFAULT NULL,
   PRIMARY KEY (`cod_tur`,`cod_usu`,`cod_disc`),
   KEY `cod_disc` (`cod_disc`),
