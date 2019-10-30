@@ -1,14 +1,14 @@
 <?php
-// session_start();
-// if(isset($_SESSION['logado'])){
-//     $dados =  $_SESSION['dadosUsu'];
-//     $img = $dados['fotoUsu'];
-// }else{
-//     unset($_SESSION['dadosUsu']);
-//     unset($_SESSION['logado']);
-//     session_destroy();
-//     header("Location: ../../homeLandingPage.php");
-// }
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+    $img = $dados['fotoUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: ../../homeLandingPage.php");
+}
 
 require_once 'bd/conexao.php';
 ?>
@@ -169,7 +169,7 @@ require_once 'bd/conexao.php';
                     <?php
 
 
-                $codProf = 3;
+                $codProf = $dados['codUsu'];
                 $selecionar = ("select turma.cod_tur, sigla_tur, prof_turma.cod_usu, cod_status_prof_tur,  cursos.cod_curso, nome_curso, cod_status_cursos
                 from cursos inner join turma on (cursos.cod_curso = turma.cod_curso)
                             inner join prof_turma on (turma.cod_tur = prof_turma.cod_tur) where cod_usu = $codProf;");

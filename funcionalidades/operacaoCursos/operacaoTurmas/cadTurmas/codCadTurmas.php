@@ -20,7 +20,7 @@ if($infoPost){
     	$siglaTur = $infoPost["sigla$n"];
     	if(isset($_POST["opcao$n"])){
 			$arrayCheck = $_POST["opcao$n"];
-		}
+
 		
 	    
 		 if($n == ($numDeCoord - 1)){
@@ -81,6 +81,9 @@ if($infoPost){
                 $cadastrado[] = $siglaTur;
                 $cadastrado[] = $arrayCheck;
             }
+        }
+        }else{
+            echo "Escolha um Período!";
         }
       
     }

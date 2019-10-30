@@ -1,11 +1,19 @@
 <?php
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+    $img = $dados['fotoUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: ../../homeLandingPage.php");
+}
 require_once 'bd/conexao.php';
 $codTur = $_REQUEST['codTurma'];
 
-
-$selecionar = ("select turma.cod_tur, sigla_tur, prof_turma.cod_usu, cod_status_prof_tur,  cursos.cod_curso, nome_curso, cod_status_cursos
-from cursos inner join turma on (cursos.cod_curso = turma.cod_curso)
-            inner join prof_turma on (turma.cod_tur = prof_turma.cod_tur) where turma.cod_tur = $codTur;");
+$selecionar = ("select sigla_tur from turma where cod_tur = $codTur");
+//$selecionar = ("select turma.cod_tur, sigla_tur, prof_turma.cod_usu, cod_status_prof_tur,  cursos.cod_curso, nome_curso, cod_status_cursos from cursos inner join turma on (cursos.cod_curso = turma.cod_curso) inner join prof_turma on (turma.cod_tur = prof_turma.cod_tur) where turma.cod_tur = $codTur;");
 $comando = $pdo->prepare($selecionar);
 $comando->execute();
 
@@ -189,7 +197,7 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
             <select class="select-style" name="materias">
               <option>Escolha a Matéria</option>
               <?php
-              $codUsu = 3;
+              $codUsu = $dados['codUsu'];
               $comand = $pdo->prepare("select disciplina.cod_disc, nome_disc from disciplina inner join prof_turma_disc on (disciplina.cod_disc = prof_turma_disc.cod_disc) where cod_usu = $codUsu and cod_status_prof_tur_disc = 'A' and cod_tur = $codTur;");
               $comand->execute();
 

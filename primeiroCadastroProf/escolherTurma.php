@@ -65,7 +65,7 @@ if(isset($_SESSION['logado'])){
             <a href="escolherTurma.php"><img src="../primeiroCadastroMaster/img/dirImg.png"></a>
             </header>
 
-            <P class="vsf">Escolha os cursos que você leciona
+            <P class="vsf">Escolha as turmas dos cursos que você leciona
             </p>
 
             <?php                      
