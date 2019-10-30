@@ -7,7 +7,7 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: ../../homeLandingPage.php");
+    header("Location: homeLandingPage.php");
 }
 require_once 'bd/conexao.php';
 $codTur = $_REQUEST['codTurma'];

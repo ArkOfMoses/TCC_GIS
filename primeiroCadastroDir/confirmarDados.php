@@ -7,10 +7,10 @@ if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
 }else{
-    // unset($_SESSION['dadosUsu']);
-    // unset($_SESSION['logado']);
-    //session_destroy();
-    //header("Location: ../homeLandingPage.php");
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: ../homeLandingPage.php");
 }
 
 
