@@ -175,6 +175,7 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
       </div>
 
       <!-- Início conteúdo principal -->
+      <?php echo "<form class='form' method='post' action=''>" ?>
       <div id="pagina">
         <div id="cabecalho">
           <a href="lista_salas.php">
@@ -185,10 +186,28 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
            <?php echo "<h2 id='turma'>$nomeTurma</h2>" ?>
           </div>
           <div id="horaSala">
-            <div id="hora">
+            <select class="select-style" name="materias">
+              <option>Escolha a Matéria</option>
+              <?php
+              $codUsu = 3;
+              $comand = $pdo->prepare("select disciplina.cod_disc, nome_disc from disciplina inner join prof_turma_disc on (disciplina.cod_disc = prof_turma_disc.cod_disc) where cod_usu = $codUsu and cod_status_prof_tur_disc = 'A' and cod_tur = $codTur;");
+              $comand->execute();
+
+              $numDeLinhas = $comand->rowCount();
+              if ($numDeLinhas >= 1) {
+                  while ($dados = $comand->fetch(PDO::FETCH_ASSOC)) {
+                      $nomeDisc = $dados['nome_disc'];
+                      $codDisc = $dados['cod_disc'];
+                      echo "<option value='$codDisc'>$nomeDisc</option>";
+                  }
+              }
+          
+              ?>
+          </select>
+            <!-- <div id="hora">
               <h2>08:40</h2>
             </div>
-            <div id="sala-atual"><span>Sala 7</span></div>
+            <div id="sala-atual"><span>Sala 7</span></div> -->
           </div>
         </div>
 
@@ -208,25 +227,8 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
                   <div id="verde"> <span id="ausPres">Presente</span> </div>
                 </div>
               </div>
-              <?php echo "<form class='form' method='post' action=''>" ?>
-              <select name="materias">
-              <option>Escolha a Matéria</option>
-              <?php
-              $codUsu = 3;
-              $comand = $pdo->prepare("select disciplina.cod_disc, nome_disc from disciplina inner join prof_turma_disc on (disciplina.cod_disc = prof_turma_disc.cod_disc) where cod_usu = $codUsu and cod_status_prof_tur_disc = 'A' and cod_tur = $codTur;");
-              $comand->execute();
-
-              $numDeLinhas = $comand->rowCount();
-              if ($numDeLinhas >= 1) {
-                  while ($dados = $comand->fetch(PDO::FETCH_ASSOC)) {
-                      $nomeDisc = $dados['nome_disc'];
-                      $codDisc = $dados['cod_disc'];
-                      echo "<option value='$codDisc'>$nomeDisc</option>";
-                  }
-              }
-          
-              ?>
-          </select>
+              
+              
 
               <?php
                $selecionar = ("select usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur;");

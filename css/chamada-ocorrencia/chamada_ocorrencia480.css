@@ -80,18 +80,22 @@ hr {
  #sala{
   color:white;
   font-family: Roboto;
-  font-size: 1.2em;
-  margin-left: 17%;
-  margin-top:9%;
+  font-size: 1.4em;
+  display:flex;
+ flex-flow:column;
+align-items: center;
   font-weight: bold;
 }
 
 #horaSala {
-    float:right;
+    
     color:white;
     font-family: Roboto;
-    margin-top: -70px;
-    margin-right: 21%;
+  
+    display:flex;
+    flex-flow:column;
+   align-items: center;
+     font-weight: bold;
     font-weight: bold;
     line-height: 1.3;
 }
@@ -321,24 +325,61 @@ select:focus {
     }
 
 
-  input[type=submit]{
-      background-color: #00cccc;
+    input[type="submit"]{
+      color:white;
+      background-color: rgb(0, 205, 205);
+      padding: 10px;
+      text-decoration: none;
+      border-radius: 10px;
+      text-align: center;
+      width: 50%;
+      margin-left:25%;
+      margin-top: 20px;
+      font-size:1.165em;
       outline: none;
-      margin-left:22%;
-      margin-top:5%;
-      box-sizing: content-box;
-    font-family: Roboto;
-    font-size: 1.25em;
-    border: solid 1px #ccc;
-    padding: 10px 10px 9px 10px;
-    width: 50%;
-    border-radius: 50px;
-    background-color: #00cccc;
-    border-color: #007acc;
-    color:white;
-    }
+    border:none;
+      }
 
-    input[type=submit]:hover{
-      background-color:#007acc
-    }
+               
+.select-style {
+  border: none;
+  border-bottom: 2px solid white;
+  width: 55%;
+  border-radius: 3px;
+  overflow: hidden;
+  background: none;
+  font-weight: bold;
+  font-size: 1.125em;
+  margin-top:15px;
+  text-align:center;
+  color:white;
+  display:flex;
+ flex-flow: column;
+align-items: center;
 
+    
+ 
+}
+
+.select-style select {
+ 
+  width: 100%;
+  border: none;
+  font-size: 1.125em;
+
+  /*box-shadow: none;
+  background: transparent;
+  background-image: none;*/
+  /*-webkit-appearance: none;*/
+}
+.select-style option{
+  color:black
+}
+      
+
+    
+.erros{
+  margin-top:15px;
+  color:rgb(109, 108, 108);
+  text-align:center;
+}
