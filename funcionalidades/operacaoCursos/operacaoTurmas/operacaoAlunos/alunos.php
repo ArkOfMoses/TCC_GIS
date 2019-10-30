@@ -7,11 +7,11 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: ../../../homeLandingPage.php");
+    header("Location: ../../../../homeLandingPage.php");
 }
 
-$codCurso = $_REQUEST['codCurso'];
-require_once '../../../bd/conexao.php';
+$codTurma = $_REQUEST['codTurma'];
+require_once '../../../../bd/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,17 +20,17 @@ require_once '../../../bd/conexao.php';
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Primeiro cadastro</title>    
-        <link rel="stylesheet" href="../../../css/default.css">    
+        <link rel="stylesheet" href="../../../../css/default.css">    
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../css/cssCadastroMaster/style480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../../css/cssCadastroMaster/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="../../../css/cssCadastroMaster/style768.css">
+              href="../../../../css/cssCadastroMaster/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="../../../css/cssCadastroMaster/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../css/cssCadastroMaster/style1366.css">
+              href="../../../../css/cssCadastroMaster/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../../css/cssCadastroMaster/style1366.css">
         
     </head>
     <body>
@@ -71,23 +71,23 @@ require_once '../../../bd/conexao.php';
 
             <main>
             <div class="alunos">
-                <h1>Lista de Turmas</h1>
+                <h1>Lista de Alunos</h1>
                 <?php
 
-                $selecionar = ("select sigla_tur, cod_tur from turma where cod_curso = $codCurso and cod_status_tur = 'A';");
+                $selecionar = ("");
                 $comando = $pdo->prepare($selecionar);
                 $comando->execute();
 
                 $numDeLinhas = $comando->rowCount();
 
                 if($numDeLinhas == 0){
-                    echo 'Você ainda não cadastrou as turmas, cadastre-as no botão abaixo';
+                    echo 'Você ainda não cadastrou alunos nesta turma, cadastre-os no botão abaixo';
                 }else{
                     while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
                         $codTurma = $dedos['cod_tur'];
                         $nomeTurma = $dedos['sigla_tur'];
 
-                       echo  "<a href='operacaoAlunos/alunos.php?codTurma=$codTurma'>$nomeTurma</a><br>";
+                       echo  "<a href='#'>$nomeTurma</a><br>";
                     }
                     
                     
@@ -107,7 +107,7 @@ require_once '../../../bd/conexao.php';
                 }*/
 
 
-                echo "<a href='cadTurmas/cadTurmas.php?codCurso=$codCurso' >Adicionar Turmas</a>";
+                echo "<a href='#' >Adicionar Alunos</a>";
 
                 ?>
                 
