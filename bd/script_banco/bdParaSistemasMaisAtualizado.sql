@@ -683,6 +683,8 @@ UNLOCK TABLES;
 
 -- Dump completed on 2019-08-20  7:48:19
 
+
+
 insert into instituicao (nome_fantasia_inst, razao_social_inst, CNPJ_inst) values ('Fieb', 'Funda&ccedil;&atilde;o Instituto de Educa&ccedil;&atilde;o de Barueri', 65700239000110);
 insert into unidade (nome_unid, cep_unid, compl_unid, num_unid, cod_inst, cod_status_unid) values ('Engenho', 06515220, 'CANSEI', 55, 1, 'A');
 insert into unidade (nome_unid, cep_unid, compl_unid, num_unid, cod_inst, cod_status_unid) values ('Belval', 06515220, 'CANSADO', 54, 1, 'A');
