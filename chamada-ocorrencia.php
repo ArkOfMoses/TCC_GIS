@@ -76,9 +76,16 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
               });
           });
       </script>
+      <script type="text/javascript">
+        window.history.forward();
+        function noBack()
+        {
+            window.history.forward();
+        }
+</script>
 </head>
 
-<body>
+<body onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
   <!-- Barra de navegação -->
   <div class="content">
 

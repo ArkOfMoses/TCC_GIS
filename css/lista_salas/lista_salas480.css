@@ -148,8 +148,8 @@ input::-webkit-input-placeholder {
 }
 
 #circulo-box{
-	width: 70px;
-	height:70px;
+	width: 75px;
+	height:75px;
 	background-color: #003366;
 	border-radius: 50%;
 	color:white;
@@ -161,8 +161,9 @@ input::-webkit-input-placeholder {
 }
 
 h2{
-	margin-top:9px;
-	font-size: 1.3em;
+	margin-top:25px;
+  font-size: 1.125em;
+  margin-left:4px;
 }
 
 #links{

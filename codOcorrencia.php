@@ -85,6 +85,7 @@ $select->execute();
               });
           });
       </script>
+     
 </head>
 <body>
 <!-- Barra de navegação -->
