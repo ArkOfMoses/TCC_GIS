@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['logado'])){
+  unset($_SESSION['dadosUsu']);
+  unset($_SESSION['logado']);
+  session_destroy();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>

@@ -1,7 +1,17 @@
 <?php
+require_once 'bd/conexao.php';
+require_once 'primeiroCadastroMaster/funcoes/funcoes.php';
 session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
+    $nomeTipoUsu = $dados['nomeTipoUsu'];
+
+    $codUsu = $dados['codUsu'];
+    $entradaUsu = get_id($pdo, "data_entrada", "usuario", "cod_usu", $codUsu);
+
+    if($entradaUsu !== null){
+        header("Location: perfil$nomeTipoUsu.php");
+    }
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -9,6 +19,7 @@ if(isset($_SESSION['logado'])){
     header("Location: homeLandingPage.php");
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
