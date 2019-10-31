@@ -1,3 +1,21 @@
+<?php
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+    $img = $dados['fotoUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: ../../../../homeLandingPage.php");
+}
+
+if(isset($_REQUEST['codAlun'])){
+  $codAlun = filter_var($_REQUEST['codAlun'], FILTER_SANITIZE_NUMBER_INT);
+}
+
+require_once '../../../../bd/conexao.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -13,21 +31,21 @@
       <meta name=author content='G4 INI3B GIS '>
 
       <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-      <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon" href="../../../../imagens/favicon.ico" type="image/x-icon">
 
       <!-- CSS PADRÃO -->
-      <link href="css/default.css" rel=stylesheet>
+      <link href="../../../../css/default.css" rel=stylesheet>
 
       <!-- Telas Responsivas -->
-      <link rel=stylesheet media="screen and (max-width:480px)" href="css/perfilAluno/style480.css">
-      <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/perfilAluno/style768.css">
-      <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/perfilAluno/style1024.css">
-      <link rel=stylesheet media="screen and (min-width:1025px)" href="css/perfilAluno/style1366.css">
+      <link rel=stylesheet media="screen and (max-width:480px)" href="../../../../css/perfilAluno/style480.css">
+      <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="../../../../css/perfilAluno/style768.css">
+      <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="../../../../css/perfilAluno/style1024.css">
+      <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../../css/perfilAluno/style1366.css">
 
       <!-- Script -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="js/script.js"></script>
-
+      <script src="../../../../js/script.js"></script>
+      <script src="../../../../js/jquery.mask.min.js"></script>
       <!-- Icon Font -->
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
 
@@ -116,11 +134,50 @@
 
         <main>
 
+          <?php
+            //solução meio porca mas funfa... cê que sabe
+          if(isset($_REQUEST['codAlun'])){ ?>
           <div class="banner">
-            <div class="profile-photo" style="/*background-image: url()!important;*/"></div>
+            <div class="profile-photo" style="background-image: url(../../../../imagens/pessoa.png)!important; background-size: cover; background-position: center;"></div>
 
-            <h2>Nome do Aluno</h2>
-            <h3>INI3B</h3>
+            <?php
+              $selectInfo = $pdo->prepare("select nome_usu, cpf_usu, data_nasc_usu, data_entrada, turma.cod_tur, sigla_tur, turno_tur, nome_curso from usuario 
+              inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu)
+              inner join turma on (turma_aluno.cod_tur = turma.cod_tur)
+              inner join cursos on (turma.cod_curso = cursos.cod_curso) where usuario.cod_usu = $codAlun and cod_status_usu = 'A' and cod_status = 'A' and cod_status_tur = 'A' and cod_status_cursos = 'A';");
+              $selectInfo->execute();
+              $info = $selectInfo->fetch(PDO::FETCH_ASSOC);
+              
+              $nomeAlun = $info['nome_usu'];
+              $cpfAlun = $info['cpf_usu'];
+
+              $dataNascProv = $info['data_nasc_usu'];
+              $dataNascFormat = date_create_from_format('Y-m-d', "$dataNascProv");
+              $dataNasc = date_format($dataNascFormat, 'd/m/Y');
+
+              $dataEntradaProv = $info['data_entrada'];
+              $dataEntradaFormat = date_create_from_format('Y-m-d', "$dataEntradaProv");
+              $dataEntrada = date_format($dataEntradaFormat, 'd/m/Y');
+
+              
+              $siglaTur = $info['sigla_tur'];
+              $turno = $info['turno_tur'];
+              $curso = $info['nome_curso'];
+
+              switch($turno){
+                case 'M': $turno = 'Manhã'; 
+                  break;
+                case 'T': $turno = 'Tarde'; 
+                  break;
+                case 'N': $turno = 'Noite'; 
+                  break;
+              }
+       
+              echo "
+                <h2>$nomeAlun</h2>
+                <h3>$siglaTur</h3>
+              ";
+            ?>
           </div>
 
           <div class="tabs">
@@ -133,11 +190,24 @@
 
               <div id="scroll">
                   <form class="info-aluno">
-                    <p><label>Nome</label><input type="text" name="" value="Fulano Silveira da Silva"></p>
-                    <p><label>Série</label><input type="text" name="" value="3º ano B"></p>
-                    <p><label>Curso</label><input type="text" name="" value="INI"></p>
-                    <p><label>Nome do Responsável</label><input type="text" name="" value="Ciclana Silveira da Silva"></p>
-                    <p><label>Email</label><input type="text" name="" value="fulanx@gmail.com"></p>
+                    <?php
+                    
+                    echo "
+                      <p><label>Nome</label><input type='text' value='$nomeAlun' disabled></p>
+                      <p><label>Curso</label><input type='text' value='$curso' disabled></p>
+                      <p><label>Turma</label><input type='text' value='$siglaTur' disabled></p>
+                      <p><label>Turno</label><input type='text' value='$turno' disabled></p>
+                      <p><label>CPF</label><input id='cpfAlun' type='text' value='$cpfAlun' disabled></p>
+                      <p><label>Data de Nascimento</label><input class='dataAlun' type='text' value='$dataNasc' disabled></p>
+                      <p><label>Data de Entrada</label><input class='dataAlun' type='text' value='$dataEntrada' disabled></p>
+                    ";
+
+                      ?>
+                    <!-- <p><label>Nome</label><input type="text" name="" value="Fulano Silveira da Silva" disabled></p>
+                    <p><label>Série</label><input type="text" name="" value="3º ano B" disabled></p>
+                    <p><label>Curso</label><input type="text" name="" value="INI" disabled></p>
+                    <p><label>Nome do Responsável</label><input type="text" name="" value="Ciclana Silveira da Silva" disabled></p>
+                    <p><label>Email</label><input type="text" name="" value="fulanx@gmail.com" disabled></p> -->
                   </form>
                </div>
 
@@ -150,7 +220,12 @@
               <input id="tab2-2" name="tabs-two" type="radio">
 
               <div id="conteudotab2">
+                <!--Aqui a gente puxa as ocorrências de cada aluno-->
                 <div class="item-ocorre">
+                  <?php
+                    $selectOcorr = $pdo->prepare("select data_hora_ocorr, desc_ocorr from turma_aluno_nota_disc_ocorr where cod_tur = ");
+                  
+                  ?>
                   <h3>10/10/2010</h3><hr>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Aenean euismod bibendum laoreet. Proin gravida dolor sit amet
@@ -174,6 +249,12 @@
             </div>
           </div>
 
+          <?php
+          }else{
+            echo "<div><h2>Selecione um aluno!</h2></div>";
+          }
+          ?>
+
         </main>
 
         <footer>
@@ -181,7 +262,11 @@
         </footer>
 
     </div>
-
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $("#cpfAlun").mask("000.000.000-00");
+      })        
+    </script>  
   </body>
 
 </html>

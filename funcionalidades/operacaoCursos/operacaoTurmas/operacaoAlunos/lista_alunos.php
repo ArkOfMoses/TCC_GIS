@@ -1,3 +1,17 @@
+<?php
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+    $img = $dados['fotoUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: homeLandingPage.php");
+}
+
+require_once 'bd/conexao.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -136,7 +150,7 @@
                 <!-- Início conteúdo principal -->
                 <div id="pagina">
                     <div id="cabecalho">
-                        <a href="lista_salas.html">
+                        <a href="lista_salas.php">
                             <img id="seta" src="img/voltar.png">
                         </a>
                         <div id="sala">

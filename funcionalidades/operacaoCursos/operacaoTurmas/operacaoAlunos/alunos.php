@@ -10,7 +10,9 @@ if(isset($_SESSION['logado'])){
     header("Location: ../../../../homeLandingPage.php");
 }
 
-$codTurma = $_REQUEST['codTurma'];
+if(isset($_REQUEST['codTurma'])){
+    $codTurma = filter_var($_REQUEST['codTurma'], FILTER_SANITIZE_NUMBER_INT);
+  }
 require_once '../../../../bd/conexao.php';
 ?>
 
@@ -67,32 +69,30 @@ require_once '../../../../bd/conexao.php';
             <div class="alunos">
                 <h1>Lista de Alunos</h1>
                 <?php
+                if($_REQUEST['codTurma']){
 
-                $selecionar = ("select nome_usu, usuario.cod_usu from turma_aluno inner join usuario on(turma_aluno.cod_usu = usuario.cod_usu) where cod_status = 'A' and cod_status_usu = 'A' and cod_tur = $codTurma ORDER BY nome_usu ASC;");
-                $comando = $pdo->prepare($selecionar);
-                $comando->execute();
+                    $selecionar = ("select nome_usu, usuario.cod_usu from turma_aluno inner join usuario on(turma_aluno.cod_usu = usuario.cod_usu) where cod_status = 'A' and cod_status_usu = 'A' and cod_tur = $codTurma ORDER BY nome_usu ASC;");
+                    $comando = $pdo->prepare($selecionar);
+                    $comando->execute();
 
-                $numDeLinhas = $comando->rowCount();
+                    $numDeLinhas = $comando->rowCount();
 
-                if($numDeLinhas == 0){
-                    echo 'Você ainda não cadastrou alunos nesta turma, cadastre-os no botão abaixo';
-                }else{
-                    $i = 1;
-                    while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
-                        $nomeUsu = $dedos['nome_usu'];
-                        $codUsuAluno = $dedos['cod_usu'];
-                        
-                       echo  "<a href='#'>$i$nomeUsu</a><br>";
-                       $i++;
+                    if($numDeLinhas == 0){
+                        echo '<h2>Você ainda não cadastrou alunos nesta turma, cadastre-os no botão abaixo</h2>';
+                    }else{
+                        $i = 1;
+                        while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
+                            $nomeUsu = $dedos['nome_usu'];
+                            $codUsuAluno = $dedos['cod_usu'];
+                            
+                        echo  "<a href='perfilAluno.php?codAlun=$codUsuAluno'>$i - $nomeUsu</a><br>";
+                        $i++;
+                        }
                     }
-                    
-                    
-                    
+                    echo "<a href='cadAlunos/cadAlunos.php?codTurma=$codTurma'>Adicionar Alunos</a>";
+                }else{
+                    echo '<h2>você não selecionou uma turma para ver os alunos!';
                 }
-
-
-                echo "<a href='cadAlunos/cadAlunos.php?codTurma=$codTurma'>Adicionar Alunos</a>";
-
                 ?>
                 
             </div>
