@@ -33,9 +33,8 @@ if($infoPost){
   $comando->execute();
   $numeroDeLinhas = $comando->rowCount();
   if ($numeroDeLinhas === 0) {
-      //var_dump($comando);
       echo "<p>Usuário Inexistente!</p>";
-
+var_dump($comando);
   }else if($numeroDeLinhas >= 1){
       while ($dados = $comando->fetchAll(PDO::FETCH_ASSOC)) {
         $dedos = $dados;

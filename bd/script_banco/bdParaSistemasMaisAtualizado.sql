@@ -462,17 +462,19 @@ DROP TABLE IF EXISTS `turma_aluno_disc_falta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `turma_aluno_disc_falta` (
+  `cod_falta` int(11) auto_increment NOT NULL,
   `cod_usu` int(11) NOT NULL,
   `cod_tur` int(11) NOT NULL,
   `cod_turma_disc` int(11) NOT NULL,
   `data_falta` date NOT NULL,
-  PRIMARY KEY (`cod_usu`,`cod_tur`,`cod_turma_disc`,`data_falta`),
+  PRIMARY KEY (`cod_falta`),
   KEY `cod_turma_disc` (`cod_turma_disc`),
   KEY `turma_aluno_disc_falta_ibfk_1` (`cod_tur`,`cod_usu`),
   CONSTRAINT `turma_aluno_disc_falta_ibfk_1` FOREIGN KEY (`cod_tur`, `cod_usu`) REFERENCES `turma_aluno` (`cod_tur`, `cod_usu`),
   CONSTRAINT `turma_aluno_disc_falta_ibfk_2` FOREIGN KEY (`cod_turma_disc`) REFERENCES `turma_disciplina` (`cod_turma_disc`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Dumping data for table `turma_aluno_disc_falta`

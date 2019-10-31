@@ -48,24 +48,6 @@ $select->execute();
 
   <!-- Icon Font -->
   <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
-      <script>
-          $(function(){
-              $('.form').submit(function(){
-                  $.ajax({
-                      <?php echo "url: 'codChamada.php?codTurma=$codTur',"?>
-                      type: 'POST',
-                      data: $('.form').serialize(),
-                      success: function(data){
-                          if(data != ''){
-                              $('.erros').html(data);
-                          }
-                      }
-                  });
-                  return false;
-              });
-          });
-      </script>
-</head>
 
 	<script src='js/jquery-3.3.1.min.js'></script>
       <script>
@@ -194,7 +176,7 @@ $select->execute();
 <div id="pagina">
 <div id="ocorrencia">
 <div id="cabecalho">
-<a href="chamada-ocorrencia.php">
+<?php echo "<a href='chamada-ocorrencia.php?codTurma=$codTur'>"; ?>
             <img id="seta" src="imagens/voltar.png">
           </a>
           <div id="sala">
