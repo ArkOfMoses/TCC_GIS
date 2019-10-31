@@ -76,6 +76,7 @@
      
       max-width:1280px;
       overflow:hidden;
+      
   }
  
   span{
@@ -147,7 +148,7 @@
   
   .select, .nota{
       width: 70px;
-      top:-35px;
+      top:-41px;
       position: relative;
   }
   .select{
@@ -180,6 +181,7 @@
 
   .Selecionado {
     background-color : #0cc;
+    
   }
 
   .NotSelecionado {
@@ -192,9 +194,18 @@
 .buttonEnviar{
     position:relative;
     top: -40px;
+    margin: 5px;
+    height:30px;
+    width: 100px;
+    background-color: #006699;
+    border: #006699 2px solid;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: 700
 }
 
 #addTable, .table-remove{
+    
     
 
 }

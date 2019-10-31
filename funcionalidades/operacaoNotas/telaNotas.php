@@ -731,11 +731,12 @@ if (isset($mudarCountUsu)) {
                                 clone.find('.select').remove();
                                 select = $('#select');
                                 select.clone().attr('name', 'tipoAval_' + incrementTabela).appendTo(clone);
-
+                                
 
                                 for (var i = 0; i < countUsu; i++) {
                                     var attr = 'avaliacao_' + i;
-                                    nota.clone().attr('name', attr + '_' + incrementTabela).appendTo(clone);
+                                    nota.clone().attr('name', attr + '_' + incrementTabela).removeAttr('id').attr('value',0).appendTo(clone);
+                                    
                                 }
 
                                 incrementTabela++;
