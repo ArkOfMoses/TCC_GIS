@@ -1,9 +1,8 @@
 <?php
 
-function get_inst($pdo){
+function get_inst($pdo, $key){
     $inst = array();
 
-    $key = get_id($pdo, 'cod_inst', 'instituicao');
         $selecionar = ("select * from instituicao where cod_inst = $key");
         $comando = $pdo->prepare($selecionar);
         $comando->execute();
@@ -23,9 +22,8 @@ function get_inst($pdo){
         return $inst;
 }
 
-function get_unid($pdo){
+function get_unid($pdo, $key){
     $unid = array();
-    $key = get_id($pdo, 'cod_inst', 'instituicao');
         $selecionar = ("select * from unidade where cod_inst = $key");
         $comando = $pdo->prepare($selecionar);
         $comando->execute();
@@ -34,6 +32,9 @@ function get_unid($pdo){
             $codUnid = $dados['cod_unid'];
             $nomeUnid = $dados['nome_unid'];
             $cepUnid = $dados['cep_unid'];
+            $ruaUnid = $dados['rua_unid'];
+            $bairroUnid = $dados['bairro_unid'];
+            $cidadeUnid = $dados['cidade_unid'];
             $complUnid = $dados['compl_unid'];
             $numUnid = $dados['num_unid'];
             $codInst = $dados['cod_inst'];
@@ -42,6 +43,9 @@ function get_unid($pdo){
                 'codUnid' => $codUnid,
                 'nomeUnid' => $nomeUnid,
                 'cepUnid' => $cepUnid,
+                'ruaUnid' => $ruaUnid,
+                'bairroUnid' => $bairroUnid,
+                'cidadeUnid' => $cidadeUnid,
                 'complUnid' => $complUnid,
                 'numUnid' => $numUnid,
                 'codInst' => $codInst,
@@ -52,16 +56,16 @@ function get_unid($pdo){
         return $unid;
 }
 
-function adicionar_unid($nomeUnid, $cepUnid, $complUnid, $numUnid, $codInst, $codStatusUnid, $pdo){
+function adicionar_unid($nomeUnid, $cepUnid, $ruaUnid, $bairroUnid, $cidadeUnid, $complUnid, $numUnid, $codInst, $codStatusUnid, $pdo){
     if($complUnid === NULL){
-        $inserir_unid = $pdo->prepare("insert into unidade (nome_unid, cep_unid, compl_unid, num_unid, cod_inst, cod_status_unid) values ('$nomeUnid', '$cepUnid', null, '$numUnid', '$codInst', '$codStatusUnid');");
+        $inserir_unid = $pdo->prepare("insert into unidade (nome_unid, cep_unid, rua_unid, bairro_unid, cidade_unid, compl_unid, num_unid, cod_inst, cod_status_unid) values ('$nomeUnid', '$cepUnid', '$ruaUnid', '$bairroUnid', '$cidadeUnid', null, '$numUnid', '$codInst', '$codStatusUnid');");
         if($inserir_unid->execute()){
             return true;
         }else{
             return false;
         }
     }else{
-        $inserir_unid = $pdo->prepare("insert into unidade (nome_unid, cep_unid, compl_unid, num_unid, cod_inst, cod_status_unid) values ('$nomeUnid', '$cepUnid', '$complUnid', '$numUnid', '$codInst', '$codStatusUnid');");
+        $inserir_unid = $pdo->prepare("insert into unidade (nome_unid, cep_unid, rua_unid, bairro_unid, cidade_unid, compl_unid, num_unid, cod_inst, cod_status_unid) values ('$nomeUnid', '$cepUnid', '$ruaUnid', '$bairroUnid', '$cidadeUnid', '$complUnid', '$numUnid', '$codInst', '$codStatusUnid');");
         if($inserir_unid->execute()){
             return true;
         }else{
@@ -138,9 +142,9 @@ function get_id($pdo, $chave, $table, $key = null, $param = null){
     return $id;
 }
 
-function get_usu_unid($pdo){
+function get_usu_unid($pdo, $codInst){
 
-    $selecionar = ("select * from usuario_unidade");
+    $selecionar = ("select cod_unid from usuario_unidade inner join unidade on (usuario_unidade.cod_unid = unidade.cod_unid) where unidade.cod_inst = $codInst");
     $comando = $pdo->prepare($selecionar);
     $comando->execute();
     $numeroDeLinhas = $comando->rowCount();

@@ -70,15 +70,25 @@ if(isset($_SESSION['logado'])){
                     <p>Cadastre as unidades de sua instituição:</p>
                     <p class="vsf">Os campos que estiverem com * são de preenchimento obrigatório:</p>
                     <form class='form' method='post' action='envia.php'>
-                        
-                        
 
                         <label id="nome_label">*Nome da Unidade: </label>
                         <input class='unid' id='IdnomeUnid0' name='unid0' type='text' />
 
+                        <!-- MENSAGEM DE ERRO DO CEP -->
+                        <p id="getCEP0" style="color:red;"></p>
+
+
                         <label id="cep_label">*CEP da Unidade: </label>
                         <input class='unid' id='IdcepUnid0' name='cepUnid0' type='text' />
-                        <p id="getCEP0"></p>
+
+                        <label id="rua_label">*Rua da Unidade: </label>
+                        <input class='unid' id='ruaUnid0' name='ruaUnid0' type='text' />
+
+                        <label id="bairro_label">*Bairro da Unidade: </label>
+                        <input class='unid' id='bairroUnid0' name='bairroUnid0' type='text' />
+
+                        <label id="cidade_label">*Cidade da Unidade: </label>
+                        <input class='unid' id='cidadeUnid0' name='cidadeUnid0' type='text' />
 
                         <label id="num_label">*Número da Unidade: </label>
                         <input class='unid' id='IdNumUnid0' name='numUnid0' type='number' />
@@ -124,17 +134,30 @@ if(isset($_SESSION['logado'])){
                         //Valida o formato do CEP.
                         if(validacep.test(cep)) {
 
+                            $("#ruaUnid0").val("...");
+                            $("#bairroUnid0").val("...");
+                            $("#cidadeUnid0").val("...");
+
+
                             //Consulta o webservice viacep.com.br/
                             $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
                                 if (!("erro" in dados)) {
                                     //Atualiza os campos com os valores da consulta. 
                                     $("#getCEP0").text('');
+
+                                    $("#ruaUnid0").val(dados.logradouro);
+                                    $("#bairroUnid0").val(dados.bairro);
+                                    $("#cidadeUnid0").val(dados.localidade);
+
                                     $("#submitUnid").attr("type", "submit").removeAttr("onclick");
                                     $('.recebeDados').text("");
                                 } //end if.
                                 else {
                                     //CEP pesquisado não foi encontrado.
+                                    $("#ruaUnid0").val("");
+                                    $("#bairroUnid0").val("");
+                                    $("#cidadeUnid0").val("");
                                     $("#submitUnid").attr("type", "button").attr("onclick", "addmsg()")
                                     $("#getCEP0").text("CEP não encontrado.");
                                 }
@@ -154,12 +177,23 @@ if(isset($_SESSION['logado'])){
             $('#IdnomeUnid0').clone().appendTo('#rightDiv').attr("name","unid"+ increment).attr("id", "IdnomeUnid"+increment);
             document.getElementById('IdnomeUnid'+increment).value = '';
 
+            $('#getCEP0').clone().appendTo('#rightDiv').attr("id", "getCEP"+increment).text("");
 
             $('#cep_label').clone().appendTo('#rightDiv');
             $('#IdcepUnid0').clone().appendTo('#rightDiv').attr("name",'cepUnid'+ increment).attr("id", "IdcepUnid"+increment);
-            $('#getCEP0').clone().appendTo('#rightDiv').attr("id", "getCEP"+increment).text("");
             document.getElementById('IdcepUnid'+increment).value = '';
 
+            $('#rua_label').clone().appendTo('#rightDiv');
+            $('#ruaUnid0').clone().appendTo('#rightDiv').attr("name",'ruaUnid'+ increment).attr("id", "ruaUnid"+increment);
+            document.getElementById('ruaUnid'+increment).value = '';
+
+            $('#bairro_label').clone().appendTo('#rightDiv');
+            $('#bairroUnid0').clone().appendTo('#rightDiv').attr("name",'bairroUnid'+ increment).attr("id", "bairroUnid"+increment);
+            document.getElementById('bairroUnid'+increment).value = '';
+
+            $('#cidade_label').clone().appendTo('#rightDiv');
+            $('#cidadeUnid0').clone().appendTo('#rightDiv').attr("name",'cidadeUnid'+ increment).attr("id", "cidadeUnid"+increment);
+            document.getElementById('cidadeUnid'+increment).value = '';            
 
             $('#num_label').clone().appendTo('#rightDiv');
             $('#IdNumUnid0').clone().appendTo('#rightDiv').removeAttr('id').attr("name",'numUnid'+ increment).attr("id", "IdNumUnid"+increment);
@@ -186,7 +220,13 @@ if(isset($_SESSION['logado'])){
             $("#rightDiv > input:last").remove();
             $("#rightDiv > input:last").remove();
             $("#rightDiv > input:last").remove();
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > input:last").remove();
 
+            $("#rightDiv > label:last").remove();
+            $("#rightDiv > label:last").remove();
+            $("#rightDiv > label:last").remove();
             $("#rightDiv > label:last").remove();
             $("#rightDiv > label:last").remove();
             $("#rightDiv > label:last").remove();
@@ -194,6 +234,10 @@ if(isset($_SESSION['logado'])){
             
             $("#rightDiv > div:last").remove();
             increment--;
+            if(increment < 0){
+                increment = 0;
+            }
+            
             $('#hidden').attr("value", increment);
             
             $("#getCEP"+increment).remove();
@@ -216,17 +260,29 @@ if(isset($_SESSION['logado'])){
                 //Valida o formato do CEP.
                 if(validacep.test(cep)) {
 
+                    $("#ruaUnid"+n).val("...");
+                    $("#bairroUnid"+n).val("...");
+                    $("#cidadeUnid"+n).val("...");
+
                     //Consulta o webservice viacep.com.br/
                     $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
                         if(!("erro" in dados)){
                             //Atualiza os campos com os valores da consulta.
                             $("#getCEP"+n).text("");
+
+                            $("#ruaUnid"+n).val(dados.logradouro);
+                            $("#bairroUnid"+n).val(dados.bairro);
+                            $("#cidadeUnid"+n).val(dados.localidade);
+
                             $("#submitUnid").attr("type", "submit").removeAttr("onclick");
                             $('.recebeDados').text("");
 
                         }else{
                             //CEP pesquisado não foi encontrado.
+                            $("#ruaUnid"+n).val("");
+                            $("#bairroUnid"+n).val("");
+                            $("#cidadeUnid"+n).val("");
                             $("#submitUnid").attr("type", "button").attr("onclick", "addmsg()");
                             $("#getCEP"+n).text("CEP não encontrado.");
                         }

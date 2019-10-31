@@ -3,6 +3,7 @@ session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
+    $codInst = $dados['codInstituicao']; 
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -98,9 +99,9 @@ if(isset($_SESSION['logado'])){
                 require_once '../funcoes/funcoes.php';
                 require_once '../../bd/conexao.php';
 
-                $unid = get_unid($pdo);
+                $unid = get_unid($pdo, $codInst);
                 if($unid){
-                     if (get_usu_unid($pdo)) {
+                     if (get_usu_unid($pdo, $codInst)) {
                    
                     for ($i = 0; $i < count($unid); $i++) {
                         $xis = $unid[$i];

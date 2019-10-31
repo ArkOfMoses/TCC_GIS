@@ -3,8 +3,8 @@ session_start();
 require_once '../funcoes/funcoes.php';
 require_once '../../bd/conexao.php';
 require_once '../../classes/Bcrypt.php';
-
-$unid1 = get_unid($pdo);
+$codInst = $_SESSION['dadosUsu']['codInstituicao'];
+$unid1 = get_unid($pdo, $codInst);
 
 $arrayPost = array();
 for($i = 0; $i < count($unid1); $i++){

@@ -3,6 +3,7 @@ session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
+    $codInst = $dados['codInstituicao']; 
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -77,7 +78,7 @@ if(isset($_SESSION['logado'])){
                             require_once '../bd/conexao.php';
 
 
-                            $inst = get_inst($pdo);
+                            $inst = get_inst($pdo, $codInst);
 
 
                         echo '<h2>Instituição:</h2>';
@@ -85,7 +86,7 @@ if(isset($_SESSION['logado'])){
                         echo "<label>Razão Social: </label><p>".$inst[0]['razaoSocial']."</p>";
                         echo "<label>CNPJ: </label><p id='cnpj'>".$inst[0]['CNPJ']."</p>";
 
-                            $unid = get_unid($pdo);
+                            $unid = get_unid($pdo, $codInst);
 
                             $selecionar = ("select usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, url_foto_usu, data_entrada, data_saida, cod_status_usu, acesso.cod_acesso, tipo_usuario.cod_tipo_usu, nome_tipo_usu, senha, email
 From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
@@ -100,12 +101,8 @@ From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
                                   echo "<p>Usuário Inexistente!</p>";
 
                               }else if($numeroDeLinhas >= 1){
-                                while($dados = $comando->fetchAll(PDO::FETCH_ASSOC)){
-                                     $dedos = $dados;
-                                    // $nomeDir = $dados['nome_usu'];
-                                    // $emailDir = $dados['email'];
-                                    // $senhaDir = $dados['senha'];
-                                } 
+                              $dedos = $comando->fetchAll(PDO::FETCH_ASSOC);
+
                               $nomeDir = array();
                               $emailDir = array();
                               $senhaDir = array();
@@ -124,7 +121,10 @@ From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
                                         <br>
                                         <h3>Unidade:</h3>
                                         <p>Nome da Unidade: '.$unid[$i]['nomeUnid'].'</p>
-                                        <p class="cep">CEP da Unidade: '.$unid[$i]['cepUnid'].'</p>
+                                        <label>CEP da Unidade:</label><p class="cep">'.$unid[$i]['cepUnid'].'</p>
+                                        <p>Rua da Unidade: '.$unid[$i]['ruaUnid'].'</p>
+                                        <p>Bairro da Unidade: '.$unid[$i]['bairroUnid'].'</p>
+                                        <p>Cidade da Unidade: '.$unid[$i]['cidadeUnid'].'</p>
                                         <p>Número da Unidade: '.$unid[$i]['numUnid'].'</p>';
                                         
                                 if($unid[$i]['complUnid'] != NULL){
@@ -134,7 +134,7 @@ From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
                                 echo '
 
 
-                                        <h4>Diretores:</h4>
+                                        <h4>Diretor:</h4>
 
                                         <p>Nome do diretor:</p>
                                         <p>'.$nomeDir[$i].'</p>
