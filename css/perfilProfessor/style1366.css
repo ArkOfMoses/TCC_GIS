@@ -123,6 +123,21 @@ main {
 }
 
 .profile-photo {display: none}
+  
+  main {
+    width: calc(100% - 280px);
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 90px 65px 0;
+    background: #F7FDFD; /*ou FAFEFE*/
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-template-columns: 45% 55%;
+    grid-template-rows: 50px 370px 250px 200px;
+    grid-column-gap: 40px;
+    grid-row-gap: 30px;
+  }
+  
 
 .greetings h1 {
   font-size: 1.75;

@@ -1,117 +1,110 @@
-body{
-    background-color: yellow;
-}
-/**{
-    margin:0;
-    padding:0;
+.header {
+  width: 100vw;
+  height: 70px;
 }
 
-.recebeDados{
-    border:none;
-    display: flex;
-    justify-content: center;
-
+.logo {
+  width: 2.6em;
+  height: 2.6em;
+  margin-left: 15px;
 }
 
-.blank{
-    margin-bottom: 50px;
-}
-body{
-    background-color: #fff;
-    overflow-x: hidden;
+.hamburger{
+  width: 70px;
+  height: 100%;
 }
 
-.headerPrimeiroAcesso{
-    background-color: #003366;
-    width: 100%;
-    height: 60px;
-    border-bottom: 10px solid #00CCCC;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 0 0 50px 0;
+.hamburger svg{
+  width: 1.2em;
 }
-.headerPrimeiroAcesso a img{
-    width: 80px;
-    height: 80px;
 
+.fullnav {
+  bottom: 0%;
+  top: 0%;
+  flex-flow: column;
+  align-items: center;
+  right: -100vw;
+  background: #051523;
 }
-.table-remove{
-    float: right
-}   
- 
-.acessoUm{
+
+.menu {
+  width: 100vw;
+  overflow-y: scroll;
+}
+
+hr {
+  width: 75vw;
+  color: #c9c9c9;
+  margin: 30px 0;
+}
+
+.menu-buttons {min-height: 350px;}
+
+.menu-buttons li {font-size: 1.6em}
+
+.menu-buttons i {
+  font-size: .9em;
+  margin-right: 4px
+}
+
+.title, .subtitle {font-size: 1.3em;}
+
+.title {font-size: 1.4em}
+
+.profile-photo-menu {
+  width: 25%;
+  padding-top: 25%;
+  border-radius: 160px;
+  margin: 70px 0 20px;
+}
+
+.active-menu .fullnav {right: 0;}
+
+
+
+
+
+main {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 80px 20px 0;
+  background: #F7FDFD; /*ou FAFEFE*/
+}
+
+.greetings {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 54px;
+  background-color: rgba(0, 204, 204, .5);
+  flex-shrink: 0;
+  position: relative;
+  margin: 0 15px;
+  order: 1;
+}
+
+.profile-photo a {
+    background: #f33;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-
-    flex-wrap: wrap;
-
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    right: 5px;
+    top: 5px;
 }
-.acessoUm p {
-    font-size: 20px;
-    
-}
-p.vsf{
-    font-size: 16px;
-    color: #666;
-    padding: 10px;
-    text-align: center;
-}
-.perfil-foto{
-    width: 176px;
-    height:176px;
-    border-radius: 25px;
-    z-index: 1;
-}
-.acessoUm form{
-    text-align: left;
-    margin:10px;
-}
-.acessoUm form h2{
-    font-size: 30px;
-    color: #003366;
-    margin: 5px;
-    text-align: center;}
-
-.acessoUm label{
-    color: #666;
-    font-size: 18px;
-    display: block;
-}
-.acessoUm input{
-    margin-bottom: 10px;
-    height: 30px;
-    width: 700px;
-    border:none;
-    border-bottom: 3px solid #666;
-
-}
-.recebeDados{
-    text-align: left;
-    font-size: 20px;
-    margin: 15px;
-}
-
-
-#plus{
-    font-size: 30px;
-    color: #fff;
-    font-weight: 900;
-    background-color: #003366;
-    border: none;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-    display: block;
-
-}    
-
-
-/****/
-
-
 
 .puto {
     display: flex;
@@ -120,46 +113,86 @@ p.vsf{
 }
 
 input.buttonNext {
-    text-align: center;
-    width: 200px;
-    height: 50px;
-    font-size: 26px;
-    background: #00CCCC;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 1px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px;
-    text-decoration: none;
-    border-radius: 15px;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  font-size: 26px;
+  background: #00CCCC;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  text-decoration: none;
+  border-radius: 15px;
 }
 
 a.buttonNext {
-    text-align: center;
-    width: 200px;
-    height: 50px;
-    font-size: 26px;
-    background: #00CCCC;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 1px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px;
-    text-decoration: none;
-    border-radius: 15px;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  font-size: 26px;
+  background: #00CCCC;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  text-decoration: none;
+  border-radius: 15px;
 }
 
 
 
 #alteraFoto{
-    z-index: 2;
-    width: 35px;
-    height:35px;
-    position: relative;
-    top: -50px;
-    right: -50px;
-}*/
+  z-index: 2;
+  width: 35px;
+  height:35px;
+  position: relative;
+  top: -50px;
+  right: -50px;
+}
+
+h1{
+  color:#036;
+  margin-bottom:15px;
+  text-align: center;
+}
+
+.alunos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#linkcurso{
+text-align: center;
+width: 135px;
+height: 60px;
+font-size: 18px;
+background: #00CCCC;
+font-weight: bold;
+color: rgb(255, 255, 255)!important;
+border: 0 none;
+cursor: pointer;
+padding: 10px 5px;
+margin: 10px 5px;
+text-decoration: none;
+border-radius: 15px;
+}
+
+
+.setinha{
+  /*padding-top: 70px;*/
+  height: 90px;
+  padding: 80px 55px 0;
+
+}
+#seta{
+ text-align: left;
+ width:40px;
+ }

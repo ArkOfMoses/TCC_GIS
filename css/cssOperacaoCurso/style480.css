@@ -1,102 +1,109 @@
-body{
-    background-color: black;
-}
-/**{
-    margin:0;
-    padding:0;
-}
 
-.recebeDados{
-    border:none;
-    display: flex;
-    justify-content: center;
-
-}
-
-body{
-    background-color: #fff
-}
-
-.headerPrimeiroAcesso{
-    background-color: #003366;
-    width: 100%;
+.header {
+    width: 100vw;
     height: 60px;
-    border-bottom: 10px solid #00CCCC;
-    display: flex;
-    flex-direction: row;
+  }
+  
+  .logo {
+    width: 2.5em;
+    height: 2.5em;
+    margin: 0 15px;
+  }
+  
+  .hamburger{
+    width: 60px;
+    height: 100%;
+  }
+  
+  .hamburger svg{width: 1.2em;}
+  
+  .fullnav {
+    bottom: 0%;
+    top: 0%;
+    flex-flow: column;
+    align-items: center;
+    right: -100vw;
+    background: #051523;
+  }
+  
+  .menu {
+    width: 100vw;
+    overflow-y: scroll;
     justify-content: space-around;
-    margin-bottom: 50px;
-}
-.headerPrimeiroAcesso a img{
-    width: 80px;
-    height: 80px;
-
-}
-
-.table-remove{
-    float: right
-}   
-
-.blank{
-    margin-bottom: 50px;
-}
-.acessoUm{
+  }
+  
+  hr {
+    width: 75vw;
+    color: white;
+    margin: 15px 0;
+  }
+  
+  .menu-buttons {min-height: 50vh;}
+  
+  .menu-buttons li {font-size: 1.5em}
+  
+  .menu-buttons i {
+    font-size: .8em;
+    margin-right: 4px
+  }
+  
+  .title, .subtitle {font-size: 1.2em;}
+  
+  .title {font-size: 1.3em}
+  
+  .profile-photo-menu {
+    width: 33%;
+    padding-top: 33%;
+    border-radius: 70px;
+    margin: 60px 0 10px;
+  }
+  
+  .active-menu .fullnav {right: 0;}
+  
+  
+  
+  
+  main {
+    width: 100vw;
+    min-height: 100vh;
+    padding: 70px 20px 0;
+    background: #F7FDFD; /*ou FAFEFE*/
+  }
+  
+  .greetings {
+    width: 100%;
     display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-    flex-wrap: wrap;
-
-}
-
-p.vsf{
-    font-size: 16px;
-    color: #666;
-    padding: 10px;
-    text-align: center;
-}
-.perfil-foto{
-    border-radius: 25px;
-    z-index: 1;
-}
-.form{
-    margin-top: 10px;
-    padding:10px;
-
-    text-align: left;
-}
-.acessoUm form h2{
-    font-size: 30px;
-    color: #003366;
-    margin: 5px;
-    text-align: center;}
-
-.acessoUm label{
-    font-size: 14px;
-    color: #666;
-    display: block;
-}
-.acessoUm input{
-    margin-bottom: 10px;
-    height: 30px;
-    width: 280px;
-    border:none;
-    border-bottom: 3px solid #666;
-
-}
-.recebeDados{
-    text-align: left;
-    font-size: 20px;
-   
-}
-/****/
-
-.puto {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
+    margin-bottom: 50px;
+  }
+  
+  .profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 54px;
+    background-color: rgba(0, 204, 204, .5);
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .profile-photo a {
+      background: #f33;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+  }
+  
 
 input.buttonNext {
     text-align: center;
@@ -141,4 +148,46 @@ a.buttonNext {
     position: relative;
     top: -50px;
     right: -50px;
-}*/
+}
+
+h1{
+    color:#036;
+    margin-bottom:15px;
+    text-align: center;
+    margin-top:-25px;
+}
+
+.alunos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#linkcurso{
+text-align: center;
+width: 135px;
+height: 60px;
+font-size: 18px;
+background: #00CCCC;
+font-weight: bold;
+color: rgb(255, 255, 255)!important;
+border: 0 none;
+cursor: pointer;
+padding: 10px 5px;
+margin: 10px 5px;
+text-decoration: none;
+border-radius: 15px;
+}
+#seta{
+    text-align: left;
+}
+.setinha{
+  /*padding-top: 70px;*/
+  height: 90px;
+  padding: 70px 20px 0;
+
+}
+#seta{
+ text-align: left;
+ width:40px;
+ }
