@@ -22,6 +22,7 @@ $codTurma = $_REQUEST['codTurma'];
         <title>Primeiro cadastro</title>    
         <link rel="stylesheet" href="../../../../../css/default.css">    
         <script src='../../../../../js/jquery-3.3.1.min.js'></script>
+        <script src='../../../../../js/jquery.mask.min.js'></script>
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
@@ -112,11 +113,9 @@ $codTurma = $_REQUEST['codTurma'];
                     // }
                     ?>
                     <p>Cadastre os alunos:</p>
-                    
-                  <?php echo "<form class='form' method='post' action='' autocomplete='off'>";?>
-                        
-                        <label id="coordenadores">Aluno:</label>
 
+                    <form class='form' method='post' autocomplete='off'>
+                        <label id="coordenadores">Aluno:</label>
 
                         <label id="nome_label">Nome do Aluno: </label>
                         <input class='unid' id='IdNome0' name='nome0' type='text' />
@@ -149,15 +148,13 @@ $codTurma = $_REQUEST['codTurma'];
 
         /** Função duplicar formulários - cadastro de unidades */
         $(document).ready(function() {
-
-            
-
+            $("#IdCPF0").mask("000.000.000-00");
+            $("#IdDataNasc0").mask("00/00/0000");
+            $("#IdDataEntrada0").mask("00/00/0000");
 
             $("#eventBtn").click(function(){
-            
 
             $('#coordenadores').clone().appendTo("#rightDiv").removeAttr('id');
-
 
             $('#nome_label').clone().appendTo('#rightDiv').removeAttr('id');
             $('#IdNome0').clone().appendTo('#rightDiv').attr("name","nome"+ increment).attr("id", "IdNome"+increment);
@@ -175,16 +172,15 @@ $codTurma = $_REQUEST['codTurma'];
             $('#IdDataEntrada0').clone().appendTo('#rightDiv').attr("name","DataEntrada"+ increment).attr("id", "IdDataEntrada"+increment);
             document.getElementById('IdDataEntrada'+increment).value = '';
 
-
-
-
-
             increment++;
-            
             $('#hidden').attr("value", increment);
             
-
-            
+            var i;
+            for(i = 1; i <= increment; i++){
+                $("#IdCPF"+i).mask("000.000.000-00");
+                $("#IdDataNasc"+i).mask("00/00/0000");
+                $("#IdDataEntrada"+i).mask("00/00/0000");
+            }
         });
         
     });
