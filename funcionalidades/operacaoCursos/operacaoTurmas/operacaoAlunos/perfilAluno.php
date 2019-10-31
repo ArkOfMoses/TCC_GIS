@@ -159,7 +159,7 @@ require_once '../../../../bd/conexao.php';
               $dataEntradaFormat = date_create_from_format('Y-m-d', "$dataEntradaProv");
               $dataEntrada = date_format($dataEntradaFormat, 'd/m/Y');
 
-              
+              $codTur = $info['cod_tur'];
               $siglaTur = $info['sigla_tur'];
               $turno = $info['turno_tur'];
               $curso = $info['nome_curso'];
@@ -221,30 +221,41 @@ require_once '../../../../bd/conexao.php';
 
               <div id="conteudotab2">
                 <!--Aqui a gente puxa as ocorrências de cada aluno-->
-                <div class="item-ocorre">
-                  <?php
-                    $selectOcorr = $pdo->prepare("select data_hora_ocorr, desc_ocorr from turma_aluno_nota_disc_ocorr where cod_tur = ");
-                  
+                <?php
+                    $selectOcorr = $pdo->prepare("select data_hora_ocorr, desc_ocorr from turma_aluno_disc_ocorr where cod_tur = $codTur and cod_usu = $codAlun;");
+                    $selectOcorr->execute();
+                    $infudeu = $selectOcorr->fetchAll(PDO::FETCH_ASSOC);
+                    $numLinhas = $selectOcorr->rowCount();
+                    
+                    if($numLinhas > 0){
+                      for($i = 0; $i < $numLinhas; $i++){
+                        $dataHoraProv = $infudeu[$i]['data_hora_ocorr'];
+                        $dataHora = date("d/m/Y", strtotime($dataHoraProv));
+                        $descOcorr = $infudeu[$i]['desc_ocorr'];
+                        
+                        echo "
+                        <div class='item-ocorre'>
+                          <h3>$dataHora</h3><hr>
+                          <p>$descOcorr</p>
+                        </div>
+                        ";
+                      }
+                    }else{
+                      echo "
+                      <div class='item-ocorre'>
+                        <h3>Esse aluno não possui nenhuma ocorrência</h3><hr>
+                      </div>
+                      ";
+                    }
+
                   ?>
-                  <h3>10/10/2010</h3><hr>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean euismod bibendum laoreet. Proin gravida dolor sit amet
-                    lacus accumsan et viverra justo.</p>
-                </div>
 
-                <div class="item-ocorre">
+                <!-- <div class="item-ocorre">
                   <h3>10/10/2010</h3><hr>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Aenean euismod bibendum laoreet. Proin gravida dolor sit amet
                     lacus accumsan et viverra justo.</p>
-                </div>
-
-                <div class="item-ocorre">
-                  <h3>10/10/2010</h3><hr>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean euismod bibendum laoreet. Proin gravida dolor sit amet
-                    lacus accumsan et viverra justo.</p>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
