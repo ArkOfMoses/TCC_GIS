@@ -37,12 +37,6 @@ require_once '../../../../bd/conexao.php';
         <div class="content">
 
             <header class="headerPrimeiroAcesso">
-            <!-- <a href="../../alterarAcc.php"><img src="../img/alteraImg.png"></a>
-            <a href="../cadastroDeInst/cadastroDeInst.php"><img src="../img/instImg.png"></a> -->
-            <!-- <a href="cadastroDeCoord.php"><img src="../../primeiroCadastroMaster/img/unidImg.png"></a> -->
-            <!-- <a href="../cadastroDeDir/cadastroDir.php"><img src="../img/dirImg.png"></a>
-            <a href="../enviarEmail.php"><img src="../img/emailImg.png"></a>                
-            <a href="../confirmarDados.php"><img src="../img/confirmaImg.png"></a> -->
 
             <style type="text/css">
                 .alunos{
@@ -74,7 +68,7 @@ require_once '../../../../bd/conexao.php';
                 <h1>Lista de Alunos</h1>
                 <?php
 
-                $selecionar = ("");
+                $selecionar = ("select nome_usu, usuario.cod_usu from turma_aluno inner join usuario on(turma_aluno.cod_usu = usuario.cod_usu) where cod_status = 'A' and cod_status_usu = 'A' and cod_tur = $codTurma ORDER BY nome_usu ASC;");
                 $comando = $pdo->prepare($selecionar);
                 $comando->execute();
 
@@ -83,11 +77,13 @@ require_once '../../../../bd/conexao.php';
                 if($numDeLinhas == 0){
                     echo 'Você ainda não cadastrou alunos nesta turma, cadastre-os no botão abaixo';
                 }else{
+                    $i = 1;
                     while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
-                        $codTurma = $dedos['cod_tur'];
-                        $nomeTurma = $dedos['sigla_tur'];
-
-                       echo  "<a href='#'>$nomeTurma</a><br>";
+                        $nomeUsu = $dedos['nome_usu'];
+                        $codUsuAluno = $dedos['cod_usu'];
+                        
+                       echo  "<a href='#'>$i$nomeUsu</a><br>";
+                       $i++;
                     }
                     
                     
@@ -95,19 +91,7 @@ require_once '../../../../bd/conexao.php';
                 }
 
 
-                // $selecionar = ("select * from turmas where cod_unid = $key");
-                // $comando = $pdo->prepare($selecionar);
-                // $comando->execute();
-
-                /*if(não ter turmas cadastradas){
-                    echo 'Você ainda não cadastrou suas turmas, cadastre-as no botão abaixo';
-                }else{
-    
-                mostrar a lista das turmas cadastradas
-                }*/
-
-
-                echo "<a href='#' >Adicionar Alunos</a>";
+                echo "<a href='cadAlunos/cadAlunos.php?codTurma=$codTurma'>Adicionar Alunos</a>";
 
                 ?>
                 

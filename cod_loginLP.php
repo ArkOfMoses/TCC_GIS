@@ -104,6 +104,9 @@ if($infoPost){
                 break;
 
                 case 'Professor':
+                          $codUnid = get_id($pdo, "cod_unid", "usuario_unidade", "cod_usu", $codUsu);
+                          $_SESSION['dadosUsu']['codUnidadeUsu'] = $codUnid;
+                break;
                 case 'Diretor':
                           $codUnid = get_id($pdo, "cod_unid", "usuario_unidade", "cod_usu", $codUsu);
                           $nomeUnid = get_id($pdo, "nome_unid", "unidade", "cod_unid", $codUnid);

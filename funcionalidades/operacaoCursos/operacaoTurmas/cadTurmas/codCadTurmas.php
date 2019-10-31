@@ -71,7 +71,7 @@ if($infoPost){
 
         
             if($siglaTur == ''){
-                $vazio[] = $codDaUnid;
+                $vazio[] = $codCurso;
             }else if($numDeLinhas == 0){
                 $posts[] = [
                     "nomeTurma" => $siglaTur,

@@ -684,7 +684,6 @@ UNLOCK TABLES;
 -- Dump completed on 2019-08-20  7:48:19
 
 
-
 insert into instituicao (nome_fantasia_inst, razao_social_inst, CNPJ_inst) values ('Fieb', 'Funda&ccedil;&atilde;o Instituto de Educa&ccedil;&atilde;o de Barueri', 65700239000110);
 insert into unidade (nome_unid, cep_unid, compl_unid, num_unid, cod_inst, cod_status_unid) values ('Engenho', 06515220, 'CANSEI', 55, 1, 'A');
 insert into unidade (nome_unid, cep_unid, compl_unid, num_unid, cod_inst, cod_status_unid) values ('Belval', 06515220, 'CANSADO', 54, 1, 'A');
@@ -750,28 +749,28 @@ insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (2,
 
 
 
-insert into usuario (nome_usu) values ('Moises');
+insert into usuario (nome_usu, cod_status_usu) values ('Moises', 'A');
 insert into usuario_unidade (cod_unid, cod_usu) values (1, 4);
 insert into turma_aluno (cod_tur, cod_usu, cod_status) values (1, 4, 'A');
 
-insert into usuario (nome_usu) values ('Maria');
+insert into usuario (nome_usu, cod_status_usu) values ('Maria', 'A');
 insert into usuario_unidade (cod_unid, cod_usu) values (1, 5);
 insert into turma_aluno (cod_tur, cod_usu, cod_status) values (1, 5, 'A');
 
-insert into usuario (nome_usu) values ('Vitor');
+insert into usuario (nome_usu, cod_status_usu) values ('Vitor', 'A');
 insert into usuario_unidade (cod_unid, cod_usu) values (1, 6);
 insert into turma_aluno (cod_tur, cod_usu, cod_status) values (1, 6, 'A');
 
 
-insert into usuario (nome_usu) values ('Luiz');
+insert into usuario (nome_usu, cod_status_usu) values ('Luiz', 'A');
 insert into usuario_unidade (cod_unid, cod_usu) values (2, 7);
 insert into turma_aluno (cod_tur, cod_usu, cod_status) values (2, 7, 'A');
 
-insert into usuario (nome_usu) values ('Laura');
+insert into usuario (nome_usu, cod_status_usu) values ('Laura', 'A');
 insert into usuario_unidade (cod_unid, cod_usu) values (2, 8);
 insert into turma_aluno (cod_tur, cod_usu, cod_status) values (2, 8, 'A');
 
-insert into usuario (nome_usu) values ('Felipe');
+insert into usuario (nome_usu, cod_status_usu) values ('Felipe', 'A');
 insert into usuario_unidade (cod_unid, cod_usu) values (2, 9);
 insert into turma_aluno (cod_tur, cod_usu, cod_status) values (2, 9, 'A');
 

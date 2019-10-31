@@ -91,7 +91,7 @@ $codCurso = $_REQUEST['codCurso'];
             <header class="headerPrimeiroAcesso">
             <!-- <a href="../../alterarAcc.php"><img src="../img/alteraImg.png"></a>
             <a href="../cadastroDeInst/cadastroDeInst.php"><img src="../img/instImg.png"></a> -->
-            <a href="cadastroDeCoord.php"><img src="../../../../primeiroCadastroMaster/img/unidImg.png"></a>
+            <a href="cadTurmas.php?codCurso=$codCurso"><img src="../../../../primeiroCadastroMaster/img/unidImg.png"></a>
             <!-- <a href="../cadastroDeDir/cadastroDir.php"><img src="../img/dirImg.png"></a>
             <a href="../enviarEmail.php"><img src="../img/emailImg.png"></a>                
             <a href="../confirmarDados.php"><img src="../img/confirmaImg.png"></a> -->
@@ -111,7 +111,7 @@ $codCurso = $_REQUEST['codCurso'];
                     //     echo "<img src='../$img' class='perfil-foto'>";
                     // }
                     ?>
-                    <p>Cadastre os alunos:</p>
+                    <p>Cadastre as Turmas:</p>
                     
                   <?php echo "<form class='form' method='post' action='' autocomplete='off'>";?>
                         
