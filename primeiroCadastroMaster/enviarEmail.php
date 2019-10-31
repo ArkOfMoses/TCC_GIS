@@ -49,7 +49,7 @@ if(isset($_SESSION['EmailList'])){
 
         if($testEnviar === true){
             unset($_SESSION['EmailList']);
-            $msg[] = "todas os emails foram enviados corretamente";
+            $msg[] = "Todos os emails foram enviados corretamente!";
             $finish = true;
         }else{
             for($n = 0; $n < count($testEnviar) ; $n++){

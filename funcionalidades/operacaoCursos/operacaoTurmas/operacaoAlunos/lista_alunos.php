@@ -10,7 +10,7 @@ if(isset($_SESSION['logado'])){
     header("Location: homeLandingPage.php");
 }
 
-require_once 'bd/conexao.php';
+require_once '../../../../bd/conexao.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -30,19 +30,19 @@ require_once 'bd/conexao.php';
         <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="css/default.css" rel=stylesheet>
+        <link href="../../../../css/default.css" rel=stylesheet>
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="css/lista_alunos_sala/lista_alunos_sala_480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../../css/lista_alunos_sala/lista_alunos_sala_480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="css/lista_alunos_sala/lista_alunos_sala_768.css">
+              href="../../../../css/lista_alunos_sala/lista_alunos_sala_768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="css/lista_alunos_sala/lista_alunos_sala_1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="css/lista_alunos_sala/lista_alunos_sala_1366.css">
+              href="../../../../css/lista_alunos_sala/lista_alunos_sala_1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../../css/lista_alunos_sala/lista_alunos_sala_1366.css">
 
         <!-- Script -->
-        <script src="js/script.js"></script>
+        <script src="../../../../js/script.js"></script>
 
         <!-- Icon Font -->
         <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
@@ -151,7 +151,7 @@ require_once 'bd/conexao.php';
                 <div id="pagina">
                     <div id="cabecalho">
                         <a href="lista_salas.php">
-                            <img id="seta" src="img/voltar.png">
+                            <img id="seta" src="../../../../imagens/voltar.png">
                         </a>
                         <div id="sala">
                             <h2 id="curso">INI</h2>
@@ -176,36 +176,28 @@ require_once 'bd/conexao.php';
 
                                 <div id="scroll">
                                     <div id="dadosAluno">
-                                        <img src="img/pessoa.png" alt="Imagem do aluno" id="imgAluno">
+                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
                                         <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
                                             <p id="ocorrencia_numAluno">Número 01</p>
                                         </span>
                                     </div>
 
                                     <div id="dadosAluno">
-                                        <img src="img/pessoa.png" alt="Imagem do aluno" id="imgAluno">
+                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
                                         <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
                                             <p id="ocorrencia_numAluno">Número 01</p>
                                         </span>
                                     </div>
 
                                     <div id="dadosAluno">
-                                        <img src="img/pessoa.png" alt="Imagem do aluno" id="imgAluno">
+                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
                                         <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
                                             <p id="ocorrencia_numAluno">Número 01</p>
                                         </span>
                                     </div>
 
                                     <div id="dadosAluno">
-                                        <img src="img/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                                        <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                                            <p id="ocorrencia_numAluno">Número 01</p>
-                                        </span>
-                                    </div>
-
-
-                                    <div id="dadosAluno">
-                                        <img src="img/pessoa.png" alt="Imagem do aluno" id="imgAluno">
+                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
                                         <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
                                             <p id="ocorrencia_numAluno">Número 01</p>
                                         </span>
@@ -213,21 +205,29 @@ require_once 'bd/conexao.php';
 
 
                                     <div id="dadosAluno">
-                                        <img src="img/pessoa.png" alt="Imagem do aluno" id="imgAluno">
+                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
+                                        <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
+                                            <p id="ocorrencia_numAluno">Número 01</p>
+                                        </span>
+                                    </div>
+
+
+                                    <div id="dadosAluno">
+                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
                                         <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
                                             <p id="ocorrencia_numAluno">Número 01</p>
                                         </span>
                                     </div>
 
                                     <div id="dadosAluno">
-                                        <img src="img/pessoa.png" alt="Imagem do aluno" id="imgAluno">
+                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
                                         <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
                                             <p id="ocorrencia_numAluno">Número 01</p>
                                         </span>
                                     </div>
 
                                     <div id="dadosAluno">
-                                        <img src="img/pessoa.png" alt="Imagem do aluno" id="imgAluno">
+                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
                                         <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
                                             <p id="ocorrencia_numAluno">Número 01</p>
                                         </span>

@@ -133,7 +133,7 @@ $codCurso = $_REQUEST['codCurso'];
                         <div id="rightDiv"></div> <!-- div q recebe os novos inputs -->
                         <div class='recebeDados' id='div'></div> <!-- div que recebe dados do ajax -->
                         <span id="eventBtn"><img src="../../../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
-                        <div class="puto"><input type="submit" value="Cadastrar Turmas" class="VAISEFUDE" /></div> <!-- botão subtmit do formulário -->
+                        <div class="puto"><input type="submit" value="Cadastrar Cursos" class="VAISEFUDE" /></div> <!-- botão subtmit do formulário -->
                         
                         <input type="hidden" value="1" name="AcoordA" id="hidden"/>
                     </form>
