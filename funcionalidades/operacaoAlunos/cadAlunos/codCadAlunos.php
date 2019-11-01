@@ -59,7 +59,7 @@ if($infoPost){
                     echo "<p>Existem CPFs inválidos!</p>";
                 }else{
     
-                    $selectAluno = $pdo->prepare("select * from usuario where cpf_usu = $CPFAluno;");
+                    $selectAluno = $pdo->prepare("select * from usuario where cpf_usu = $CPFAluno and cod_status_usu = 'A';");
                     $selectAluno->execute();
                     $numLinhas = $selectAluno->rowCount();
     
@@ -111,7 +111,7 @@ if($infoPost){
                 }
             
             }else{
-                $selectAlunoo = $pdo->prepare("select * from usuario where cpf_usu = $CPFAluno;");
+                $selectAlunoo = $pdo->prepare("select * from usuario where cpf_usu = $CPFAluno and cod_status_usu = 'A';");
                 $selectAlunoo->execute();
                 $numDeLinhas = $selectAlunoo->rowCount();
     

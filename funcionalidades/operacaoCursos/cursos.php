@@ -157,7 +157,7 @@ function activateMenu(){
                 <?php
                 $codUnid = $dados['codUnidadeUsu'];
                 $selecionar = ("select cursos.cod_curso, nome_curso, cod_status_cursos, cursos_unidade.cod_unid, cod_status_cursos_unid
-From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_curso) where cod_unid = $codUnid and cod_status_cursos = 'A' and cod_status_cursos_unid = 'A';");
+From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_curso) where cod_unid = $codUnid and cod_status_cursos = 'A' and cod_status_cursos_unid = 'A' order by nome_curso;");
                 $comando = $pdo->prepare($selecionar);
                 $comando->execute();
 

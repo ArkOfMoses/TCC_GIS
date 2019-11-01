@@ -11,7 +11,11 @@ if(isset($_SESSION['logado'])){
 }
 
 if(isset($_REQUEST['codTurma'])){
-    $codTurma = filter_var($_REQUEST['codTurma'], FILTER_SANITIZE_NUMBER_INT);
+    if($_REQUEST['codTurma'] != ''){
+        $codTurma = filter_var($_REQUEST['codTurma'], FILTER_SANITIZE_NUMBER_INT);
+    }else{
+        $codTurma = 0;
+    } 
 }else{
     $codTurma = 0;
 }
@@ -158,37 +162,90 @@ require_once '../../bd/conexao.php';
                 <!-- Início conteúdo principal -->
                 <div id="pagina">
                     <div id="cabecalho">
-                        <!--rolezinho de puxar as informações do curso pra a div sala e pro botão voltar-->
                         <?php
                             //tem que ter uma validação pra se nn tiver o codTurma 
-                            $selectCurso = $pdo->prepare("select cursos.cod_curso, nome_curso, sigla_tur from cursos 
-                                inner join turma on (cursos.cod_curso = turma.cod_curso) where cod_tur = $codTurma and cod_status_cursos = 'A' and cod_status_tur = 'A'");
-                            $selectCurso->execute();
+                            if(isset($_REQUEST['codTurma'])){
+                                if($_REQUEST['codTurma'] != ''){
+                                    $selectCurso = $pdo->prepare("select cursos.cod_curso, nome_curso, sigla_tur from cursos 
+                                    inner join turma on (cursos.cod_curso = turma.cod_curso) where cod_tur = $codTurma and cod_status_cursos = 'A' and cod_status_tur = 'A'");
+                                    $selectCurso->execute();
+        
+                                    $numDeLinhas = $selectCurso->rowCount();
+        
+                                    if($numDeLinhas > 0){
+                                        $dads = $selectCurso->fetch(PDO::FETCH_ASSOC);
+                                        $codCurso = $dads['cod_curso'];
+                                        $nomeCurso = $dads['nome_curso'];
+                                        $sigla = $dads['sigla_tur'];
+            
+                                        echo "
+                                            <a href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>
+                                                <img id='seta' src='../../imagens/voltar.png'>
+                                            </a>
+            
+                                            <div id='sala'>
+                                                <h2 id='curso'>$sigla</h2>
+                                            </div>
+                                            <div id='infoCurso'>
+                                                <span id='nomeCurso'>$nomeCurso</span>
+                                            </div>
+                                        </div>
+                                        ";
+                                    }else{
+                                            $selectExists = $pdo->prepare("select cod_status_tur from turma where cod_tur = $codTurma;");
+                                            $selectExists->execute();
 
-                            $numDeLinhas = $selectCurso->rowCount();
+                                            if($selectExists->rowCount() > 0){
+                                                $queromorrer = $selectExists->fetch(PDO::FETCH_ASSOC);
+                                                $codStats = $queromorrer['cod_status_tur'];
+                          
+                                                if($codStats == 'A'){
+                                                    $msg = '<h2>ainda não cadastrou alunos nesta turma, cadastre-os no botão abaixo</h2>';
 
-                            //if($numDeLinhas > 0){
-                                $dads = $selectCurso->fetch(PDO::FETCH_ASSOC);
-                                $codCurso = $dads['cod_curso'];
-                                $nomeCurso = $dads['nome_curso'];
-                                $sigla = $dads['sigla_tur'];
-    
-                                echo "
-                                    <a href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>
+                                                    $getCurso = $pdo->prepare("select cod_curso from turma where cod_tur = $codTurma;");
+                                                    $getCurso->execute();
+                                                    $aa = $getCurso->fetch(PDO::FETCH_ASSOC);
+                                                    $codCurs = $aa['cod_curso'];
+                                                    echo "
+                                                    <a href='../operacaoTurmas/turmas.php?codCurso=$codCurs'>
+                                                        <img id='seta' src='../../imagens/voltar.png'>
+                                                    </a>
+                                                </div>";
+                                                }else{
+                                                    $msg = "<h2>Essa turma foi deletada, volte e escolha um curso disponível</h2>";
+                                                    echo "
+                                                    <a href='../operacaoTurmas/turmas.php'>
+                                                        <img id='seta' src='../../imagens/voltar.png'>
+                                                    </a>
+                                                </div>";
+                                                }
+                                            }else{
+                                                $msg = "<h2>Essa turma não existe, volte e escolha um curso disponível</h2>";
+                                                echo "
+                                                <a href='../operacaoTurmas/turmas.php'>
+                                                    <img id='seta' src='../../imagens/voltar.png'>
+                                                </a>
+                                            </div>";
+                                            }
+                                            
+                                            
+                                      
+                                    }
+                                }else{
+                                    
+                                    echo "
+                                    <a href='../operacaoTurmas/turmas.php'>
                                         <img id='seta' src='../../imagens/voltar.png'>
                                     </a>
-    
-                                    <div id='sala'>
-                                        <h2 id='curso'>$sigla</h2>
-                                    </div>
-                                    <div id='infoCurso'>
-                                        <span id='nomeCurso'>$nomeCurso</span>
-                                    </div>
-                                </div>
-                                ";
-                            // }else{
-                            //     echo "</div>";
-                            // }
+                                </div>"; 
+                                } 
+                            }else{
+                                echo "
+                                <a href='../operacaoTurmas/turmas.php'>
+                                    <img id='seta' src='../../imagens/voltar.png'>
+                                </a>
+                            </div>"; 
+                            }
                         ?>
 
                     <!-- Navegação entre ocorrência - sala -->
@@ -203,8 +260,12 @@ require_once '../../bd/conexao.php';
 
                                 <?php
                                 if(isset($_REQUEST['codTurma'])){
-                                    //if(isset($dads)){
-                                        $selecionar = ("select nome_usu, usuario.cod_usu from turma_aluno inner join usuario on(turma_aluno.cod_usu = usuario.cod_usu) where cod_status = 'A' and cod_status_usu = 'A' and cod_tur = $codTurma ORDER BY nome_usu ASC;");
+                                    if($_REQUEST['codTurma'] != ''){
+                                      if(!isset($msg)){
+                                        $selecionar = ("select nome_usu, usuario.cod_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu)
+                                        inner join turma on (turma_aluno.cod_tur = turma.cod_tur)
+                                        inner join cursos on (cursos.cod_curso = turma.cod_curso)
+                                        where cod_status = 'A' and cod_status_usu = 'A' and cod_status_tur = 'A' and cod_status_cursos = 'A' and turma.cod_tur = $codTurma order by nome_usu;");
                                         $comando = $pdo->prepare($selecionar);
                                         $comando->execute();
     
@@ -226,18 +287,20 @@ require_once '../../bd/conexao.php';
                                                     </span>
                                                 </div>
                                                 ";
-                                                
-                                            echo  "<a href='perfilAluno.php?codAlun=$codUsuAluno'>$i - $nomeUsu</a><br>";
                                             $i++;
                                             }
                                         }
+
                                         echo "<a href='cadAlunos/cadAlunos.php?codTurma=$codTurma'>Adicionar Alunos</a>";
     
-                                    // }else{
-                                    //     echo '<h2>Essa turma não existe!</h2>';
-                                    // }
+                                    }else{
+                                        echo $msg;
+                                    }
+                                    }else{
+                                        echo '<h2>Você não selecionou uma turma para ver os alunos, volte e selecione uma turma disponível';
+                                    }
                                 }else{
-                                    echo '<h2>Você não selecionou uma turma para ver os alunos!';
+                                    echo '<h2>Você não selecionou uma turma para ver os alunos, volte e selecione uma turma disponível';
                                 }
                                 ?>
 

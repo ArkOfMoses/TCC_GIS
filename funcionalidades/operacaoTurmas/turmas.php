@@ -12,7 +12,9 @@ if(isset($_SESSION['logado'])){
 }
 
 if(isset($_REQUEST['codCurso'])){
-  $codCurso = filter_var($_REQUEST['codCurso'], FILTER_SANITIZE_NUMBER_INT);
+  if($_REQUEST['codCurso'] != ''){
+    $codCurso = filter_var($_REQUEST['codCurso'], FILTER_SANITIZE_NUMBER_INT);
+  }
 }
 
 require_once '../../bd/conexao.php';
@@ -158,19 +160,36 @@ require_once '../../bd/conexao.php';
             <div class="alunos">
                 <h1>Lista de Turmas</h1>
                 <?php
-                
                 if(isset($_REQUEST['codCurso'])){
-                  $selecionar = ("select sigla_tur, cod_tur from turma where cod_curso = $codCurso and cod_status_tur = 'A';");
+                    if($_REQUEST['codCurso'] != ''){
+                  
+                  $selecionar = ("select sigla_tur, cod_tur from turma inner join cursos on (turma.cod_curso = cursos.cod_curso) where cursos.cod_curso = $codCurso and cod_status_tur = 'A' and cod_status_cursos = 'A' order by sigla_tur;");
                   $comando = $pdo->prepare($selecionar);
                   $comando->execute();
   
                   $numDeLinhas = $comando->rowCount();
   
                   if($numDeLinhas == 0){
-                    if($tipoUsu == "Diretor"){
-                      echo '<p>Você ainda não cadastrou as turmas, cadastre-as no botão abaixo</p>';
+                    $selectExist = $pdo->prepare("select cod_status_cursos from cursos where cod_curso = $codCurso;");
+                    $selectExist->execute();
+
+                    if($selectExist->rowCount() > 0){
+                      $queromorrer = $selectExist->fetch(PDO::FETCH_ASSOC);
+                      $codStats = $queromorrer['cod_status_cursos'];
+
+                      if($codStats == 'A'){
+                        if($tipoUsu == "Diretor"){
+                          echo '<p>Você ainda não cadastrou as turmas, cadastre-as no botão abaixo</p>';
+                        }else{
+                          echo '<p>O diretor da sua unidade não cadastrou seus cursos!</p>';
+                        }
+                      }else{
+                        echo "<p>Esse curso foi deletado, volte e escolha um curso disponível</p>";
+                        $tira = true;
+                      }
                     }else{
-                      echo '<p>O diretor da sua unidade não cadastrou seus cursos!</p>';
+                      echo "<p>Esse curso não existe, volte e escolha um curso disponível</p>";
+                      $tira = true;
                     }
                   }else{
                     echo "<table>
@@ -193,7 +212,14 @@ require_once '../../bd/conexao.php';
                       echo "</table>";
                   }
 
-                  echo "<a id='linkcurso' href='cadTurmas/cadTurmas.php?codCurso=$codCurso' >Adicionar Turmas</a>";
+                  if(!isset($tira)){
+                    echo "<a id='linkcurso' href='cadTurmas/cadTurmas.php?codCurso=$codCurso' >Adicionar Turmas</a>";
+                  }
+
+                }else{
+                  echo '<p>Você não escolheu nenhum curso, volte e selecione o curso que deseja ver as turmas!</p>';
+                }
+                  
                 }else{
                   echo '<p>Você não escolheu nenhum curso, volte e selecione o curso que deseja ver as turmas!</p>';
                 }
