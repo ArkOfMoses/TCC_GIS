@@ -12,6 +12,8 @@ if(isset($_SESSION['logado'])){
 
 if(isset($_REQUEST['codTurma'])){
     $codTurma = filter_var($_REQUEST['codTurma'], FILTER_SANITIZE_NUMBER_INT);
+}else{
+    $codTurma = 0;
 }
  
 require_once '../../bd/conexao.php';
