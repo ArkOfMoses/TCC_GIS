@@ -7,10 +7,10 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: homeLandingPage.php");
+    header("Location: ../../homeLandingPage.php");
 }
- $codInst = $_REQUEST['codInst'];
- require_once '../bd/conexao.php';
+
+require_once '../../bd/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -31,41 +31,20 @@ if(isset($_SESSION['logado'])){
       <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
       <!-- CSS PADRÃO -->
-      <link href="../css/default.css" rel=stylesheet>
+      <link href="../../css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="../css/cssOperacaoCurso/style480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssOperacaoCurso/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="../css/cssOperacaoCurso/style768.css">
+              href="../../css/cssOperacaoCurso/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="../css/cssOperacaoCurso/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="../css/cssOperacaoCurso/style1366.css">
+              href="../../css/cssOperacaoCurso/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssOperacaoCurso/style1366.css">
         
     
       <!-- Script -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-        <script src="../js/jquery-3.3.1.min.js" type="text/javascript"></script>
-        <script src="../js/jquery.mask.min.js" type="text/javascript"></script>
-      <script src="../js/script.js"> </script>
-      <script>
-          $(function(){
-              $('.form').submit(function(){
-                  $.ajax({
-                    <?php echo"url: 'updateCodInst.php?codInst=$codInst',"; ?>
-                      type: 'POST',
-                      data: $('.form').serialize(),
-                      success: function(data){
-                          if(data != ''){
-                              $('.recebeDados').html(data);
-    
-                          }
-                      }
-                  });
-                  return false;
-              });
-          });
-      </script>
+      <script src="../../js/script.js"> </script>
       <script type="text/javascript">// Ativar Menu
 
 function activateMenu(){
@@ -142,12 +121,6 @@ function activateMenu(){
               <svg version="1.1" id="Hamburger" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 220 150" style="enable-background:new 0 0 220 150;" xml:space="preserve">
               <style type="text/css">
-                .form {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
-                
               	.st4{fill:#003366;}
               </style>
               <g>
@@ -183,8 +156,8 @@ function activateMenu(){
 
         </header>
           <div class="setinha">
-          <a href="../perfilMaster.php">
-            <img id="seta" src="../imagens/voltar_corAzul.png">
+          <a href="../../perfilMaster.php">
+            <img id="seta" src="../../imagens/voltar_corAzul.png">
           </a>
 </div>
             <main>
@@ -193,7 +166,7 @@ function activateMenu(){
                 <h1>Minha Instituição</h1>
                 <?php
                 //dar um jeito de pegar a instituicao(cod_inst) que o usuario cadastrou
-                    $selecionar = ("select * from instituicao where cod_inst = $codInst");
+                    $selecionar = ("select * from instituicao where cod_inst = 1");
                     $comando = $pdo->prepare($selecionar);
                     $comando->execute();
 
@@ -210,14 +183,11 @@ function activateMenu(){
                         // trazer com máscara(É DEMAISSSSS)
                         // tem que pedir pro front estilizar
                         echo "
-                              <form class='form' method='post' autocomplete='off'>
-                              <label>Nome da Instituição: </label><input type='text' value='$nomeInst' name='nome' />
-                              <label>Razão Social: </label><input type='text' value='$razaoInst' name='razao' />
-                              <label>CNPJ da Instituição: </label><input type='text' id='IdCnpj' value='$cnpjInst' name='cnpj' />
+                              <label>Nome da Instituição: </label><p>$nomeInst</p>
+                              <label>Razão Social: </label><p>$razaoInst</p>
+                              <label>CPNJ da Instituição: </label><p>$cnpjInst</p>
 
-                              <input type='submit' value='Enviar' />
-                              </form>
-
+                              <a class='buttonNexti' href='codInstituicao.php?codInst=$codInst'>Editar Informações</a>
                         ";
 
 
@@ -228,14 +198,9 @@ function activateMenu(){
 
 
                 ?>
-                <div class="recebeDados"></div>
+                
             </div>
             </main>  
-            <script type="text/javascript">
-            $(document).ready(function(){
-                $("#IdCnpj").mask("00000000/0000-00");
-            })        
-            </script> 
         
     </body>
 </html>

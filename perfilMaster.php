@@ -102,8 +102,8 @@
             <hr>
 
             <ul class="menu-buttons">
-              <li><a href="operacaoInst/instituicao.php"><i class="fas fa-list"></i> Minha Instituição</a></li>
-              <li><a href="operacaoUnid/unidades.php"><i class="far fa-clock"></i> Unidades</a></li>
+              <li><a href="funcionalidades/operacaoInst/instituicao.php"><i class="fas fa-list"></i> Minha Instituição</a></li>
+              <li><a href="funcionalidades/operacaoUnid/unidades.php"><i class="far fa-clock"></i> Unidades</a></li>
               <li><a href="#"><i class="fas fa-cogs"></i> Configurações</a></li>
               <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
             </ul>

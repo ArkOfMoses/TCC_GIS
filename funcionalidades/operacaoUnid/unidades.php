@@ -7,10 +7,10 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: homeLandingPage.php");
+    header("Location: ../../homeLandingPage.php");
 }
 
-require_once '../bd/conexao.php';
+require_once '../../bd/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -31,20 +31,20 @@ require_once '../bd/conexao.php';
       <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
       <!-- CSS PADRÃO -->
-      <link href="../css/default.css" rel=stylesheet>
+      <link href="../../css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="../css/cssOperacaoCurso/style480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssOperacaoCurso/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="../css/cssOperacaoCurso/style768.css">
+              href="../../css/cssOperacaoCurso/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="../css/cssOperacaoCurso/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="../css/cssOperacaoCurso/style1366.css">
+              href="../../css/cssOperacaoCurso/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssOperacaoCurso/style1366.css">
         
     
       <!-- Script -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="../js/script.js"> </script>
+      <script src="../../js/script.js"> </script>
       <script type="text/javascript">// Ativar Menu
 
 function activateMenu(){
@@ -139,8 +139,8 @@ function activateMenu(){
 
         </header>
           <div class="setinha">
-          <a href="../perfilMaster.php">
-            <img id="seta" src="../imagens/voltar_corAzul.png">
+          <a href="../../perfilMaster.php">
+            <img id="seta" src="../../imagens/voltar_corAzul.png">
           </a>
 </div>
             <main>

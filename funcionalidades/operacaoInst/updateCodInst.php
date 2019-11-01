@@ -1,7 +1,7 @@
 <?php
 
-require_once '../primeiroCadastroMaster/funcoes/funcoes.php';
-require_once '../bd/conexao.php';
+require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
+require_once '../../bd/conexao.php';
 $codInst = $_REQUEST['codInst'];
 $arrayPost = [
     "nome" => FILTER_SANITIZE_SPECIAL_CHARS,

@@ -7,10 +7,10 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: ../homeLandingPage.php");
+    header("Location: ../../homeLandingPage.php");
 }
 
-require_once '../bd/conexao.php';
+require_once '../../bd/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -32,18 +32,18 @@ require_once '../bd/conexao.php';
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
 
     <!-- CSS PADRÃO -->
-    <link href="../css/default.css" rel=stylesheet>
+    <link href="../../css/default.css" rel=stylesheet>
 
     <!-- Telas Responsivas -->
-    <link rel=stylesheet media="screen and (max-width:480px)" href="../css/lista_salas/lista_salas480.css">
+    <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/lista_salas/lista_salas480.css">
     <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-        href="../css/lista_salas/lista_salas768.css">
+        href="../../css/lista_salas/lista_salas768.css">
     <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-        href="../css/lista_salas/lista_salas1024.css">
-    <link rel=stylesheet media="screen and (min-width:1025px)" href="../css/lista_salas/lista_salas1366.css">
+        href="../../css/lista_salas/lista_salas1024.css">
+    <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/lista_salas/lista_salas1366.css">
     <!-- Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../js/script.js"></script>
+    <script src="../../js/script.js"></script>
 
     <!-- Icon Font -->
     <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
@@ -178,8 +178,8 @@ require_once '../bd/conexao.php';
                     <hr>
 
                     <ul class="menu-buttons">
-                      <li><a href="../perfilProfessor.php"><i class="fas fa-home"></i>Home</a></li>
-                      <li><a href="../lista_salas.php"><i class="fas fa-list"></i> Lista de Turmas</a></li>
+                      <li><a href="../../perfilProfessor.php"><i class="fas fa-home"></i>Home</a></li>
+                      <li><a href="../../lista_salas.php"><i class="fas fa-list"></i> Lista de Turmas</a></li>
                       <li><a href="pesquisa.php"><i class="far fa-clock"></i> Pesquisar Alunos</a></li>
                       <li><a href="#"><i class="far fa-calendar-alt"></i> Eventos</a></li>
                       <li><a href="#"><i class="fas fa-cogs"></i> Configurações</a></li>

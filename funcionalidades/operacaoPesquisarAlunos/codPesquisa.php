@@ -7,10 +7,10 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: ../homeLandingPage.php");
+    header("Location: ../../homeLandingPage.php");
 }
 
-require_once '../bd/conexao.php';
+require_once '../../bd/conexao.php';
 
 $arrayPost = [
         "pesquisa" => FILTER_SANITIZE_SPECIAL_CHARS,
@@ -32,7 +32,7 @@ $arrayPost = [
                         $nomeAluno = $linha['nome_usu'];
 
 
-                        echo "<a class='buttonNexte' href='perfilAluno.php?codAlun=$codUsu'>$nomeAluno</a>";
+                        echo "<a class='buttonNexte' href='../operacaoAlunos/perfilAluno.php?codAlun=$codUsu'>$nomeAluno</a>";
                     }
                 } else {
                     echo '<h1>O aluno não foi encontrado!</h1>';
