@@ -165,12 +165,23 @@ From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_
                       echo 'O diretor da sua unidade não cadastrou seus cursos!';
                     }
                 }else{
+                    echo "<table>
+                    <caption>Lista de Cursos</caption>
+                    <tr>
+                        <th>Nome do Curso</th>
+                        <th colspan='2'>Ações</th>
+                    </tr>";
                     while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
                         $codCurso = $dedos['cod_curso'];
                         $nomeCurso = $dedos['nome_curso'];
 
-                       echo  "<a id='linkcurso' href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>$nomeCurso</a><br>";
+                        echo "<tr>
+                              <td><a id='linkcurso' href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>$nomeCurso</a></td> 
+                              <td><a href='acoes/editarCursos.php?codCurso=$codCurso'>Editar</a></td>
+                              <td><a id='confirma' href='acoes/excluirCursos.php?codCurso=$codCurso'>Excluir</a></td>
+                        ";
                     }
+                    echo "</table>";
                 }
 
                 if($tipoUsu == "Diretor"){
@@ -181,6 +192,11 @@ From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_
                 
             </div>
             </main>  
-        
+
+            <script type="text/javascript">
+              $('#confirma').on('click', function () {
+                  return confirm('você tem certeza disso? a exclusão de um curso é permanente e não pode ser recuperada depois, todas as informações adjacentes (turmas dos cursos, alunos das turmas etc) também não poderão mais ser acessadas.');
+              });
+            </script>
     </body>
 </html>
