@@ -7,14 +7,14 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: ../../../../homeLandingPage.php");
+    header("Location: ../../homeLandingPage.php");
 }
 
 if(isset($_REQUEST['codAlun'])){
   $codAlun = filter_var($_REQUEST['codAlun'], FILTER_SANITIZE_NUMBER_INT);
 }
 
-require_once '../../../../bd/conexao.php';
+require_once '../../bd/conexao.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,21 +31,21 @@ require_once '../../../../bd/conexao.php';
       <meta name=author content='G4 INI3B GIS '>
 
       <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-      <link rel="shortcut icon" href="../../../../imagens/favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon" href="../../imagens/favicon.ico" type="image/x-icon">
 
       <!-- CSS PADRÃO -->
-      <link href="../../../../css/default.css" rel=stylesheet>
+      <link href="../../css/default.css" rel=stylesheet>
 
       <!-- Telas Responsivas -->
-      <link rel=stylesheet media="screen and (max-width:480px)" href="../../../../css/perfilAluno/style480.css">
-      <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="../../../../css/perfilAluno/style768.css">
-      <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="../../../../css/perfilAluno/style1024.css">
-      <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../../css/perfilAluno/style1366.css">
+      <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/perfilAluno/style480.css">
+      <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="../../css/perfilAluno/style768.css">
+      <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="../../css/perfilAluno/style1024.css">
+      <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/perfilAluno/style1366.css">
 
       <!-- Script -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="../../../../js/script.js"></script>
-      <script src="../../../../js/jquery.mask.min.js"></script>
+      <script src="../../js/script.js"></script>
+      <script src="../../js/jquery.mask.min.js"></script>
       <!-- Icon Font -->
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
 
@@ -134,11 +134,15 @@ require_once '../../../../bd/conexao.php';
 
         <main>
 
-          <?php
-            //solução meio porca mas funfa... cê que sabe
-          if(isset($_REQUEST['codAlun'])){ ?>
+          <?php if(isset($_REQUEST['codAlun'])){ ?>
           <div class="banner">
-            <div class="profile-photo" style="background-image: url(../../../../imagens/pessoa.png)!important; background-size: cover; background-position: center;"></div>
+            <div class="setinha">
+              <a id="agaref" href="javascript: window.history.go(-1);">
+                  <img id="seta" src="../../imagens/voltar_corAzul.png">
+              </a>
+            </div>
+            
+            <div class="profile-photo" style="background-image: url(../../imagens/pessoa.png)!important; background-size: cover; background-position: center;"></div>
 
             <?php
               $selectInfo = $pdo->prepare("select nome_usu, cpf_usu, data_nasc_usu, data_entrada, turma.cod_tur, sigla_tur, turno_tur, nome_curso from usuario 
@@ -187,11 +191,9 @@ require_once '../../../../bd/conexao.php';
 
             <!--Seção - Lista de Alunos -->
             <div id="conteudotab1">
-
               <div id="scroll">
                   <form class="info-aluno">
                     <?php
-                    
                     echo "
                       <p><label>Nome</label><input type='text' value='$nomeAlun' disabled></p>
                       <p><label>Curso</label><input type='text' value='$curso' disabled></p>
@@ -247,9 +249,7 @@ require_once '../../../../bd/conexao.php';
                       </div>
                       ";
                     }
-
                   ?>
-
                 <!-- <div class="item-ocorre">
                   <h3>10/10/2010</h3><hr>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.

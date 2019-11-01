@@ -7,10 +7,14 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: ../../../../../homeLandingPage.php");
+    header("Location: ../../../homeLandingPage.php");
 }
 
-$codTurma = $_REQUEST['codTurma'];
+if(isset($_REQUEST['codTurma'])){
+    $codTurma = filter_var($_REQUEST['codTurma'], FILTER_SANITIZE_NUMBER_INT);
+}else{
+    $codTurma = 0;
+}
 
 ?>
 
@@ -20,19 +24,19 @@ $codTurma = $_REQUEST['codTurma'];
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Primeiro cadastro</title>    
-        <link rel="stylesheet" href="../../../../../css/default.css">    
-        <script src='../../../../../js/jquery-3.3.1.min.js'></script>
-        <script src='../../../../../js/jquery.mask.min.js'></script>
+        <link rel="stylesheet" href="../../../css/default.css">    
+        <script src='../../../js/jquery-3.3.1.min.js'></script>
+        <script src='../../../js/jquery.mask.min.js'></script>
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../../../css/cssCadastroMaster/style480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../css/cssCadastroMaster/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="../../../../../css/cssCadastroMaster/style768.css">
+              href="../../../css/cssCadastroMaster/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="../../../../../css/cssCadastroMaster/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../../../css/cssCadastroMaster/style1366.css">
+              href="../../../css/cssCadastroMaster/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../css/cssCadastroMaster/style1366.css">
         <style type="text/css">
                 
                 img.perfil-foto{
@@ -73,11 +77,12 @@ $codTurma = $_REQUEST['codTurma'];
                     data: $('.form').serialize(),
                     success: function (data) {
                         if (data != '') {
-                            $('.recebeDados').html(data);
-                            // document.getElementById('visor').value = '';
-                            // document.getElementById('visor1').value = '';
-                            // document.getElementById('visor2').value = '';
-                            // document.getElementById('complUnid').value = '';
+                            if(data == 'errCod'){   
+                                ajaxCallBack(); 
+                                $('.recebeDados').html("<p>Você não escolheu nenhuma turma, volte e selecione a turma que deseja ver os alunos!</p>");
+                            }else{
+                                $('.recebeDados').html(data);   
+                            }
                         }
                     }
                 });
@@ -92,7 +97,7 @@ $codTurma = $_REQUEST['codTurma'];
             <header class="headerPrimeiroAcesso">
             <!-- <a href="../../alterarAcc.php"><img src="../img/alteraImg.png"></a>
             <a href="../cadastroDeInst/cadastroDeInst.php"><img src="../img/instImg.png"></a> -->
-            <a href="cadAlunos.php?codTurma=$codTurma"><img src="../../../../../primeiroCadastroMaster/img/unidImg.png"></a>
+            <a href="cadAlunos.php"><img src="../../../primeiroCadastroMaster/img/unidImg.png"></a>
             <!-- <a href="../cadastroDeDir/cadastroDir.php"><img src="../img/dirImg.png"></a>
             <a href="../enviarEmail.php"><img src="../img/emailImg.png"></a>                
             <a href="../confirmarDados.php"><img src="../img/confirmaImg.png"></a> -->
@@ -102,17 +107,13 @@ $codTurma = $_REQUEST['codTurma'];
 
             <main>
                 <div class="acessoUm">
-
-
-
-                    <?php                      
-                    // if($img === NULL){
-                        echo "<img src='../../../../../imagens/perfil.png' class='perfil-foto'/>";
-                    // }else{
-                    //     echo "<img src='../$img' class='perfil-foto'>";
-                    // }
-                    ?>
-                    <p>Cadastre os alunos:</p>
+                    <div class="setinha">
+                    <a id="agaref" href="javascript: window.history.go(-1);">
+                        <img id="seta" src="../../../imagens/voltar_corAzul.png">
+                    </a>
+                    </div>
+                    
+                    <h1>Cadastre os alunos:</h1>
 
                     <form class='form' method='post' autocomplete='off'>
                         <label id="coordenadores">Aluno:</label>
@@ -132,7 +133,7 @@ $codTurma = $_REQUEST['codTurma'];
 
                         <div id="rightDiv"></div> <!-- div q recebe os novos inputs -->
                         <div class='recebeDados' id='div'></div> <!-- div que recebe dados do ajax -->
-                        <span id="eventBtn"><img src="../../../../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                        <span id="eventBtn"><img src="../../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
                         <div class="puto"><input type="submit" value="Cadastrar Alunos" class="VAISEFUDE" /></div> <!-- botão subtmit do formulário -->
                         
                         <input type="hidden" value="1" name="AcoordA" id="hidden"/>
@@ -143,6 +144,9 @@ $codTurma = $_REQUEST['codTurma'];
                     
             </main>  
         <script type="text/javascript">
+        function ajaxCallBack(){
+            $('#agaref').removeAttr('href').attr('href', 'javascript: window.history.go(-2);');
+        }
 
         var increment=1;
 

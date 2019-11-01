@@ -7,16 +7,20 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: homeLandingPage.php");
+    header("Location: ../../homeLandingPage.php");
 }
 
-require_once '../../../../bd/conexao.php';
+if(isset($_REQUEST['codTurma'])){
+    $codTurma = filter_var($_REQUEST['codTurma'], FILTER_SANITIZE_NUMBER_INT);
+}
+ 
+require_once '../../bd/conexao.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
     <head>
-        <title> GIS Alunos - Horário</title>
+        <title>Lista Alunos</title>
 
         <meta charset=UTF-8>
         <!-- ISO-8859-1 -->
@@ -27,22 +31,24 @@ require_once '../../../../bd/conexao.php';
         <meta name=author content='G4 INI3B GIS '>
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../../imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="../../../../css/default.css" rel=stylesheet>
+        <link href="../../css/default.css" rel=stylesheet>
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../../css/lista_alunos_sala/lista_alunos_sala_480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/lista_alunos_sala/lista_alunos_sala_480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="../../../../css/lista_alunos_sala/lista_alunos_sala_768.css">
+              href="../../css/lista_alunos_sala/lista_alunos_sala_768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="../../../../css/lista_alunos_sala/lista_alunos_sala_1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../../css/lista_alunos_sala/lista_alunos_sala_1366.css">
+              href="../../css/lista_alunos_sala/lista_alunos_sala_1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/lista_alunos_sala/lista_alunos_sala_1366.css">
 
         <!-- Script -->
-        <script src="../../../../js/script.js"></script>
+        <script src="../../js/jquery-3.3.1.min.js"></script>
+        <script src="../../js/script.js"></script>
+
 
         <!-- Icon Font -->
         <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
@@ -150,20 +156,38 @@ require_once '../../../../bd/conexao.php';
                 <!-- Início conteúdo principal -->
                 <div id="pagina">
                     <div id="cabecalho">
-                        <a href="lista_salas.php">
-                            <img id="seta" src="../../../../imagens/voltar.png">
-                        </a>
-                        <div id="sala">
-                            <h2 id="curso">INI</h2>
-                            <h2 id="turma">3B</h2>
-                        </div>
-                        <div id="infoCurso">
-                            <span id="nomeCurso">Informática para Internet
-                                <p id="anoSala">3º ano B</p>
-                            </span>
-                        </div>
+                        <!--rolezinho de puxar as informações do curso pra a div sala e pro botão voltar-->
+                        <?php
+                            //tem que ter uma validação pra se nn tiver o codTurma 
+                            $selectCurso = $pdo->prepare("select cursos.cod_curso, nome_curso, sigla_tur from cursos 
+                                inner join turma on (cursos.cod_curso = turma.cod_curso) where cod_tur = $codTurma and cod_status_cursos = 'A' and cod_status_tur = 'A'");
+                            $selectCurso->execute();
 
-                    </div>
+                            $numDeLinhas = $selectCurso->rowCount();
+
+                            //if($numDeLinhas > 0){
+                                $dads = $selectCurso->fetch(PDO::FETCH_ASSOC);
+                                $codCurso = $dads['cod_curso'];
+                                $nomeCurso = $dads['nome_curso'];
+                                $sigla = $dads['sigla_tur'];
+    
+                                echo "
+                                    <a href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>
+                                        <img id='seta' src='../../imagens/voltar.png'>
+                                    </a>
+    
+                                    <div id='sala'>
+                                        <h2 id='curso'>$sigla</h2>
+                                    </div>
+                                    <div id='infoCurso'>
+                                        <span id='nomeCurso'>$nomeCurso</span>
+                                    </div>
+                                </div>
+                                ";
+                            // }else{
+                            //     echo "</div>";
+                            // }
+                        ?>
 
                     <!-- Navegação entre ocorrência - sala -->
                     <div class="tabs">
@@ -173,69 +197,56 @@ require_once '../../../../bd/conexao.php';
 
                             <!--Seção - Lista de Alunos -->
                             <div id="conteudotab1">
-
                                 <div id="scroll">
-                                    <div id="dadosAluno">
-                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                                        <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                                            <p id="ocorrencia_numAluno">Número 01</p>
-                                        </span>
-                                    </div>
 
-                                    <div id="dadosAluno">
-                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                                        <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                                            <p id="ocorrencia_numAluno">Número 01</p>
-                                        </span>
-                                    </div>
+                                <?php
+                                if(isset($_REQUEST['codTurma'])){
+                                    //if(isset($dads)){
+                                        $selecionar = ("select nome_usu, usuario.cod_usu from turma_aluno inner join usuario on(turma_aluno.cod_usu = usuario.cod_usu) where cod_status = 'A' and cod_status_usu = 'A' and cod_tur = $codTurma ORDER BY nome_usu ASC;");
+                                        $comando = $pdo->prepare($selecionar);
+                                        $comando->execute();
+    
+                                        $numDeLinhas = $comando->rowCount();
+    
+                                        if($numDeLinhas == 0){
+                                            echo '<h2>Você ainda não cadastrou alunos nesta turma, cadastre-os no botão abaixo</h2>';
+                                        }else{
+                                            $i = 1;
+                                            while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
+                                                $nomeUsu = $dedos['nome_usu'];
+                                                $codUsuAluno = $dedos['cod_usu'];
+    
+                                                echo "
+                                                <div id='dadosAluno'>
+                                                    <a href='perfilAluno.php?codAlun=$codUsuAluno'><img src='../../imagens/pessoa.png' alt='Imagem do aluno' id='imgAluno'></a>
+                                                    <span id='ocorrencia_nomeAluno'><b>$nomeUsu</b>
+                                                        <p id='ocorrencia_numAluno'>Número $i</p>
+                                                    </span>
+                                                </div>
+                                                ";
+                                                
+                                            echo  "<a href='perfilAluno.php?codAlun=$codUsuAluno'>$i - $nomeUsu</a><br>";
+                                            $i++;
+                                            }
+                                        }
+                                        echo "<a href='cadAlunos/cadAlunos.php?codTurma=$codTurma'>Adicionar Alunos</a>";
+    
+                                    // }else{
+                                    //     echo '<h2>Essa turma não existe!</h2>';
+                                    // }
+                                }else{
+                                    echo '<h2>Você não selecionou uma turma para ver os alunos!';
+                                }
+                                ?>
 
-                                    <div id="dadosAluno">
-                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                                        <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                                            <p id="ocorrencia_numAluno">Número 01</p>
-                                        </span>
-                                    </div>
-
-                                    <div id="dadosAluno">
-                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                                        <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                                            <p id="ocorrencia_numAluno">Número 01</p>
-                                        </span>
-                                    </div>
-
-
-                                    <div id="dadosAluno">
-                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                                        <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                                            <p id="ocorrencia_numAluno">Número 01</p>
-                                        </span>
-                                    </div>
-
-
-                                    <div id="dadosAluno">
-                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                                        <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                                            <p id="ocorrencia_numAluno">Número 01</p>
-                                        </span>
-                                    </div>
-
-                                    <div id="dadosAluno">
-                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                                        <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                                            <p id="ocorrencia_numAluno">Número 01</p>
-                                        </span>
-                                    </div>
-
-                                    <div id="dadosAluno">
-                                        <img src="../../../../imagens/pessoa.png" alt="Imagem do aluno" id="imgAluno">
-                                        <span id="ocorrencia_nomeAluno"><b>Nome do aluno</b>
-                                            <p id="ocorrencia_numAluno">Número 01</p>
-                                        </span>
-                                    </div>
-
+                                <!-- <div id='dadosAluno'>
+                                    <img src='../../imagens/pessoa.png' alt='Imagem do aluno' id='imgAluno'>
+                                    <span id='ocorrencia_nomeAluno'><b>Nome do aluno</b>
+                                        <p id='ocorrencia_numAluno'>Número 01</p>
+                                    </span>
+                                </div> -->
 
                                 </div>
-
                             </div>
                         </div>
 
@@ -370,13 +381,8 @@ require_once '../../../../bd/conexao.php';
                                     </div>
 
                                 </div>
-
-
-
-
                             </div>
                         </div>
-
                     </div>
                 </div>
         </div>

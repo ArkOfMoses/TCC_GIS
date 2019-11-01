@@ -3,15 +3,19 @@ session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
+    $tipoUsu = $dados['nomeTipoUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: ../../../homeLandingPage.php");
+    header("Location: ../../homeLandingPage.php");
 }
 
-$codCurso = $_REQUEST['codCurso'];
-require_once '../../../bd/conexao.php';
+if(isset($_REQUEST['codCurso'])){
+  $codCurso = filter_var($_REQUEST['codCurso'], FILTER_SANITIZE_NUMBER_INT);
+}
+
+require_once '../../bd/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -32,27 +36,26 @@ require_once '../../../bd/conexao.php';
       <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
       <!-- CSS PADRÃO -->
-      <link href="../../../css/default.css" rel=stylesheet>
+      <link href="../../css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../css/cssOperacaoCurso/style480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssOperacaoCurso/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="../../../css/cssOperacaoCurso/style768.css">
+              href="../../css/cssOperacaoCurso/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="../../../css/cssOperacaoCurso/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../css/cssOperacaoCurso/style1366.css">
+              href="../../css/cssOperacaoCurso/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssOperacaoCurso/style1366.css">
         
     
       <!-- Script -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="../../../js/script.js"> </script>
+      <script src="../../js/script.js"> </script>
       <script type="text/javascript">// Ativar Menu
 
-function activateMenu(){
-    document.getElementById("on_off").classList.toggle('active-menu');
-}
-</script>
-
+      function activateMenu(){
+          document.getElementById("on_off").classList.toggle('active-menu');
+      }
+      </script>
 
       <!-- Icon Font -->
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
@@ -140,56 +143,47 @@ function activateMenu(){
         </div>
 
         </header>
-          <div class="setinha">
-          <a href="">
-            <img id="seta" src="../../../imagens/voltar_corAzul.png">
-          </a>
-</div>
+            <div class="setinha">
+            <a href="../operacaoCursos/cursos.php">
+              <img id="seta" src="../../imagens/voltar_corAzul.png">
+            </a>
+            </div>
             <main>
             
             <div class="alunos">
                 <h1>Lista de Turmas</h1>
                 <?php
-
-                $selecionar = ("select sigla_tur, cod_tur from turma where cod_curso = $codCurso and cod_status_tur = 'A';");
-                $comando = $pdo->prepare($selecionar);
-                $comando->execute();
-
-                $numDeLinhas = $comando->rowCount();
-
-                if($numDeLinhas == 0){
-                    echo 'Você ainda não cadastrou as turmas, cadastre-as no botão abaixo';
-                }else{
-                    while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
-                        $codTurma = $dedos['cod_tur'];
-                        $nomeTurma = $dedos['sigla_tur'];
-
-                       echo  "<a id='linkcurso' href='operacaoAlunos/alunos.php?codTurma=$codTurma'>$nomeTurma</a><br>";
+                
+                if(isset($_REQUEST['codCurso'])){
+                  $selecionar = ("select sigla_tur, cod_tur from turma where cod_curso = $codCurso and cod_status_tur = 'A';");
+                  $comando = $pdo->prepare($selecionar);
+                  $comando->execute();
+  
+                  $numDeLinhas = $comando->rowCount();
+  
+                  if($numDeLinhas == 0){
+                    if($tipoUsu == "Diretor"){
+                      echo '<p>Você ainda não cadastrou as turmas, cadastre-as no botão abaixo</p>';
+                    }else{
+                      echo '<p>O diretor da sua unidade não cadastrou seus cursos!</p>';
                     }
-                    
-                    
-                    
+                  }else{
+                      while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
+                          $codTurma = $dedos['cod_tur'];
+                          $nomeTurma = $dedos['sigla_tur'];
+
+                         echo  "<a id='linkcurso' href='../operacaoAlunos/alunos.php?codTurma=$codTurma'>$nomeTurma</a><br>";
+                      }
+                  }
+
+                  echo "<a href='cadTurmas/cadTurmas.php?codCurso=$codCurso' >Adicionar Turmas</a>";
+                }else{
+                  echo '<p>Você não escolheu nenhum curso, volte e selecione o curso que deseja ver as turmas!</p>';
                 }
 
-
-                // $selecionar = ("select * from turmas where cod_unid = $key");
-                // $comando = $pdo->prepare($selecionar);
-                // $comando->execute();
-
-                /*if(não ter turmas cadastradas){
-                    echo 'Você ainda não cadastrou suas turmas, cadastre-as no botão abaixo';
-                }else{
-    
-                mostrar a lista das turmas cadastradas
-                }*/
-
-
-                echo "<a href='cadTurmas/cadTurmas.php?codCurso=$codCurso' >Adicionar Turmas</a>";
-
-                ?>
+              ?>
                 
             </div>
-            </main>  
-        
+      </main>    
     </body>
 </html>

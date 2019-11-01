@@ -3,17 +3,15 @@ session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
+    $tipoUsu = $dados['nomeTipoUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
     header("Location: ../../homeLandingPage.php");
 }
-
 require_once '../../bd/conexao.php';
-
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -141,10 +139,11 @@ function activateMenu(){
 
         </header>
           <div class="setinha">
-          <a href="">
-            <img id="seta" src="../../imagens/voltar_corAzul.png">
-          </a>
-</div>
+            <!-- tem que arrumar esse link -->
+            <?= "<a href='../../perfil$tipoUsu.php'>" ?>
+              <img id="seta" src="../../imagens/voltar_corAzul.png">
+            </a>
+          </div>
             <main>
            
             <div class="alunos">
@@ -160,21 +159,26 @@ From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_
                 $numDeLinhas = $comando->rowCount();
 
                 if($numDeLinhas == 0){
-                    echo 'Você ainda não cadastrou seus cursos, cadastre-os no botão abaixo';
+                    if($tipoUsu == "Diretor"){
+                      echo 'Você ainda não cadastrou seus cursos, cadastre-os no botão abaixo';
+                    }else{
+                      echo 'O diretor da sua unidade não cadastrou seus cursos!';
+                    }
                 }else{
                     while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
                         $codCurso = $dedos['cod_curso'];
                         $nomeCurso = $dedos['nome_curso'];
 
-                       echo  "<a id='linkcurso' href='operacaoTurmas/turmas.php?codCurso=$codCurso'>$nomeCurso</a><br>";
+                       echo  "<a id='linkcurso' href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>$nomeCurso</a><br>";
                     }
-                    
-                    
-                    
+                }
+
+                if($tipoUsu == "Diretor"){
+                  echo "<a id='linkcurso' href='cadCursos/cadCursos.php' >Adicionar Cursos</a>";
                 }
 
                 ?>
-                <a id='linkcurso' href='cadCursos/cadCursos.php' >Adicionar Cursos</a>
+                
             </div>
             </main>  
         

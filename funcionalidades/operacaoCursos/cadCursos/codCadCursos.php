@@ -52,8 +52,6 @@ if($infoPost){
                             $inserirNaUnid = $pdo->prepare("insert into cursos_unidade (cod_curso, cod_unid, cod_status_cursos_unid) values ($curnin, $codDaUnid, 'A')");
                             $inserirNaUnid->execute();
 
-
-
                         }else{
                             echo "<p>Não foi possivel cadastrar o curso $nomeFor</p>";
                         }

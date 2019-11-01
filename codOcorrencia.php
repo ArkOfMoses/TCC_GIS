@@ -1,5 +1,14 @@
 <?php
-
+session_start();
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+    $codUsu = $dados['codUsu'];
+}else{
+    unset($_SESSION['dadosUsu']);
+    unset($_SESSION['logado']);
+    session_destroy();
+    header("Location: homeLandingPage.php");
+}
 require_once 'bd/conexao.php';
 
 $codTur = $_REQUEST['codTurma'];
@@ -8,13 +17,8 @@ $codAluno = $_REQUEST['codAluno'];
 $select = $pdo->prepare("select nome_usu from usuario where cod_usu = $codAluno;");
 $select->execute();
  while ($dados = $select->fetch(PDO::FETCH_ASSOC)) {
-                $nomeAluno = $dados['nome_usu'];
+    $nomeAluno = $dados['nome_usu'];
  }
-
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -190,7 +194,6 @@ $select->execute();
 		<select class="select-style" name="materias">
               <option>Escolha a Matéria</option>
               <?php
-              $codUsu = 3;
               $comand = $pdo->prepare("select disciplina.cod_disc, nome_disc from disciplina inner join prof_turma_disc on (disciplina.cod_disc = prof_turma_disc.cod_disc) where cod_usu = $codUsu and cod_status_prof_tur_disc = 'A' and cod_tur = $codTur;");
               $comand->execute();
 

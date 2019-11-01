@@ -7,10 +7,15 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: ../../../../homeLandingPage.php");
+    header("Location: ../../../homeLandingPage.php");
 }
 
-$codCurso = $_REQUEST['codCurso'];
+
+if(isset($_REQUEST['codCurso'])){
+    $codCurso = filter_var($_REQUEST['codCurso'], FILTER_SANITIZE_NUMBER_INT);
+}else{
+    $codCurso = 0;
+}
 
 ?>
 
@@ -20,18 +25,18 @@ $codCurso = $_REQUEST['codCurso'];
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Primeiro cadastro</title>    
-        <link rel="stylesheet" href="../../../../css/default.css">    
-        <script src='../../../../js/jquery-3.3.1.min.js'></script>
+        <link rel="stylesheet" href="../../../css/default.css">    
+        <script src='../../../js/jquery-3.3.1.min.js'></script>
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../../css/cssCadastroMaster/style480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../../css/cssCadastroMaster/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="../../../../css/cssCadastroMaster/style768.css">
+              href="../../../css/cssCadastroMaster/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="../../../../css/cssCadastroMaster/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../../css/cssCadastroMaster/style1366.css">
+              href="../../../css/cssCadastroMaster/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../css/cssCadastroMaster/style1366.css">
         <style type="text/css">
                 
                 img.perfil-foto{
@@ -63,27 +68,6 @@ $codCurso = $_REQUEST['codCurso'];
                 
         </style>
 
-        <script>
-        $(function () {
-            $('.form').submit(function () {
-                $.ajax({
-                    <?php echo "url: 'codCadTurmas.php?codCurso=$codCurso',";?>
-                    type: 'POST',
-                    data: $('.form').serialize(),
-                    success: function (data) {
-                        if (data != '') {
-                            $('.recebeDados').html(data);
-                            // document.getElementById('visor').value = '';
-                            // document.getElementById('visor1').value = '';
-                            // document.getElementById('visor2').value = '';
-                            // document.getElementById('complUnid').value = '';
-                        }
-                    }
-                });
-                return false;
-            });
-        });
-        </script>
     </head>
     <body>
         <div class="content">
@@ -91,7 +75,7 @@ $codCurso = $_REQUEST['codCurso'];
             <header class="headerPrimeiroAcesso">
             <!-- <a href="../../alterarAcc.php"><img src="../img/alteraImg.png"></a>
             <a href="../cadastroDeInst/cadastroDeInst.php"><img src="../img/instImg.png"></a> -->
-            <a href="cadTurmas.php?codCurso=$codCurso"><img src="../../../../primeiroCadastroMaster/img/unidImg.png"></a>
+            <a href="cadTurmas.php"><img src="../../../primeiroCadastroMaster/img/unidImg.png"></a>
             <!-- <a href="../cadastroDeDir/cadastroDir.php"><img src="../img/dirImg.png"></a>
             <a href="../enviarEmail.php"><img src="../img/emailImg.png"></a>                
             <a href="../confirmarDados.php"><img src="../img/confirmaImg.png"></a> -->
@@ -101,22 +85,17 @@ $codCurso = $_REQUEST['codCurso'];
 
             <main>
                 <div class="acessoUm">
+                    <div class="setinha">
+                    <a id="agaref" href="javascript: window.history.go(-1);">
+                        <img id="seta" src="../../../imagens/voltar_corAzul.png">
+                    </a>
+                    </div>
 
-
-
-                    <?php                      
-                    // if($img === NULL){
-                        echo "<img src='../../../../imagens/perfil.png' class='perfil-foto'/>";
-                    // }else{
-                    //     echo "<img src='../$img' class='perfil-foto'>";
-                    // }
-                    ?>
-                    <p>Cadastre as Turmas:</p>
+                    <h1>Cadastre as Turmas:</h1>
                     
-                  <?php echo "<form class='form' method='post' action='' autocomplete='off'>";?>
+                  <form class='form' method='post' autocomplete='off'>
                         
                         <label id="coordenadores">Turma:</label>
-
 
                         <label id="sigla_label">Sigla da Turma: </label>
                         <input class='unid' id='IdSigla0' name='sigla0' type='text' />
@@ -132,7 +111,7 @@ $codCurso = $_REQUEST['codCurso'];
 
                         <div id="rightDiv"></div> <!-- div q recebe os novos inputs -->
                         <div class='recebeDados' id='div'></div> <!-- div que recebe dados do ajax -->
-                        <span id="eventBtn"><img src="../../../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                        <span id="eventBtn"><img src="../../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
                         <div class="puto"><input type="submit" value="Cadastrar Cursos" class="VAISEFUDE" /></div> <!-- botão subtmit do formulário -->
                         
                         <input type="hidden" value="1" name="AcoordA" id="hidden"/>
@@ -146,10 +125,11 @@ $codCurso = $_REQUEST['codCurso'];
 
         var increment=1;
 
-        /** Função duplicar formulários - cadastro de unidades */
-        $(document).ready(function() {
+        function ajaxCallBack(){
+            $('#agaref').removeAttr('href').attr('href', 'javascript: window.history.go(-2);');
+        }
 
-            
+        $(document).ready(function() {
 
 
             $("#eventBtn").click(function(){
@@ -176,16 +156,30 @@ $codCurso = $_REQUEST['codCurso'];
             // 
             // document.getElementById('IdemailCoord'+increment).value = '';
 
-
-
             increment++;
             
             $('#hidden').attr("value", increment);
-            
-
-            
+     
         });
-        
+
+        $('.form').submit(function () {
+                $.ajax({
+                    <?php echo "url: 'codCadTurmas.php?codCurso=$codCurso',";?>
+                    type: 'POST',
+                    data: $('.form').serialize(),
+                    success: function (data) {
+                        if (data != '') {
+                            if(data == 'errCod'){   
+                                ajaxCallBack(); 
+                                $('.recebeDados').html("<p>Você não escolheu nenhum curso, volte e selecione o curso que deseja ver as turmas!</p>");
+                            }else{
+                                $('.recebeDados').html(data);   
+                            }
+                        }
+                    }
+                });
+                return false;
+            });
     });
         </script>
     </body>

@@ -88,7 +88,7 @@ if(isset($_SESSION['logado'])){
             <header class="headerPrimeiroAcesso">
             <!-- <a href="../../alterarAcc.php"><img src="../img/alteraImg.png"></a>
             <a href="../cadastroDeInst/cadastroDeInst.php"><img src="../img/instImg.png"></a> -->
-            <a href="cadastroDeCoord.php"><img src="../../../primeiroCadastroMaster/img/unidImg.png"></a>
+            <a href="#"><img src="../../../primeiroCadastroMaster/img/unidImg.png"></a>
             <!-- <a href="../cadastroDeDir/cadastroDir.php"><img src="../img/dirImg.png"></a>
             <a href="../enviarEmail.php"><img src="../img/emailImg.png"></a>                
             <a href="../confirmarDados.php"><img src="../img/confirmaImg.png"></a> -->
@@ -98,17 +98,13 @@ if(isset($_SESSION['logado'])){
 
             <main>
                 <div class="acessoUm">
+                    <div class="setinha">
+                        <a href="javascript: window.history.go(-1);">
+                            <img id="seta" src="../../../imagens/voltar_corAzul.png">
+                        </a>
+                    </div>
 
-
-
-                    <?php                      
-                    // if($img === NULL){
-                        echo "<img src='../../../imagens/perfil.png' class='perfil-foto'/>";
-                    // }else{
-                    //     echo "<img src='../$img' class='perfil-foto'>";
-                    // }
-                    ?>
-                    <p>Cadastre os cursos:</p>
+                    <h1>Cadastre os cursos:</h1>
                     
                     <form class='form' method='post'>
                         
@@ -139,34 +135,20 @@ if(isset($_SESSION['logado'])){
         /** Função duplicar formulários - cadastro de unidades */
         $(document).ready(function() {
 
-            
-
-
             $("#eventBtn").click(function(){
-            
-
-            
-
-
 
             $('#sigla_label').clone().appendTo('#rightDiv').removeAttr('id');
             $('#IdSigla0').clone().appendTo('#rightDiv').attr("name","sigla"+ increment).attr("id", "IdSigla"+increment);
             document.getElementById('IdSigla'+increment).value = '';
 
-
-            
             // $('#email_label').clone().appendTo('#rightDiv');
             // 
             // document.getElementById('IdemailCoord'+increment).value = '';
 
-
-
             increment++;
             
             $('#hidden').attr("value", increment);
-            
-
-            
+                   
         });
         
     });
