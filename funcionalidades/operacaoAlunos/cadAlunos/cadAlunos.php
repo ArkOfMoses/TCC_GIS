@@ -79,7 +79,7 @@ if(isset($_REQUEST['codTurma'])){
                         if (data != '') {
                             if(data == 'errCod'){   
                                 ajaxCallBack(); 
-                                $('.recebeDados').html("<p>Você não escolheu nenhuma turma, volte e selecione a turma que deseja ver os alunos!</p>");
+                                $('.recebeDados').html("<p>Você não escolheu nenhuma turma, volte e selecione a turma que deseja cadastrar os alunos!</p>");
                             }else{
                                 $('.recebeDados').html(data);   
                             }

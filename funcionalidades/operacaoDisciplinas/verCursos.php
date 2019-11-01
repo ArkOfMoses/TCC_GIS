@@ -3,6 +3,7 @@ session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
+    $nomeTipoUsu = $dados['nomeTipoUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -69,7 +70,14 @@ require_once '../../bd/conexao.php';
             </header>
 
             <main>
+            <div class="setinha">
+                <?="<a id='agaref' href='../../perfil$nomeTipoUsu.php'>"?>
+                        <img id="seta" src="../../imagens/voltar_corAzul.png">
+                    </a>
+            </div>
             <div class="alunos">
+
+
                 <h1>Você quer ver as disciplinas de qual curso?</h1>
                 <?php
                 $codUnid = $dados['codUnidadeUsu'];

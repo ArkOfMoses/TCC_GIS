@@ -10,7 +10,10 @@ if(isset($_SESSION['logado'])){
     header("Location: ../../homeLandingPage.php");
 }
 
-$codTurma = $_REQUEST['codTurma'];
+if(isset($_REQUEST['codTurma'])){
+    $codTurma = filter_var($_REQUEST['codTurma'], FILTER_SANITIZE_NUMBER_INT);
+}
+
 require_once '../../bd/conexao.php';
 ?>
 
@@ -70,43 +73,65 @@ require_once '../../bd/conexao.php';
             </header>
 
             <main>
+            <div class="setinha">
+                <?php
+                    $selectCurso = $pdo->prepare("select cursos.cod_curso from cursos 
+                    inner join turma on (cursos.cod_curso = turma.cod_curso) where cod_tur = $codTurma and cod_status_cursos = 'A' and cod_status_tur = 'A'");
+                    $selectCurso->execute();
+
+                    $dads = $selectCurso->fetch(PDO::FETCH_ASSOC);
+                    $codCurso = $dads['cod_curso'];
+
+                    echo "
+                    <a id='agaref' href='verTurmas.php?codCurso=$codCurso'>
+                        <img id='seta' src='../../imagens/voltar_corAzul.png'>
+                    </a>
+                    ";
+                ?>
+
+            </div>
             <div class="alunos">
-            
+                <h1>Lista Disciplinas</h1>
                 <?php
 
-                $selecionar = ("select carga_horaria_disc, nome_disc, disciplina.cod_disc from turma_disciplina inner join disciplina on(turma_disciplina.cod_disc = disciplina.cod_disc) where cod_status_disc = 'A' and cod_status_tur_disc = 'A' and cod_tur = $codTurma;");
-                $comando = $pdo->prepare($selecionar);
-                $comando->execute();
-
-                $numDeLinhas = $comando->rowCount();
-
-                if($numDeLinhas == 0){
-                    echo 'As disciplinas ainda não foram cadastradas nesta turma, cadastre elas clicando no botão abaixo!!';
-                }else{
-                    echo "<table>
-                    <caption>Lista de Disciplinas</caption>
-                    <tr>
-                        <th>Nome da Disciplina</th>
-                        <th>Carga Horária</th>
-                        <th colspan='2'>Ações</th>
-                    </tr>";
-                    while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
-                        $codDisc = $dedos['cod_disc'];
-                        $nomeDisc = $dedos['nome_disc'];
-                        $cargHora = $dedos['carga_horaria_disc'];
-
-                        echo '<tr>';
-                        echo '<td>'.$nomeDisc.'</td>';
-                        echo '<td>'.$cargHora.'</td>';
-                        echo '<td><a href="#">Editar</a></td><form method="post" action=""><td><input type="submit" value="Excluir" name="Excluir" /></td></form>';
-                        echo '</tr>';
+                if(isset($_REQUEST['codTurma'])){
+                    $selecionar = ("select carga_horaria_disc, nome_disc, disciplina.cod_disc from turma_disciplina inner join disciplina on(turma_disciplina.cod_disc = disciplina.cod_disc) where cod_status_disc = 'A' and cod_status_tur_disc = 'A' and cod_tur = $codTurma;");
+                    $comando = $pdo->prepare($selecionar);
+                    $comando->execute();
+    
+                    $numDeLinhas = $comando->rowCount();
+    
+                    if($numDeLinhas == 0){
+                        echo '<p>As disciplinas ainda não foram cadastradas nesta turma, cadastre elas clicando no botão abaixo!!</p>';
+                    }else{
+                        echo "<table>
+                        <caption>Lista de Disciplinas</caption>
+                        <tr>
+                            <th>Nome da Disciplina</th>
+                            <th>Carga Horária</th>
+                            <th colspan='2'>Ações</th>
+                        </tr>";
+                        while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
+                            $codDisc = $dedos['cod_disc'];
+                            $nomeDisc = $dedos['nome_disc'];
+                            $cargHora = $dedos['carga_horaria_disc'];
+    
+                            echo '<tr>';
+                            echo '<td>'.$nomeDisc.'</td>';
+                            echo '<td>'.$cargHora.'</td>';
+                            echo '<td><a href="#">Editar</a></td><form method="post" action=""><td><input type="submit" value="Excluir" name="Excluir" /></td></form>';
+                            echo '</tr>';
+                        }
+                        echo "</table>";
+                         
+                        
                     }
-                    echo "</table>";
-                     
                     
+                    echo "<a href='cadDisc/cadDisc.php?codTurma=$codTurma' >Adicionar Disciplinas</a>";
+                }else{
+                    echo "<p>Você não selecionou a turma, volte e selecione a turma que quiser ver as disciplinas</p>";
                 }
-                
-                echo "<a href='cadDisc/cadDisc.php?codTurma=$codTurma' >Adicionar Disciplinas</a>";
+
                 ?>
                
             </div>

@@ -10,8 +10,13 @@ if(isset($_SESSION['logado'])){
     header("Location: ../../../homeLandingPage.php");
 }
 
+if(isset($_REQUEST['codTurma'])){
+    $codTurma = filter_var($_REQUEST['codTurma'], FILTER_SANITIZE_NUMBER_INT);
+}else{
+    $codTurma = 0;
+}
 
-$codTurma = $_REQUEST['codTurma'];
+
 ?>
 
 <!DOCTYPE html>
@@ -72,11 +77,12 @@ $codTurma = $_REQUEST['codTurma'];
                     data: $('.form').serialize(),
                     success: function (data) {
                         if (data != '') {
-                            $('.recebeDados').html(data);
-                            // document.getElementById('visor').value = '';
-                            // document.getElementById('visor1').value = '';
-                            // document.getElementById('visor2').value = '';
-                            // document.getElementById('complUnid').value = '';
+                            if(data == 'errCod'){   
+                                ajaxCallBack(); 
+                                $('.recebeDados').html("<p>Você não escolheu nenhuma turma, volte e selecione a turma que deseja cadastrar as disciplinas!</p>");
+                            }else{
+                                $('.recebeDados').html(data);   
+                            }
                         }
                     }
                 });
@@ -100,18 +106,15 @@ $codTurma = $_REQUEST['codTurma'];
             </header>
 
             <main>
+                <div class="setinha">
+                <a id="agaref" href="javascript: window.history.go(-1);">
+                    <img id="seta" src="../../../imagens/voltar_corAzul.png">
+                </a>
+                </div>
+            
                 <div class="acessoUm">
+                    <h1>Cadastre as disciplinas:</h1>
 
-
-
-                    <?php                      
-                    // if($img === NULL){
-                        echo "<img src='../../../imagens/perfil.png' class='perfil-foto'/>";
-                    // }else{
-                    //     echo "<img src='../$img' class='perfil-foto'>";
-                    // }
-                    ?>
-                    <p>Cadastre as disciplinas:</p>
                     
                     <form class='form' method='post'>
                         
@@ -138,19 +141,15 @@ $codTurma = $_REQUEST['codTurma'];
                     
             </main>  
         <script type="text/javascript">
+        function ajaxCallBack(){
+            $('#agaref').removeAttr('href').attr('href', 'javascript: window.history.go(-2);');
+        }
 
         var increment=1;
 
         /** Função duplicar formulários - cadastro de unidades */
         $(document).ready(function() {
-
-            
-
-
             $("#eventBtn").click(function(){
-            
-
-            
 
             $('#coordenadores').clone().appendTo('#rightDiv').removeAttr('id');
 
@@ -162,21 +161,8 @@ $codTurma = $_REQUEST['codTurma'];
             $('#IdHora0').clone().appendTo('#rightDiv').attr("name","hora"+ increment).attr("id", "IdHora"+increment);
             document.getElementById('IdHora'+increment).value = '';
 
-
-
-            
-            // $('#email_label').clone().appendTo('#rightDiv');
-            // 
-            // document.getElementById('IdemailCoord'+increment).value = '';
-
-
-
             increment++;
-            
-            $('#hidden').attr("value", increment);
-            
-
-            
+            $('#hidden').attr("value", increment);      
         });
         
     });

@@ -10,7 +10,11 @@ if(isset($_SESSION['logado'])){
     header("Location: ../../homeLandingPage.php");
 }
 
-$codCurso = $_REQUEST['codCurso'];
+if(isset($_REQUEST['codCurso'])){
+    $codCurso = filter_var($_REQUEST['codCurso'], FILTER_SANITIZE_NUMBER_INT);
+}
+
+
 require_once '../../bd/conexao.php';
 ?>
 
@@ -70,29 +74,36 @@ require_once '../../bd/conexao.php';
             </header>
 
             <main>
+                <div class="setinha">
+                    <a id='agaref' href='verCursos.php'>
+                        <img id="seta" src="../../imagens/voltar_corAzul.png">
+                    </a>
+                </div>
             <div class="alunos">
                 <h1>Você quer ver as disciplinas de qual turma?</h1>
                 <?php
 
-                $selecionar = ("select sigla_tur, cod_tur from turma where cod_curso = $codCurso and cod_status_tur = 'A';");
-                $comando = $pdo->prepare($selecionar);
-                $comando->execute();
-
-                $numDeLinhas = $comando->rowCount();
-
-                if($numDeLinhas == 0){
-                    echo 'As turmas ainda não foram cadastradas, fale com o diretor para cadastrá-las!!';
-                }else{
-                    while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
-                        $codTurma = $dedos['cod_tur'];
-                        $nomeTurma = $dedos['sigla_tur'];
-
-                       echo  "<a href='verDisc.php?codTurma=$codTurma'>$nomeTurma</a><br>";
+                if(isset($_REQUEST['codCurso'])){
+                    $selecionar = ("select sigla_tur, cod_tur from turma where cod_curso = $codCurso and cod_status_tur = 'A';");
+                    $comando = $pdo->prepare($selecionar);
+                    $comando->execute();
+    
+                    $numDeLinhas = $comando->rowCount();
+    
+                    if($numDeLinhas == 0){
+                        echo '<p>As turmas ainda não foram cadastradas, fale com o diretor para cadastrá-las!!</p>';
+                    }else{
+                        while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
+                            $codTurma = $dedos['cod_tur'];
+                            $nomeTurma = $dedos['sigla_tur'];
+    
+                           echo  "<a href='verDisc.php?codTurma=$codTurma'>$nomeTurma</a><br>";
+                        }
                     }
-                    
-                    
-                    
+                }else{
+                    echo "<p>Você não escolheu nenhum curso, volte e selecione o curso que deseja ver as turmas!</p>";
                 }
+
 
                 ?>
             </div>
