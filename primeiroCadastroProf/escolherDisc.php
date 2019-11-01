@@ -102,14 +102,8 @@ if(isset($_SESSION['logado'])){
 
                 			echo "<label>$nomeDisc<input type='checkbox' name='opcao[]' value='$codDisc'/></label>";
 
-
-
                 		}
-
-
                 	}
-                
-
                 ?>
 
                 

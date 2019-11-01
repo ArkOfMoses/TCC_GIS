@@ -11,7 +11,9 @@ if(isset($_SESSION['logado'])){
 }
 
 if(isset($_REQUEST['codTurma'])){
-    $codTurma = filter_var($_REQUEST['codTurma'], FILTER_SANITIZE_NUMBER_INT);
+    if($_REQUEST['codTurma'] != ''){
+        $codTurma = filter_var($_REQUEST['codTurma'], FILTER_SANITIZE_NUMBER_INT);
+    }
 }
 
 require_once '../../bd/conexao.php';
@@ -79,26 +81,84 @@ require_once '../../bd/conexao.php';
             <main>
             <div class="setinha">
                 <?php
-                    $selectCurso = $pdo->prepare("select cursos.cod_curso from cursos 
-                    inner join turma on (cursos.cod_curso = turma.cod_curso) where cod_tur = $codTurma and cod_status_cursos = 'A' and cod_status_tur = 'A'");
-                    $selectCurso->execute();
+                if(isset($_REQUEST['codTurma'])){
+                    if($_REQUEST['codTurma'] != ''){
 
-                    $dads = $selectCurso->fetch(PDO::FETCH_ASSOC);
-                    $codCurso = $dads['cod_curso'];
+                        $selectCurso = $pdo->prepare("select cursos.cod_curso from cursos 
+                        inner join turma on (cursos.cod_curso = turma.cod_curso) where cod_tur = $codTurma and cod_status_cursos = 'A' and cod_status_tur = 'A'");
+                        $selectCurso->execute();
+                        $numLinhas = $selectCurso->rowCount();
 
+                        if($numLinhas > 0){
+                            $dads = $selectCurso->fetch(PDO::FETCH_ASSOC);
+                            $codCurso = $dads['cod_curso'];
+        
+                            echo "
+                            <a id='agaref' href='verTurmas.php?codCurso=$codCurso'>
+                                <img id='seta' src='../../imagens/voltar_corAzul.png'>
+                            </a>
+                            ";
+                        }else{
+                            $selectExists = $pdo->prepare("select cod_status_tur from turma where cod_tur = $codTurma;");
+                            $selectExists->execute();
+
+                            if($selectExists->rowCount() > 0){
+                                $queromorrer = $selectExists->fetch(PDO::FETCH_ASSOC);
+                                $codStats = $queromorrer['cod_status_tur'];
+          
+                                if($codStats == 'A'){
+                                    $msg = '<h2>ainda não cadastrou alunos nesta turma, cadastre-os no botão abaixo</h2>';
+
+                                    $getCurso = $pdo->prepare("select cod_curso from turma where cod_tur = $codTurma;");
+                                    $getCurso->execute();
+                                    $aa = $getCurso->fetch(PDO::FETCH_ASSOC);
+                                    $codCurs = $aa['cod_curso'];
+                                    echo "
+                                    <a id='agaref' href='verTurmas.php?codCurso=$codCurs'>
+                                        <img id='seta' src='../../imagens/voltar_corAzul.png'>
+                                    </a>";
+                                }else{
+                                    $msg = "<h2>Essa turma foi deletada, volte e escolha um curso disponível</h2>";
+                                    echo "
+                                    <a id='agaref' href='verTurmas.php'>
+                                        <img id='seta' src='../../imagens/voltar_corAzul.png'>
+                                    </a>";
+                                }
+                            }else{
+                                $msg = "<h2>Essa turma não existe, volte e escolha um curso disponível</h2>";
+                                echo "
+                                <a id='agaref' href='verTurmas.php'>
+                                    <img id='seta' src='../../imagens/voltar_corAzul.png'>
+                                </a>";
+                            }
+                        }
+                    }else{
+                        $msg = "<h2>Você não selecionou a turma, volte e selecione a turma que quiser ver as disciplinas</h2>";
+                        echo "
+                        <a id='agaref' href='verTurmas.php'>
+                            <img id='seta' src='../../imagens/voltar_corAzul.png'>
+                        </a>";
+                    }
+                }else{
+                    $msg = "<h2>Você não selecionou a turma, volte e selecione a turma que quiser ver as disciplinas</h2>";
                     echo "
-                    <a id='agaref' href='verTurmas.php?codCurso=$codCurso'>
+                    <a id='agaref' href='verTurmas.php'>
                         <img id='seta' src='../../imagens/voltar_corAzul.png'>
-                    </a>
-                    ";
+                    </a>";
+                }
+
+
                 ?>
 
             </div>
-            <div class="alunos">
+            <div class='alunos'>
                 <h1>Lista Disciplinas</h1>
                 <?php
 
-                if(isset($_REQUEST['codTurma'])){
+            if(isset($_REQUEST['codTurma'])){
+                if($_REQUEST['codTurma'] != ''){
+                    if(!isset($msg)){
+
                     $selecionar = ("select carga_horaria_disc, nome_disc, disciplina.cod_disc from turma_disciplina inner join disciplina on(turma_disciplina.cod_disc = disciplina.cod_disc) where cod_status_disc = 'A' and cod_status_tur_disc = 'A' and cod_tur = $codTurma;");
                     $comando = $pdo->prepare($selecionar);
                     $comando->execute();
@@ -106,7 +166,7 @@ require_once '../../bd/conexao.php';
                     $numDeLinhas = $comando->rowCount();
     
                     if($numDeLinhas == 0){
-                        echo '<p>As disciplinas ainda não foram cadastradas nesta turma, cadastre elas clicando no botão abaixo!!</p>';
+                        echo '<h2>As disciplinas ainda não foram cadastradas nesta turma, cadastre elas clicando no botão abaixo!!</h2>';
                     }else{
                         echo "<table>
                         <caption>Lista de Disciplinas</caption>
@@ -134,15 +194,22 @@ require_once '../../bd/conexao.php';
                     }
                     
                     echo "<a class='botaozera' href='cadDisc/cadDisc.php?codTurma=$codTurma' >Adicionar Disciplinas</a>";
+                    }else{
+                        echo $msg;
+                    }
                 }else{
-                    echo "<p>Você não selecionou a turma, volte e selecione a turma que quiser ver as disciplinas</p>";
+                    echo "<h2>Você não selecionou a turma, volte e selecione a turma que quiser ver as disciplinas</h2>";
                 }
+            }else{
+                echo "<h2>Você não selecionou a turma, volte e selecione a turma que quiser ver as disciplinas</h2>";
+            }
 
                 ?>
                
             </div>
             </main>  
             <script type="text/javascript">
+
               $('#confirma').on('click', function () {
                   return confirm('você tem certeza disso? a exclusão de uma disciplina é permanente e não pode ser recuperada depois, todas as informações adjacentes também não poderão mais ser acessadas.');
               });
