@@ -234,7 +234,9 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
 
             <!--Seção - Lista de chamada -->
             <div id="conteudotab1">
+              
               <div id="legenda">
+
                 <div id="ausente">
                   <div id="vermelho"> <span id="ausPres">Ausente</span> </div>
                 </div>
@@ -269,7 +271,7 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
 
              
               <input type="submit" value="Confirmar">
-              <div class="erros"></div>
+              <div class="erros"><h3>Faça sua chamada com atenção!!!</h3></div>
               </form>
 
             </div>

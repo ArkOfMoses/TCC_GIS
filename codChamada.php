@@ -31,22 +31,22 @@ $filterForm = [
                     
                     $inserirFalta = $pdo->prepare("insert into turma_aluno_disc_falta (cod_usu, cod_tur, cod_turma_disc, data_falta) values ({$arrayCheck[$i]}, $codTurma, $codTurmaDisc, now());"); 
                     if($inserirFalta->execute()){
-                      $msg[] = "Faltas Cadastradas";
+                      $msg[] = "<h3>Faltas Cadastradas!!!!</h3>";
                       //echo "Faltas Cadastradas";
                     }else{
-                      $msg[] = "Faltas Não Cadastradas";
+                      $msg[] = "<h3>Faltas Não Cadastradas</h3>";
                     }
                   }
 
                   echo $msg[0];
           }else{
-            echo "Todos estão presentes!";
+            echo "<h3>Todos estão presentes!</h3>";
           }
         }
 
         
   }else{
-    echo 'Escolha uma matéria para a chamada!';
+    echo '<h3>Escolha uma matéria para a chamada!</h3>';
   }
 
 ?>
