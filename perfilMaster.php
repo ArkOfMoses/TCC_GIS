@@ -102,10 +102,8 @@
             <hr>
 
             <ul class="menu-buttons">
-              <li><a href="perfilProfessor.php"><i class="fas fa-home"></i>Home</a></li>
-              <li><a href="lista_salas.php"><i class="fas fa-list"></i> Lista de Turmas</a></li>
-              <li><a href="operacaoPesquisarAlunos/pesquisa.php"><i class="far fa-clock"></i> Pesquisar Alunos</a></li>
-              <li><a href="#"><i class="far fa-calendar-alt"></i> Eventos</a></li>
+              <li><a href="operacaoInst/instituicao.php"><i class="fas fa-list"></i> Minha Instituição</a></li>
+              <li><a href="operacaoUnid/unidades.php"><i class="far fa-clock"></i> Unidades</a></li>
               <li><a href="#"><i class="fas fa-cogs"></i> Configurações</a></li>
               <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
             </ul>

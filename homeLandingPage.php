@@ -175,7 +175,7 @@ if(isset($_SESSION['logado'])){
                 </div>
               </div>
 
-              <a href="#enviar-email" id="enviar-email"><div class="btm-email"><i class="fas fa-paper-plane" alt="icone de carta"></i> Entre em contato conosco!</div></a>
+              <a href="contatoLandingPage.php" id="enviar-email"><div class="btm-email"><i class="fas fa-paper-plane" alt="icone de carta"></i> Entre em contato conosco!</div></a>
               <a href="loginLandingPage.php"><div class="btm-email"><i class="fas fa-user" alt="icone de usuário"></i> Já sou um cliente</div></a>
             </div>
 

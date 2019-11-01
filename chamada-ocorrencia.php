@@ -246,19 +246,20 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
               
 
               <?php
-               $selecionar = ("select usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur;");
+               $selecionar = ("select usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur ORDER BY nome_usu ASC;");
                $comando = $pdo->prepare($selecionar);
                $comando->execute();
-
+               $i = 1;
                while($dodois = $comando->fetch(PDO::FETCH_ASSOC)){
                 $nomeAluno = $dodois['nome_usu'];
                 $codAluno = $dodois['cod_usu'];
                 echo "<div id='lista'>
                 <div id='infoaluno'>
-                  <span id='numAluno'> 01 - <span id='nomeAluno'><b>$nomeAluno</b></span> </span>
+                  <span id='numAluno'> $i - <span id='nomeAluno'><b>$nomeAluno</b></span> </span>
                 </div>
                 <input class='apple-switch' name='opcao[]' value='$codAluno' type='checkbox'>
               </div>";
+              $i++;
               }
               
               ?>
@@ -282,21 +283,28 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
 
             <div id="conteudotab2">
               <?php
-               $select = ("select usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur;");
+               $select = ("select url_foto_usu, usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur ORDER BY nome_usu ASC;");
                $comandoo = $pdo->prepare($select);
                $comandoo->execute();
+               $i = 1;
               while($dedeis = $comandoo->fetch(PDO::FETCH_ASSOC)){
                 $nomeAAluno = $dedeis['nome_usu'];
                 $codUsuAluno = $dedeis['cod_usu'];
+                $fotoAluno = $dedeis['url_foto_usu'];
 
                 echo "<a href='codOcorrencia.php?codTurma=$codTur&codAluno=$codUsuAluno' class='wow'>
-              <div id='dadosAluno'>
-                <img src='imagens/pessoa.png' alt='Imagem do aluno' id='imgAluno'>
-                <span id='ocorrencia_nomeAluno'><b>$nomeAAluno</b>
-                  <p id='ocorrencia_numAluno'>Número 01</p>
+              <div id='dadosAluno'>";
+              if($fotoAluno == NULL){
+               echo  "<img src='imagens/pessoa.png' alt='Imagem do aluno' id='imgAluno'>";
+              }else{
+                echo "<img src='$fotoAluno' alt='Imagem do aluno' id='imgAluno'>";
+              }
+                echo "<span id='ocorrencia_nomeAluno'><b>$nomeAAluno</b>
+                  <p id='ocorrencia_numAluno'>Número $i</p>
                 </span>
               </div>
               </a>";
+              $i++;
               }
               ?>
             </div>

@@ -749,7 +749,9 @@ insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (2,
 insert into turma_disciplina (cod_tur, cod_disc, cod_status_tur_disc) values (2, 6, 'A');
 
 
-
+select turma.cod_tur, sigla_tur, prof_turma.cod_usu, cod_status_prof_tur,  cursos.cod_curso, nome_curso, cod_status_cursos
+                from cursos inner join turma on (cursos.cod_curso = turma.cod_curso)
+                            inner join prof_turma on (turma.cod_tur = prof_turma.cod_tur) where cod_usu = 3 ORDER BY sigla_tur ASC;
 
 insert into usuario (nome_usu, cod_status_usu) values ('Moises', 'A');
 insert into usuario_unidade (cod_unid, cod_usu) values (1, 4);

@@ -7,10 +7,10 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: homeLandingPage.php");
+    header("Location: ../homeLandingPage.php");
 }
 
-require_once 'bd/conexao.php';
+require_once '../bd/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -29,24 +29,45 @@ require_once 'bd/conexao.php';
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
     <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
 
     <!-- CSS PADRÃO -->
-    <link href="css/default.css" rel=stylesheet>
+    <link href="../css/default.css" rel=stylesheet>
 
     <!-- Telas Responsivas -->
-    <link rel=stylesheet media="screen and (max-width:480px)" href="css/lista_salas/lista_salas480.css">
+    <link rel=stylesheet media="screen and (max-width:480px)" href="../css/lista_salas/lista_salas480.css">
     <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-        href="css/lista_salas/lista_salas768.css">
+        href="../css/lista_salas/lista_salas768.css">
     <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-        href="css/lista_salas/lista_salas1024.css">
-    <link rel=stylesheet media="screen and (min-width:1025px)" href="css/lista_salas/lista_salas1366.css">
+        href="../css/lista_salas/lista_salas1024.css">
+    <link rel=stylesheet media="screen and (min-width:1025px)" href="../css/lista_salas/lista_salas1366.css">
     <!-- Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
 
     <!-- Icon Font -->
     <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
+    <script>
+        $(function () {
+            $('.form').submit(function () {
+                $.ajax({
+                    url:'codPesquisa.php',
+                    type: 'POST',
+                    data: $('.form').serialize(),
+                    success: function (data) {
+                        if (data != '') {
+                            $('.recebeDados').html(data);
+                            // document.getElementById('visor').value = '';
+                            // document.getElementById('visor1').value = '';
+                            // document.getElementById('visor2').value = '';
+                            // document.getElementById('complUnid').value = '';
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+        </script> 
 </head>
 
 <body>
@@ -63,6 +84,23 @@ require_once 'bd/conexao.php';
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.2 595.3"
                         style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve">
                         <style type="text/css">
+                            a.buttonNexte {
+                              text-align: center;
+                              width: 200px;
+                              height: 50px;
+                              font-size: 26px;
+                              background: #00CCCC;
+                              font-weight: bold;
+                              color: white;
+                              border: 0 none;
+                              border-radius: 1px;
+                              cursor: pointer;
+                              padding: 10px 5px;
+                              margin: 10px 5px;
+                              text-decoration: none;
+                              border-radius: 15px;
+                            }
+
                             .st0 {
                                 fill: url(#LetraG_2_);
                             }
@@ -140,14 +178,13 @@ require_once 'bd/conexao.php';
                     <hr>
 
                     <ul class="menu-buttons">
-                      <li><a href="perfilProfessor.php"><i class="fas fa-home"></i>Home</a></li>
-                      <li><a href="lista_salas.php"><i class="fas fa-list"></i> Lista de Turmas</a></li>
-                      <li><a href="operacaoPesquisarAlunos/pesquisa.php"><i class="far fa-clock"></i> Pesquisar Alunos</a></li>
+                      <li><a href="../perfilProfessor.php"><i class="fas fa-home"></i>Home</a></li>
+                      <li><a href="../lista_salas.php"><i class="fas fa-list"></i> Lista de Turmas</a></li>
+                      <li><a href="pesquisa.php"><i class="far fa-clock"></i> Pesquisar Alunos</a></li>
                       <li><a href="#"><i class="far fa-calendar-alt"></i> Eventos</a></li>
                       <li><a href="#"><i class="fas fa-cogs"></i> Configurações</a></li>
                       <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                     </ul>
-                            
 
                 </nav>
             </div>
@@ -155,59 +192,26 @@ require_once 'bd/conexao.php';
             <div id="pagina">
                 <!-- Início conteúdo principal-->
                 <div>
-                    <h1>Lista de Turmas</h1>
+                    <h1>Alunos</h1>
                 </div>
 
-                
+                <!-- Campo de busca -->
+                <div id="Busca">
+                    <form method="post" autocomplete="off" class='form'>
+                        <input type="search" name="pesquisa" placeholder="Pesquise o aluno...">
+                    </form>
+                </div>
+
                 <!-- Seção - lista de salas -->
                 <div id="centralizaSection">
                     <section id="secaoLista">
-                    <?php
-
-
-                $codProf = $dados['codUsu'];
-                $selecionar = ("select turma.cod_tur, sigla_tur, prof_turma.cod_usu, cod_status_prof_tur,  cursos.cod_curso, nome_curso, cod_status_cursos
-                from cursos inner join turma on (cursos.cod_curso = turma.cod_curso)
-                            inner join prof_turma on (turma.cod_tur = prof_turma.cod_tur) where cod_usu = $codProf ORDER BY sigla_tur ASC;");
-                $comando = $pdo->prepare($selecionar);
-                $comando->execute();
-
-                $numDeLinhas = $comando->rowCount();
-                if($numDeLinhas > 0){
-                    while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
-                        $codTur = $dedos['cod_tur'];
-                        $nomeCurso = $dedos['nome_curso'];
-                        $nomeTurma = $dedos['sigla_tur'];
-
-                       echo  "<div id='box-lista'>
-                       <div id='circulo-box'>
-                           <h2 id='turma'>$nomeTurma</h2>
-                       </div>
-                       <div id=links>
-                           <a href='funcionalidades/operacaoAlunos/lista_alunos.php?codTurma=$codTur'> Lista de Alunos</a>
-                           </br>
-                           <a href='chamada-ocorrencia.php?codTurma=$codTur'> Chamada</a>
-                       </div>
-                   </div>";
-
-                        
-                    }
-                    
-                    
-                }else{
-                    echo "<p style='text-align:center'>Você ainda não escolheu as turmas para dar aula!</p>";
-                }
-
-                ?>
-                        
-
+                    <div class="recebeDados"></div>
                         
 
                     </section>
                 </div>
             </div>
 
-            <!-- Início do rodapé -->
 
 </body>
 
