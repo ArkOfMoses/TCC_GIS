@@ -10,6 +10,13 @@ function activateNotif(){
     document.getElementById("on_off-notif").classList.toggle('active-notif');
 }
 
+// Mostrar Confirmação de Senha
+
+function activateConf(){
+  document.getElementById("block").classList.toggle('block');
+  document.getElementById("conf-senha").classList.toggle('conf-senha');
+}
+
 // Mudar cor do header
 var width = screen.width;
 
@@ -127,6 +134,3 @@ $(document).ready(function(){
       $("#semana"+semanavalue).show();
   });
 });
-
-
-
