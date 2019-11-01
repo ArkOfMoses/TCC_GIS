@@ -55,7 +55,7 @@ require_once '../../bd/conexao.php';
                             align-items: center;
                 }
 
-                a{
+                a.botaozera{
                     text-align: center;
                     width: 135px;
                     height: 60px;
@@ -97,7 +97,7 @@ require_once '../../bd/conexao.php';
                             $codTurma = $dedos['cod_tur'];
                             $nomeTurma = $dedos['sigla_tur'];
     
-                           echo  "<a href='verDisc.php?codTurma=$codTurma'>$nomeTurma</a><br>";
+                           echo  "<a class='botaozera' href='verDisc.php?codTurma=$codTurma'>$nomeTurma</a><br>";
                         }
                     }
                 }else{

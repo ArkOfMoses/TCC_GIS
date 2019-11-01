@@ -74,6 +74,11 @@ require_once '../../bd/conexao.php';
               <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 595.2 595.3" style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve">
               <style type="text/css">
+                .botaozin{
+                  color: darkblue;
+                  
+                }
+                
               	.st0{fill:url(#LetraG_2_);}
               	.st1{fill:#006699;}
               	.st2{fill:url(#Bola_2_);}
@@ -168,15 +173,27 @@ require_once '../../bd/conexao.php';
                       echo '<p>O diretor da sua unidade não cadastrou seus cursos!</p>';
                     }
                   }else{
+                    echo "<table>
+                    <caption>Lista de Cursos</caption>
+                    <tr>
+                        <th>Nome do Curso</th>
+                        <th colspan='2'>Ações</th>
+                    </tr>";
                       while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
                           $codTurma = $dedos['cod_tur'];
                           $nomeTurma = $dedos['sigla_tur'];
 
-                         echo  "<a id='linkcurso' href='../operacaoAlunos/alunos.php?codTurma=$codTurma'>$nomeTurma</a><br>";
+                          echo "<tr>
+                              <td><a class='botaozin' href='../operacaoAlunos/alunos.php?codTurma=$codTurma'>$nomeTurma</a></td> 
+                              <td><a class='botaozin' href='acoes/editarTurma.php?codTurma=$codTurma&codCurso=$codCurso'>Editar</a></td>
+                              <td><a class='botaozin' id='confirma' href='acoes/excluirTurma.php?codTurma=$codTurma&codCurso=$codCurso'>Excluir</a></td>
+                              </tr>
+                        ";
                       }
+                      echo "</table>";
                   }
 
-                  echo "<a href='cadTurmas/cadTurmas.php?codCurso=$codCurso' >Adicionar Turmas</a>";
+                  echo "<a id='linkcurso' href='cadTurmas/cadTurmas.php?codCurso=$codCurso' >Adicionar Turmas</a>";
                 }else{
                   echo '<p>Você não escolheu nenhum curso, volte e selecione o curso que deseja ver as turmas!</p>';
                 }
@@ -184,6 +201,11 @@ require_once '../../bd/conexao.php';
               ?>
                 
             </div>
-      </main>    
+      </main>  
+      <script type="text/javascript">
+              $('#confirma').on('click', function () {
+                  return confirm('você tem certeza disso? a exclusão de uma turma é permanente e não pode ser recuperada depois, todas as informações adjacentes (alunos das turmas, etc) também não poderão mais ser acessadas.');
+              });
+            </script>  
     </body>
 </html>

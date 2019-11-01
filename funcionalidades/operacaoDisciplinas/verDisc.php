@@ -34,7 +34,8 @@ require_once '../../bd/conexao.php';
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
               href="../../css/cssCadastroMaster/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssCadastroMaster/style1366.css">
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="../../js/script.js"> </script>
     </head>
     <body>
         <div class="content">
@@ -53,8 +54,11 @@ require_once '../../bd/conexao.php';
                             flex-direction: column;
                             align-items: center;
                 }
-
-                a{
+                .botaozin{
+                  color: darkblue;
+                  
+                }
+                a.botaozera{
                     text-align: center;
                     width: 135px;
                     height: 60px;
@@ -115,11 +119,13 @@ require_once '../../bd/conexao.php';
                             $codDisc = $dedos['cod_disc'];
                             $nomeDisc = $dedos['nome_disc'];
                             $cargHora = $dedos['carga_horaria_disc'];
-    
+                            
+
                             echo '<tr>';
-                            echo '<td>'.$nomeDisc.'</td>';
-                            echo '<td>'.$cargHora.'</td>';
-                            echo '<td><a href="#">Editar</a></td><form method="post" action=""><td><input type="submit" value="Excluir" name="Excluir" /></td></form>';
+                            echo "<td>$nomeDisc</td>";
+                            echo "<td>$cargHora</td>";
+                            echo "<td><a class='botaozin' href='acoes/editarDisc.php?codDisc=$codDisc&codTurma=$codTurma'>Editar</a></td>";
+                            echo "<td><a class='botaozin' id='confirma' href='acoes/excluirDisc.php?codDisc=$codDisc&codTurma=$codTurma'>Excluir</a></td>";
                             echo '</tr>';
                         }
                         echo "</table>";
@@ -127,7 +133,7 @@ require_once '../../bd/conexao.php';
                         
                     }
                     
-                    echo "<a href='cadDisc/cadDisc.php?codTurma=$codTurma' >Adicionar Disciplinas</a>";
+                    echo "<a class='botaozera' href='cadDisc/cadDisc.php?codTurma=$codTurma' >Adicionar Disciplinas</a>";
                 }else{
                     echo "<p>Você não selecionou a turma, volte e selecione a turma que quiser ver as disciplinas</p>";
                 }
@@ -136,6 +142,11 @@ require_once '../../bd/conexao.php';
                
             </div>
             </main>  
+            <script type="text/javascript">
+              $('#confirma').on('click', function () {
+                  return confirm('você tem certeza disso? a exclusão de uma disciplina é permanente e não pode ser recuperada depois, todas as informações adjacentes também não poderão mais ser acessadas.');
+              });
+            </script>  
         
     </body>
 </html>

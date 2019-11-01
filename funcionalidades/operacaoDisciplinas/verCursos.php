@@ -51,7 +51,7 @@ require_once '../../bd/conexao.php';
                             align-items: center;
                 }
 
-                a{
+                a.botaozera{
                     text-align: center;
                     width: 135px;
                     height: 60px;
@@ -95,7 +95,7 @@ From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_
                         $codCurso = $dedos['cod_curso'];
                         $nomeCurso = $dedos['nome_curso'];
 
-                       echo  "<a href='verTurmas.php?codCurso=$codCurso'>$nomeCurso</a><br>";
+                       echo  "<a class='botaozera' href='verTurmas.php?codCurso=$codCurso'>$nomeCurso</a><br>";
                     }
                     
                     

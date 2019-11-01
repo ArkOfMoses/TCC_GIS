@@ -69,6 +69,11 @@ function activateMenu(){
               <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 595.2 595.3" style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve">
               <style type="text/css">
+                .botaozin{
+                  color: darkblue;
+                  
+                }
+
               	.st0{fill:url(#LetraG_2_);}
               	.st1{fill:#006699;}
               	.st2{fill:url(#Bola_2_);}
@@ -176,9 +181,10 @@ From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_
                         $nomeCurso = $dedos['nome_curso'];
 
                         echo "<tr>
-                              <td><a id='linkcurso' href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>$nomeCurso</a></td> 
-                              <td><a href='acoes/editarCursos.php?codCurso=$codCurso'>Editar</a></td>
-                              <td><a id='confirma' href='acoes/excluirCursos.php?codCurso=$codCurso'>Excluir</a></td>
+                              <td><a class='botaozin' href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>$nomeCurso</a></td> 
+                              <td><a class='botaozin' href='acoes/editarCursos.php?codCurso=$codCurso'>Editar</a></td>
+                              <td><a class='botaozin' id='confirma' href='acoes/excluirCursos.php?codCurso=$codCurso'>Excluir</a></td>
+                              </tr>
                         ";
                     }
                     echo "</table>";
