@@ -199,10 +199,12 @@ From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_
             </div>
             </main>  
 
-            <script type="text/javascript">
-              $('#confirma').on('click', function () {
-                  return confirm('você tem certeza disso? a exclusão de um curso é permanente e não pode ser recuperada depois, todas as informações adjacentes (turmas dos cursos, alunos das turmas etc) também não poderão mais ser acessadas.');
-              });
+            <script type="text/javascript">           
+             $(document).ready(function(){
+                $('#confirma').on('click', function () {
+                    return confirm('você tem certeza disso? a exclusão de um curso é permanente e não pode ser recuperada depois, todas as informações adjacentes (turmas dos cursos, alunos das turmas etc) também não poderão mais ser acessadas.');
+                });
+              }) 
             </script>
     </body>
 </html>

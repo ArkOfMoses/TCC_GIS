@@ -3,6 +3,9 @@
     require_once '../funcoes/funcoes.php';
     require_once '../../bd/conexao.php';
 
+
+
+
     $numDeUnidades = filter_var($_POST['unidades'], FILTER_SANITIZE_NUMBER_INT);
 
     $arrayPost = array();
@@ -30,6 +33,7 @@
     
     if($infoPost){
         $inst = $_SESSION['dadosUsu']['codInstituicao'];
+        $codMaster = $_SESSION['dadosUsu']['codUsu'];
 
         $vazio = array();
         $posts = array();
@@ -75,8 +79,9 @@
                     }
 
                     if(adicionar_unid($nomeUnid, $cepUnid, $ruaUnid, $bairroUnid, $cidadeUnid, $complUnid, $numUnid, $inst, 'A', $pdo)){
-                        //Não sei se a gente vai usar o $_SESSION['dadosUsu']['codInstituicao'] dnv
-                        //se for usar deixa ai, se nn dá um unset aqui pq nn vai usar mais (eu acho q nn)
+                        $idUnid = get_id($pdo, "cod_unid", "unidade", "cod_inst", $inst);
+                        $insertMaster = $pdo->prepare("insert into usuario_unidade (cod_unid, cod_usu) values ($idUnid, $codMaster);");
+                        $insertMaster->execute();
                         echo "<script type='text/javascript'> window.location.href='../cadastroDeDir/cadastroDeDir.php';</script>";
                     }else{
                         echo "<p>Não foi possível efetuar o cadastro da unidade $nomeUnid!!</p>";

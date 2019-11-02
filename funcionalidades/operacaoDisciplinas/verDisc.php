@@ -209,11 +209,11 @@ require_once '../../bd/conexao.php';
             </div>
             </main>  
             <script type="text/javascript">
-
-              $('#confirma').on('click', function () {
-                  return confirm('você tem certeza disso? a exclusão de uma disciplina é permanente e não pode ser recuperada depois, todas as informações adjacentes também não poderão mais ser acessadas.');
-              });
+            $(document).ready(function(){
+                $('#confirma').on('click', function () {
+                    return confirm('você tem certeza disso? a exclusão de uma disciplina é permanente e não pode ser recuperada depois, todas as informações adjacentes também não poderão mais ser acessadas.');
+                });         
+            }) 
             </script>  
-        
     </body>
 </html>

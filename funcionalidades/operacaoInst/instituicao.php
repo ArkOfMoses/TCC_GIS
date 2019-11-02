@@ -45,12 +45,13 @@ require_once '../../bd/conexao.php';
       <!-- Script -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="../../js/script.js"> </script>
+      <script src='../../js/jquery-3.3.1.min.js'></script>        
+        <script src="../../js/jquery.mask.min.js" type="text/javascript"></script>
       <script type="text/javascript">// Ativar Menu
-
-function activateMenu(){
-    document.getElementById("on_off").classList.toggle('active-menu');
-}
-</script>
+      function activateMenu(){
+          document.getElementById("on_off").classList.toggle('active-menu');
+      }
+      </script>
 
 
       <!-- Icon Font -->
@@ -165,8 +166,14 @@ function activateMenu(){
             <div class="alunos">
                 <h1>Minha Instituição</h1>
                 <?php
-                //dar um jeito de pegar a instituicao(cod_inst) que o usuario cadastrou
-                    $selecionar = ("select * from instituicao where cod_inst = 1");
+                    $codMaster = $dados['codUsu'];
+                    $selectInst = $pdo->prepare("select instituicao.cod_inst from instituicao inner join unidade on (instituicao.cod_inst = unidade.cod_inst)
+                    inner join usuario_unidade on (unidade.cod_unid = usuario_unidade.cod_unid) where usuario_unidade.cod_usu = $codMaster");
+                    $selectInst->execute();
+                    $pdoInst = $selectInst->fetch(PDO::FETCH_ASSOC);
+                    $codInsti = $pdoInst['cod_inst'];
+
+                    $selecionar = ("select * from instituicao where cod_inst = $codInsti");
                     $comando = $pdo->prepare($selecionar);
                     $comando->execute();
 
@@ -185,22 +192,21 @@ function activateMenu(){
                         echo "
                               <label>Nome da Instituição: </label><p>$nomeInst</p>
                               <label>Razão Social: </label><p>$razaoInst</p>
-                              <label>CPNJ da Instituição: </label><p>$cnpjInst</p>
+                              <label>CPNJ da Instituição: </label><p id='cnpj'>$cnpjInst</p>
 
                               <a class='buttonNexti' href='codInstituicao.php?codInst=$codInst'>Editar Informações</a>
                         ";
-
-
                       }
                     }
-
-                
-
-
                 ?>
                 
             </div>
             </main>  
-        
+            <script type="text/javascript">
+            $(document).ready(function(){
+              $("#cnpj").mask("00000000/0000-00");  
+            })  
+       
+            </script>  
     </body>
 </html>
