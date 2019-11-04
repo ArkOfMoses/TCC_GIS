@@ -1,0 +1,160 @@
+* {
+  font-family: 'Roboto', arial, sans-serif;
+  font-weight: lighter;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {overflow-x: hidden}
+
+a {text-decoration: none}
+
+.header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #012;
+  transition: ease .2s;
+}
+
+.hamburger{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*
+.active-menu .header {background-color: rgba(255, 255, 255, 0)}*/
+
+.fullnav {
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  transition: all .4s;
+}
+
+.menu {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  -webkit-overflow-scrolling: touch;
+}
+
+.menu ul li, .menu ul a {
+  list-style: none;
+  color: #012;
+}
+
+.menu ul {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.menu-buttons {justify-content: space-around;}
+
+.title, .subtitle {margin: 0px;}
+
+.title {font-weight: normal;}
+
+
+.header {
+    width: 100vw;
+    height: 70px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .fullnav{
+    background-color: #012!important;
+  }
+
+  .fullnav a {
+    color: #fff!important;
+  }
+
+  .st0, .st1, .st2, .st3{fill: #fff!important;}
+
+
+  .logo {
+    width: 2.5em;
+    height: 2.5em;
+    margin: 0 15px;
+  }
+
+
+  main {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px 90px 30px;
+  }
+
+  .esqueceu{width: 300px;}
+
+  h1{
+    margin-bottom: 15px;
+    font-weight: 300;
+    color: #012;
+    font-size: 1.2em;
+  }
+
+  .esqueceu input, .esqueceu button{
+    width: 300px;
+    height: 30px;
+    border: solid 1px grey;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    transition: .4s;
+    font-size: .9em
+  }
+
+  .esqueceu input:focus{
+    border-color: #0cc;
+    outline: none;
+  }
+
+  .esqueceu button{
+    width: 145px;
+    border: solid 2px #0cc;
+    background-color: #fff;
+    color: #0cc;
+    font-weight: bold;
+    }
+
+  .esqueceu button:hover, .esqueceu input[type="submit"]:hover {
+  background-color: #0cc;
+  color: #fff;
+  transition: .1s;
+  }
+
+  .esqueceu input[type="submit"]{
+    width: 145px;
+    border: none;
+    background-color: #012;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .esqueceu p, .esqueceu a{
+    font-weight: 300;
+  }
+
+  .esqueceu a {color: #09f;}
+
+  .esqueceu a:hover{text-decoration: underline;}
+
+
+  @media (max-width: 360px) {
+    .esqueceu input, .esqueceu button, .esqueceu, h1 {
+      text-align: center;
+      width: 250px!important;
+      margin: 5px;
+    }
+  }
