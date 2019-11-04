@@ -106,8 +106,8 @@
               <li><a href="lista_salas.php"><i class="fas fa-list"></i> Lista de Turmas</a></li>
               <li><a href="funcionalidades/operacaoPesquisarAlunos/pesquisa.php"><i class="far fa-clock"></i> Pesquisar Alunos</a></li>
               <li><a href="#"><i class="far fa-calendar-alt"></i> Eventos</a></li>
-              <li><a href="#"><i class="fas fa-cogs"></i> Configurações</a></li>
-              <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+              <li><a href="configuracoes.php"><i class="fas fa-cogs"></i> Configurações</a></li>
+              <li><a href="sair.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
             </ul>
 
           </nav>
@@ -119,7 +119,7 @@
 
           <div class="greetings">
             <h1>Bem vinda, Fulana!</h1>
-            <div onclick="activateNotif()" class="profile-photo" style="/*background-image: url()!important;*/">
+            <div onclick="activateNotif()" class="profile-photo" style="/*background-image: url()!important;background-size: cover; background-repeat: no-repeat; background-position: center;">
               <a>2</a>
             </div>
           </div>
