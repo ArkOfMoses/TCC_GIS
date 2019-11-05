@@ -16,7 +16,7 @@ require_once '../../bd/conexao.php';
 <html lang="pt-br">
   <head>
 
-      <title>pag</title>
+      <title>Lista de Cursos</title>
 
       <meta charset=UTF-8>
       <!-- ISO-8859-1 -->
@@ -170,19 +170,19 @@ From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_
                       echo 'O diretor da sua unidade não cadastrou seus cursos!';
                     }
                 }else{
-                    echo "<table>
-                    <caption>Lista de Cursos</caption>
+                    echo "<table >
+                    
                     <tr>
-                        <th>Nome do Curso</th>
+                        <th colspan='3'>Nome do Curso</th>
                         <th colspan='2'>Ações</th>
                     </tr>";
                     while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
                         $codCurso = $dedos['cod_curso'];
                         $nomeCurso = $dedos['nome_curso'];
 
-                        echo "<tr>
-                              <td><a class='botaozin' href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>$nomeCurso</a></td> 
-                              <td><a class='botaozin' href='acoes/editarCursos.php?codCurso=$codCurso'>Editar</a></td>
+                        echo "<tr class='tbl-content'>
+                              <td colspan='3'><a class='botaozin' href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>$nomeCurso</a></td> 
+                              <td colspan='1'><a class='botaozin' href='acoes/editarCursos.php?codCurso=$codCurso'>Editar</a></td>
                               <td><a class='botaozin' id='confirma' href='acoes/excluirCursos.php?codCurso=$codCurso'>Excluir</a></td>
                               </tr>
                         ";
