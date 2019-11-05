@@ -7,10 +7,10 @@ if(isset($_SESSION['logado'])){
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
-    header("Location: ../homeLandingPage.php");
+    header("Location: ../../homeLandingPage.php");
 }
 
-require_once '../bd/conexao.php';
+require_once '../../bd/conexao.php';
 
 
 if(isset($_POST["opcao"])){
@@ -26,7 +26,7 @@ if(isset($_POST["opcao"])){
 		$insert = $pdo->prepare("insert into prof_turma_disc (cod_tur, cod_usu, cod_disc, cod_status_prof_tur_disc) values ($codTurma, $codUsu, $arrayCheck[$i], 'A');");
 		$insert->execute();
 	}
-	echo "<script type='text/javascript'> window.location.href='../perfilProfessor.php';</script>";
+	echo "<script type='text/javascript'> window.location.href='../configuracoes.php';</script>";
 }else{
 	echo "Escolha uma Disciplina!";
 }

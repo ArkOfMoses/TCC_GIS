@@ -110,7 +110,7 @@ form .foto-edit {
   flex-direction: column;
 }
 
-.foto-edit .foto-perfil {
+/*.foto-edit .foto-perfil {
   width: 150px;
   height: 150px;
   position: relative;
@@ -119,13 +119,13 @@ form .foto-edit {
   margin: 10px;
 }
 
-.foto-perfil button {display: none;
+.foto-perfil label {display: none;
 transition: 4s;
 transition-property: all;
 transition-timing-function: ease;
 transition-delay: 0s;}
 
-.foto-perfil:hover button {
+.foto-perfil:hover label {
   display: block;
   width: 40px;
   height: 40px;
@@ -138,7 +138,7 @@ transition-delay: 0s;}
   color: #fff;
   background-color: rgba(0, 17, 34, 0.8);
 }
-
+*/
 form .confirmar {width: 100%}
 
 .grupo-form, .foto-edit {

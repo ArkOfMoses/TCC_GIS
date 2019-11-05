@@ -5,6 +5,7 @@ if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
     $codUsu = $dados['codUsu'];
+    $nomeTipoUsu = $dados['nomeTipoUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -49,6 +50,50 @@ require_once '../bd/conexao.php';
 
       <script src="../js/jquery.mask.min.js" type="text/javascript"></script>
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
+      <script>
+
+            $(function (){
+                $('.form').submit(function(e){
+                    e.preventDefault();    // Preventing the default action of the form
+                    var myForm = document.getElementById('form');
+                    var formData = new FormData(myForm); // So you don't need call serialize()
+
+                $.ajax({
+                    url: 'cadConfigs.php',
+                    type: 'POST',
+                    data: formData,
+                    success: function (data) {
+                        if(data != ''){
+                            $('.recebeDados').html(data);
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+                return false;
+            });
+        });
+
+      </script>
+      <script>
+            function previewImagem() {
+                var imagem = document.querySelector('input[name=img]').files[0];
+                var preview = document.querySelector('img[id=dup]');
+
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                }
+
+                if (imagem) {
+                    reader.readAsDataURL(imagem);
+                } else {
+                    preview.src = "";
+                }
+            }
+        </script>
 
   </head>
 
@@ -98,6 +143,48 @@ require_once '../bd/conexao.php';
               <svg version="1.1" id="Hamburger" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 220 150" style="enable-background:new 0 0 220 150;" xml:space="preserve">
               <style type="text/css">
+                .butaozin{
+                  text-align: center;
+                  height: 35px;
+                  width: 200px;
+                  border-radius: 5px;
+                  border: none;
+                  background: #012;
+                  color: #fff;
+                  font-weight: bolder;
+                }
+                #dup{
+                  width: 150px;
+                  height: 150px;
+                  border: 4px solid;
+                  border-color: #666;
+                  border-radius: 50%;
+                }
+                #img-perfil{
+                    flex-direction: column;
+                    display: flex;
+                    align-items: center;
+                }
+                label.selecionar-img{
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  position: relative;
+                  width: 35px;
+                  height: 35px;
+                  font-size: 35px;
+                  top: -30px;
+                  left: 96px;
+                  background-color: #003366;
+                  border-radius: 50%;
+                  color: white;
+                  z-index: 1;
+                }
+
+                .botao-img{
+                  display: none;
+                }
+
               	.st4{fill:#003366;}
               </style>
               <g>
@@ -141,13 +228,15 @@ require_once '../bd/conexao.php';
           if($numLinhas != 0){
             while($dedoes = $comando->fetch(PDO::FETCH_ASSOC)){
                   $nomeUsu = $dedoes['nome_usu'];
-                  $dataNascUsu = $dedoes['data_nasc_usu'];
+                  $data = $dedoes['data_nasc_usu'];
+                  $date = date_create_from_format('Y-m-d', "$data");
+                  $dataNascUsu = date_format($date, 'd/m/Y');
                   $CPFUsu = $dedoes['cpf_usu'];
                   $emailUsu = $dedoes['email'];
                   $senhaUsu = $dedoes['senha'];
                   $fotoUsu = $dedoes['url_foto_usu'];
 
-                  echo "<form>
+                  echo "<form  enctype='multipart/form-data' class='form' id='form' method='post'>
                         <div class='conta-edit'>
                           <dl class='grupo-form'>
                             <dt>
@@ -211,9 +300,23 @@ require_once '../bd/conexao.php';
 
                         <div class='foto-edit'>
 
-                          <label for=''>Alterar foto de perfil</label>
-                          <div class='foto-perfil' style='background-image: url(../$fotoUsu)!important;background-size: cover; background-repeat: no-repeat; background-position: center;'>
-                            <button type='button' name='uploadFoto'><i class='fas fa-camera'></i></button>
+                          <label for=''>Alterar foto de perfil</label>";
+                          if($fotoUsu != NULL){
+                              echo "<div class='foto-perfil'>
+                              <img src='../$fotoUsu'  id='dup'/>";
+                          }else{
+                            echo "<div class='foto-perfil' >
+                            <img src='../imagens/ilustracao1.png'  id='dup'/>";
+                          }
+
+                        //  
+                        // <button type='button' name='uploadFoto'><i class=''></i></button>
+
+
+                        echo "  
+                        <label for='selecao-arquivo' class='selecionar-img'>+</label>
+                        <input id='selecao-arquivo' type='file' name='img' class='botao-img' onchange='previewImagem()' />
+                            
                           </div>
                         </div>
 
@@ -231,7 +334,8 @@ require_once '../bd/conexao.php';
                               </dt>
                               <dd>
                                 <input type='password' name='senhaAtual' placeholder='*******'>
-                                <input type='submit' name='button' value='Pronto' class='btn-pronto'>
+                                <input type='submit' name='butonies' value='Pronto' class='btn-pronto'>
+                                <div class='recebeDados'></div>
                               </dd>
                             </dl>
                           </div>
@@ -242,9 +346,15 @@ require_once '../bd/conexao.php';
 
             }
           }else{
-              echo "Não tem como cair aqui... mas se cair ferrou legal kkkk";
-            }
+            echo "Não tem como cair aqui... mas se cair ferrou legal kkkk";
+          }
 
+          if($nomeTipoUsu == 'Professor'){
+            // alguem arruma essa merda
+            echo "<a class='butaozin' href='cadastroDiscTurma/escolherDisc.php'>Alterar Disciplina</a><br>
+                  <a class='butaozin' href='cadastroDiscTurma/escolherTurma.php'>Alterar Turma</a>";
+
+          }
 
 
           ?>
@@ -262,6 +372,7 @@ require_once '../bd/conexao.php';
     <script type="text/javascript">
         $(document).ready(function(){
             $("#cpfMano").mask("000.000.000-00");
+            $("#dataMano").mask("00/00/0000");
             
         })
     
