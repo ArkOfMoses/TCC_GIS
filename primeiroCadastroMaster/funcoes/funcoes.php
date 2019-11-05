@@ -80,7 +80,7 @@ function adicionar_usu($nomeUsu, $emailUsu, $senhaUsu, $codTipoUsu, $codUnid, $p
     $inserir_acesso = $pdo->prepare("insert into acesso (cod_tipo_usu, senha, email) values ('$codTipoUsu', '$senhaUsu', '$emailUsu');");
     if($inserir_acesso->execute()){
         $codAcesso = get_id($pdo, 'cod_acesso', 'acesso');
-        $inserir_usuario = $pdo->prepare("insert into usuario (nome_usu, cod_acesso) values ('$nomeUsu', '$codAcesso');");
+        $inserir_usuario = $pdo->prepare("insert into usuario (nome_usu, cod_acesso, cod_status_usu) values ('$nomeUsu', '$codAcesso', 'A');");
         if($inserir_usuario->execute()){
             $codUsu = get_id($pdo, 'cod_usu', 'usuario');
             $inserir_UsuNaUnidade = $pdo->prepare("insert into usuario_unidade (cod_unid, cod_usu) values ('$codUnid', '$codUsu');");

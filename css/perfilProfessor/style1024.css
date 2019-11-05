@@ -1,20 +1,22 @@
 .header {
   width: 100vw;
-  height: 80px;
+  height: 70px;
 }
 
 .logo {
-  width: 2.7em;
-  height: 2.7em;
-  margin-left: 20px;
+  width: 2.6em;
+  height: 2.6em;
+  margin-left: 15px;
 }
 
 .hamburger{
-  width: 80px;
+  width: 70px;
   height: 100%;
 }
 
-.hamburger svg{width: 1.3em;}
+.hamburger svg{
+  width: 1.2em;
+}
 
 .fullnav {
   bottom: 0%;
@@ -26,52 +28,47 @@
 }
 
 .menu {
-  width: 100vw;
+  width: 50vw;
   overflow-y: scroll;
+  align-items: stretch;
 }
 
 hr {
-  width: 60vw;
-  color: #c9c9c9;
-  margin: 50px 0;
+  width: 0px;
+  color: #051523;
+  margin: 30px 0;
 }
 
 .menu-buttons {min-height: 350px;}
 
-.menu-buttons li {font-size: 1.7em}
+.menu-buttons li {font-size: 1.6em}
 
 .menu-buttons i {
   font-size: .9em;
-  margin-right: 5px
+  margin-right: 4px
 }
 
-.title, .subtitle {font-size: 1.4em;}
+.title, .subtitle {font-size: 1.3em;}
 
-.title {font-size: 1.5em}
+.title {font-size: 1.4em}
 
 .profile-photo-menu {
-  width: 18%;
-  padding-top: 18%;
-  border-radius: 150px;
-  margin: 100px 0 20px;
-
+  padding-top: 25;
+  margin: 70px 0 20px;
 }
 
 .active-menu .fullnav {right: 0;}
 
 
 
+*:not(i) {font-family: Roboto!important;}
+
 
 main {
   width: 100vw;
   min-height: 100vh;
-  padding: 80px calc(10px + 7%) 0;
-  background: #F7FDFD; /*ou FAFEFE*/
-  display: inline-grid;
-  grid-template-columns: 25% 25% 20% 20%;
-  grid-template-rows: 100px calc(320px + 4%) 250px 200px;
-  grid-column-gap: 3.3%;
-  grid-row-gap: 25px;
+  padding: 80px 20px 0 30px;
+  background: #f7f7f7; /*ou FAFEFE*/
 }
 
 .greetings {
@@ -80,8 +77,6 @@ main {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  grid-column: 1/5;
-  grid-row: 1/1;
 }
 
 .profile-photo {
@@ -125,6 +120,12 @@ main {
   align-items: center;
 }
 
+.block.um {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px -2px 17px 5px rgba(0, 43, 56, 0.04);
+}
+
 .scroll-box{
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -133,7 +134,7 @@ main {
 
 .schedule {
   height: 200px;
-  color: #f2f2f2;
+  color: #9e9c9c;
   margin: 10px;
 }
 
@@ -145,11 +146,6 @@ h2 {
   margin: 0 0 10px 0;
 }
 
-.um {
-  grid-column: 1/3;
-  grid-row: 2/3;
-}
-
 .um h2{
   margin: 30px 0 10px 0;
 }
@@ -157,12 +153,12 @@ h2 {
 .schedule .item {
   max-width: 330px;
   min-height: calc(75px + 1vh);
-  background-color: #c9c9c9;
+  background-color: #e8e5e5;
   margin-bottom: 5px;
   display: flex;
   flex-flow: row;
   border-radius: 20px
-  }
+}
 
 .schedule .select-item {
   background-color: #0cc;
@@ -172,8 +168,8 @@ h2 {
 .schedule .select-item i{
   width: 38px;
   height: 38px;
-  font-size: 1.1em;
-  border-radius: 19px;
+  font-size: .9em;
+  border-radius: 23px;
   color: #fff;
   background-color: #036;
   border: 4px solid #0cc;
@@ -231,23 +227,28 @@ h2 {
 
 
 
-.dois {
-  grid-column: 3/5;
-  grid-row: 2/4;
-}
+
 
 .calendario {
+  max-width: 400px;
   width: 100%;
   height: 400px;
-  margin: 40px 0;
   padding: 20px;
-  border-radius: 20px;
-  color: #434343;
-  background-color: rgba(0, 105, 205, .2);
+  color: #313131;
+  border-radius: 10px;
+  background-color: #fff;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px -2px 17px 5px rgba(0, 43, 56, 0.04);
+}
+
+
+
+
+
+
 }
 
 .calendario h2 {
@@ -299,17 +300,16 @@ h2 {
 .locked-background {
   display: flex;
   justify-content: center;
-  grid-column: 1/3;
-  grid-row: 3/4;
 }
 
 .notif {
-  width: 320px;
+  width: 100%;
   height: 400px;
   padding: 20px;
   position: relative;
-  background-color: #D5E7F4;
-  border-radius: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px -2px 17px 5px rgba(0, 43, 56, 0.04);
 }
 
 .notif .scroll-box {
@@ -320,11 +320,42 @@ h2 {
 .notif-item {
   width: 100%;
   height: 70px;
-  border-radius: 20px;
-  background-color: #B7D6EC;
+  border-radius: 10px;
+  background-color: #dae5ec;
   margin-bottom: 10px;
 }
 
 .close i{
   display: none;
 }
+
+@media (min-width: 690px) {
+
+  main{
+    display: inline-grid;
+    grid-template-columns: 25% 25% 20% 20%;
+    grid-template-rows: 150px 340px 250px 200px;
+    grid-column-gap: 3.3%;
+    grid-row-gap: 25px;
+  }
+
+  .greetings {
+    grid-column: 1/5;
+    grid-row: 1/1;
+  }
+
+  .um {
+    grid-column: 1/3;
+    grid-row: 2/3;
+  }
+
+  .dois {
+    grid-column: 3/5;
+    grid-row: 2/4;
+  }
+
+  .locked-background {
+    grid-column: 1/3;
+    grid-row: 3/4;
+}
+ }

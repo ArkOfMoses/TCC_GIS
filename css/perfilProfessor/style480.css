@@ -60,22 +60,21 @@ hr {
 .active-menu .fullnav {right: 0;}
 
 
-
+*:not(i) {font-family: Roboto!important;}
 
 main {
   width: 100vw;
   min-height: 100vh;
-  padding: 70px 20px 0;
-  background: #F7FDFD; /*ou FAFEFE*/
+  padding: 70px 0 0 0;
+  /*background: #F7FDFD; /*ou FAFEFE*/
 }
 
 .greetings {
-  width: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 50px;
+  margin: 0 20px 50px;
 }
 
 .profile-photo {
@@ -116,6 +115,8 @@ main {
   align-items: center;
 }
 
+.block.um {margin: 0 20px}
+
 .scroll-box{
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -124,7 +125,7 @@ main {
 
 .schedule {
   height: 200px;
-  color: #f2f2f2;
+  color: #9e9c9c;
 }
 
 h2 {
@@ -139,7 +140,7 @@ h2 {
   width: 100%;
   max-width: 405px;
   min-height: calc(75px + 1vh);
-  background-color: #c9c9c9;
+  background-color: #e8e5e5;
   margin-bottom: 5px;
   display: flex;
   flex-flow: row;
@@ -154,8 +155,8 @@ h2 {
 .schedule .select-item i{
   width: 38px;
   height: 38px;
-  font-size: 1.1em;
-  border-radius: 19px;
+  font-size: .9em;
+  border-radius: 23px;
   color: #fff;
   background-color: #036;
   border: 4px solid #0cc;
@@ -169,7 +170,7 @@ h2 {
 
 .schedule .item .hour {
   width: 100px;
-  font-size: 2.1em;
+  font-size: 2em;
   font-weight: bold;
   border-right: solid 3px white;
   flex-shrink: 0;
@@ -187,7 +188,7 @@ h2 {
 }
 
 .schedule .item div span{
-  font-size: 1.3em;
+  font-size: 1.2em;
   padding: 0 10px;
   font-weight: normal;
 }
@@ -200,17 +201,18 @@ h2 {
   width: 220px;
   height: 35px;
   border-radius: 20px;
-  margin-top: 15px;
+  margin-top: 30px;
   font-size: 0.9em;
-  font-weight: normal;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   background-color: #0cc;
+  box-shadow: 0px -2px 17px 5px rgba(25, 77, 93, 0.16);
 }
 
-
+.block.um .standard-btn {background-color: #036}
 
 
 
@@ -218,19 +220,20 @@ h2 {
 .calendario {
   min-width: 100%;
   max-width: 400px;
-  height: 400px;
-  margin: 40px 0;
-  padding: 20px;
-  border-radius: 20px;
-  color: #434343;
-  background-color: rgba(0, 105, 205, .2);
+  margin: 40px 0 0;
+  padding: 45px 25px;
+  border-radius: 0 40px 0 0;
+  color: #fff;
+  background-color: #0e2338;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px -2px 17px 5px rgba(25, 77, 93, 0.18);
 }
 
 .calendario h2 {
+  color: #fff;
   text-align: left;
   width: 100%;
   margin-bottom: 15px;
@@ -240,6 +243,8 @@ h2 {
   width: 100%;
 }
 
+.calendario table, .calendario h2 {max-width: 300px;}
+
 .calendario .mes_title td{
   font-size: 1em;
   font-weight: normal;
@@ -247,21 +252,21 @@ h2 {
 }
 
 .calendario .ano td{
-  font-size: .9em;
-  font-weight: normal;
+  font-size: 1em;
+  font-weight: bold;
   display: table-row;
 }
 
 .calendario .mes tr{
-  font-size: 0.9em;
-  font-weight: normal;
+  font-size: 1em;
+  font-weight: bold;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
 .calendario .mes td {
-  font-weight: normal;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -300,8 +305,9 @@ h2 {
   height: 80vh;
   padding: 20px;
   position: relative;
-  background-color: #D5E7F4;
-  border-radius: 20px;
+  background-color: #fafafa;
+  border-radius: 7px;
+  box-shadow: 0px -2px 17px 5px rgba(0, 43, 56, 0.33);
 }
 
 .notif .scroll-box {
@@ -312,8 +318,8 @@ h2 {
 .notif-item {
   width: 100%;
   height: 70px;
-  border-radius: 20px;
-  background-color: #B7D6EC;
+  border-radius: 10px;
+  background-color: #dae5ec;
   margin-bottom: 10px;
 }
 

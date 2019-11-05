@@ -37,11 +37,13 @@ if (isset($_SESSION['logado'])) {
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/telaNotas/style1366.css">
 
         <!-- Script -->
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="../../js/script.js"></script>
 
         <!-- Icon Font -->
         <script src="https://kit.fontawesome.com/2a85561c69.js"></script>         
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
 
     </head>
@@ -155,7 +157,7 @@ if (isset($_SESSION['logado'])) {
                     $command->execute();
                     $numLinhas = $command->rowCount();
                     if ($numLinhas == 0) {
-                        $outputExtra = '<h2>As turmas dessa unidade ainda não foram cadastradas ou você não dá aula a nenhuma turma dessa unidade</h2>';
+                        $outputExtra = "<p class='alertError'>As turmas dessa unidade ainda não foram cadastradas ou você não dá aula para nenhuma turma dessa unidade</p>";
                     } else {
 
                         if (isset($_REQUEST['codTurma']) && isset($_REQUEST['codDis'])) {
@@ -170,7 +172,7 @@ if (isset($_SESSION['logado'])) {
                             $numNaoPodeSerZero = $selecSeguran->rowCount();
 
                             if ($numNaoPodeSerZero == 0) {
-                                $outputExtra = "<h2>Você não dá aula dessa disciplina nessa turma</h2>";
+                                $outputExtra = "<p class='alertError'>Você não da aula dessa disciplina nessa turma</p>";
                             }
                         }
 
@@ -275,7 +277,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                 <tr>";
                                     }
                                 } else {
-                                    $outputExtra = "<h2>Essa turma não possui essa disciplina!</h2>";
+                                    $outputExtra = "<p class='alertError'>Essa turma não possui essa disciplina!</p>";
                                 }
 
 
@@ -284,7 +286,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                                 $selectDisc->execute();
 
                                 if ($selectDisc->rowCount() == 0) {
-                                    $output = "<h2>Você não dá aula nessa turma ou a turma foi excluída!</h2>";
+                                    $output = "<p class='alertError'>Você não dá aula nessa turma ou a turma foi excluída!</p>";
                                 } else {
 
                                     if (isset($qtdAMais)) {
@@ -596,7 +598,6 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                     }
                     ?>
 
-                    <br>
 
                     <div id="allTables">
                         <table id="addNotas_hidden">
@@ -617,7 +618,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                             </tr>
                         </table>
                     </div>    
-
+                    <div class="alerts"></div>
                     <script type="text/javascript">
                         function mudarCountUsu(count) {
                             $('#hiddenUsu').attr("value", count);
@@ -731,18 +732,20 @@ if (isset($mudarCountUsu)) {
                                 clone.find('.select').remove();
                                 select = $('#select');
                                 select.clone().attr('name', 'tipoAval_' + incrementTabela).appendTo(clone);
-                                
+
 
                                 for (var i = 0; i < countUsu; i++) {
                                     var attr = 'avaliacao_' + i;
-                                    nota.clone().attr('name', attr + '_' + incrementTabela).removeAttr('id').attr('value',0).appendTo(clone);
-                                    
+                                    nota.clone().attr('name', attr + '_' + incrementTabela).removeAttr('id').attr('value', 0).appendTo(clone);
+
                                 }
 
                                 incrementTabela++;
                                 $('#hiddenAval').attr("value", incrementTabela);
 
                             });
+
+
 
                             $(".table-remove").click(function () {
                                 $("#tabelasNotas > table:last").remove();
@@ -761,12 +764,12 @@ if (isset($mudarCountUsu)) {
                                     success: function (data) {
                                         if (data != '') {
                                             if (data == 'reloadTipo') {
-                                                document.cookie = 'msg=<p>por favor selecione o tipo de avaliacao de todos os novos campos, algumas avaliações podem já ter sido cadastradas, confira e cadastre as que faltaram se atentando ao tipo da avaliação</p>;';
+                                                document.cookie = "msg=<p class='alertError'>Por favor, selecione o tipo de avaliação de todos os novos campos. Algumas avaliações podem já ter sido cadastradas, confira e cadastre as que faltaram, se atentando ao tipo da avaliação.</p>";
                                                 window.location.reload();
                                                 //$('.recebeDados').html('<p>por favor selecione o tipo de avaliacao de todos os novos campos</p>');
                                             } else if (data == 'sucesso') {
                                                 document.cookie = 'msg=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-                                                $('.recebeDados').html('');
+                                                $('.alerts').html('');
                                                 window.location.reload();
                                             }
                                         }
@@ -776,7 +779,7 @@ if (isset($mudarCountUsu)) {
                             });
 
                             var msg = getCookie('msg');
-                            $('.recebeDados').html(msg);
+                            $('.alerts').html(msg);
                         });
                     </script>     
                 </div>

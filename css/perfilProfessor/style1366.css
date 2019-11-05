@@ -1,4 +1,12 @@
+.content {
+  width: calc(100vw - 280px);
+  display: flex;
+  background: #f7f7f7;
+  overflow-y: scroll;
+}
+
 .header {
+  background: #fff;
   width: calc(100vw - 280px);
   height: 7vh;
 }
@@ -46,8 +54,8 @@ hr {display: none; border: none;}
 .menu-buttons li{padding: 10px; width: 100%}
 
 .menu-buttons .atual{
-  background: linear-gradient(to right, rgba(246, 246, 246, 0) 0%, rgba(255, 255, 255, 0.596) 100%); 
-  border-right: solid 5px white; 
+  background: linear-gradient(to right, rgba(246, 246, 246, 0) 0%, rgba(255, 255, 255, 0.596) 100%);
+  border-right: solid 5px white;
   padding-right: 5px;
 }
 
@@ -77,18 +85,18 @@ hr {display: none; border: none;}
 }
 
 
+*:not(i) {font-family: Roboto!important;}
 
 
 main {
-  width: calc(100% - 280px);
+  max-width: 1000px;
+  margin: auto;
   height: 100vh;
-  overflow-y: scroll;
   padding: 90px 65px 0;
-  background: #F7FDFD; /*ou FAFEFE*/
   display: inline-grid;
   grid-auto-flow: column;
   grid-template-columns: 45% 55%;
-  grid-template-rows: 50px 370px 250px 200px;
+  grid-template-rows: 50px 380px 260px 250px;
   grid-column-gap: 40px;
   grid-row-gap: 30px;
 }
@@ -101,19 +109,17 @@ main {
 }
 
 :hover::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    background-color: #ebfaff;
     transition: 2s linear;
 }
 
 :hover::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: rgba(0,0,0,0.2);
+    background-color: #002c58;
     height: 50%;
 }
 
 :active::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.4);
+    background-color: #012;
 }
 
 .greetings {
@@ -123,21 +129,9 @@ main {
 }
 
 .profile-photo {display: none}
-  
-  main {
-    width: calc(100% - 280px);
-    height: 100vh;
-    overflow-y: scroll;
-    padding: 90px 65px 0;
-    background: #F7FDFD; /*ou FAFEFE*/
-    display: inline-grid;
-    grid-auto-flow: column;
-    grid-template-columns: 45% 55%;
-    grid-template-rows: 50px 370px 250px 200px;
-    grid-column-gap: 40px;
-    grid-row-gap: 30px;
-  }
-  
+
+
+
 
 .greetings h1 {
   font-size: 1.75;
@@ -160,10 +154,10 @@ main {
 
 .schedule {
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: hidden;
   overflow-y: hidden;
-  color: #f2f2f2;
-  margin: 10px 0;
+  color: #9e9c9c;
+  margin: 10px 0 20px;
   display: flex;
 }
 
@@ -178,6 +172,10 @@ h2 {
 .um {
   grid-column: 1/3;
   grid-row: 3/4;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px -2px 17px 5px rgba(0, 43, 56, 0.04);
 }
 
 .um h2{
@@ -187,12 +185,12 @@ h2 {
 .schedule .item {
   width: 320px;
   min-height: 100px;
-  background-color: #c9c9c9;
+  background-color: #e8e5e5;
   margin-right: 10px;
   display: inline-flex;
   flex-shrink: 0;
   flex-flow: row;
-  border-radius: 20px
+  border-radius: 10px;
   }
 
 .schedule .select-item {
@@ -203,8 +201,8 @@ h2 {
 .schedule .select-item i{
   width: 38px;
   height: 38px;
-  font-size: 1.1em;
-  border-radius: 19px;
+  font-size: .9em;
+  border-radius: 23px;
   color: #fff;
   background-color: #036;
   border: 4px solid #0cc;
@@ -236,13 +234,14 @@ h2 {
 }
 
 .schedule .item div span{
-  font-size: 1.3em;
+  font-size: 1.4em;
   padding: 0 10px;
   font-weight: normal;
 }
 
 .schedule .item div span:nth-child(3) {
   font-weight: bold;
+    font-size: 1.5em;
 }
 
 .standard-btn {
@@ -258,6 +257,7 @@ h2 {
   background-color: #0cc;
 }
 
+.block.dois .standard-btn {margin-top: 30px;}
 
 
 
@@ -268,16 +268,16 @@ h2 {
 
 .calendario {
   max-width: 400px;
-  width: 100%;
   height: 450px;
   padding: 20px;
-  border-radius: 20px;
-  color: #434343;
-  background-color: rgba(0, 105, 205, .2);
+  color: #313131;
+  border-radius: 10px;
+  background-color: #fff;
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  box-shadow: 0px -2px 17px 5px rgba(0, 43, 56, 0.04);
 }
 
 .calendario h2 {
@@ -331,11 +331,13 @@ h2 {
 }
 
 .notif {
-  width: 400px;
+  width: 100%;
+  height: 370px;
   padding: 20px;
   position: relative;
-  background-color: #D5E7F4;
-  border-radius: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px -2px 17px 5px rgba(0, 43, 56, 0.04);
 }
 
 .notif .scroll-box {
@@ -344,12 +346,14 @@ h2 {
 }
 
 .notif-item {
-  width: 100%;
+  width: 275px;
   height: 70px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: #B7D6EC;
   margin-bottom: 10px;
 }
+
+
 
 .close i{
   display: none;

@@ -228,3 +228,13 @@
     color: #036;
     font-weight: 700
 }
+#formNotas{
+    width: 1366px
+}
+
+.alertError{
+    color: #727272;
+    clear:both;
+    display: flex;
+    align-self: flex-end
+}
