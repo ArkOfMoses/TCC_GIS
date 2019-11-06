@@ -226,10 +226,7 @@ require_once '../../bd/conexao.php';
                                                     <img id='seta' src='../../imagens/voltar.png'>
                                                 </a>
                                             </div>";
-                                            }
-                                            
-                                            
-                                      
+                                            }       
                                     }
                                 }else{
                                     
@@ -262,7 +259,7 @@ require_once '../../bd/conexao.php';
                                 if(isset($_REQUEST['codTurma'])){
                                     if($_REQUEST['codTurma'] != ''){
                                       if(!isset($msg)){
-                                        $selecionar = ("select nome_usu, usuario.cod_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu)
+                                        $selecionar = ("select nome_usu, usuario.cod_usu, url_foto_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu)
                                         inner join turma on (turma_aluno.cod_tur = turma.cod_tur)
                                         inner join cursos on (cursos.cod_curso = turma.cod_curso)
                                         where cod_status = 'A' and cod_status_usu = 'A' and cod_status_tur = 'A' and cod_status_cursos = 'A' and turma.cod_tur = $codTurma order by nome_usu;");
@@ -278,10 +275,15 @@ require_once '../../bd/conexao.php';
                                             while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
                                                 $nomeUsu = $dedos['nome_usu'];
                                                 $codUsuAluno = $dedos['cod_usu'];
+                                                $foto = $dedos['url_foto_usu'];
+
+                                                if($foto === null){
+                                                    $foto = "imagens/pessoa.png";
+                                                }
     
                                                 echo "
                                                 <div id='dadosAluno'>
-                                                    <a href='perfilAluno.php?codAlun=$codUsuAluno'><img src='../../imagens/pessoa.png' alt='Imagem do aluno' id='imgAluno'></a>
+                                                    <a href='perfilAluno.php?codAlun=$codUsuAluno'><img src='../../$foto' alt='Imagem do aluno' id='imgAluno'></a>
                                                     <span id='ocorrencia_nomeAluno'><b>$nomeUsu</b>
                                                         <p id='ocorrencia_numAluno'>Número $i</p>
                                                     </span>
@@ -384,12 +386,6 @@ require_once '../../bd/conexao.php';
                                                 <span>Sala</span>
                                             </div>
                                         </div>
-
-
-
-
-
-
 
                                     </div>
 

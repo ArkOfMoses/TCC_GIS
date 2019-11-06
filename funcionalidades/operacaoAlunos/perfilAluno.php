@@ -9,18 +9,24 @@ if(isset($_SESSION['logado'])){
     session_destroy();
     header("Location: ../../homeLandingPage.php");
 }
+ require_once '../../bd/conexao.php';
 
 if(isset($_REQUEST['codAlun'])){
-  $codAlun = filter_var($_REQUEST['codAlun'], FILTER_SANITIZE_NUMBER_INT);
-}
+  if($_REQUEST['codAlun'] != ''){
+    $codAlun = filter_var($_REQUEST['codAlun'], FILTER_SANITIZE_NUMBER_INT);
+    $selectTur = $pdo->prepare("select cod_tur from turma_aluno where cod_usu = $codAlun;");
+    $selectTur->execute();
 
-require_once '../../bd/conexao.php';
+    $infotur = $selectTur->fetch(PDO::FETCH_ASSOC);
+    $tur = $infotur['cod_tur'];
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
 
-      <title>pag</title>
+      <title>Perfil Aluno</title>
 
       <meta charset=UTF-8>
       <!-- ISO-8859-1 -->
@@ -45,6 +51,7 @@ require_once '../../bd/conexao.php';
       <!-- Script -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="../../js/script.js"></script>
+      <script src="../../js/jquery-3.3.1.min.js"></script>
       <script src="../../js/jquery.mask.min.js"></script>
       <!-- Icon Font -->
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
@@ -133,149 +140,400 @@ require_once '../../bd/conexao.php';
         </header>
 
         <main>
+  <?php
+    if(isset($_REQUEST['codAlun'])){ 
+      if($_REQUEST['codAlun'] != ''){
 
-          <?php if(isset($_REQUEST['codAlun'])){ ?>
+        $selectInfo = $pdo->prepare("select usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, data_entrada, url_foto_usu, turma.cod_tur, sigla_tur, turno_tur, nome_curso from usuario 
+        inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu)
+        inner join turma on (turma_aluno.cod_tur = turma.cod_tur)
+        inner join cursos on (turma.cod_curso = cursos.cod_curso) where usuario.cod_usu = $codAlun and cod_status_usu = 'A' and cod_status = 'A' and cod_status_tur = 'A' and cod_status_cursos = 'A';");
+        $selectInfo->execute();
+        $numLinhas = $selectInfo->rowCount();
+
+        if($numLinhas == 0){
+
+          $selectExists = $pdo->prepare("select cod_status_usu, cod_acesso from usuario where cod_usu = $codAlun;");
+          $selectExists->execute();
+
+          if($selectExists->rowCount() > 0){
+              $queromorrer = $selectExists->fetch(PDO::FETCH_ASSOC);
+              $codStats = $queromorrer['cod_status_usu'];
+              $codAcess = $queromorrer['cod_acesso'];
+
+              if($codStats != 'A'){
+
+              $here = <<<HERE
+                <div class="banner">
+                  <div class="setinha">
+                    <a id='agaref' href='alunos.php'>
+                        <img id="seta" src="../../imagens/voltar_corAzul.png">
+                    </a>
+                  </div>
+                  <div class='profile-photo' style='background-image: url(../../imagens/pessoa.png)!important; background-size: cover; background-position: center;'></div>
+                  <h2>Aluno inválido</h2>
+                </div>
+      
+                <div class="tabs">
+                  <div class="tab-2">
+                    <label for="tab2-1"><a id="nometab">Informações</a></label>
+                    <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+      
+                    <div id="conteudotab1">
+                      <div id="scroll">
+                      <h2>Esse aluno foi deletado, volte e escolha um aluno disponível</h2>
+                        <form class="info-aluno">
+                          <p><label>Nome</label><input type='text' value='' disabled></p>
+                          <p><label>Curso</label><input type='text' value='' disabled></p>
+                          <p><label>Turma</label><input type='text' value='' disabled></p>
+                          <p><label>Turno</label><input type='text' value='' disabled></p>
+                          <p><label>CPF</label><input id='cpfAlun' type='text' value='' disabled></p>
+                          <p><label>Data de Nascimento</label><input class='dataAlun' type='text' value='' disabled></p>
+                          <p><label>Data de Entrada</label><input class='dataAlun' type='text' value='' disabled></p>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="tab-2">
+                    <label for="tab2-2"><a id="nometab">Ocorrências</a></label>
+                    <input id="tab2-2" name="tabs-two" type="radio">
+                    <div id="conteudotab2">
+                      <div class='item-ocorre'>
+                        <h3>Selecione um aluno disponível para ver suas ocorrências</h3><hr>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+HERE;
+              echo $here;
+
+                
+              }else if($codAcess != null){
+
+                $here = <<<HERE
+                <div class="banner">
+                  <div class="setinha">
+                    <a id='agaref' href='alunos.php'>
+                        <img id="seta" src="../../imagens/voltar_corAzul.png">
+                    </a>
+                  </div>
+                  <div class='profile-photo' style='background-image: url(../../imagens/pessoa.png)!important; background-size: cover; background-position: center;'></div>
+                  <h2>Aluno inválido</h2>
+                </div>
+      
+                <div class="tabs">
+                  <div class="tab-2">
+                    <label for="tab2-1"><a id="nometab">Informações</a></label>
+                    <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+      
+                    <div id="conteudotab1">
+                      <div id="scroll">
+                      <h2>Esse usuario não é um aluno, volte e escolha um aluno disponível</h2>
+                        <form class="info-aluno">
+                        <p><label>Nome</label><input type='text' value='' disabled></p>
+                            <p><label>Curso</label><input type='text' value='' disabled></p>
+                            <p><label>Turma</label><input type='text' value='' disabled></p>
+                            <p><label>Turno</label><input type='text' value='' disabled></p>
+                            <p><label>CPF</label><input id='cpfAlun' type='text' value='' disabled></p>
+                            <p><label>Data de Nascimento</label><input class='dataAlun' type='text' value='' disabled></p>
+                            <p><label>Data de Entrada</label><input class='dataAlun' type='text' value='' disabled></p>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <!--Seção - Horário -->
+                  <div class="tab-2">
+                    <label for="tab2-2"><a id="nometab">Ocorrências</a></label>
+                    <input id="tab2-2" name="tabs-two" type="radio">
+                    <div id="conteudotab2">
+                      <div class='item-ocorre'>
+                        <h3>Selecione um aluno disponível para ver suas ocorrências</h3><hr>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+HERE;
+              echo $here;
+                
+              }
+          }else{
+              $here = <<<HERE
+              <div class="banner">
+                <div class="setinha">
+                  <a id='agaref' href='alunos.php'>
+                      <img id="seta" src="../../imagens/voltar_corAzul.png">
+                  </a>
+                </div>
+                <div class='profile-photo' style='background-image: url(../../imagens/pessoa.png)!important; background-size: cover; background-position: center;'></div>
+                <h2>Aluno inválido</h2>
+              </div>
+    
+              <div class="tabs">
+                <div class="tab-2">
+                  <label for="tab2-1"><a id="nometab">Informações</a></label>
+                  <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+    
+                  <div id="conteudotab1">
+                    <div id="scroll">
+                      <h2>Esse aluno não existe, volte e escolha um aluno disponível</h2>
+                      <form class="info-aluno">
+                      <p><label>Nome</label><input type='text' value='' disabled></p>
+                          <p><label>Curso</label><input type='text' value='' disabled></p>
+                          <p><label>Turma</label><input type='text' value='' disabled></p>
+                          <p><label>Turno</label><input type='text' value='' disabled></p>
+                          <p><label>CPF</label><input id='cpfAlun' type='text' value='' disabled></p>
+                          <p><label>Data de Nascimento</label><input class='dataAlun' type='text' value='' disabled></p>
+                          <p><label>Data de Entrada</label><input class='dataAlun' type='text' value='' disabled></p>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+    
+                <!--Seção - Horário -->
+                <div class="tab-2">
+                  <label for="tab2-2"><a id="nometab">Ocorrências</a></label>
+                  <input id="tab2-2" name="tabs-two" type="radio">
+                  <div id="conteudotab2">
+                    <div class='item-ocorre'>
+                      <h3>Selecione um aluno disponível para ver suas ocorrências</h3><hr>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+HERE;
+            echo $here;
+          }       
+
+        }else{
+          $info = $selectInfo->fetch(PDO::FETCH_ASSOC);
+          
+          $codAluno = $info['cod_usu'];
+          $nomeAlun = $info['nome_usu'];
+          $cpfAlun = $info['cpf_usu'];
+          $foto = $info['url_foto_usu'];
+
+          $dataNascProv = $info['data_nasc_usu'];
+          $dataNascFormat = date_create_from_format('Y-m-d', "$dataNascProv");
+          $dataNasc = date_format($dataNascFormat, 'd/m/Y');
+
+          $dataEntradaProv = $info['data_entrada'];
+          $dataEntradaFormat = date_create_from_format('Y-m-d', "$dataEntradaProv");
+          $dataEntrada = date_format($dataEntradaFormat, 'd/m/Y');
+
+          $codTur = $info['cod_tur'];
+          $siglaTur = $info['sigla_tur'];
+          $turno = $info['turno_tur'];
+          $curso = $info['nome_curso'];
+
+          switch($turno){
+            case 'M': $turno = 'Manhã'; 
+              break;
+            case 'T': $turno = 'Tarde'; 
+              break;
+            case 'N': $turno = 'Noite'; 
+              break;
+          }
+          
+          if($foto === null){
+            $rota = "../../imagens/pessoa.png";
+          }else{
+            $rota = "../../$foto";
+          }
+
+          $here = <<<HERE
           <div class="banner">
             <div class="setinha">
-              <a id="agaref" href="javascript: window.history.go(-1);">
+              <a id='agaref' href='alunos.php?codTurma=$tur'>
                   <img id="seta" src="../../imagens/voltar_corAzul.png">
               </a>
             </div>
-            
-            <div class="profile-photo" style="background-image: url(../../imagens/pessoa.png)!important; background-size: cover; background-position: center;"></div>
-
-            <?php
-              $selectInfo = $pdo->prepare("select nome_usu, cpf_usu, data_nasc_usu, data_entrada, turma.cod_tur, sigla_tur, turno_tur, nome_curso from usuario 
-              inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu)
-              inner join turma on (turma_aluno.cod_tur = turma.cod_tur)
-              inner join cursos on (turma.cod_curso = cursos.cod_curso) where usuario.cod_usu = $codAlun and cod_status_usu = 'A' and cod_status = 'A' and cod_status_tur = 'A' and cod_status_cursos = 'A';");
-              $selectInfo->execute();
-              $info = $selectInfo->fetch(PDO::FETCH_ASSOC);
-              
-              $nomeAlun = $info['nome_usu'];
-              $cpfAlun = $info['cpf_usu'];
-
-              $dataNascProv = $info['data_nasc_usu'];
-              $dataNascFormat = date_create_from_format('Y-m-d', "$dataNascProv");
-              $dataNasc = date_format($dataNascFormat, 'd/m/Y');
-
-              $dataEntradaProv = $info['data_entrada'];
-              $dataEntradaFormat = date_create_from_format('Y-m-d', "$dataEntradaProv");
-              $dataEntrada = date_format($dataEntradaFormat, 'd/m/Y');
-
-              $codTur = $info['cod_tur'];
-              $siglaTur = $info['sigla_tur'];
-              $turno = $info['turno_tur'];
-              $curso = $info['nome_curso'];
-
-              switch($turno){
-                case 'M': $turno = 'Manhã'; 
-                  break;
-                case 'T': $turno = 'Tarde'; 
-                  break;
-                case 'N': $turno = 'Noite'; 
-                  break;
-              }
-       
-              echo "
-                <h2>$nomeAlun</h2>
-                <h3>$siglaTur</h3>
-              ";
-            ?>
+            <div class='profile-photo' style='background-image: url($rota)!important; background-size: cover; background-position: center;'></div>
+            <h2>$nomeAlun</h2>
+            <h3>$siglaTur</h3>
+            <a href='acoes/editarAlun.php?codAlun=$codAluno'>Editar</a>
+            <a href='acoes/excluirAlun.php?codAlun=$codAluno&codTur=$tur' id='confirma'>Excluir</a>
           </div>
 
           <div class="tabs">
-          <div class="tab-2">
-            <label for="tab2-1"><a id="nometab">Informações</a></label>
-            <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+            <div class="tab-2">
+              <label for="tab2-1"><a id="nometab">Informações</a></label>
+              <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
 
-            <!--Seção - Lista de Alunos -->
-            <div id="conteudotab1">
-              <div id="scroll">
+              <div id="conteudotab1">
+                <div id="scroll">
                   <form class="info-aluno">
-                    <?php
-                    echo "
-                      <p><label>Nome</label><input type='text' value='$nomeAlun' disabled></p>
-                      <p><label>Curso</label><input type='text' value='$curso' disabled></p>
-                      <p><label>Turma</label><input type='text' value='$siglaTur' disabled></p>
-                      <p><label>Turno</label><input type='text' value='$turno' disabled></p>
-                      <p><label>CPF</label><input id='cpfAlun' type='text' value='$cpfAlun' disabled></p>
-                      <p><label>Data de Nascimento</label><input class='dataAlun' type='text' value='$dataNasc' disabled></p>
-                      <p><label>Data de Entrada</label><input class='dataAlun' type='text' value='$dataEntrada' disabled></p>
-                    ";
-
-                      ?>
-                    <!-- <p><label>Nome</label><input type="text" name="" value="Fulano Silveira da Silva" disabled></p>
-                    <p><label>Série</label><input type="text" name="" value="3º ano B" disabled></p>
-                    <p><label>Curso</label><input type="text" name="" value="INI" disabled></p>
-                    <p><label>Nome do Responsável</label><input type="text" name="" value="Ciclana Silveira da Silva" disabled></p>
-                    <p><label>Email</label><input type="text" name="" value="fulanx@gmail.com" disabled></p> -->
+                    <p><label>Nome</label><input type='text' value='$nomeAlun' disabled></p>
+                    <p><label>Curso</label><input type='text' value='$curso' disabled></p>
+                    <p><label>Turma</label><input type='text' value='$siglaTur' disabled></p>
+                    <p><label>Turno</label><input type='text' value='$turno' disabled></p>
+                    <p><label>CPF</label><input id='cpfAlun' type='text' value='$cpfAlun' disabled></p>
+                    <p><label>Data de Nascimento</label><input class='dataAlun' type='text' value='$dataNasc' disabled></p>
+                    <p><label>Data de Entrada</label><input class='dataAlun' type='text' value='$dataEntrada' disabled></p>
                   </form>
-               </div>
-
-            </div>
+                </div>
+              </div>
             </div>
 
             <!--Seção - Horário -->
             <div class="tab-2">
               <label for="tab2-2"><a id="nometab">Ocorrências</a></label>
               <input id="tab2-2" name="tabs-two" type="radio">
-
               <div id="conteudotab2">
-                <!--Aqui a gente puxa as ocorrências de cada aluno-->
-                <?php
-                    $selectOcorr = $pdo->prepare("select data_hora_ocorr, desc_ocorr from turma_aluno_disc_ocorr where cod_tur = $codTur and cod_usu = $codAlun;");
-                    $selectOcorr->execute();
-                    $infudeu = $selectOcorr->fetchAll(PDO::FETCH_ASSOC);
-                    $numLinhas = $selectOcorr->rowCount();
-                    
-                    if($numLinhas > 0){
-                      for($i = 0; $i < $numLinhas; $i++){
-                        $dataHoraProv = $infudeu[$i]['data_hora_ocorr'];
-                        $dataHora = date("d/m/Y", strtotime($dataHoraProv));
-                        $descOcorr = $infudeu[$i]['desc_ocorr'];
-                        
-                        echo "
-                        <div class='item-ocorre'>
-                          <h3>$dataHora</h3><hr>
-                          <p>$descOcorr</p>
-                        </div>
-                        ";
-                      }
-                    }else{
-                      echo "
-                      <div class='item-ocorre'>
-                        <h3>Esse aluno não possui nenhuma ocorrência</h3><hr>
-                      </div>
-                      ";
-                    }
-                  ?>
-                <!-- <div class="item-ocorre">
-                  <h3>10/10/2010</h3><hr>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean euismod bibendum laoreet. Proin gravida dolor sit amet
-                    lacus accumsan et viverra justo.</p>
-                </div> -->
+                <div class='item-ocorre'>
+HERE;
+///////////////////////////////código pra colocar as ocorrências
+    $selectOcorr = $pdo->prepare("select data_hora_ocorr, desc_ocorr from turma_aluno_disc_ocorr where cod_tur = $codTur and cod_usu = $codAluno;");
+    $selectOcorr->execute();
+    $infudeu = $selectOcorr->fetchAll(PDO::FETCH_ASSOC);
+    $numLinhas = $selectOcorr->rowCount();
+
+    if($numLinhas > 0){
+      for($i = 0; $i < $numLinhas; $i++){
+        $dataHoraProv = $infudeu[$i]['data_hora_ocorr'];
+        $dataHora = date("d/m/Y", strtotime($dataHoraProv));
+        $descOcorr = $infudeu[$i]['desc_ocorr'];
+        
+        $here .= <<<HERE
+        <div class='item-ocorre'>
+          <h3>$dataHora</h3><hr>
+          <p>$descOcorr</p>
+        </div>
+HERE;
+      }
+    }else{
+      $here .= <<<HERE
+      <div class='item-ocorre'>
+        <h3>Esse aluno não possui nenhuma ocorrência</h3><hr>
+      </div>
+
+HERE;
+    }
+//////////////////////////////////////////////////////////////
+
+$here .= <<<HERE
+      </div>
+    </div>
+  </div>
+</div>
+
+HERE;
+      echo $here;
+        }
+
+      }else{
+        $here = <<<HERE
+          <div class="banner">
+            <div class="setinha">
+              <a id='agaref' href='alunos.php'>
+                  <img id="seta" src="../../imagens/voltar_corAzul.png">
+              </a>
+            </div>
+            <div class='profile-photo' style='background-image: url(../../imagens/pessoa.png)!important; background-size: cover; background-position: center;'></div>
+            <h2>Aluno inválido</h2>
+          </div>
+
+          <div class="tabs">
+            <div class="tab-2">
+              <label for="tab2-1"><a id="nometab">Informações</a></label>
+              <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+
+              <div id="conteudotab1">
+                <div id="scroll">
+                  <h2>Selecione um aluno para ver os seus dados</h2>
+                  <form class="info-aluno">
+                  <p><label>Nome</label><input type='text' value='' disabled></p>
+                      <p><label>Curso</label><input type='text' value='' disabled></p>
+                      <p><label>Turma</label><input type='text' value='' disabled></p>
+                      <p><label>Turno</label><input type='text' value='' disabled></p>
+                      <p><label>CPF</label><input id='cpfAlun' type='text' value='' disabled></p>
+                      <p><label>Data de Nascimento</label><input class='dataAlun' type='text' value='' disabled></p>
+                      <p><label>Data de Entrada</label><input class='dataAlun' type='text' value='' disabled></p>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!--Seção - Horário -->
+            <div class="tab-2">
+              <label for="tab2-2"><a id="nometab">Ocorrências</a></label>
+              <input id="tab2-2" name="tabs-two" type="radio">
+              <div id="conteudotab2">
+                <div class='item-ocorre'>
+                  <h3>Selecione um aluno para ver suas ocorrências</h3><hr>
+                </div>
               </div>
             </div>
           </div>
 
-          <?php
-          }else{
-            echo "<div><h2>Selecione um aluno!</h2></div>";
-          }
-          ?>
+HERE;
+        echo $here;
+      }
+    }else{
+      $here = <<<HERE
+      <div class="banner">
+        <div class="setinha">
+          <a id='agaref' href='alunos.php'>
+              <img id="seta" src="../../imagens/voltar_corAzul.png">
+          </a>
+        </div>
+        <div class='profile-photo' style='background-image: url(../../imagens/pessoa.png)!important; background-size: cover; background-position: center;'></div>
+        <h2>Aluno inválido</h2>
+      </div>
 
+      <div class="tabs">
+        <div class="tab-2">
+          <label for="tab2-1"><a id="nometab">Informações</a></label>
+          <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+
+          <div id="conteudotab1">
+            <div id="scroll">
+              <h2>Selecione um aluno para ver os seus dados</h2>
+              <form class="info-aluno">
+              <p><label>Nome</label><input type='text' value='' disabled></p>
+                  <p><label>Curso</label><input type='text' value='' disabled></p>
+                  <p><label>Turma</label><input type='text' value='' disabled></p>
+                  <p><label>Turno</label><input type='text' value='' disabled></p>
+                  <p><label>CPF</label><input id='cpfAlun' type='text' value='' disabled></p>
+                  <p><label>Data de Nascimento</label><input class='dataAlun' type='text' value='' disabled></p>
+                  <p><label>Data de Entrada</label><input class='dataAlun' type='text' value='' disabled></p>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!--Seção - Horário -->
+        <div class="tab-2">
+          <label for="tab2-2"><a id="nometab">Ocorrências</a></label>
+          <input id="tab2-2" name="tabs-two" type="radio">
+          <div id="conteudotab2">
+            <div class='item-ocorre'>
+              <h3>Selecione um aluno para ver suas ocorrências</h3><hr>
+            </div>
+          </div>
+        </div>
+      </div>
+HERE;
+    echo $here;
+    }
+?>
         </main>
 
         <footer>
 
-        </footer>
+      </footer>
 
     </div>
     <script type="text/javascript">
       $(document).ready(function(){
-          $("#cpfAlun").mask("000.000.000-00");
+        $('#confirma').on('click', function () {
+            return confirm('você tem certeza disso? a exclusão de um aluno é permanente e não pode ser recuperada depois, todas as informações adjacentes (notas, ocorrências etc.) também não poderão mais ser acessadas.');
+        });
+        $("#cpfAlun").mask("000.000.000-00");
       })        
     </script>  
   </body>
