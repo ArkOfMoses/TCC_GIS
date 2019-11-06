@@ -215,12 +215,12 @@ select:focus {
 
 
     #lista{
-        display: flex;
-          flex-direction: row;
-       justify-content: space-around;
-        align-items: center;
-        border-bottom:1px solid #ccc;
-        padding:20px;
+      display: flex;
+      flex-direction: row;
+   justify-content: space-between;
+    align-items: center;
+    border-bottom:1px solid #ccc;
+    padding:20px 120px;
     
           }
       
@@ -322,16 +322,24 @@ select:focus {
       
           /*************** SEÇÃO OCORRÊNCIAS*****************/
       
+          span#numAluno {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 350px;
+            text-align:left;
+            
+
+             }
           #dadosAluno{
         display: flex;
-        flex-direction: row;
-       justify-content: space-around;
-        align-items: center;
+        flex-direction: row-reverse;
+        text-align: left;
+       justify-content: space-between;
+        align-items:center;
         border-bottom:1px solid #ccc ;
-        padding:10px;
-        margin-left:5%;
-        margin-right:5%;
-
+        padding:10px 140px;
+        margin-top:10px;
+       
           }
       
           #imgAluno{

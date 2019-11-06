@@ -301,8 +301,7 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
               }else{
                 echo "<img src='$fotoAluno' alt='Imagem do aluno' id='imgAluno'>";
               }
-                echo "<span id='ocorrencia_nomeAluno'><b>$nomeAAluno</b>
-                  <p id='ocorrencia_numAluno'>Número $i</p>
+                echo "<span id='numAluno'> $i - <span id='nomeAluno'><b>$nomeAAluno</b></span> </span>
                 </span>
               </div>
               </a>";
