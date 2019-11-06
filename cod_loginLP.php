@@ -24,7 +24,7 @@ if($infoPost){
     }else if($email != false){
 
 
-  $comando = $pdo->prepare("select acesso.cod_acesso, senha, email, tipo_usuario.cod_tipo_usu, nome_tipo_usu, cod_status_tipo_usu_operacao, operacao.cod_operacao, nome_operacao, cod_status_operacao, link_operacao, usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, url_foto_usu, data_entrada, data_saida, cod_status_usu
+  $comando = $pdo->prepare("select acesso.cod_acesso, senha, email, tipo_usuario.cod_tipo_usu, nome_tipo_usu, cod_status_tipo_usu_operacao, operacao.cod_operacao, nome_operacao, cod_status_operacao, link_operacao, classeOperacao, usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, url_foto_usu, data_entrada, data_saida, cod_status_usu
   From acesso inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
               inner join tipo_usu_operacao on (tipo_usuario.cod_tipo_usu = tipo_usu_operacao.cod_tipo_usu)
               inner join operacao on (tipo_usu_operacao.cod_operacao = operacao.cod_operacao)
@@ -63,7 +63,7 @@ if($infoPost){
           $codOperacao = array();
           $nomeOperacao = array();
           $codStatusOperacao = array();
-          //$classeOperacao = array();
+          $classeOperacao = array();
           
           for($i = 0; $i <= ($numeroDeLinhas-1); $i++){
             $codStatusTipoUsuOperacao[] = $dedos[$i]['cod_status_tipo_usu_operacao'];
@@ -71,7 +71,7 @@ if($infoPost){
             $nomeOperacao[] = $dedos[$i]['nome_operacao'];
             $codStatusOperacao[] = $dedos[$i]['cod_status_operacao'];
             $linkOperacao[] = $dedos[$i]['link_operacao'];
-            //$classeOperacao[] = $dedos[$i]['classeOperacao'];
+            $classeOperacao[] = $dedos[$i]['classeOperacao'];
           }
 
             $_SESSION['logado'] = true;
@@ -86,7 +86,7 @@ if($infoPost){
                   "nomeOperacao" => $nomeOperacao,
                   "codStatusOperacao" => $codStatusOperacao,
                   "linkOperacao" => $linkOperacao,
-                  //"classeOperacao" => $classeOperacao,
+                  "classeOperacao" => $classeOperacao,
                   "codUsu" => $codUsu,
                   "nomeUsu" => $nomeUsu,
                   "cpfUsu" => $cpfUsu,
@@ -102,9 +102,7 @@ if($infoPost){
                 break;
 
                 case 'Professor':
-                          $codUnid = get_id($pdo, "cod_unid", "usuario_unidade", "cod_usu", $codUsu);
-                          $_SESSION['dadosUsu']['codUnidadeUsu'] = $codUnid;
-                break;
+                case 'Coordenador':
                 case 'Diretor':
                           $codUnid = get_id($pdo, "cod_unid", "usuario_unidade", "cod_usu", $codUsu);
                           $nomeUnid = get_id($pdo, "nome_unid", "unidade", "cod_unid", $codUnid);

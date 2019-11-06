@@ -45,32 +45,64 @@ if(isset($_REQUEST['codAlun'])){
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../css/cssCadastroMaster/style1366.css">
         <style type="text/css">
                 
-                img.perfil-foto{
+        img.perfil-foto{
 
-                    width: 176px;
-                    height:176px;
-                    border-radius: 100%;
-                    border: 3px solid;
-                    border-color: #666;
-                    z-index: 1;
-                }
+            width: 176px;
+            height:176px;
+            border-radius: 100%;
+            border: 3px solid;
+            border-color: #666;
+            z-index: 1;
+        }
 
-               input.VAISEFUDE {
-    text-align: center;
-    width: 240px;
-    height: 50px;
-    font-size: 26px;
-    background: #00CCCC;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 1px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px;
-    text-decoration: none;
-    border-radius: 15px;
-}
+        input.VAISEFUDE {
+            text-align: center;
+            width: 240px;
+            height: 50px;
+            font-size: 26px;
+            background: #00CCCC;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 1px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+            text-decoration: none;
+            border-radius: 15px;
+        }
+
+        #dup{
+          width: 250px;
+          height: 250px;
+          border: 4px solid;
+          border-color: #666;
+          border-radius: 50%;
+        }
+        #img-perfil{
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+        }
+        label.selecionar-img{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          width: 45px;
+          height: 45px;
+          font-size: 50px;
+          top: -40px;
+          left: 70px;
+          background-color: #003366;
+          border-radius: 50%;
+          color: white;
+          z-index: 1;
+        }
+
+        .botao-img{
+          display: none;
+        }
                 
         </style>
 
@@ -104,17 +136,22 @@ if(isset($_REQUEST['codAlun'])){
 
         });
 
-        function previewImagem(input) {
-            if (input.files && input.files[0]) {
+        function previewImagem() {
+                var imagem = document.querySelector('input[name=img]').files[0];
+                var preview = document.querySelector('img[id=dup]');
+
                 var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('.profile-photo').css('background-image', 'url('+e.target.result +')');
+                reader.onloadend = function () {
+                    preview.src = reader.result;
                 }
 
-                reader.readAsDataURL(input.files[0]);
+                if (imagem) {
+                    reader.readAsDataURL(imagem);
+                } else {
+                    preview.src = "";
+                }
             }
-        }
         </script> 
     </head>
     <body>
@@ -172,7 +209,7 @@ if(isset($_REQUEST['codAlun'])){
                     <form class='form' id="form" action="codEditarAlun.php" method='post' enctype="multipart/form-data" autocomplete='off'>
                         <div id="img-perfil">
                             <!-- era uma outra classe aqui, nn sei qual, mas essa num é, tanto é q nem tá pegando -->
-                            <div class='profile-photo' style='background-image: url(<?=$url?>)!important; background-size: cover; background-position: center;'></div>
+                            <img src="<?=$url?>"  id="dup"/>
                             <label for="selecao-arquivo" class="selecionar-img">+</label>
                             <input id="selecao-arquivo" type="file" name="img" class="botao-img" onchange="previewImagem(this)" />
                         </div>

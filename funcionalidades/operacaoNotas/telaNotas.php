@@ -290,14 +290,14 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                                 } else {
 
                                     if (isset($qtdAMais)) {
-                                        $selectMudarCount = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur;");
+                                        $selectMudarCount = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur and cod_status_usu = 'A';");
                                         $selectMudarCount->execute();
                                         $numAlunos = $selectMudarCount->rowCount();
                                         $mudarCountUsu = "mudarCountUsu($numAlunos);";
 
                                         $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu, turma_aluno_nota_disc.cod_aval, vl_nota 
                 from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) 
-                                inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc order by nome_usu, cod_aval;"); //  order by nome_usu
+                                inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc and cod_status_usu = 'A' order by nome_usu, cod_aval;"); //  order by nome_usu
                                         $selectAlun->execute();
 
                                         $homicide = $selectAlun->fetchAll(PDO::FETCH_ASSOC);
@@ -420,7 +420,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
 
                                             $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu, turma_aluno_nota_disc.cod_aval, vl_nota 
                     from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) 
-                                    inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc order by nome_usu;"); //order by nome_usu
+                                    inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_tur = turma_aluno.cod_tur and turma_aluno_nota_disc.cod_usu = turma_aluno.cod_usu) where turma_aluno_nota_disc.cod_tur = $codTur and turma_aluno_nota_disc.cod_turma_disc = $codTurmDisc and cod_status_usu = 'A' order by nome_usu;"); //order by nome_usu
                                             $selectAlun->execute();
 
 
@@ -514,7 +514,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                 </table>";
                                         } else {
 
-                                            $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur order by nome_usu;"); // order by nome_usu
+                                            $selectAlun = $pdo->prepare("select usuario.cod_usu, nome_usu from usuario inner join turma_aluno on (turma_aluno.cod_usu = usuario.cod_usu) where turma_aluno.cod_tur = $codTur and cod_status_usu = 'A' order by nome_usu;"); // order by nome_usu
                                             $selectAlun->execute();
                                             $numAlunos = $selectAlun->rowCount();
                                             $massMurder = $selectAlun->fetchAll(PDO::FETCH_ASSOC); // EU JÁ NÃO SEI MAIS OQ EU TO FAZENDO
