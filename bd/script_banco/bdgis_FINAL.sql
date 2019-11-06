@@ -696,16 +696,38 @@ insert into tipo_usuario (nome_tipo_usu) values ('Diretor');
 insert into tipo_usuario (nome_tipo_usu) values ('Coordenador');
 insert into tipo_usuario (nome_tipo_usu) values ('Professor');
 
-insert into operacao (nome_operacao, cod_status_operacao, link_operacao) values ('dar o popo', 'A', 'darPopo.php');
-insert into operacao (nome_operacao, cod_status_operacao, link_operacao) values ('dar o bumbum', 'A', 'darBumbum.php');
 
-insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (1, 1, 'A');
-insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (2, 2, 'A');
-insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 2, 'A');
+insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Cursos', 'A', 'funcionalidades/operacaoCursos/cursos.php', 'far fa-clock');
+insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Disciplinas', 'A', 'funcionalidades/operacaoDisciplinas/verCursos.php', 'far fa-clock');
+insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Minha instituição', 'A', 'funcionalidades/operacaoInst/instituicao.php', 'fas fa-list');
+insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Lançar notas', 'A', 'funcionalidades/operacaoNotas/turmas.php', 'fas fa-list');
+insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Chamada ocorrencia', 'A', 'lista_salas.php', 'fas fa-list');
+insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Pesquisar alunos', 'A', 'funcionalidades/operacaoPesquisarAlunos/pesquisa.php', 'fas fa-list');
+insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Ver unidades', 'A', 'funcionalidades/operacaoUnid/unidades.php', 'fas fa-list');
+
+
+
+
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 1, 'A');
-insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (5, 1, 'A');
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (4, 1, 'A');
+
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 2, 'A');
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (4, 2, 'A');
+
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (2, 3, 'A');
+
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (5, 4, 'A');
+
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (5, 5, 'A');
 
 
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (1, 6, 'A');
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (2, 6, 'A');
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 6, 'A');
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (4, 6, 'A');
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (5, 6, 'A');
+
+insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (2, 7, 'A');
 
 /*
 insert into acesso (cod_tipo_usu, senha, email) values (3, 'batata', 'batata@gmail.com');

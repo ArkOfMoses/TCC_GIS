@@ -118,7 +118,7 @@ if(isset($_REQUEST['codTurma'])){
                     
                     <form class='form' method='post'>
                         
-                        <label id="coordenadores">Disciplina:</label>
+                        
 
                         <label id="sigla_label">Nome da Disciplina: </label>
                         <input class='unid' id='IdSigla0' name='sigla0' type='text' />
@@ -130,7 +130,8 @@ if(isset($_REQUEST['codTurma'])){
 
                         <div id="rightDiv"></div> <!-- div q recebe os novos inputs -->
                         <div class='recebeDados' id='div'></div> <!-- div que recebe dados do ajax -->
-                        <span id="eventBtn"><img src="../../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                        <span id="eventBtn"><img src="../../../imagens/more.png" alt=""></span><!-- botão pra adicionar inputs  -->
+                        <span class="table-remove"><img src="../../../imagens/exclude.png" alt=""></span> <!-- botão pra remover inputs  -->
                         <div class="puto"><input type="submit" value="Cadastrar Disciplinas" class="VAISEFUDE" /></div> <!-- botão subtmit do formulário -->
                         
                         <input type="hidden" value="1" name="AcoordA" id="hidden"/>
@@ -164,6 +165,20 @@ if(isset($_REQUEST['codTurma'])){
             increment++;
             $('#hidden').attr("value", increment);      
         });
+        $(".table-remove").click(function(){
+            
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > label:last").remove();
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > label:last").remove();
+            
+            
+            increment--;
+            if(increment < 0){
+                increment = 0;
+            }
+        
+    });
         
     });
         </script>

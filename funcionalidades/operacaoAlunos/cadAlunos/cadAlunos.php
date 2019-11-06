@@ -116,7 +116,7 @@ if(isset($_REQUEST['codTurma'])){
                     <h1>Cadastre os alunos:</h1>
 
                     <form class='form' method='post' autocomplete='off'>
-                        <label id="coordenadores">Aluno:</label>
+                        
 
                         <label id="nome_label">Nome do Aluno: </label>
                         <input class='unid' id='IdNome0' name='nome0' type='text' />
@@ -133,7 +133,8 @@ if(isset($_REQUEST['codTurma'])){
 
                         <div id="rightDiv"></div> <!-- div q recebe os novos inputs -->
                         <div class='recebeDados' id='div'></div> <!-- div que recebe dados do ajax -->
-                        <span id="eventBtn"><img src="../../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                        <span id="eventBtn"><img src="../../../imagens/more.png" alt=""></span><!-- botão pra adicionar inputs  -->
+                        <span class="table-remove"><img src="../../../imagens/exclude.png" alt=""></span> <!-- botão pra remover inputs  -->
                         <div class="puto"><input type="submit" value="Cadastrar Alunos" class="VAISEFUDE" /></div> <!-- botão subtmit do formulário -->
                         
                         <input type="hidden" value="1" name="AcoordA" id="hidden"/>
@@ -186,8 +187,25 @@ if(isset($_REQUEST['codTurma'])){
                 $("#IdDataEntrada"+i).mask("00/00/0000");
             }
         });
+
+        $(".table-remove").click(function(){
+            
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > label:last").remove();
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > label:last").remove();
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > label:last").remove();
+            $("#rightDiv > input:last").remove();
+            $("#rightDiv > label:last").remove();
+            
+            increment--;
+            if(increment < 0){
+                increment = 0;
+            }
         
     });
+});
         </script>
     </body>
 </html>

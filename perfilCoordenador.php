@@ -7,9 +7,9 @@ if(isset($_SESSION['logado'])){
     $img = $dados['fotoUsu'];
     $tipoUsu = $dados['nomeTipoUsu'];
 
-    // if($tipoUsu != 'Professor'){
-    //   header("Location: perfil$tipoUsu.php");
-    // }
+    if($tipoUsu != 'Coordenador'){
+      header("Location: perfil$tipoUsu.php");
+    }
 
 }else{
     unset($_SESSION['dadosUsu']);
@@ -125,37 +125,44 @@ if(isset($_SESSION['logado'])){
       <!--FULLNAV VEM DO PERFIL PROFESSOR Q TÁ CMG, SÓ COPIAR COLAR-->
       <div class="fullnav">
         <nav class="menu">
-          <a class="profile-photo-menu" style="background-image: url()!important;"></a>
+        <?php 
+            if($img === null){
+              echo "<a class='profile-photo-menu' style='background-image: url(imagens/perfil.png)!important; background-size: cover; background-position: center;'></a>";
+            }else{
+              echo "<a class='profile-photo-menu' style='background-image: url($img)!important; background-size: cover; background-position: center;'></a>";
+            }
+         ?>
 
           <ul>
-            <li>
-              <a href="#" class="title">Nome da Professora</a>
-            </li>
-            <li>
-              <a href="#" class="subtitle">Nome da Instituição</a>
-            </li>
+          <?="
+            <li><a href='#' class='title'>$nome</a></li>
+            <li><a href='#' class='subtitle'>$nomeUnidade</a></li>
+            "?>
           </ul>
           <hr>
 
           <ul class="menu-buttons">
+          <?php
+              $count = count($dados['codOperacao']);
+
+              for($i = 0; $i < $count; $i++){
+                  $codStatusUsuOperacao = $dados['codStatusTipoUsuOperacao'][$i];
+                  $nomeOperacao = $dados['nomeOperacao'][$i];
+                  $linkOperacao = $dados['linkOperacao'][$i];
+                  $classe = $dados['classeOperacao'][$i];
+
+                  if($codStatusUsuOperacao == 'A'){
+                      echo "<li><a href='$linkOperacao'><i class='$classe'></i> $nomeOperacao</a></li>";
+                  }
+              }
+            ?>
+
             <li>
-              <a href="lista_salas.html">
-                <i class="fas fa-list"></i> Lista de Salas</a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="far fa-clock"></i> Horário</a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="far fa-calendar-alt"></i> Eventos</a>
-            </li>
-            <li>
-              <a href="#">
+              <a href="operacaoConfiguracao/configuracoes.php">
                 <i class="fas fa-cogs"></i> Configurações</a>
             </li>
             <li>
-              <a href="#">
+              <a href="sair.php">
                 <i class="fas fa-sign-out-alt"></i> Sair</a>
             </li>
           </ul>
@@ -166,8 +173,13 @@ if(isset($_SESSION['logado'])){
       <!--Seção - PERFIL  -->
       <div id="pagina">
         <div class="banner">
-          <div class="profile-photo" style="/*background-image: url()!important;*/"></div>
-          <h2 id="nomeprof">Nome do Professor</h2>
+        <?php
+            if($img === null){
+                $img = "imagens/perfil.png";
+            }
+        ?>
+          <div class="profile-photo" style="background-image: url(<?=$img?>)!important; background-size: cover; background-position: center;"></div>
+          <h2 id="nomeprof"><?=$nome?></h2>
           <h1 id="meuperfil">Meu Perfil</h2>
 
         </div>
@@ -175,11 +187,22 @@ if(isset($_SESSION['logado'])){
         <div id="conteudo">
 
           <div class="botaoFuncionalidades">
-            <a id="botao" href="">Lorem Ipsun</a>
-            <a id="botao" href="">Lorem Ipsun</a>
-            <a id="botao" href="">Lorem Ipsun</a>
-            <a id="botao" href="">Configurações</a>
-            <a id="botao" href="">Sair</a>
+          <?php
+              $count = count($dados['codOperacao']);
+
+              for($i = 0; $i < $count; $i++){
+                  $codStatusUsuOperacao = $dados['codStatusTipoUsuOperacao'][$i];
+                  $nomeOperacao = $dados['nomeOperacao'][$i];
+                  $linkOperacao = $dados['linkOperacao'][$i];
+                  $classe = $dados['classeOperacao'][$i];
+
+                  if($codStatusUsuOperacao == 'A'){
+                      echo "<a id='botao' href='$linkOperacao'>$nomeOperacao</a>";
+                  }
+              }
+            ?>
+            <a id="botao" href="operacaoConfiguracao/configuracoes.php">Configurações</a>
+            <a id="botao" href="sair.php">Sair</a>
           </div>
         </div>
 
