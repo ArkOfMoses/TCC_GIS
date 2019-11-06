@@ -4,6 +4,7 @@ if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
     $codUnid = $dados['codUnidadeUsu'];
+    $codUsu = $dados['codUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -106,8 +107,33 @@ if(isset($_SESSION['logado'])){
                 		while ($dedoes = $dadosTurma->fetch(PDO::FETCH_ASSOC)) {
                 			$nomeTurma = $dedoes['sigla_tur'];
                 			$codTurma = $dedoes['cod_tur'];
+                      $select777 = ("select cod_tur from prof_turma where cod_usu = $codUsu");
+                      $comandoMano = $pdo->prepare($select777);
+                      $comandoMano->execute();
+                      $numDeLenhas = $comandoMano->rowCount();
+                      if($numDeLenhas != 0){
+                        while ($dedados = $comandoMano->fetch(PDO::FETCH_ASSOC)) {
+                          $codProfTurma = $dedoes['cod_tur'];
+                          if($codTurma == $codProfTurma){
 
-                			echo "<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codTurma'/></label>";
+                          echo "1<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codProfTurma'/ checked></label>";
+                        }else{
+                          echo "2<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codTurma'/></label>";
+                        }
+                       
+                        }
+                       
+                        
+                         
+                        
+
+                       
+                      }else{
+                        echo "<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codTurma'/></label>";
+                      }
+
+
+                			
 
 
 
@@ -115,6 +141,7 @@ if(isset($_SESSION['logado'])){
 
 
                 	}
+
                 	echo "<input type='submit' value='Enviar'/>
                 		  </form>";
                 }
