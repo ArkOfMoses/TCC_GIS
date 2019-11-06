@@ -24,13 +24,13 @@ if(isset($_SESSION['logado'])){
       <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
       <!-- CSS PADRÃO -->
-      <link href="css/landingPage/default.css" rel=stylesheet>
+      <link href="css/TermosDeUso/default.css" rel=stylesheet>
 
       <!-- Telas Responsivas -->
-      <link rel=stylesheet media="screen and (max-width:480px)" href="css/landingPage/style480.css">
-      <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/landingPage/style768.css">
-      <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/landingPage/style1024.css">
-      <link rel=stylesheet media="screen and (min-width:1025px)" href="css/landingPage/style1366.css">
+      <link rel=stylesheet media="screen and (max-width:480px)" href="css/TermosDeUso/style480.css">
+      <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/TermosDeUso/style768.css">
+      <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/TermosDeUso/style1024.css">
+      <link rel=stylesheet media="screen and (min-width:1025px)" href="css/TermosDeUso/style1366.css">
 
       <!-- Script -->
       <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
@@ -134,6 +134,32 @@ if(isset($_SESSION['logado'])){
 
         <main>
            <section>
+              <div class="Ancoragem">
+                <ul>
+                <li><a href="#visaoGeral">VISÃO GERAL</a></li>
+                <li><a href="#secao1">SEÇÃO 1</a></li>
+                <li><a href="#secao2">SEÇÃO 2</a></li>
+                <li><a href="#secao3">SEÇÃO 3</a></li>
+                <li><a href="#secao4">SEÇÃO 4</a></li>
+                <li><a href="#secao5">SEÇÃO 5</a></li>
+                <li><a href="#secao6">SEÇÃO 6</a></li>
+                <li><a href="#secao7">SEÇÃO 7</a></li>
+                <li><a href="#secao8">SEÇÃO 8</a></li>
+                <li><a href="#secao9">SEÇÃO 9</a></li>
+                <li><a href="#secao10">SEÇÃO 10</a></li>
+                <li><a href="#secao11">SEÇÃO 11</a></li>
+                <li><a href="#secao12">SEÇÃO 12</a></li>
+                <li><a href="#secao13">SEÇÃO 13</a></li>
+                <li><a href="#secao14">SEÇÃO 14</a></li>
+                <li><a href="#secao15">SEÇÃO 15</a></li>
+                <li><a href="#secao16">SEÇÃO 16</a></li>
+                <li><a href="#secao17">SEÇÃO 17</a></li>
+                <li><a href="#secao18">SEÇÃO 18</a></li>
+                <li><a href="#secao19">SEÇÃO 19</a></li>
+                <li><a href="#secao20">SEÇÃO 20</a></li>
+                </ul>
+              </div>
+
               <h1>Termos de Serviço</h1>
 
               ----
@@ -152,7 +178,7 @@ if(isset($_SESSION['logado'])){
               </section>
 
               <section>
-              <h2 id="#secao1">SEÇÃO 1 - TERMOS DA LOJA VIRTUAL</h2>
+              <h2 id="secao1">SEÇÃO 1 - TERMOS DA LOJA VIRTUAL</h2>
 
                 <p>
                   Ao concordar com os Termos de serviço, você confirma que você é maior de idade em seu estado ou província de residência e que você nos deu seu consentimento para permitir que qualquer um dos seus dependentes menores de idade usem esse site.
@@ -166,7 +192,7 @@ if(isset($_SESSION['logado'])){
               </section>
 
               <section>
-                <h2 id="#secao2">SEÇÃO 2 - CONDIÇÕES GERAIS</h2>
+                <h2 id="secao2">SEÇÃO 2 - CONDIÇÕES GERAIS</h2>
 
                 <p>
                   Reservamos o direito de recusar o serviço a qualquer pessoa por qualquer motivo a qualquer momento.
@@ -180,7 +206,7 @@ if(isset($_SESSION['logado'])){
               </section>
 
               <section>
-                <h2 id="#secao3">SEÇÃO 3 - PRECISÃO, INTEGRIDADE E ATUALIZAÇÃO DAS INFORMAÇÕES</h2>
+                <h2 id="secao3">SEÇÃO 3 - PRECISÃO, INTEGRIDADE E ATUALIZAÇÃO DAS INFORMAÇÕES</h2>
 
                 <p>
                   Não somos responsáveis por informações disponibilizadas nesse site que não sejam precisas, completas ou atuais. O material desse site é fornecido apenas para fins informativos e não deve ser usado como a única base para tomar decisões sem consultar fontes de informações primárias, mais precisas, mais completas ou mais atuais. Qualquer utilização do material desse site é por sua conta e risco.
@@ -190,7 +216,7 @@ if(isset($_SESSION['logado'])){
               </section>
 
               <section>
-                <h2 id="#secao4">SEÇÃO 4 - MODIFICAÇÕES DO SERVIÇO E PREÇOS</h2>
+                <h2 id="secao4">SEÇÃO 4 - MODIFICAÇÕES DO SERVIÇO E PREÇOS</h2>
 
                 <p>
                   Os preços dos nossos produtos são sujeitos a alterações sem notificação.
@@ -202,7 +228,7 @@ if(isset($_SESSION['logado'])){
               </section>
 
               <section>
-                <h2 id="#secao5">SEÇÃO 5 - PRODUTOS OU SERVIÇOS (caso aplicável)</h2>
+                <h2 id="secao5">SEÇÃO 5 - PRODUTOS OU SERVIÇOS (caso aplicável)</h2>
 
                 <p>
                   Certos produtos ou serviços podem estar disponíveis exclusivamente online através do site. Tais produtos ou serviços podem ter quantidades limitadas e são sujeitos a apenas devolução ou troca, de acordo com nossa Política de devolução.
@@ -216,7 +242,7 @@ if(isset($_SESSION['logado'])){
               </section>
 
               <section>
-                <h2 id="#secao6">SEÇÃO 6 - PRECISÃO DE INFORMAÇÕES DE FATURAMENTO E CONTA</h2>
+                <h2 id="secao6">SEÇÃO 6 - PRECISÃO DE INFORMAÇÕES DE FATURAMENTO E CONTA</h2>
 
                 <p>
                   Reservamos o direito de recusar qualquer pedido que você nos fizer. Podemos, a nosso próprio critério, limitar ou cancelar o número de produtos por pessoa, por domicílio ou por pedido. Tais restrições podem incluir pedidos feitos na mesma conta de cliente, no mesmo cartão de crédito, e/ou pedidos que usam a mesma fatura e/ou endereço de envio. Caso façamos alterações ou cancelemos um pedido, pode ser que o notifiquemos por e-mail e/ou endereço/número de telefone de faturamento fornecidos no momento que o pedido foi feito. Reservamos o direito de limitar ou proibir pedidos que, a nosso critério exclusivo, parecem ser feitos por comerciantes, revendedores ou distribuidores.
@@ -228,7 +254,7 @@ if(isset($_SESSION['logado'])){
               </section>
 
               <section>
-                <h2 id="#secao7">SEÇÃO 7 - FERRAMENTAS OPCIONAIS</h2>
+                <h2 id="secao7">SEÇÃO 7 - FERRAMENTAS OPCIONAIS</h2>
 
                 <p>
                   Podemos te dar acesso a ferramentas de terceiros que não monitoramos e nem temos qualquer controle.
@@ -242,31 +268,140 @@ if(isset($_SESSION['logado'])){
               </section>
 
               <section>
-                <h2 id="#secao8">SEÇÃO 8 - LINKS DE TERCEIROS</h2>
+                <h2 id="secao8">SEÇÃO 8 - LINKS DE TERCEIROS</h2>
 
                 <p>
-                Certos produtos, conteúdos e serviços disponíveis pelo nosso Serviço podem incluir materiais de terceiros.
-                <br>
-                Os links de terceiros nesse site podem te direcionar para sites de terceiros que não são afiliados a nós. Não nos responsabilizamos por examinar ou avaliar o conteúdo ou precisão. Não garantimos e nem temos obrigação ou responsabilidade por quaisquer materiais ou sites de terceiros, ou por quaisquer outros materiais, produtos ou serviços de terceiros.
-                <br>
-                Não somos responsáveis por quaisquer danos ou prejuízos relacionados com a compra ou uso de mercadorias, serviços, recursos, conteúdo, ou quaisquer outras transações feitas em conexão com quaisquer sites de terceiros. Por favor, revise com cuidado as políticas e práticas de terceiros e certifique-se que você as entende antes de efetuar qualquer transação. As queixas, reclamações, preocupações ou questões relativas a produtos de terceiros devem ser direcionadas ao terceiro.                
+                  Certos produtos, conteúdos e serviços disponíveis pelo nosso Serviço podem incluir materiais de terceiros.
+                  <br>
+                  Os links de terceiros nesse site podem te direcionar para sites de terceiros que não são afiliados a nós. Não nos responsabilizamos por examinar ou avaliar o conteúdo ou precisão. Não garantimos e nem temos obrigação ou responsabilidade por quaisquer materiais ou sites de terceiros, ou por quaisquer outros materiais, produtos ou serviços de terceiros.
+                  <br>
+                  Não somos responsáveis por quaisquer danos ou prejuízos relacionados com a compra ou uso de mercadorias, serviços, recursos, conteúdo, ou quaisquer outras transações feitas em conexão com quaisquer sites de terceiros. Por favor, revise com cuidado as políticas e práticas de terceiros e certifique-se que você as entende antes de efetuar qualquer transação. As queixas, reclamações, preocupações ou questões relativas a produtos de terceiros devem ser direcionadas ao terceiro.                
                 </p>
               </section>
 
               <section>
-                <h2 id="#secao8">SEÇÃO 9 - COMENTÁRIOS, FEEDBACK, ETC. DO USUÁRIO</h2>
+                <h2 id="secao9">SEÇÃO 9 - COMENTÁRIOS, FEEDBACK, ETC. DO USUÁRIO</h2>
 
                 <p>
-                Certos produtos, conteúdos e serviços disponíveis pelo nosso Serviço podem incluir materiais de terceiros.
-                <br>
-                Os links de terceiros nesse site podem te direcionar para sites de terceiros que não são afiliados a nós. Não nos responsabilizamos por examinar ou avaliar o conteúdo ou precisão. Não garantimos e nem temos obrigação ou responsabilidade por quaisquer materiais ou sites de terceiros, ou por quaisquer outros materiais, produtos ou serviços de terceiros.
-                <br>
-                Não somos responsáveis por quaisquer danos ou prejuízos relacionados com a compra ou uso de mercadorias, serviços, recursos, conteúdo, ou quaisquer outras transações feitas em conexão com quaisquer sites de terceiros. Por favor, revise com cuidado as políticas e práticas de terceiros e certifique-se que você as entende antes de efetuar qualquer transação. As queixas, reclamações, preocupações ou questões relativas a produtos de terceiros devem ser direcionadas ao terceiro.                
+                  Se, a nosso pedido, você enviar certos itens específicos (por exemplo, participação em um concurso), ou sem um pedido nosso, você enviar ideias criativas, sugestões, propostas, planos, ou outros materiais, seja online, por e-mail, pelo correio, ou de outra forma (em conjunto chamados de 'comentários'), você concorda que podemos, a qualquer momento, sem restrição, editar, copiar, publicar, distribuir, traduzir e de outra forma usar quaisquer comentários que você encaminhar para nós. Não nos responsabilizamos por: (1) manter quaisquer comentários em sigilo; (2) indenizar por quaisquer comentários; ou (3) responder quaisquer comentários.
+                  <br>
+                  Podemos, mas não temos a obrigação, de monitorar, editar ou remover conteúdo que nós determinamos a nosso próprio critério ser contra a lei, ofensivo, ameaçador, calunioso, difamatório, pornográfico, obsceno ou censurável ou que viole a propriedade intelectual de terceiros ou estes Termos de serviço.
+                  <br>
+                  Você concorda que seus comentários não violarão qualquer direito de terceiros, incluindo direitos autorais, marcas registradas, privacidade, personalidade ou outro direito pessoal ou de propriedade. Você concorda que os seus comentários não vão conter material difamatório, ilegal, abusivo ou obsceno. Eles também não conterão nenhum vírus de computador ou outro malware que possa afetar a operação do Serviço ou qualquer site relacionado. Você não pode usar um endereço de e-mail falso, fingir ser alguém diferente de si mesmo, ou de outra forma enganar a nós ou terceiros quanto à origem de quaisquer comentários. Você é o único responsável por quaisquer comentários que você faz e pela veracidade deles. Nós não assumimos qualquer responsabilidade ou obrigação por quaisquer comentários publicados por você ou por qualquer terceiro.
+                </p>
+              </section>
+
+              <section>
+                <h2 id="secao10">SEÇÃO 10 - INFORMAÇÕES PESSOAIS</h2>
+
+                <p>
+                O envio de suas informações pessoais através da loja é regido pela nossa Política de privacidade. Ver nossa Política de privacidade. 
+                </p>
+              </section>
+
+              </section>
+
+              <section>
+                <h2 id="secao11">SEÇÃO 11 - ERROS, IMPRECISÕES E OMISSÕES</h2>
+
+                <p>
+                  Ocasionalmente, pode haver informações no nosso site ou no Serviço que contém erros tipográficos, imprecisões ou omissões que possam relacionar-se a descrições de produtos, preços, promoções, ofertas, taxas de envio do produto, o prazo de envio e disponibilidade. Reservamos o direito de corrigir quaisquer erros, imprecisões ou omissões, e de alterar ou atualizar informações ou cancelar encomendas caso qualquer informação no Serviço ou em qualquer site relacionado seja imprecisa, a qualquer momento e sem aviso prévio (até mesmo depois de você ter enviado o seu pedido).
+                  <br>
+                  Não assumimos nenhuma obrigação de atualizar, alterar ou esclarecer informações no Serviço ou em qualquer site relacionado, incluindo, sem limitação, a informações sobre preços, exceto conforme exigido por lei. Nenhuma atualização específica ou data de atualização no Serviço ou em qualquer site relacionado, deve ser utilizada para indicar que todas as informações do Serviço ou em qualquer site relacionado tenham sido modificadas ou atualizadas. 
+                </p>
+              </section>
+              
+              <section>
+                <h2 id="#secao12">SEÇÃO 12 - USOS PROIBIDOS</h2>
+
+                <p>
+                 Além de outras proibições, conforme estabelecido nos Termos de serviço, você está proibido de usar o site ou o conteúdo para: (a) fins ilícitos; (b) solicitar outras pessoas a realizar ou participar de quaisquer atos ilícitos; (c) violar quaisquer regulamentos internacionais, provinciais, estaduais ou federais, regras, leis ou regulamentos locais; (d) infringir ou violar nossos direitos de propriedade intelectual ou os direitos de propriedade intelectual de terceiros; (e) para assediar, abusar, insultar, danificar, difamar, caluniar, depreciar, intimidar ou discriminar com base em gênero, orientação sexual, religião, etnia, raça, idade, nacionalidade ou deficiência; (f) apresentar informações falsas ou enganosas; (g) fazer o envio ou transmitir vírus ou qualquer outro tipo de código malicioso que será ou poderá ser utilizado para afetar a funcionalidade ou operação do Serviço ou de qualquer site relacionado, outros sites, ou da Internet; (h) coletar ou rastrear as informações pessoais de outras pessoas; (i) para enviar spam, phishing, pharm, pretext, spider, crawl, ou scrape; (j) para fins obscenos ou imorais; ou (k) para interferir ou contornar os recursos de segurança do Serviço ou de qualquer site relacionado, outros sites, ou da Internet. Reservamos o direito de rescindir o seu uso do Serviço ou de qualquer site relacionado por violar qualquer um dos usos proibidos.               
+                </p>
+              </section>
+
+              <section>
+                <h2 id="secao13">SEÇÃO 13 - ISENÇÃO DE RESPONSABILIDADE DE GARANTIAS; LIMITAÇÃO DE RESPONSABILIDADE</h2>
+
+                <p>
+                  Nós não garantimos, representamos ou justificamos que o seu uso do nosso serviço será pontual, seguro, sem erros ou interrupções.
+                  <br>
+                  Não garantimos que os resultados que possam ser obtidos pelo uso do serviço serão precisos ou confiáveis.
+                  <br>
+                  Você concorda que de tempos em tempos, podemos remover o serviço por períodos indefinidos de tempo ou cancelar a qualquer momento, sem te notificar.
+                  <br>
+                  Você concorda que o seu uso ou incapacidade de usar o serviço é por sua conta e risco. O serviço e todos os produtos e serviços entregues através do serviço são, exceto conforme declarado por nós) fornecidos sem garantia e conforme a disponibilidade para seu uso, sem qualquer representação, garantias ou condições de qualquer tipo, expressas ou implícitas, incluindo todas as garantias implícitas ou condições de comercialização, quantidade, adequação a uma finalidade específica, durabilidade, título, e não violação.
+                  <br>
+                  Em nenhuma circunstância o GIS, nossos diretores, oficiais, funcionários, afiliados, agentes, contratantes, estagiários, fornecedores, prestadores de serviços ou licenciadores serão responsáveis por qualquer prejuízo, perda, reclamação ou danos diretos, indiretos, incidentais, punitivos, especiais ou consequentes de qualquer tipo, incluindo, sem limitação, lucros cessantes, perda de receita, poupanças perdidas, perda de dados, custos de reposição, ou quaisquer danos semelhantes, seja com base em contrato, ato ilícito (incluindo negligência), responsabilidade objetiva ou de outra forma, decorrentes do seu uso de qualquer um dos serviços ou quaisquer produtos adquiridos usando o serviço, ou para qualquer outra reclamação relacionada de alguma forma ao seu uso do serviço ou qualquer produto, incluindo, mas não limitado a, quaisquer erros ou omissões em qualquer conteúdo, ou qualquer perda ou dano de qualquer tipo como resultado do uso do serviço ou qualquer conteúdo (ou produto) publicado, transmitido ou de outra forma disponível através do serviço, mesmo se alertado ​​de tal possibilidade. Como alguns estados ou jurisdições não permitem a exclusão ou a limitação de responsabilidade por danos consequentes ou incidentais, em tais estados ou jurisdições, a nossa responsabilidade será limitada à extensão máxima permitida por lei.
+                </p>
+              </section>
+
+              <section>
+                <h2 id="secao14">SEÇÃO 14 - INDENIZAÇÃO</h2>
+
+                <p>
+                 Você concorda em indenizar, defender e isentar GIS e nossos subsidiários, afiliados, parceiros, funcionários, diretores, agentes, contratados, licenciantes, prestadores de serviços, subcontratados, fornecedores, estagiários e funcionários, de qualquer reclamação ou demanda, incluindo honorários de advogados, por quaisquer terceiros devido à violação destes Termos de serviço ou aos documentos que incorporam por referência, ou à violação de qualquer lei ou os direitos de um terceiro.
+                </p>
+              </section>
+
+              <section>
+                <h2 id="secao15">SEÇÃO 15 - INDEPENDÊNCIA</h2>
+
+                <p>
+                  No caso de qualquer disposição destes Termos de serviço ser considerada ilegal, nula ou ineficaz, tal disposição deve, contudo, ser aplicável até ao limite máximo permitido pela lei aplicável, e a porção inexequível será considerada separada desses Termos de serviço. Tal determinação não prejudica a validade e aplicabilidade de quaisquer outras disposições restantes.
+                </p>
+              </section>
+
+              <section>
+                <h2 id="secao16">SEÇÃO 16 - RESCISÃO</h2>
+
+                <p>
+                  As obrigações e responsabilidades das partes incorridas antes da data de rescisão devem continuar após a rescisão deste acordo para todos os efeitos.
+                  <br>
+                  Estes Termos de Serviço estão em vigor, a menos que seja rescindido por você ou por nós. Você pode rescindir estes Termos de serviço a qualquer momento, notificando-nos que já não deseja utilizar os nossos serviços, ou quando você deixar de usar o nosso site.
+                  <br>
+                  Se em nosso critério exclusivo você não cumprir com qualquer termo ou disposição destes Termos de serviço, nós também podemos rescindir este contrato a qualquer momento sem aviso prévio e você ficará responsável por todas as quantias devidas até a data da rescisão; também podemos lhe negar acesso a nossos Serviços (ou qualquer parte deles).
+                </p>
+              </section>
+
+              <section>
+                <h2 id="secao17">SEÇÃO 17 - ACORDO INTEGRAL</h2>
+
+                <p>
+                  Caso não exerçamos ou executemos qualquer direito ou disposição destes Termos de serviço, isso não constituirá uma renúncia de tal direito ou disposição.
+                  <br>
+                  Estes Termos de serviço e quaisquer políticas ou normas operacionais postadas por nós neste site ou no que diz respeito ao serviço constituem a totalidade do acordo  entre nós. Estes termos regem o seu uso do Serviço, substituindo quaisquer acordos anteriores ou contemporâneos, comunicações e propostas, sejam verbais ou escritos, entre você e nós (incluindo, mas não limitado a quaisquer versões anteriores dos Termos de serviço).
+                  <br>
+                  Quaisquer ambiguidades na interpretação destes Termos de serviço não devem ser interpretadas contra a parte que os redigiu.
+                </p>
+              </section>
+
+              <section>
+                <h2 id="secao18">SEÇÃO 18 - LEGISLAÇÃO APLICÁVEL</h2>
+
+                <p>
+                  Esses Termos de serviço e quaisquer acordos separados em que nós lhe fornecemos os Serviços devem ser regidos e interpretados de acordo com as leis de Rua do ITB do Engenho Novo 238 , Barueri, SP, 06415-080, Brazil.                
+                </p>
+              </section>
+              
+              <section>
+                <h2 id="secao19">SEÇÃO 19 - ALTERAÇÕES DOS TERMOS DE SERVIÇO</h2>
+
+                <p>
+                  Você pode rever a versão mais atual dos Termos de serviço a qualquer momento nessa página.
+                  <br>
+                  Reservamos o direito, a nosso critério, de atualizar, modificar ou substituir qualquer parte destes Termos de serviço ao publicar atualizações e alterações no nosso site. É sua responsabilidade verificar nosso site periodicamente. Seu uso contínuo ou acesso ao nosso site ou ao Serviço após a publicação de quaisquer alterações a estes Termos de serviço constitui aceitação dessas alterações.
+                </p>
+              </section>
+
+              <section>
+                <h2 id="secao20">SEÇÃO 20 - INFORMAÇÕES DE CONTATO</h2>
+
+                <p>
+                  As perguntas sobre os Termos de serviço devem ser enviadas para nós através do exodiadeini@gmail.com.                
                 </p>
               </section>
 
            </section>
-
             
 
         </main>
