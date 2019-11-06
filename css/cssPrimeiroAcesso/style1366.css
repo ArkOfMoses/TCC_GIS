@@ -1,8 +1,3 @@
-.recebeDados{
-    border: 1px solid #000;
-    margin-top: 10px;
-}
-
 
 *{
     margin:0;
@@ -29,32 +24,63 @@ body{
 
 }
 
+.recebeDados{
+    border:none;
+    display: flex;
+    justify-content: center;
+
+}
+
+.blank{
+    margin-bottom: 50px;
+}
+
+.table-remove{
+    float: right
+}   
+
 .acessoUm{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
     flex-wrap: wrap;
 
 }
 .acessoUm p {
     font-size: 20px;
-    color: #666;
+    
     max-width: 500px;
 }
-
+p.vsf{
+    font-size: 16px;
+    color: #666;
+    padding: 10px;
+    text-align: center;
+}
+.perfil-foto{
+    width: 176px;
+    height:176px;
+    border-radius: 25px;
+    z-index: 1;
+}
 .acessoUm form{
     text-align: left;
     padding: 30px;
+    
 }
-
+.acessoUm form h2{
+    font-size: 30px;
+    color: #003366;
+    margin: 5px;
+    text-align: center;
+}
 .acessoUm label{
 
     font-size: 20px;
     display: block;
 }
-.acessoUm #visor, #visor1, #visor2, #visor3, #visor4, #visor5, #visor6{
+.acessoUm input{
     margin-bottom: 10px;
     height: 30px;
     width: 700px;
@@ -62,46 +88,55 @@ body{
     border-bottom: 3px solid #666;
 
 }
-.recebeDados{
-    text-align: left;
-    font-size: 20px;
-}
 
 
-#plus{
-    font-size: 30px;
-    color: #fff;
-    font-weight: 900;
-    background-color: #003366;
-    border: none;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-    display: block;
-
-}    
+ 
 
 
 /****/
 
 
 
-.buttonNext {
-    display: block;
+.puto {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+input.buttonNext {
     text-align: center;
-    width: 200px!important;
-    height: 50px!important;
+    width: 200px;
+    height: 50px;
     font-size: 26px;
     background: #00CCCC;
     font-weight: bold;
     color: white;
-    border: 0 none!important;
+    border: 0 none;
+    border-radius: 1px;
     cursor: pointer;
     padding: 10px 5px;
-    margin: 10px auto;
+    margin: 10px 5px;
     text-decoration: none;
-    border-radius: 20px;
+    border-radius: 15px;
 }
+
+a.buttonNext {
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    font-size: 26px;
+    background: #00CCCC;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+    text-decoration: none;
+    border-radius: 15px;
+}
+
 
 
 #alteraFoto{
@@ -113,6 +148,9 @@ body{
     right: -50px;
 }
 
-.acessDenied{
-    display: none
+.recebeDados{
+    border:none;
+    display: flex;
+    justify-content: center;
+
 }
