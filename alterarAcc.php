@@ -177,11 +177,7 @@ if(isset($_SESSION['logado'])){
                     </form>
                 </div>
 
-                <div class="acessDenied">
-                    <img src="imagens/error.png">
-                    <p>Ops! </p>
-                    <span>Parece que o dispositivo usado não é compatível com o site!</span>
-                </div>
+                
             </main>
             <script type="text/javascript">
             $(document).ready(function(){
