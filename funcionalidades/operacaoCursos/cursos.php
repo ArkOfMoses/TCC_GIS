@@ -69,14 +69,8 @@ function activateMenu(){
               <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 595.2 595.3" style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve">
               <style type="text/css">
-                .botaozin{
-                  color: darkblue;
-                  
-                }
-
-              	.st0{fill:url(#LetraG_2_);}
-              	.st1{fill:#006699;}
-              	.st2{fill:url(#Bola_2_);}
+                
+              	
               </style>
               <linearGradient id="LetraG_2_" gradientUnits="userSpaceOnUse" x1="-130.1162" y1="-1.6877" x2="-127.636" y2="-1.6877" gradientTransform="matrix(120.0332 -207.9035 -207.9035 -120.0332 15416.1299 -26698.6406)">
               	<stop  offset="0" style="stop-color:#00CCCC"/>
