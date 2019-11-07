@@ -1,0 +1,101 @@
+.header {
+  width: 100vw;
+  height: 80px;
+}
+
+.logo {
+  width: 2.7em;
+  height: 2.7em;
+  margin-left: 20px;
+}
+
+.hamburger{
+  width: 80px;
+  height: 100%;
+}
+
+.hamburger svg{width: 1.3em;}
+
+.fullnav {
+  bottom: 0%;
+  top: 0%;
+  flex-flow: column;
+  align-items: center;
+  right: -100vw;
+  background: #051523;
+}
+
+.menu {
+  width: 100vw;
+  overflow-y: scroll;
+}
+
+hr {
+  width: 60vw;
+  color: #c9c9c9;
+  margin: 50px 0;
+}
+
+.menu-buttons {min-height: 350px;}
+
+.menu-buttons li {font-size: 1.7em}
+
+.menu-buttons i {
+  font-size: .9em;
+  margin-right: 5px
+}
+
+.title, .subtitle {font-size: 1.4em;}
+
+.title {font-size: 1.5em}
+
+.profile-photo-menu {
+  width: 18%;
+  padding-top: 18%;
+  border-radius: 150px;
+  margin: 100px 0 20px;
+
+}
+
+.active-menu .fullnav {right: 0;}
+
+
+
+
+main {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 80px calc(10px + 7%) 0;
+  background: #F7FDFD; 
+}
+
+
+h2{
+    color: #0cc;
+    font-weight: 900;
+    font-size: 56px;
+}
+h1{
+    font-size: 30px;
+    font-weight: 600;
+}
+h1,h2{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+.disciplina{
+    color: #0066CC;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: 600;
+}
+h3{
+    display: flex;
+    background-color: #ededed;
+    width: 100%;
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: 600;
+}
