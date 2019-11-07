@@ -25,6 +25,8 @@ while($dadas = $comandoBro->fetch(PDO::FETCH_ASSOC)){
     $numUnid = $dadas['num_unid'];
     $complUnid = $dadas['compl_unid'];
 }
+
+echo $nomeUnid;
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +68,7 @@ while($dadas = $comandoBro->fetch(PDO::FETCH_ASSOC)){
             <header class="headerPrimeiroAcesso">
             <!-- <a href="../../alterarAcc.php"><img src="../img/alteraImg.png"></a>
             <a href="../cadastroDeInst/cadastroDeInst.php"><img src="../img/instImg.png"></a> -->
-            <a href="editarUnid.php?"><img src="../../../primeiroCadastroMaster/img/unidImg.png"></a>
+            <a href="editarUnid.php"><img src="../../../primeiroCadastroMaster/img/unidImg.png"></a>
             <!-- <a href="../cadastroDeDir/cadastroDir.php"><img src="../img/dirImg.png"></a>
             <a href="../enviarEmail.php"><img src="../img/emailImg.png"></a>                
             <a href="../confirmarDados.php"><img src="../img/confirmaImg.png"></a> -->

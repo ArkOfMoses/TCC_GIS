@@ -229,8 +229,12 @@ require_once '../bd/conexao.php';
             while($dedoes = $comando->fetch(PDO::FETCH_ASSOC)){
                   $nomeUsu = $dedoes['nome_usu'];
                   $data = $dedoes['data_nasc_usu'];
+                  if($data != ''){
                   $date = date_create_from_format('Y-m-d', "$data");
                   $dataNascUsu = date_format($date, 'd/m/Y');
+                  }else{
+                    $data = NULL;
+                  }
                   $CPFUsu = $dedoes['cpf_usu'];
                   $emailUsu = $dedoes['email'];
                   $senhaUsu = $dedoes['senha'];
@@ -268,10 +272,14 @@ require_once '../bd/conexao.php';
                             <dt>
                               <label for=''>Alterar Data de Nascimento</label>
                             </dt>
-                            <dd>
-                              <input type='text' id='dataMano' name='dataNasc' value='$dataNascUsu' placeholder='00/00/0000'>
+                            <dd>";
+                            if($data === NULL){
+                             echo "<input type='text' id='dataMano' name='dataNasc' placeholder='00/00/0000'>";
+                            }else{
+                             echo "<input type='text' id='dataMano' name='dataNasc' value='$dataNascUsu' placeholder='00/00/0000'>";
+                            }
 
-                            </dd>
+                            echo "</dd>
                           </dl>
 
                           <dl class='grupo-form'>
@@ -349,12 +357,6 @@ require_once '../bd/conexao.php';
             echo "Não tem como cair aqui... mas se cair ferrou legal kkkk";
           }
 
-          if($nomeTipoUsu == 'Professor'){
-            // alguem arruma essa merda
-            echo "<a class='butaozin' href='cadastroDiscTurma/escolherDisc.php'>Alterar Disciplina</a><br>
-                  <a class='butaozin' href='cadastroDiscTurma/escolherTurma.php'>Alterar Turma</a>";
-
-          }
 
 
           ?>

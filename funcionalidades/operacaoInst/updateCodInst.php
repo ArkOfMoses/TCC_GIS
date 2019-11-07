@@ -26,7 +26,6 @@ if($infoPost){
         }else if($cnpj === false) {
             echo "<p>CNPJ inválido!</p>";
         }else if($numLinhas > 0){
-        	var_dump($infoPost);
             echo "<p>CNPJ já cadastrado!</p>";
         }else{
         	$atualizarInst = $pdo->prepare("update instituicao set nome_fantasia_inst = '$nomeFant', razao_social_inst = '$razaoSoci', CNPJ_inst = $cnpj where cod_inst = $codInst;");
