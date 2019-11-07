@@ -138,6 +138,7 @@ switch ($senhaAtual) {
 
 				$update = $pdo->prepare("update usuario set url_foto_usu = '$imagem' where cod_usu = $codUsu;");
 				$update->execute();
+				$_SESSION['dadosUsu']['fotoUsu'] = $imagem;
 				echo "<script type='text/javascript'> window.location.href='configuracoes.php';</script>";
 			}
 		}

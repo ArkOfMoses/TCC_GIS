@@ -99,6 +99,12 @@ if($infoPost){
 
               switch ($nomeTipoUsu) {
                 case 'Master':
+                $selectInst = $pdo->prepare("select instituicao.cod_inst from instituicao inner join unidade on (instituicao.cod_inst = unidade.cod_inst)
+                inner join usuario_unidade on (unidade.cod_unid = usuario_unidade.cod_unid) where usuario_unidade.cod_usu = $codUsu");
+                $selectInst->execute();
+                $pdoInst = $selectInst->fetch(PDO::FETCH_ASSOC);
+                $codInsti = $pdoInst['cod_inst'];
+                $_SESSION['dadosUsu']['codInstituicao'] = $codInsti;
                 break;
 
                 case 'Professor':

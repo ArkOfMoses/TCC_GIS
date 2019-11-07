@@ -3,6 +3,7 @@ session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
+    $codInst = $dados['codInstituicao'];
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -149,7 +150,55 @@ function activateMenu(){
                 <h1>Unidades</h1>
                 <?php
 
-                
+                      require_once '../../bd/conexao.php';
+                      // cursos na unidade
+
+                      $selecionar = ("select * from unidade where cod_inst = $codInst and cod_status_unid = 'A';");
+                      $dadosUnid = $pdo->prepare($selecionar);
+                      $dadosUnid->execute();
+                     
+                      $dale = "<table>
+                      <tr>
+                          <th colspan='3'>Nome da Unidade</th>
+                          <th colspan='3'>Nome do Diretor</th>
+                      </tr>";
+
+                      if($dadosUnid == NULL){
+                        echo "<p>Não existem unidades cadastradas na instituição!</p>";
+
+                      }else{
+                        while($dedinhos = $dadosUnid->fetch(PDO::FETCH_ASSOC)){
+                          $nomeUnid = $dedinhos['nome_unid'];
+                          $codUnid = $dedinhos['cod_unid'];
+                          //dadosDaUnid
+                          $dale .= "
+                          <tr class='tbl-content'>
+                            <td colspan='3'><span>$nomeUnid</span> - <a class='botaozin' href='acoes/editarUnid.php?codUnid=$codUnid'>Editar</a></td>";
+                          
+
+                          $selecionara = ("select nome_usu from usuario_unidade inner join usuario on (usuario_unidade.cod_usu = usuario.cod_usu) inner join acesso on (usuario.cod_acesso = acesso.cod_acesso) where cod_unid = $codUnid and cod_tipo_usu = 3;");
+                          $dadosDiretor = $pdo->prepare($selecionara);
+                          $dadosDiretor->execute();
+                          while ($dedoes = $dadosDiretor->fetch(PDO::FETCH_ASSOC)) {
+                            $nomeDir = $dedoes['nome_usu'];
+                            //nomeDoDiretor
+                            $dale .= "<td colspan='3'><p>$nomeDir</a></td>";
+                           
+
+                            
+
+                          }
+                          
+
+                        }
+                        $dale .= "</tr>
+                        </table>";
+
+                        echo $dale;
+                        
+                        echo "<a href='addUnid.php'>Adicionar Unidades</a>";
+                      }
+
 
 
                 ?>

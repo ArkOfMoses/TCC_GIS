@@ -167,11 +167,7 @@ require_once '../../bd/conexao.php';
                 <h1>Minha Instituição</h1>
                 <?php
                     $codMaster = $dados['codUsu'];
-                    $selectInst = $pdo->prepare("select instituicao.cod_inst from instituicao inner join unidade on (instituicao.cod_inst = unidade.cod_inst)
-                    inner join usuario_unidade on (unidade.cod_unid = usuario_unidade.cod_unid) where usuario_unidade.cod_usu = $codMaster");
-                    $selectInst->execute();
-                    $pdoInst = $selectInst->fetch(PDO::FETCH_ASSOC);
-                    $codInsti = $pdoInst['cod_inst'];
+                    $codInsti = $dados['codInstituicao'];
 
                     $selecionar = ("select * from instituicao where cod_inst = $codInsti");
                     $comando = $pdo->prepare($selecionar);
