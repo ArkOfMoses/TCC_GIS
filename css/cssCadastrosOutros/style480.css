@@ -2,6 +2,76 @@
     margin:0;
     padding:0;
 }
+.header {
+  width: 100vw;
+  height: 60px;
+}
+
+.logo {
+  width: 2.5em;
+  height: 2.5em;
+  margin: 0 15px;
+}
+
+.hamburger{
+  width: 60px;
+  height: 100%;
+}
+
+.hamburger svg{width: 1.2em;}
+
+.fullnav {
+  bottom: 0%;
+  top: 0%;
+  flex-flow: column;
+  align-items: center;
+  right: -100vw;
+  background: #051523;
+}
+
+.menu {
+  width: 100vw;
+  overflow-y: scroll;
+  justify-content: space-around;
+}
+
+hr {
+  width: 75vw;
+  color: #c9c9c9;
+  margin: 15px 0;
+}
+
+.menu-buttons {min-height: 50vh;}
+
+.menu-buttons li {font-size: 1.5em}
+
+.menu-buttons i {
+  font-size: .8em;
+  margin-right: 4px
+}
+
+.title, .subtitle {font-size: 1.2em;}
+
+.title {font-size: 1.3em}
+
+.profile-photo-menu {
+  width: 33%;
+  padding-top: 33%;
+  border-radius: 70px;
+  margin: 60px 0 10px;
+}
+
+.active-menu .fullnav {right: 0;}
+
+
+*:not(i) {font-family: Roboto!important;}
+
+main {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 70px 0 0 0;
+  /*background: #F7FDFD; /*ou FAFEFE*/
+}
 
 .recebeDados{
     border:none;
@@ -9,13 +79,13 @@
     justify-content: center;
 
 }
-
-.blank{
-    margin-bottom: 50px;
+.setinha{
+    display: flex;
+    align-self: flex-start;
+    margin-left: 10px;
 }
 body{
-    background-color: #fff;
-    overflow-x: hidden;
+    background-color: #fff
 }
 
 .headerPrimeiroAcesso{
@@ -26,17 +96,21 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin: 0 0 50px 0;
+    margin-bottom: 50px;
 }
 .headerPrimeiroAcesso a img{
     width: 80px;
     height: 80px;
 
 }
+
 .table-remove{
     float: right
 }   
- 
+
+.blank{
+    margin-bottom: 50px;
+}
 .acessoUm{
     display: flex;
     align-items: center;
@@ -46,10 +120,7 @@ body{
     flex-wrap: wrap;
 
 }
-.acessoUm p {
-    font-size: 20px;
-    
-}
+
 p.vsf{
     font-size: 16px;
     color: #666;
@@ -57,14 +128,14 @@ p.vsf{
     text-align: center;
 }
 .perfil-foto{
-    width: 176px;
-    height:176px;
     border-radius: 25px;
     z-index: 1;
 }
-.acessoUm form{
+.form{
+    margin-top: 10px;
+    padding:10px;
+
     text-align: left;
-    margin:10px;
 }
 .acessoUm form h2{
     font-size: 30px;
@@ -73,49 +144,26 @@ p.vsf{
     text-align: center;}
 
 .acessoUm label{
+    font-size: 14px;
     color: #666;
-    font-size: 18px;
     display: block;
 }
 .acessoUm input{
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     height: 30px;
-    width: 700px;
-   border:none;
+    width: 280px;
+    border:none;
+    border:none;
     border-bottom: 2px solid #000;
     border-radius: 5px;
     background:none;
-
 }
 .recebeDados{
     text-align: left;
     font-size: 20px;
-    margin: 15px;
+   
 }
-
-#line{
-    height:1px;
-    border: 2px solid #B7D6EC;
-    margin-bottom: 10px;
-}
-
-#plus{
-    font-size: 30px;
-    color: #fff;
-    font-weight: 900;
-    background-color: #003366;
-    border: none;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-    display: block;
-
-}    
-
-
 /****/
-
-
 
 .puto {
     display: flex;
@@ -166,4 +214,17 @@ a.buttonNext {
     position: relative;
     top: -50px;
     right: -50px;
+}
+
+h1{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+#line{
+    height:1px;
+    border: 2px solid #B7D6EC;
+    margin-bottom: 10px;
 }

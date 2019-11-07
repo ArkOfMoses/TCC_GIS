@@ -79,8 +79,16 @@ p.vsf{
     height: 30px;
     width: 280px;
     border:none;
-    border-bottom: 3px solid #666;
+    border-bottom: 2px solid #000;
+    border-radius: 5px;
+    background:none;
 
+}
+
+#line{
+    height:1px;
+    border: 2px solid #B7D6EC;
+    margin-bottom: 10px;
 }
 .recebeDados{
     text-align: left;
