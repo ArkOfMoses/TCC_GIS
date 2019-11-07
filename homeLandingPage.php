@@ -15,11 +15,6 @@ if(isset($_SESSION['logado'])){
       <meta charset=UTF-8>
       <!-- ISO-8859-1 -->
       <meta name=viewport content="width=device-width, initial-scale=1.0">
-      <meta name=description content="O sistema GIS é uma ferramenta de gestão e
-       gerenciamento escolar, com ele você pode controlar notas, presenças e
-       ocorrências dos alunos de sua instituição, pode também notificar os
-       professores e funcionários, além de poder controlar o calendário e
-       os horários escolares.">
       <meta name=keywords content="">
       <!-- Opcional -->
       <meta name=author content='G4 INI3B GIS'>
@@ -199,7 +194,7 @@ if(isset($_SESSION['logado'])){
                 <br>
                 <input type="submit" value="Enviar" id="enviar">
                 <br>
-                    <p>Ao se cadastrar, você concorda com nossos <a>Termos de uso</a></p>
+                    <p>Ao se cadastrar, você concorda com nossos <a href="termosDeUso.php">Termos de uso</a></p>
               </form>
 
             </div>

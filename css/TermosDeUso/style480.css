@@ -57,32 +57,6 @@
   height: 60px;
 }
 
-.header-azul .header {
-  transition: ease .2s;
-  background-color: #012;
-}
-
-.header-azul .st4{
-  fill: #fff;
-  transition: ease .3s;
-}
-
-.header-azul .fullnav{
-  background-color: #012;
-  transition: ease .1s;
-}
-
-.header-azul .fullnav a {
-  color: #fff;
-}
-
-.header-azul .st0, .header-azul .st1, .header-azul .st2, .header-azul .st3{fill: #fff;}
-
-.header-inv .header{
-  background-color: transparent;
-  transition: ease .2s;
-}
-
 .logo {
   width: 2.5em;
   height: 2.5em;
@@ -125,186 +99,36 @@
 
 
 
-/*
-
-.banner {
-  height: 95vh;
-}*/
-
-.banner .bannerText {
-  min-height: 40%;
-  padding: 70px 25px 0;
-  background-color: #ebfaff;
-  position: relative;
-  z-index: 1;
+main {
+  display: flex;
+  padding-top: 75px;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-.banner .bannerText h1 {
+.termos {padding: 30px;}
+
+
+h1 {font-size: 1.8em}
+
+h1, h2 {margin-bottom: 20px}
+
+.termos, .termos h2, .termos h1, .Ancoragem a {
   font-weight: 500;
-  color: #036;
-  font-size: 2.1em;
-  margin: 10px 0;
+  color: #151515
 }
 
-.banner .bannerText h2 {
-  font-weight: normal;
-  color: #036;
-  font-size: 1.2em;
-  margin: 10px 0;
+.termos section {
+  padding: 30px 0;
 }
 
-.banner .bannerText p {
-  font-weight: normal;
-  line-height: 1.35em;
-  color: #666;
-  font-size: 1em;
-  margin: 5px 0 45px 0;
-}
+.termos br {padding-top: 20px;}
 
-.banner .bannerText .botao-banner {
-  background-color: rgba(0, 205, 205, 0.7);
-  display: inline;
-  padding: 20px;
-  border-radius: 6px;
-}
-
-.banner .bannerText a {
-  font-weight: bold;
-  color: #fff;
-  font-size: 1em;
-}
-
-.saibaMais {
-  width: 100%;
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2em;
-}
-
-.saibaMais {color: #333}
-.saibaMais i {margin-left: 10px;}
-
-.qual {
-  background-color: #012; /*#0067cc: Cor que o Daniel sugeril - ficou zoado :/ */
-  font-size: .8em;
-  color: #ccc;
-  position: relative;
-  border-radius: 30px 30px 0 50px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-flow: column;
-}
-
-.animHome {
-  width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  padding: 50px 0 0;
-  text-align: center;
-}
-
-.animHome .horario-icon {margin-bottom: 30px;}
-
-.animHome .check-icon, .animHome .notas-icon, .animHome .horario-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
-}
-
-.animHome .notas-icon {margin-bottom: 45px;}
-
-.animHome h1 {
-  margin: 10px 0;
-  color: #fff;
-  font-weight: 300;
-
-}
-
-.qual p {
-  font-size: 1.5em;
-  margin: 15px 0;
-  width: 200px;
-  font-weight: 300;
-}
-
-.btm-email{
-  background-color: rgba(255, 255, 255, .2);
-  border-radius: 30px 0 0 30px;
-  min-width: 50vw;
-  width: 300px;
-  max-width: 80vw;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  padding-left: 40px;
-  margin-bottom: 20px;
-  color: #fff;
+.termos p {
+  font-size: 1.1em;
   font-weight: 400;
-  font-size: 1.3em;
 }
-
-.qual a:nth-child(3) .btm-email {
-  background-color: rgba(0, 255, 255, .7);
-}
-
-.btm-email i {
-  font-size: .9em;
-  margin-right: 8px;
-}
-
-
-
-
-.registro {
-  padding: 40px 25px
-}
-
-.registro h2{
-  margin-bottom: 25px;
-  text-align: center;
-  font-weight: 300;
-  color: #036;
-  font-size: 1.5em;
-}
-
-.registro input, .registro textarea{
-  width: 100%;
-  height: 50px;
-  border: solid 1px grey;
-  border-radius: 25px;
-  margin-bottom: 20px;
-  padding: 0 20px;
-  transition: .4s;
-  font-size: 1em
-}
-
-.registro textarea{
-  height: 100px;
-  padding: 15px 20px;
-  border-radius: 20px;
-}
-
-.registro input:focus, .registro textarea:focus{
-  border-color: #0cc;
-  outline: none;
-}
-
-.registro input:last-child{
-  border: none;
-  background-color: #0cc;
-  color: #fff;
-  font-size: 1em;
-  font-weight: bold;
-}
-
-
 
 
 
@@ -316,7 +140,7 @@ footer {
   align-items: center;
 }
 
-footer a {
+footer a, p a  {
   margin: 10px 0;
   color: #09f;
   font-weight: 400;

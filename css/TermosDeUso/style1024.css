@@ -16,7 +16,7 @@ header {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(255, 255, 255, .97);
+  background-color: #fff;
   position: fixed;
   z-index: 3;
   transition: ease .2s;
@@ -24,43 +24,19 @@ header {
   height: 75px;
 }
 
-.header-azul{
-  transition: ease .2s;
-  background-color: rgba(0, 28, 51, .95);
-}
-
-.header-azul .st4{
-  fill: #fff;
-  transition: ease .3s;
-}
-
-.header-azul .fullnav a {
-  color: #fff;
-}
-
-.header-azul .st0, .header-azul .st1, .header-azul .st2, .header-azul .st3{fill: #fff;}
-
-.header-inv{
-  background-color: transparent;
-  transition: ease .2s;
-}
-
 .logo {
   width: 2.5em;
   height: 2.5em;
   margin: 0 20px;
 }
-.menu {
-  overflow-y: scroll;
-  justify-content: space-around;
-}
 
 .menu-buttons {
   width: 45vw;
+  padding-right: 30px;
   display: flex;
   flex-flow: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   color: #012;
 }
 
@@ -68,7 +44,6 @@ header {
   font-size: 1.15em;
   margin: 10px;
   font-weight: 600;
-  text-align: center;
 }
 
 .login-btn {order: 1;}
@@ -79,138 +54,64 @@ header {
   background-color: rgba(0, 205, 205, 0.7);;
   padding: 7px 20px;
   border-radius: 5px;
+  text-align: center;
 }
 
 main {
   display: flex;
+  background-color: #f5f6f6;
+  padding-top: 75px;
   flex-flow: wrap;
-}
-
-
-
-
-.banner {
-  position: relative;
-  min-height: calc(100vh - 90px);
-  width: 50%;
-  order: -2
-}
-
-
-.banner .bannerText {
-  min-height: 53vh;
-  text-align: center;
-  padding: 90px 40px 0;
-  background-color: #ebfaff;
-  position: relative;
-  z-index: 1;
-}
-
-.banner .bannerText h1 {
-  font-weight: 500;
-  color: #036;
-  font-size: 2.1em;
-  margin: 10px 0;
-}
-
-.banner .bannerText h2 {
-  font-weight: normal;
-  color: #023;
-  font-size: 1.3em;
-  margin: 10px 0;
-}
-
-.banner .bannerText p {
-  font-weight: normal;
-  color: #333;
-  font-size: 1.2em;
-  margin: 5px 0 45px 0;
-}
-
-.banner .botao-banner a {display: none;}
-
-.saibaMais {display: none;}
-
-
-
-
-.qual {
-  background-color: #012;
-  font-size: .8em;
-  color: #ccc;
-  position: relative;
-  z-index: 2;
-  border-radius: 30px 30px 0 50px;
-  padding: 50px 0 30px 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-flow: column;
-}
-
-.animHome {
-  width: 100vw;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
   align-items: center;
-  text-align: center;
+  justify-content: center;
 }
 
-.animHome .horario-icon {margin-bottom: 30px;}
+.termos {
+  padding: 30px 100px 100px;
+  margin-bottom: 100px;
+  max-width: 768px;
+  box-shadow: 0px -2px 17px 5px rgba(0, 43, 56, 0.04);
+  background-color: #fff;
+}
 
-.animHome .check-icon, .animHome .notas-icon, .animHome .horario-icon {
+/*
+.Ancoragem {
+  position: fixed;
+  height: calc(100vh - 75px);
+  background: #fff;
+  left: 0;
+  padding: 15px 15px 15px 30px;
+}
+
+.Ancoragem ul {text-align: center;
+
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 200px;
-  margin: 30px;
+  list-style: none;
+  justify-content: space-between;
+}
+*/
+
+h1 {font-size: 1.8em}
+
+h1, h2 {margin-bottom: 20px}
+
+.termos, .termos h2, .termos h1, .Ancoragem a {
+  font-weight: 500;
+  color: #151515
 }
 
-.animHome .notas-icon {margin-bottom: 50px;}
-
-.animHome svg {width: 100%}
-
-.animHome h1 {
-  width: 100%;
-  margin: 10px 0;
-  color: #fff;
-  font-weight: 300;
-
+.termos section {
+  padding: 30px 0;
 }
 
-.qual p {
-  font-size: 1.5em;
-  margin: 15px 0;
-  width: 200px;
-  font-weight: 300;
-}
+.termos br {padding-top: 20px;}
 
-.btm-email{
-  background-color: rgba(255, 255, 255, .2);
-  border-radius: 30px 0 0 30px;
-  min-width: 30vw;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  padding-left: 40px;
-  margin-bottom: 20px;
-  color: #fff;
+.termos p {
+  font-size: 1.1em;
   font-weight: 400;
-  font-size: 1.3em;
 }
-
-.qual a:nth-child(3) .btm-email {
-  background-color: rgba(0, 255, 255, .7);
-}
-
-.btm-email i {
-  font-size: .9em;
-  margin-right: 8px;
-}
-
-
 
 
 
@@ -221,7 +122,7 @@ footer {
   align-items: center;
 }
 
-footer a {
+footer a, p a {
   margin: 10px 0;
   color: #09f;
   font-weight: 400;
@@ -234,73 +135,6 @@ footer a:first-child{
 
 footer .selecionado {color: #ccc;}
 
-
-
-.registro{
-  text-align: center;
-  padding: 90px 25px 0 25px;
-  padding: auto;
-  order: -1;
-  width: 50%;
-  background-color: #ebfaff;
-}
-
-.form-registro {
-  max-width: 360px;
-  margin: auto;
-  position: relative;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px -2px 17px 5px rgba(0,43,56,.1);
-  z-index: 1;
-}
-
-.registro h2{
-  margin: 0 0 30px 0;
-  font-weight: 300;
-  color: #012;
-  font-size: 1.5em;
-}
-
-.registro input{
-  width: 290px;
-  height: 35px;
-  border: solid 1px grey;
-  border-radius: 25px;
-  padding: 0 20px;
-  transition: .4s;
-  font-size: .9em
-}
-
-.registro input:focus{
-  border-color: #0cc;
-  outline: none;
-}
-
-.registro input[type=submit]{
-  height: 40px;
-  border: none;
-  background-color: #012;
-  color: #fff;
-  font-size: 1em;
-  font-weight: bold;
-}
-
-.registro p, .registro a, .registro .erro{
-  font-weight: 300;
-  color: grey;
-  text-align: center;
-  max-width: 250px;
-  margin-bottom: 5px;
-}
-
-.registro a {
-  color: #09f;
-}
 
 
 
