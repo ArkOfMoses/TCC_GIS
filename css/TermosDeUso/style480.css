@@ -140,7 +140,7 @@ footer {
   align-items: center;
 }
 
-footer a, p a  {
+footer a, p a, h1 a {
   margin: 10px 0;
   color: #09f;
   font-weight: 400;
