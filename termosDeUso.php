@@ -10,7 +10,7 @@ if(isset($_SESSION['logado'])){
 <html lang="pt-br">
   <head>
 
-      <title> Termos de Serviço</title>
+      <title>Termos de Serviço |GIS</title>
 
       <meta charset=UTF-8>
       <!-- ISO-8859-1 -->
