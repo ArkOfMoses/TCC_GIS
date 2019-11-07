@@ -185,7 +185,7 @@ table{
   text-decoration: none;
 }
 
-th{
+main th{
   padding: 10px 15px;
   text-align: center;
   font-weight: bold;
@@ -195,7 +195,7 @@ th{
   background-color:rgb(200, 225, 233);
 
 }
-td{
+main td{
   padding: 15px;
   text-align: left;
   vertical-align:middle;
@@ -204,7 +204,7 @@ td{
   border-bottom: solid 1px rgba(177, 177, 177, 0.6);
   color: black
 }
-.botaozin{
+main .botaozin{
 color:black;
 font-weight: bold;
 text-decoration: underline;
