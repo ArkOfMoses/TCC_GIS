@@ -76,74 +76,63 @@ if(isset($_SESSION['logado'])){
                     echo "<img src='../../$img' class='perfil-foto'>";
                 }    
             ?>
-            	<div class='recebeDados'>
+              <div class='recebeDados'>
                 </div>
                 <?php
         
                 require_once '../../bd/conexao.php';
                 // cursos na unidade
                 
-				$selecionar = ("select nome_curso, cursos.cod_curso from cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_curso) where cod_status_cursos_unid = 'A' and cod_status_cursos = 'A' and cod_unid = $codUnid;");
+        $selecionar = ("select nome_curso, cursos.cod_curso from cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_curso) where cod_status_cursos_unid = 'A' and cod_status_cursos = 'A' and cod_unid = $codUnid;");
                 $dadosCurso = $pdo->prepare($selecionar);
                 $dadosCurso->execute();
 
 
 
                 if($dadosCurso == NULL){
-                	echo "<p>Fale com seu diretor para adicionar as turmas</p>";
-                	echo "<a href='perfilProfessor.php'>Ir para seu perfil</a>";
+                  echo "<p>Fale com seu diretor para adicionar as turmas</p>";
+                  echo "<a href='perfilProfessor.php'>Ir para seu perfil</a>";
 
                 }else{
-                	echo "<form class='form' method='post'>";
-                	while($dedinhos = $dadosCurso->fetch(PDO::FETCH_ASSOC)){
-                		$nomeCurso = $dedinhos['nome_curso'];
-                		$codCurso = $dedinhos['cod_curso'];
+                  echo "<form class='form' method='post'>";
+                  while($dedinhos = $dadosCurso->fetch(PDO::FETCH_ASSOC)){
+                    $nomeCurso = $dedinhos['nome_curso'];
+                    $codCurso = $dedinhos['cod_curso'];
 
-                		echo $nomeCurso;
+                    echo $nomeCurso;
 
-                		$selecionara = ("select sigla_tur, cod_tur from turma where cod_curso = $codCurso and cod_status_tur = 'A';");
-                		$dadosTurma = $pdo->prepare($selecionara);
-                		$dadosTurma->execute();
-                		while ($dedoes = $dadosTurma->fetch(PDO::FETCH_ASSOC)) {
-                			$nomeTurma = $dedoes['sigla_tur'];
-                			$codTurma = $dedoes['cod_tur'];
-                      $select777 = ("select cod_tur from prof_turma where cod_usu = $codUsu");
-                      $comandoMano = $pdo->prepare($select777);
-                      $comandoMano->execute();
-                      $numDeLenhas = $comandoMano->rowCount();
-                      if($numDeLenhas != 0){
-                        while ($dedados = $comandoMano->fetch(PDO::FETCH_ASSOC)) {
-                          $codProfTurma = $dedoes['cod_tur'];
-                          if($codTurma == $codProfTurma){
+                    $selecionaraMano = ("select * from prof_turma where cod_usu = $codUsu and cod_status_prof_tur = 'A';");
+                    $dadosTurmaProf = $pdo->prepare($selecionaraMano);
+                    $dadosTurmaProf->execute();
+                    $numLinhasBro = $dadosTurmaProf->rowCount();
+                    while ($dedoees = $dadosTurmaProf->fetch(PDO::FETCH_ASSOC)) {
+                      $codProfTurma = $dedoees['cod_tur'];
+                    }
 
-                          echo "1<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codProfTurma'/ checked></label>";
-                        }else{
-                          echo "2<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codTurma'/></label>";
-                        }
-                       
-                        }
-                       
+                    $selecionara = ("select sigla_tur, cod_tur from turma where cod_curso = $codCurso and cod_status_tur = 'A';");
+                    $dadosTurma = $pdo->prepare($selecionara);
+                    $dadosTurma->execute();
+                    while ($dedoes = $dadosTurma->fetch(PDO::FETCH_ASSOC)) {
+                      $nomeTurma = $dedoes['sigla_tur'];
+                      $codTurma = $dedoes['cod_tur'];
+                    }
+                    if($numLinhasBro > 0){
+                      if($codProfTurma === $codTurma){ 
+
+                        echo "<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codTurma' checked/></label>";
                         
-                         
-                        
-
-                       
                       }else{
                         echo "<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codTurma'/></label>";
                       }
+                      
+                    }else{
+                      echo "<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codTurma'/></label>";
+                    } 
 
 
-                			
-
-
-
-                		}
-
-
-                	}
-
-                	echo "<input type='submit' value='Enviar'/>
-                		  </form>";
+                  }
+                  echo "<input type='submit' value='Enviar'/>
+                      </form>";
                 }
 
                 ?>

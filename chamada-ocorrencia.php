@@ -248,7 +248,7 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
               
 
               <?php
-               $selecionar = ("select usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur ORDER BY nome_usu ASC;");
+               $selecionar = ("select usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur and cod_status_usu = 'A' ORDER BY nome_usu ASC;");
                $comando = $pdo->prepare($selecionar);
                $comando->execute();
                $i = 1;
@@ -285,7 +285,7 @@ while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
 
             <div id="conteudotab2">
               <?php
-               $select = ("select url_foto_usu, usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur ORDER BY nome_usu ASC;");
+               $select = ("select url_foto_usu, usuario.cod_usu, nome_usu, turma_aluno.cod_tur from usuario inner join turma_aluno on (usuario.cod_usu = turma_aluno.cod_usu) where cod_tur = $codTur and cod_status_usu = 'A' ORDER BY nome_usu ASC;");
                $comandoo = $pdo->prepare($select);
                $comandoo->execute();
                $i = 1;

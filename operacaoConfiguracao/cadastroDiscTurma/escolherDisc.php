@@ -99,7 +99,6 @@ if(isset($_SESSION['logado'])){
                 		while ($dedoes = $dadosDisc->fetch(PDO::FETCH_ASSOC)) {
                 			$nomeDisc = $dedoes['nome_disc'];
                 			$codDisc = $dedoes['cod_disc'];
-                      $select777 = ("");
                 			echo "<label>$nomeDisc<input type='checkbox' name='opcao[]' value='$codDisc'/></label>";
 
                 		}
