@@ -125,7 +125,7 @@ transition-property: all;
 transition-timing-function: ease;
 transition-delay: 0s;}
 
-.foto-perfil:hover label {
+.foto-perfil label {
   display: block;
   width: 40px;
   height: 40px;
