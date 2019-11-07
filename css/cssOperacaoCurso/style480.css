@@ -166,20 +166,23 @@ h1{
 }
 
 #linkcurso{
-text-align: center;
-width: 135px;
-height: 60px;
-font-size: 18px;
-background: #00CCCC;
-font-weight: bold;
-color: rgb(255, 255, 255)!important;
-border: 0 none;
-cursor: pointer;
-padding: 10px 5px;
-margin: 10px 5px;
-text-decoration: none;
-border-radius: 15px;
-}
+  text-align: right;
+  width: auto;
+  height: 50px;
+  font-size: 18px;
+  background: rgb(1, 39, 77);
+  font-weight: bold;
+  color: rgb(255, 255, 255)!important;
+  border: 0 none;
+  cursor: pointer;
+  padding-top: 15px;
+  padding-left: 7px;
+  padding-right: 7px;
+  margin: 10px 5px;
+  
+  border-radius: 12px;
+  }
+  
 #seta{
     text-align: left;
 }
