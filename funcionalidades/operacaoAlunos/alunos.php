@@ -246,10 +246,10 @@ require_once '../../bd/conexao.php';
                         ?>
 
                     <!-- Navegação entre ocorrência - sala -->
-                    <div class="tabs">
+                    <!--<div class="tabs">
                         <div class="tab-2">
                             <label for="tab2-1" class="labelTab"><a id="nometab">Lista de Alunos</a></label>
-                            <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+                            <input id="tab2-1" name="tabs-two" type="radio" checked="checked">-->
 
                             <!--Seção - Lista de Alunos -->
                             <div id="conteudotab1">
@@ -284,16 +284,15 @@ require_once '../../bd/conexao.php';
                                                 echo "
                                                 <div id='dadosAluno'>
                                                     <a href='perfilAluno.php?codAlun=$codUsuAluno'><img src='../../$foto' alt='Imagem do aluno' id='imgAluno'></a>
-                                                    <span id='ocorrencia_nomeAluno'><b>$nomeUsu</b>
-                                                        <p id='ocorrencia_numAluno'>Número $i</p>
-                                                    </span>
+                                                    <span id='numAluno'> $i - <span id='nomeAluno'><b>$nomeUsu</b></span> </span>
+                </span>
                                                 </div>
                                                 ";
                                             $i++;
                                             }
                                         }
 
-                                        echo "<a href='cadAlunos/cadAlunos.php?codTurma=$codTurma'>Adicionar Alunos</a>";
+                                        echo "<a id='linkAdd' href='cadAlunos/cadAlunos.php?codTurma=$codTurma'>Adicionar Alunos</a>";
     
                                     }else{
                                         echo $msg;
@@ -319,131 +318,7 @@ require_once '../../bd/conexao.php';
 
 
                         <!--Seção - Horário -->
-                        <div class="tab-2">
-
-                            <label for="tab2-2" class="labelTab"><a id="nometab">Horário</a></label>
-                            <input id="tab2-2" name="tabs-two" type="radio">
-
-                            <div id="conteudotab2">
-
-                                <div class="horario">
-                                    <input id="segunda" class="botaoSemana" name="semana" type="radio" value="Segunda" checked />
-                                    <label for="segunda" class="labelBotao">Segunda</label>
-
-                                    <input id="terca"  class="botaoSemana" name="semana" type="radio" value="Terca"/>
-                                    <label for="terca" class="labelBotao">Terça</label>
-
-                                    <input id="quarta" class="botaoSemana" name="semana" type="radio" value="Quarta"/>
-                                    <label for="quarta" class="labelBotao">Quarta</label>
-
-                                    <input  id="quinta" class="botaoSemana" name="semana" type="radio" value="Quinta"/>
-                                    <label for="quinta" class="labelBotao">Quinta</label>
-
-                                    <input  id="sexta" class="botaoSemana" name="semana" type="radio" value="Sexta"/>
-                                    <label for="sexta" class="labelBotao">Sexta</label>
-
-
-                                    <div class="semana" id="semanaSegunda">
-                                        <div class="topico_horario">
-                                            <div class="hora">
-                                                <p>Hora</p>
-                                                <span>Segunda-feira</span>
-                                            </div>
-                                            <div class="info_horario">
-                                                <p>Nome da pessoa</p>
-                                                <span>Sala</span>
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="topico_horario">
-                                            <div class="hora">
-                                                <p>Hora</p>
-                                                <span>Segunda-feira</span>
-                                            </div>
-                                            <div class="info_horario">
-                                                <p>Nome da pessoa</p>
-                                                <span>Sala</span>
-                                            </div>
-                                        </div><div class="topico_horario">
-                                            <div class="hora">
-                                                <p>Hora</p>
-                                                <span>Segunda-feira</span>
-                                            </div>
-                                            <div class="info_horario">
-                                                <p>Nome da pessoa</p>
-                                                <span>Sala</span>
-                                            </div>
-                                        </div><div class="topico_horario">
-                                            <div class="hora">
-                                                <p>Hora</p>
-                                                <span>Segunda-feira</span>
-                                            </div>
-                                            <div class="info_horario">
-                                                <p>Nome da pessoa</p>
-                                                <span>Sala</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="semana" id="semanaTerca">
-                                        <div class="topico_horario">
-                                            <div class="hora">
-                                                <p>Hora</p>
-                                                <span>Segunda-feira</span>
-                                            </div>
-                                            <div class="info_horario">
-                                                <p>Nome da pessoa</p>
-                                                <span>Sala</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="semana" id="semanaQuarta">
-                                        <div class="topico_horario">
-                                            <div class="hora">
-                                                <p>Hora</p>
-                                                <span>Segunda-feira</span>
-                                            </div>
-                                            <div class="info_horario">
-                                                <p>Nome da pessoa</p>
-                                                <span>Sala</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="semana" id="semanaQuinta">
-                                        <div class="topico_horario">
-                                            <div class="hora">
-                                                <p>Hora</p>
-                                                <span>Segunda-feira</span>
-                                            </div>
-                                            <div class="info_horario">
-                                                <p>Nome da pessoa</p>
-                                                <span>Sala</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="semana" id="semanaSexta">
-                                        <div class="topico_horario">
-                                            <div class="hora">
-                                                <p>Hora</p>
-                                                <span>Segunda-feira</span>
-                                            </div>
-                                            <div class="info_horario">
-                                                <p>Nome da pessoa</p>
-                                                <span>Sala</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
         </div>

@@ -22,7 +22,7 @@ require_once '../../bd/conexao.php';
 <html lang="pt-br">
   <head>
 
-      <title>pag</title>
+      <title>Lista de turmas</title>
 
       <meta charset=UTF-8>
       <!-- ISO-8859-1 -->

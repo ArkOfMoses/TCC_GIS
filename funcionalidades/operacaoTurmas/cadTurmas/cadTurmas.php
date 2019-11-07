@@ -23,7 +23,7 @@ if (isset($_REQUEST['codCurso'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Primeiro cadastro</title>    
+        <title>Cadastrar turmas</title>    
         <link rel="stylesheet" href="../../../css/default.css">    
         <script src='../../../js/jquery-3.3.1.min.js'></script>
         <!-- CSS PADRÃO -->
@@ -187,13 +187,15 @@ if (isset($_REQUEST['codCurso'])) {
 
                         <label id="sigla_label">Sigla da Turma: </label>
                         <input class='unid' id='IdSigla0' name='sigla0' type='text' />
-
+                        
                         <label id="turno_label">Escolha o turno: </label>
-                        <p id="puxar1">Manhã</p><input type="radio" id="IdCheck0" value="M" name="opcao0[]">
+                        <div id="posiciona">
+                        <input type="radio" id="IdCheck0" value="M" name="opcao0[]"><p id="puxar1"> Manhã </p>
 
-                        <p id="puxar2">Tarde</p><input type="radio" id="IdChecke0" value="T" name="opcao0[]">
+                        <input type="radio" id="IdChecke0" value="T" name="opcao0[]"><p id="puxar2">Tarde</p>
 
-                        <p id="puxar3">Noite</p><input type="radio" id="IdCheckee0" value="N" name="opcao0[]">
+                       <input type="radio" id="IdCheckee0" value="N" name="opcao0[]"><p id="puxar3">Noite</p>
+                       </div>
                         <div id="line"></div>
 
 

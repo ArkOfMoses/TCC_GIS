@@ -199,7 +199,7 @@ p.vsf{
     display: block;
 }
 .acessoUm input{
-    margin-bottom: 30px;
+  
     height: 30px;
     width: 700px;  
     border:none;
@@ -216,14 +216,14 @@ p.vsf{
 
 
 
-.puto {
-    display: flex;
+/*.puto {
+   display: flex;
     align-items: center;
     flex-direction: column;
-}
+}*/
 
 input.buttonNext {
-    text-align: center;
+    /*text-align: center;*/
     width: 200px;
     height: 50px;
     font-size: 26px;
@@ -284,4 +284,29 @@ a.buttonNext {
     height:1px;
     border: 2px solid #B7D6EC;
     margin-bottom: 10px;
+}
+
+#posiciona{
+    width:600px;
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  padding:10px;
+    
+}
+
+p#puxar1, p#puxar2, p#puxar3{
+    width:60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left:-70px;
+
+}
+input#IdCheck0, input#IdChecke0, input#IdCheckee0
+{
+    width:200px;
+
 }
