@@ -170,20 +170,23 @@ h1{
 }
 
 #linkcurso{
-text-align: center;
-width: 135px;
-height: 60px;
-font-size: 18px;
-background: #00CCCC;
-font-weight: bold;
-color: rgb(255, 255, 255)!important;
-border: 0 none;
-cursor: pointer;
-padding: 10px 5px;
-margin: 10px 5px;
-text-decoration: none;
-border-radius: 15px;
-}
+  text-align: right;
+  width: auto;
+  height: 50px;
+  font-size: 18px;
+  background: rgb(1, 39, 77);
+  font-weight: bold;
+  color: rgb(255, 255, 255)!important;
+  border: 0 none;
+  cursor: pointer;
+  padding-top: 15px;
+  padding-left: 7px;
+  padding-right: 7px;
+  margin: 10px 5px;
+  
+  border-radius: 12px;
+  }
+  
 
 
 .setinha{
@@ -203,7 +206,7 @@ table{
   text-decoration: none;
 }
 
-th{
+main th{
   padding: 10px 15px;
   text-align: center;
   font-weight: bold;
@@ -213,7 +216,7 @@ th{
   background-color:rgb(200, 225, 233);
 
 }
-td{
+main td{
   padding: 15px;
   text-align: left;
   vertical-align:middle;
@@ -222,7 +225,7 @@ td{
   border-bottom: solid 1px rgba(177, 177, 177, 0.6);
   color: black
 }
-.botaozin{
+main .botaozin{
 color:black;
 font-weight: bold;
 text-decoration: underline;
