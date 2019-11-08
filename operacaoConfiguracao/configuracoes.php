@@ -18,7 +18,7 @@ require_once '../bd/conexao.php';
 <html lang="pt-br">
   <head>
 
-      <title>pag</title>
+      <title>Configurações | GIS</title>
 
       <meta charset=UTF-8>
       <!-- ISO-8859-1 -->
@@ -29,7 +29,7 @@ require_once '../bd/conexao.php';
       <meta name=author content='G4 INI3B GIS '>
 
       <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-      <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
 
       <!-- CSS PADRÃO -->
       <link href="../css/default.css" rel=stylesheet>
@@ -176,7 +176,6 @@ require_once '../bd/conexao.php';
                   background-color: #003366;
                   border-radius: 50%;
                   color: white;
-                  z-index: 1;
                 }
 
                 .botao-img{
@@ -200,12 +199,12 @@ require_once '../bd/conexao.php';
 
 
             <ul class="menu-buttons">
-              <li><a href="../perfilProfessor.php"><i class="fas fa-home"></i></a></li>
-              <li><a href="../lista_salas.php"><i class="fas fa-list"></i></a></li>
-              <li><a href="../funcionalidades/operacaoPesquisarAlunos/pesquisa.php"><i class="far fa-clock"></i></a></li>
-              <li><a href="#"><i class="far fa-calendar-alt"></i></a></li>
-              <li><a href="#"><i class="fas fa-cogs"></i></a></li>
-              <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+              <li><a href="../perfilProfessor.php"><i class="fas fa-home"></i><span>Home</span></a></li>
+              <li><a href="../lista_salas.php"><i class="fas fa-list"></i><span>Lista de Salas</span></a></li>
+              <li><a href="../funcionalidades/operacaoPesquisarAlunos/pesquisa.php"><i class="far fa-clock"></i><span>Pesquisar Alunos</span></a></li>
+              <li><a href="#"><i class="far fa-calendar-alt"></i><span>Disciplinas</span></a></li>
+              <li><a href="#"><i class="fas fa-cogs"></i><span>Configurações</span></a></li>
+              <li><a href="#"><i class="fas fa-sign-out-alt"></i><span>Sair</span></a></li>
             </ul>
 
           </nav>
@@ -312,7 +311,7 @@ require_once '../bd/conexao.php';
                               <img src='../$fotoUsu'  id='dup'/>";
                           }else{
                             echo "<div class='foto-perfil' >
-                            <img src='../imagens/ilustracao1.png'  id='dup'/>";
+                            <img src='../imagens/perfil.png'  id='dup'/>";
                           }
 
                         //  
