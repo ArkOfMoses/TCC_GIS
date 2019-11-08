@@ -201,7 +201,7 @@ if(isset($_SESSION['logado'])){
         </main>
 
         <footer>
-          <a href="#h3"><i class="fas fa-chevron-up"></i></a>
+          <a href="#on_off"><i class="fas fa-chevron-up"></i></a>
 
           <a class="selecionado">Home</a>
           <a href="loginLandingPage.php">Entrar na Conta</a>
