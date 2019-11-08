@@ -126,7 +126,6 @@ while($dadas = $comandoBro->fetch(PDO::FETCH_ASSOC)){
             $('.recebeDados').text("por favor corrija os CEPs que não foram encontrados");
         }
         
-        var increment=1;
         /** Função duplicar formulários - cadastro de unidades */
         $(document).ready(function() {
 

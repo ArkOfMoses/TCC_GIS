@@ -257,7 +257,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                                     if ($numDeAval <= 3) {
                                         $output .= "
                     <th>M.F.</th>
-                    <th>%F</th>
+                    <th>Q.F</th>
                 <tr>";
                                     } else {
                                         $qtdAMais = $numDeAval - 3;
@@ -272,7 +272,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
 
                                         $output .= "
                     <th>M.F.</th>
-                    <th>%F</th>
+                    <th>Q.F</th>
                 <tr>";
                                     }
                                 } else {
@@ -749,8 +749,8 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                             $(".table-remove").click(function () {
                                 $("#tabelasNotas > table:last").remove();
                                 incrementTabela--;
-                                if (incrementTabela < 0) {
-                                    incrementTabela = 0;
+                                if (incrementTabela < 4) {
+                                    incrementTabela = 4;
                                 }
                                 $('#hiddenAval').attr("value", incrementTabela);
                             });

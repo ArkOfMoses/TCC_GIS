@@ -45,11 +45,16 @@ require_once '../../bd/conexao.php';
       <script src="../../js/script.js"> </script>
       <script type="text/javascript">// Ativar Menu
 
-function activateMenu(){
-    document.getElementById("on_off").classList.toggle('active-menu');
-}
-</script>
+      function activateMenu(){
+          document.getElementById("on_off").classList.toggle('active-menu');
+      }
 
+      $(document).ready(function(){
+                $('#confirma').on('click', function () {
+                    return confirm('você tem certeza disso? a exclusão de um curso é permanente e não pode ser recuperada depois, todas as informações adjacentes (turmas dos cursos, alunos das turmas etc) também não poderão mais ser acessadas.');
+                });
+              }); 
+      </script>
 
       <!-- Icon Font -->
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
@@ -191,13 +196,5 @@ From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_
                 
             </div>
             </main>  
-
-            <script type="text/javascript">           
-             $(document).ready(function(){
-                $('#confirma').on('click', function () {
-                    return confirm('você tem certeza disso? a exclusão de um curso é permanente e não pode ser recuperada depois, todas as informações adjacentes (turmas dos cursos, alunos das turmas etc) também não poderão mais ser acessadas.');
-                });
-              }) 
-            </script>
     </body>
 </html>

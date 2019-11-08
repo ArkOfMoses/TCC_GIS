@@ -54,6 +54,15 @@ if(isset($_REQUEST['codAlun'])){
       <script src="../../js/jquery.mask.min.js"></script>
       <!-- Icon Font -->
       <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
+      
+      <script type="text/javascript">
+      $(document).ready(function(){
+        $('#confirma').on('click', function () {
+            return confirm('você tem certeza disso? a exclusão de um aluno é permanente e não pode ser recuperada depois, todas as informações adjacentes (notas, ocorrências etc.) também não poderão mais ser acessadas.');
+        });
+        $("#cpfAlun").mask("000.000.000-00");
+      });        
+    </script>  
 
   </head>
 
@@ -318,14 +327,13 @@ HERE;
 
           $dataNascProv = $info['data_nasc_usu'];
           if($dataNascProv != ''){
-          $dataNascFormat = date_create_from_format('Y-m-d', "$dataNascProv");
-          $dataNasc = date_format($dataNascFormat, 'd/m/Y');
-        }else{
-          $dataNasc = '';
-        }
+            $dataNascFormat = date_create_from_format('Y-m-d', "$dataNascProv");
+            $dataNasc = date_format($dataNascFormat, 'd/m/Y');
+          }else{
+            $dataNasc = '';
+          }
         $dataEntradaProv = $info['data_entrada'];
         if($dataEntradaProv != ''){
-          
           $dataEntradaFormat = date_create_from_format('Y-m-d', "$dataEntradaProv");
           $dataEntrada = date_format($dataEntradaFormat, 'd/m/Y');
         }else{
@@ -534,14 +542,6 @@ HERE;
       </footer>
 
     </div>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('#confirma').on('click', function () {
-            return confirm('você tem certeza disso? a exclusão de um aluno é permanente e não pode ser recuperada depois, todas as informações adjacentes (notas, ocorrências etc.) também não poderão mais ser acessadas.');
-        });
-        $("#cpfAlun").mask("000.000.000-00");
-      })        
-    </script>  
   </body>
 
 </html>

@@ -189,19 +189,25 @@ if(isset($_REQUEST['codAlun'])){
                     $foto = $info['url_foto_usu'];
 
                     $dataNascProv = $info['data_nasc_usu'];
-                    $dataNascFormat = date_create_from_format('Y-m-d', "$dataNascProv");
-                    $dataNasc = date_format($dataNascFormat, 'd/m/Y');
-
+                    if($dataNascProv != ''){
+                      $dataNascFormat = date_create_from_format('Y-m-d', "$dataNascProv");
+                      $dataNasc = date_format($dataNascFormat, 'd/m/Y');
+                    }else{
+                      $dataNasc = '';
+                    }
                     $dataEntradaProv = $info['data_entrada'];
-                    $dataEntradaFormat = date_create_from_format('Y-m-d', "$dataEntradaProv");
-                    $dataEntrada = date_format($dataEntradaFormat, 'd/m/Y');
+                    if($dataEntradaProv != ''){
+                        $dataEntradaFormat = date_create_from_format('Y-m-d', "$dataEntradaProv");
+                        $dataEntrada = date_format($dataEntradaFormat, 'd/m/Y');
+                    }else{
+                        $dataEntrada = '';
+                    }
 
                     if($foto === null){
                         $url = "../../../imagens/pessoa.png";
                     }else{
                         $url = "../../../$foto";
-                    }
-                        
+                    }  
                     ?>
                     
                     <h1>Atualize o aluno:</h1>
