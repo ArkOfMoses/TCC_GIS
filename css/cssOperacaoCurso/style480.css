@@ -153,10 +153,11 @@ a.buttonNext {
 }
 
 h1{
+
     color:#036;
     margin-bottom:15px;
     text-align: center;
-    margin-top:-25px;
+   
 }
 
 .alunos{
@@ -186,12 +187,7 @@ h1{
 #seta{
     text-align: left;
 }
-.setinha{
-  /*padding-top: 70px;*/
-  height: 90px;
-  padding: 70px 20px 0;
 
-}
 #seta{
  text-align: left;
  width:40px;

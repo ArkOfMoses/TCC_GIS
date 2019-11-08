@@ -138,7 +138,7 @@ a.buttonNext {
 h1{
   color:#036;
   margin-bottom:15px;
-  margin-top: -70px;
+  
   text-align: center;
 }
 
@@ -166,21 +166,23 @@ h1{
   border-radius: 12px;
   }
   
-.setinha{
+  .setinha{
+    position: fixed;
+    left: 4px;
+    top: -40px;
+    height: 90px;
+    padding: 80px 55px 0;
   
- 
-  height: 90px;
-  padding: 80px 55px 0;
-
-}
-#seta{
- text-align: left;
- width:40px;
-
- 
-}
+  }
+  #seta{
+   text-align: left;
+   width:50px;
+  
+   
+  }
 
 table{
+
   width:100%;
   table-layout: fixed;
   text-decoration: none;

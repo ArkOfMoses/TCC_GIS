@@ -275,3 +275,41 @@ a.buttonNext {
     text-align: left;
     width: 40px;
   }
+
+  /*
+  <style type="text/css">
+                .alunos{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                }
+                .botaozin{
+                  color: darkblue;
+                  
+                }
+                a.botaozera{
+                    text-align: center;
+                    width: 135px;
+                    height: 60px;
+                    font-size: 18px;
+                    background: #00CCCC;
+                    font-weight: bold;
+                    color: white;
+                    border: 0 none;
+                    cursor: pointer;
+                    padding: 10px 5px;
+                    margin: 10px 5px;
+                    text-decoration: none;
+                    border-radius: 15px;
+                }
+            </style>
+
+            <!-- Telas Responsivas -->
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssOperacaoCurso/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
+              href="../../css/cssOperacaoCurso/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
+              href="../../css/cssOperacaoCurso/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssOperacaoCurso/style1366.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="../../js/script.js"> </script>
