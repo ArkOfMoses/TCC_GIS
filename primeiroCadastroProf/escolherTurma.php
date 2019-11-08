@@ -25,7 +25,7 @@ if(isset($_SESSION['logado'])){
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
               href="../css/cssCadastroMaster/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../css/cssCadastroMaster/style1366.css">
-    
+        
         <script src='../js/jquery-3.3.1.min.js'></script>
          <script>
           $(function(){
@@ -84,12 +84,10 @@ if(isset($_SESSION['logado'])){
 				$selecionar = ("select nome_curso, cursos.cod_curso from cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_curso) where cod_status_cursos_unid = 'A' and cod_status_cursos = 'A' and cod_unid = $codUnid;");
                 $dadosCurso = $pdo->prepare($selecionar);
                 $dadosCurso->execute();
-
-
-
-                if($dadosCurso == NULL){
+                $numLinhas = $dadosCurso->rowCount();
+                if($numLinhas == 0){
                 	echo "<p>Fale com seu diretor para adicionar as turmas</p>";
-                	echo "<a href='perfilProfessor.php'>Ir para seu perfil</a>";
+                	echo "<a href='../perfilProfessor.php'>Ir para seu perfil</a>";
 
                 }else{
                 	echo "<form class='form' method='post'>";
