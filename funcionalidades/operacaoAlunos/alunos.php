@@ -279,11 +279,13 @@ require_once '../../bd/conexao.php';
                                                 }
     
                                                 echo "
+                                                <a href='perfilAluno.php?codAlun=$codUsuAluno'>
                                                 <div id='dadosAluno'>
-                                                    <a href='perfilAluno.php?codAlun=$codUsuAluno'><img src='../../$foto' alt='Imagem do aluno' id='imgAluno'></a>
+                                                    <img src='../../$foto' alt='Imagem do aluno' id='imgAluno'>
                                                     <span id='numAluno'> $i - <span id='nomeAluno'><b>$nomeUsu</b></span> </span>
                 </span>
                                                 </div>
+                                                </a>
                                                 ";
                                             $i++;
                                             }
