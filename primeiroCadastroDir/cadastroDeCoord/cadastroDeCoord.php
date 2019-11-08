@@ -1,8 +1,9 @@
-<?php session_start();
-if(isset($_SESSION['logado'])){
-    $dados =  $_SESSION['dadosUsu'];
+<?php
+session_start();
+if (isset($_SESSION['logado'])) {
+    $dados = $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
-}else{
+} else {
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
@@ -29,38 +30,38 @@ if(isset($_SESSION['logado'])){
               href="../../css/cssCadastroMaster/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssCadastroMaster/style1366.css">
         <style type="text/css">
-                
-                img.perfil-foto{
 
-                    width: 176px;
-                    height:176px;
-                    border-radius: 100%;
-                    border: 3px solid;
-                    border-color: #666;
-                    z-index: 1;
-                }
+            img.perfil-foto{
+
+                width: 176px;
+                height:176px;
+                border-radius: 100%;
+                border: 3px solid;
+                border-color: #666;
+                z-index: 1;
+            }
         </style>
 
         <script>
-        $(function () {
-            $('.form').submit(function () {
-                $.ajax({
-                    url: 'codCadCoord.php',
-                    type: 'POST',
-                    data: $('.form').serialize(),
-                    success: function (data) {
-                        if (data != '') {
-                            $('.recebeDados').html(data);
-                            // document.getElementById('visor').value = '';
-                            // document.getElementById('visor1').value = '';
-                            // document.getElementById('visor2').value = '';
-                            // document.getElementById('complUnid').value = '';
+            $(function () {
+                $('.form').submit(function () {
+                    $.ajax({
+                        url: 'codCadCoord.php',
+                        type: 'POST',
+                        data: $('.form').serialize(),
+                        success: function (data) {
+                            if (data != '') {
+                                $('.recebeDados').html(data);
+                                // document.getElementById('visor').value = '';
+                                // document.getElementById('visor1').value = '';
+                                // document.getElementById('visor2').value = '';
+                                // document.getElementById('complUnid').value = '';
+                            }
                         }
-                    }
+                    });
+                    return false;
                 });
-                return false;
             });
-        });
         </script>
     </head>
     <body>
@@ -69,10 +70,10 @@ if(isset($_SESSION['logado'])){
             <header class="headerPrimeiroAcesso">
             <!-- <a href="../../alterarAcc.php"><img src="../img/alteraImg.png"></a>
             <a href="../cadastroDeInst/cadastroDeInst.php"><img src="../img/instImg.png"></a> -->
-            <a href="cadastroDeCoord.php"><img src="../../primeiroCadastroMaster/img/unidImg.png"></a>
-            <!-- <a href="../cadastroDeDir/cadastroDir.php"><img src="../img/dirImg.png"></a>
-            <a href="../enviarEmail.php"><img src="../img/emailImg.png"></a>                
-            <a href="../confirmarDados.php"><img src="../img/confirmaImg.png"></a> -->
+                <a href="cadastroDeCoord.php"><img src="../../primeiroCadastroMaster/img/unidImg.png"></a>
+                <!-- <a href="../cadastroDeDir/cadastroDir.php"><img src="../img/dirImg.png"></a>
+                <a href="../enviarEmail.php"><img src="../img/emailImg.png"></a>                
+                <a href="../confirmarDados.php"><img src="../img/confirmaImg.png"></a> -->
 
 
             </header>
@@ -82,70 +83,90 @@ if(isset($_SESSION['logado'])){
 
 
 
-                    <?php                      
-                    if($img === NULL){
+                    <?php
+                    if ($img === NULL) {
                         echo "<img src='../../imagens/perfil.png' class='perfil-foto'/>";
-                    }else{
+                    } else {
                         echo "<img src='../../$img' class='perfil-foto'>";
                     }
                     ?>
                     <p>Cadastre os coordenadores de sua unidade:</p>
-                    
+
                     <form class='form' method='post' action='codCadCoord.php'>
+
                         
-                        <label id="coordenadores">Coordenador:</label>
 
                         <label id="nome_label">Nome do Coordenador: </label>
                         <input class='unid' id='IdnomeCoord0' name='coord0' type='text' />
 
                         <label id="email_label">Email do Coordenador: </label>
                         <input class='unid' id='IdemailCoord0' name='email0' type='text' />
+                        <div id="line"></div>
 
                         <div id="rightDiv"></div> <!-- div q recebe os novos inputs -->
                         <div class='recebeDados' id='div'></div> <!-- div que recebe dados do ajax -->
-                        <span id="eventBtn"><img src="../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                         <span id="eventBtn"><img src="../../imagens/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                        <span class="table-remove"><img src="../../imagens/exclude.png" alt=""></span> <!-- botão pra remover inputs  -->
                         <div class="puto"><input type="submit" value="Proximo passo" class="buttonNext" /></div> <!-- botão subtmit do formulário -->
-                        
+
                         <input type="hidden" value="1" name="AcoordA" id="hidden"/>
                     </form>
 
-                    
+
                     <!-- <a href='../cadastroDeInst/cadastroDeInst.php' class="buttonNext">Voltar</a> -->
-                    
+
             </main>  
-        <script type="text/javascript">
+            <script type="text/javascript">
 
-        var increment=1;
+                var increment = 1;
 
-        /** Função duplicar formulários - cadastro de unidades */
-        $(document).ready(function() {            
-
-
-            $("#eventBtn").click(function(){
-            
-
-            $('#coordenadores').clone().appendTo("#rightDiv").removeAttr('id');
-
-            
-            $('#nome_label').clone().appendTo('#rightDiv').removeAttr('id');
-            $('#IdnomeCoord0').clone().appendTo('#rightDiv').attr("name","coord"+ increment).attr("id", "IdnomeCoord"+increment);
-            document.getElementById('IdnomeCoord'+increment).value = '';
+                /** Função duplicar formulários - cadastro de unidades */
+                $(document).ready(function () {
 
 
-            $('#email_label').clone().appendTo('#rightDiv');
-            $('#IdemailCoord0').clone().appendTo('#rightDiv').attr("name",'email'+ increment).attr("id", "IdemailCoord"+increment);
-            document.getElementById('IdemailCoord'+increment).value = '';
+                    $("#eventBtn").click(function () {
 
 
+                        
 
-            increment++;
-            
-            $('#hidden').attr("value", increment);
-            
 
-        });
-        
-    });
-        </script>
+                        $('#nome_label').clone().appendTo('#rightDiv').removeAttr('id');
+                        $('#IdnomeCoord0').clone().appendTo('#rightDiv').attr("name", "coord" + increment).attr("id", "IdnomeCoord" + increment);
+                        document.getElementById('IdnomeCoord' + increment).value = '';
+
+
+                        $('#email_label').clone().appendTo('#rightDiv');
+                        $('#IdemailCoord0').clone().appendTo('#rightDiv').attr("name", 'email' + increment).attr("id", "IdemailCoord" + increment);
+                        document.getElementById('IdemailCoord' + increment).value = '';
+
+                        $('#line').clone().appendTo('#rightDiv');
+
+                        increment++;
+
+                        $('#hidden').attr("value", increment);
+
+
+                    });
+                    $(".table-remove").click(function () {
+                        
+                        
+                        $("#rightDiv > label:last").remove();
+                        $("#rightDiv > input:last").remove();
+                        $("#rightDiv > label:last").remove();
+                        $("#rightDiv > input:last").remove();
+                        
+                        $("#rightDiv > div:last").remove();
+
+                        increment--;
+                        if (increment < 0) {
+                            increment = 0;
+                        }
+
+                        $('#hidden').attr("value", increment);
+
+
+                    });
+                });
+            </script>
     </body>
 </html>

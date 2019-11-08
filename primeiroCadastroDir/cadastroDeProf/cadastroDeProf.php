@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
@@ -93,7 +94,7 @@ if(isset($_SESSION['logado'])){
                     
                     <form class='form' method='post' action='codCadProf.php'>
                         
-                        <label id="coordenadores">Professor:</label>
+                        
 
                         <label id="nome_label">Nome do Professor: </label>
                         <input class='unid' id='IdnomeCoord0' name='coord0' type='text' />
@@ -101,9 +102,12 @@ if(isset($_SESSION['logado'])){
                         <label id="email_label">Email do Professor: </label>
                         <input class='unid' id='IdemailCoord0' name='email0' type='text' />
 
+                        <div id="line"></div>
+
                         <div id="rightDiv"></div> <!-- div q recebe os novos inputs -->
                         <div class='recebeDados' id='div'></div> <!-- div que recebe dados do ajax -->
-                        <span id="eventBtn"><img src="../../primeiroCadastroMaster/img/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                         <span id="eventBtn"><img src="../../imagens/more.png" alt=""></span> <!-- botão pra adicionar inputs  -->
+                        <span class="table-remove"><img src="../../imagens/exclude.png" alt=""></span> <!-- botão pra remover inputs  -->
                         <div class="puto"><input type="submit" value="Proximo passo" class="buttonNext" /></div> <!-- botão subtmit do formulário -->
                         
                         <input type="hidden" value="1" name="AcoordA" id="hidden"/>
@@ -147,6 +151,25 @@ if(isset($_SESSION['logado'])){
 
             
         });
+        $(".table-remove").click(function () {
+                        
+                        
+                        $("#rightDiv > label:last").remove();
+                        $("#rightDiv > input:last").remove();
+                        $("#rightDiv > label:last").remove();
+                        $("#rightDiv > input:last").remove();
+                        
+                        $("#rightDiv > div:last").remove();
+
+                        increment--;
+                        if (increment < 0) {
+                            increment = 0;
+                        }
+
+                        $('#hidden').attr("value", increment);
+
+
+                    });
         
     });
         </script>
