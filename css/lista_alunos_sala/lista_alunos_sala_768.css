@@ -141,13 +141,16 @@
         font-size: 1.4em;
       }
 
-
-
-
+      #conteudotab1 {
+        display: flex;
+          justify-content: center;
+          
+      }
+      
+      
       #linkAdd{
-
-        width:200px;
-        margin:auto;
+        width: 200px;
+        margin: auto;
         height: 50px;
         font-size: 18px;
         background: rgb(1, 39, 77);
@@ -156,13 +159,12 @@
         border: 0 none;
         cursor: pointer;
         padding-top: 15px;
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 7px;
+        padding-right: 7px;
         padding-bottom:15px;
         margin-top:15px;
         border-radius: 12px;
-        left:40%;
-        margin-left:-45px;
+        left:50%;
         display:flex;
         align-items: center;
         justify-content: center;

@@ -141,28 +141,32 @@
 
 
 
+      #conteudotab1 {
+        display: flex;
+          justify-content: center;
+          
+      }
       
-#linkAdd{
-
-  width:auto;
-  margin:auto;
-  height: 50px;
-  font-size: 18px;
-  background: rgb(1, 39, 77);
-  font-weight: bold;
-  color: rgb(255, 255, 255)!important;
-  border: 0 none;
-  cursor: pointer;
-  padding-top: 15px;
-  padding-left: 7px;
-  padding-right: 7px;
-  padding-bottom:15px;
-  margin-top:15px;
-  border-radius: 12px;
-  left:50%;
-  margin-left:-70px;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-   
-}
+      
+      #linkAdd{
+        width: 200px;
+        margin: auto;
+        height: 50px;
+        font-size: 18px;
+        background: rgb(1, 39, 77);
+        font-weight: bold;
+        color: rgb(255, 255, 255)!important;
+        border: 0 none;
+        cursor: pointer;
+        padding-top: 15px;
+        padding-left: 7px;
+        padding-right: 7px;
+        padding-bottom:15px;
+        margin-top:15px;
+        border-radius: 12px;
+        left:50%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+         
+      }
