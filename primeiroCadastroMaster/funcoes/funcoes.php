@@ -1,5 +1,4 @@
 <?php
-
 function get_inst($pdo, $key){
     $inst = array();
 
@@ -82,13 +81,15 @@ function adicionar_usu($nomeUsu, $emailUsu, $senhaUsu, $codTipoUsu, $codUnid, $p
         $codAcesso = get_id($pdo, 'cod_acesso', 'acesso');
         $inserir_usuario = $pdo->prepare("insert into usuario (nome_usu, cod_acesso, cod_status_usu) values ('$nomeUsu', '$codAcesso', 'A');");
         if($inserir_usuario->execute()){
+            $selecionar = ("select cod_usu from usuario order by cod_usu asc;");
+    
             $codUsu = get_id($pdo, 'cod_usu', 'usuario');
             $inserir_UsuNaUnidade = $pdo->prepare("insert into usuario_unidade (cod_unid, cod_usu) values ('$codUnid', '$codUsu');");
             if($inserir_UsuNaUnidade->execute()){
                 return true;
 
             }else{
-                return "erro inserir_UsuNaUnidade";
+                return "erro inserir_usuarioNaUnidade";
             }
         }else{
             return "erro inserir_usuario";
@@ -128,9 +129,9 @@ function array_push_keys($array1, $array2){
 function get_id($pdo, $chave, $table, $key = null, $param = null){
 
     if($chave !== null && $param !== null){
-        $selecionar = ("select $chave from $table where $key = '$param'");
+        $selecionar = ("select $chave from $table where $key = '$param' ");
     }else{
-        $selecionar = ("select $chave from $table");
+        $selecionar = ("select $chave from $table order by $chave asc");
     }
 
     $comando = $pdo->prepare($selecionar);
