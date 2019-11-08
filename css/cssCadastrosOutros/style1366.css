@@ -216,14 +216,14 @@ p.vsf{
 
 
 
-/*.puto {
+.puto {
    display: flex;
     align-items: center;
     flex-direction: column;
-}*/
+}
 
 input.buttonNext {
-    /*text-align: center;*/
+    text-align: center;
     width: 200px;
     height: 50px;
     font-size: 26px;
