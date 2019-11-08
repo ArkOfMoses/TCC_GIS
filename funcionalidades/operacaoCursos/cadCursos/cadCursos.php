@@ -242,8 +242,9 @@ if(isset($_SESSION['logado'])){
         });
 
         $(".table-remove").click(function(){
-            $("#rightDiv > label:last").remove();
+             $("#rightDiv > label:last").remove();
             $("#rightDiv > input:last").remove();
+            $("#rightDiv > div:last").remove();
             increment--;
             if(increment < 0){
                 increment = 0;
