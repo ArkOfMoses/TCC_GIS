@@ -345,6 +345,7 @@ div#infoaluno {
     #imgAluno{
       width:95px;
       height: 95px;
+      border-radius: 50px;
     }
 
     p{
