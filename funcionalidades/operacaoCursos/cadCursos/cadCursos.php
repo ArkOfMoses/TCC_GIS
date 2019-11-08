@@ -18,6 +18,7 @@ if(isset($_SESSION['logado'])){
         <title>Cadastrar Cursos</title>    
         <link rel="stylesheet" href="../../../css/default.css">    
         <script src='../../../js/jquery-3.3.1.min.js'></script>
+        <link rel="shortcut icon" href="../../../imagens/favicon.ico" type="image/x-icon">
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 

@@ -36,7 +36,7 @@ if(isset($_SESSION['logado'])){
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
               href="../../../css/cssCadastroMaster/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../../css/cssCadastroMaster/style1366.css">
-    
+        <link rel="shortcut icon" href="../../../imagens/favicon.ico" type="image/x-icon">
         <script src='../../../js/jquery-3.3.1.min.js'></script>
         <script>
           $(function(){
