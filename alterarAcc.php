@@ -171,7 +171,7 @@ if(isset($_SESSION['logado'])){
                             <!-- Aqui virá o conteúdo por ajax -->
                         </div>
 
-                        <input type="submit" value="Confirmar" class="buttonNext"/>
+                        <div class="puto"><input type="submit" value="Confirmar" class="buttonNext"/></div>
                         <!--o formulário precisa de um submit, ou um antes do botão de próximo/ir pro perfil ou um só input q dps a gente manda por header no código dps-->
                     </form>
                 </div>

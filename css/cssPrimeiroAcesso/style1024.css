@@ -66,6 +66,12 @@ p.vsf{
     border-radius: 25px;
     z-index: 1;
 }
+
+#line{
+    height:1px;
+    border: 2px solid #B7D6EC;
+    margin-bottom: 10px;
+}
 .acessoUm form{
     text-align: left;
     padding: 30px;
@@ -86,7 +92,9 @@ p.vsf{
     height: 30px;
     width: 700px;
     border:none;
-    border-bottom: 3px solid #666;
+    border-bottom: 2px solid #000;
+    border-radius: 5px;
+    background:none;
 
 }
 .recebeDados{
@@ -116,6 +124,7 @@ p.vsf{
 .puto {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 
