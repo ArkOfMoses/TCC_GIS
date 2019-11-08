@@ -38,7 +38,15 @@ require_once '../../bd/conexao.php';
               href="../../css/cssOperacaoCurso/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssOperacaoCurso/style1366.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="../../js/script.js"> </script>
+      <script src="../../js/script.js"></script>
+      <script type="text/javascript">
+            $(document).ready(function(){
+                $('#confirma').on('click', function () {
+                    return confirm('você tem certeza disso? a exclusão de uma disciplina é permanente e não pode ser recuperada depois, todas as informações adjacentes também não poderão mais ser acessadas.');
+                });         
+            }) 
+        </script> 
+
       <style type="text/css">
                 .alunos{
                             display: flex;
@@ -298,13 +306,6 @@ require_once '../../bd/conexao.php';
                 ?>
                
             </div>
-            </main>  
-            <script type="text/javascript">
-            $(document).ready(function(){
-                $('#confirma').on('click', function () {
-                    return confirm('você tem certeza disso? a exclusão de uma disciplina é permanente e não pode ser recuperada depois, todas as informações adjacentes também não poderão mais ser acessadas.');
-                });         
-            }) 
-            </script>  
+            </main>   
     </body>
 </html>

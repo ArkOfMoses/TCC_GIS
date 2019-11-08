@@ -66,7 +66,13 @@ if (isset($_REQUEST['codCurso'])) {
             }
 
         </style>
-
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('#confirma').on('click', function () {
+                return confirm('você tem certeza disso? a exclusão de uma disciplina é permanente e não pode ser recuperada depois, todas as informações adjacentes também não poderão mais ser acessadas.');
+            });         
+        }) 
+        </script> 
     </head>
     <body>
         <div class="content">
@@ -270,10 +276,9 @@ if (isset($_REQUEST['codCurso'])) {
            
             
                         increment--;
-                        if (increment < 0) {
-                            increment = 0;
+                        if (increment < 1) {
+                            increment = 1;
                         }
-
                         $('#hidden').attr("value", increment);
 
 
