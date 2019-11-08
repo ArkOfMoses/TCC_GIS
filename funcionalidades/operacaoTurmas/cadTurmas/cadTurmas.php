@@ -190,11 +190,12 @@ if (isset($_REQUEST['codCurso'])) {
                         
                         <label id="turno_label">Escolha o turno: </label>
                         <div id="posiciona">
-                        <input type="radio" id="IdCheck0" value="M" name="opcao0[]"><p id="puxar1"> Manhã </p>
+                        <div class="centraliza"><input class="inputRadio" type="radio" id="IdCheck0" value="M" name="opcao0[]"><p class="puxar" id="puxar1"> Manhã </p></div>
 
-                        <input type="radio" id="IdChecke0" value="T" name="opcao0[]"><p id="puxar2">Tarde</p>
+                        <div class="centraliza"><input class="inputRadio" type="radio" id="IdChecke0" value="T" name="opcao0[]"><p class="puxar" id="puxar2">Tarde</p></div>
 
-                       <input type="radio" id="IdCheckee0" value="N" name="opcao0[]"><p id="puxar3">Noite</p>
+                        <div class="centraliza"><input class="inputRadio"
+                         type="radio" id="IdCheckee0" value="N" name="opcao0[]"><p class="puxar" id="puxar3">Noite</p></div>
                        </div>
                         <div id="line"></div>
 
@@ -265,6 +266,9 @@ if (isset($_REQUEST['codCurso'])) {
                         $("#rightDiv > input:last").remove();
                         $("#rightDiv > p:last").remove();
                         $("#rightDiv > input:last").remove();
+                        $("#rightDiv > div:last").remove();
+           
+            
                         increment--;
                         if (increment < 0) {
                             increment = 0;

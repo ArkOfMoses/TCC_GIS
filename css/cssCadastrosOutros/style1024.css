@@ -246,28 +246,34 @@ a.buttonNext {
     border: 2px solid #B7D6EC;
     margin-bottom: 10px;
 }
-
 #posiciona{
     width:600px;
-  display: flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction:row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
   padding:10px;
     
-}
-
-p#puxar1, p#puxar2, p#puxar3{
-    width:60px;
+  }
+  
+  .centraliza{
+    width:20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
-    margin-left:-70px;
-
-}
-input#IdCheck0, input#IdChecke0, input#IdCheckee0
-{
-    width:200px;
-
-}
+    padding:5px;
+    margin-left:20px;
+  
+  }
+  
+  .inputRadio{
+    max-width:35px;
+  }
+  label{
+    margin:10px;
+  }
+  #seta{
+    text-align: left;
+    width: 40px;
+  }
