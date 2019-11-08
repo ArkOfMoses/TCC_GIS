@@ -84,7 +84,7 @@ if($infoPost){
                                 //echo "<script type='text/javascript'>alert('Diretores cadastrados com sucesso'); window.location.href='cadastroDir.php';</script>";
                             }else{
                                 array_pop($sessao);
-                                echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaunidDir, $addi<p>";
+                                echo"<p>Não foi possivel cadastrar o diretor da unidade1 $nomeDaunidDir, $addi<p>";
                             }
                         }
 
@@ -106,7 +106,7 @@ if($infoPost){
                             echo "<script type='text/javascript'> window.location.href='../confirmarDados.php';</script>";
                         }else{
                             array_pop($sessao);
-                            echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaUnid, $addi<p>";
+                            echo"<p>Não foi possivel cadastrar o diretor da unidade2 $nomeDaUnid, $add<p>";
                         }
 
                         $_SESSION['EmailList'] = [
