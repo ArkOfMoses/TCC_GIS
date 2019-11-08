@@ -232,32 +232,3 @@ color:black;
 font-weight: bold;
 text-decoration: underline;
 }
-
-
-/*
-  img.perfil-foto{
-
-                width: 176px;
-                height:176px;
-                border-radius: 100%;
-                border: 3px solid;
-                border-color: #666;
-                z-index: 1;
-            }
-
-            input.VAISEFUDE {
-                text-align: center;
-                width: 240px;
-                height: 50px;
-                font-size: 26px;
-                background: #00CCCC;
-                font-weight: bold;
-                color: white;
-                border: 0 none;
-                border-radius: 1px;
-                cursor: pointer;
-                padding: 10px 5px;
-                margin: 10px 5px;
-                text-decoration: none;
-                border-radius: 15px;
-            }
