@@ -26,9 +26,7 @@ while($dadas = $comandoBro->fetch(PDO::FETCH_ASSOC)){
     $complUnid = $dadas['compl_unid'];
 }
 
-echo $nomeUnid;
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -78,34 +76,40 @@ echo $nomeUnid;
 
             <main>
                 <div class="acessoUm">
+                    <div class="setinha">
+                        <a href="../unidades.php">
+                            <img id="seta" src="../../../imagens/voltar_corAzul.png">
+                        </a>
+                    </div>
+                <div class="acessoUm">
                     <h1>Atualizar Unidades</h1>
                     <p class="vsf">Os campos que estiverem com * são de preenchimento obrigatório:</p>
-                    <form class='form' method='post' action='envia.php'>
+                    <form class='form' method='post' action=''>
 
                         <label id="nome_label">*Nome da Unidade: </label>
-                        <input class='unid' id='IdnomeUnid0' name='unid0' type='text' />
+                        <input class='unid' id='IdnomeUnid0' value='<?=$nomeUnid?>' name='unid0' type='text' />
 
                         <!-- MENSAGEM DE ERRO DO CEP -->
                         <p id="getCEP0" style="color:red;"></p>
 
 
                         <label id="cep_label">*CEP da Unidade: </label>
-                        <input class='unid' value='<?=$nomeUnid?>' id='IdcepUnid0' name='cepUnid0' type='text' />
+                        <input class='unid' id='IdcepUnid0' value='<?=$cepUnid?>' name='cepUnid0' type='text' />
 
                         <label id="rua_label">*Rua da Unidade: </label>
-                        <input class='unid' id='ruaUnid0' name='ruaUnid0' type='text' />
+                        <input class='unid' id='ruaUnid0' value='<?=$ruaUnid?>' name='ruaUnid0' type='text' />
 
                         <label id="bairro_label">*Bairro da Unidade: </label>
-                        <input class='unid' id='bairroUnid0' name='bairroUnid0' type='text' />
+                        <input class='unid' id='bairroUnid0' value='<?=$bairroUnid?>' name='bairroUnid0' type='text' />
 
                         <label id="cidade_label">*Cidade da Unidade: </label>
-                        <input class='unid' id='cidadeUnid0' name='cidadeUnid0' type='text' />
+                        <input class='unid' id='cidadeUnid0' value='<?=$cidadeUnid?>' name='cidadeUnid0' type='text' />
 
                         <label id="num_label">*Número da Unidade: </label>
-                        <input class='unid' id='IdNumUnid0' name='numUnid0' type='number' />
+                        <input class='unid' id='IdNumUnid0' value='<?=$numUnid?>' name='numUnid0' type='number' />
 
                         <label id="compl_label">Complemento da Unidade: </label>
-                        <input class='unid' name='complUnid0' id='IdcomplUnid0' type='text'/>
+                        <input class='unid' name='complUnid0' value='<?=$complUnid?>' id='IdcomplUnid0' type='text'/>
                         <div class="blank"></div>
 
                          
@@ -189,7 +193,7 @@ echo $nomeUnid;
 
         $('.form').submit(function () {
                 $.ajax({
-                    url: 'envia.php',
+                    url: 'codEditarUnid.php?codUnid=<?=$codUnid?>',
                     type: 'POST',
                     data: $('.form').serialize(),
                     success: function (data) {

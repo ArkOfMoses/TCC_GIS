@@ -176,7 +176,7 @@ require_once '../../bd/conexao.php';
                     $numDeLinhas = $comando->rowCount();
 
                     if($numDeLinhas == 0){
-                      echo "<p>Você ainda não cadastrou sua instituição, cadastre-a <a href='primeiroCadastroMaster/cadastroDeInst/cadastroDeInst.php'>Aqui</a></p>";
+                      echo "<p>Você ainda não cadastrou sua instituição, cadastre-a <a href='../../primeiroCadastroMaster/cadastroDeInst/cadastroDeInst.php'>Aqui</a></p>";
                     }else{
                       while($dedos = $comando->fetch(PDO::FETCH_ASSOC)){
                         $codInst = $dedos['cod_inst'];

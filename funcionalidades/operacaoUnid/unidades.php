@@ -182,7 +182,7 @@ function activateMenu(){
                           while ($dedoes = $dadosDiretor->fetch(PDO::FETCH_ASSOC)) {
                             $nomeDir = $dedoes['nome_usu'];
                             //nomeDoDiretor
-                            $dale .= "<td colspan='3'><p>$nomeDir</a></td>";
+                            $dale .= "<td colspan='3'><p>$nomeDir</p></td>";
                            
 
                             
@@ -196,7 +196,7 @@ function activateMenu(){
 
                         echo $dale;
                         
-                        echo "<a href='addUnid.php'>Adicionar Unidades</a>";
+                        echo "<a class='botaozin' href='addUnid.php'>Adicionar Unidades</a>";
                       }
 
 
