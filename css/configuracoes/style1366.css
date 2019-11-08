@@ -28,7 +28,7 @@
   background: linear-gradient(to bottom, rgba(0,204,204,1) 0%, rgba(0,204,204,1) 30%, rgba(0,102,204,1) 100%);
 }
 
-.menu {}
+.fullnav span {display: none;}
 
 hr {display: none; border: none;}
 
@@ -234,6 +234,7 @@ form label{
 }
 
 .btn-pronto:hover {background-color: #0ac}
+.btn-pronto:focus {background-color: #0ac!important}
 .btn-pronto:active {background-color: #0085cc!important}
 
 .conf-senha input, .conf-senha label {margin: 10px 0;}
