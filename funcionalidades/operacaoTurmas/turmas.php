@@ -53,6 +53,12 @@ require_once '../../bd/conexao.php';
       function activateMenu(){
           document.getElementById("on_off").classList.toggle('active-menu');
       }
+
+      $(document).ready(function(){
+          $('#confirma').on('click', function () {
+            return confirm('você tem certeza disso? a exclusão de uma turma é permanente e não pode ser recuperada depois, todas as informações adjacentes (alunos das turmas, etc) também não poderão mais ser acessadas.');
+          });
+        }); 
       </script>
 
       <!-- Icon Font -->
@@ -217,12 +223,5 @@ require_once '../../bd/conexao.php';
                 
             </div>
       </main>  
-      <script type="text/javascript"> 
-        $(document).ready(function(){
-          $('#confirma').on('click', function () {
-            return confirm('você tem certeza disso? a exclusão de uma turma é permanente e não pode ser recuperada depois, todas as informações adjacentes (alunos das turmas, etc) também não poderão mais ser acessadas.');
-          });
-        }) 
-      </script>  
     </body>
 </html>

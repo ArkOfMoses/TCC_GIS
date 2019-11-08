@@ -260,12 +260,11 @@ if(isset($_REQUEST['codTurma'])){
             $("#rightDiv > input:last").remove();
             $("#rightDiv > label:last").remove();
             
-            
             increment--;
-            if(increment < 0){
-                increment = 0;
+            if(increment < 1){
+                increment = 1;
             }
-        
+            $('#hidden').attr("value", increment); 
     });
         
     });
