@@ -1,26 +1,26 @@
 <?php
 
-function PHPMailer($PHPMailer, $assunto, $mensagem, $desinatário = "exodiadeini@gmail.com"){
+function PHPMailer($PHPMailer, $assunto, $mensagem, $desinatário = "apoio@sistemagis.com"){
 
     $PHPMailer->IsSMTP();
     $PHPMailer->CharSet = 'UTF-8';
 
     //configuração do gmail
     $PHPMailer->Port = '465'; //porta usada pelo gmail.
-    $PHPMailer->Host = 'smtp.gmail.com'; 
+    $PHPMailer->Host = 'mail.sistemagis.com'; 
     $PHPMailer->IsHTML(true);  
     $PHPMailer->SMTPSecure = 'ssl';
 
     //configuração do usuário do gmail
     $PHPMailer->SMTPAuth = true; 
-    $PHPMailer->Username = 'exodiadeini@gmail.com'; // usuario gmail.   
-    $PHPMailer->Password = 'gostosinhos123'; // senha do email.
+    $PHPMailer->Username = 'apoio@sistemagis.com'; // usuario gmail.   
+    $PHPMailer->Password = 'cancelar.879546213'; // senha do email.
     $PHPMailer->SingleTo = true; 
 
 
     // configuração do email a ver enviado.
-    $PHPMailer->setFrom("exodiadeini@gmail.com", "Gestão Institucional Simplificada");
-    $PHPMailer->addReplyTo("exodiadeini@gmail.com", "Gestão Institucional Simplificada");
+    $PHPMailer->setFrom("apoio@sistemagis.com", "Gestão Institucional Simplificada");
+    $PHPMailer->addReplyTo("apoio@sistemagis.com", "Gestão Institucional Simplificada");
     $PHPMailer->addAddress($desinatário); // email do destinatario.
 
     $PHPMailer->Subject = $assunto; 
@@ -36,28 +36,26 @@ function PHPMailer($PHPMailer, $assunto, $mensagem, $desinatário = "exodiadeini
 
 function PHPMailerList($PHPMailer, $arraySessao = array(), $tipoList){
 
-
-
   $PHPMailer->IsSMTP();
   $PHPMailer->CharSet = 'UTF-8';
 
   //configuração do gmail
   $PHPMailer->Port = '465'; //porta usada pelo gmail.
-  $PHPMailer->Host = 'smtp.gmail.com'; 
+  $PHPMailer->Host = 'mail.sistemagis.com'; 
   $PHPMailer->IsHTML(true);  
   $PHPMailer->SMTPSecure = 'ssl';
 
   //configuração do usuário do gmail
   $PHPMailer->SMTPAuth = true; 
   $PHPMailer->SMTPKeepAlive = true; 
-  $PHPMailer->Username = 'exodiadeini@gmail.com'; // usuario gmail.   
-  $PHPMailer->Password = 'gostosinhos123'; // senha do email.
+  $PHPMailer->Username = 'apoio@sistemagis.com'; // usuario gmail.   
+  $PHPMailer->Password = 'cancelar.879546213'; // senha do email.
   $PHPMailer->SingleTo = true; 
 
 
   // configuração do email a ver enviado.
-  $PHPMailer->setFrom("exodiadeini@gmail.com", "Gestão Institucional Simplificada");
-  $PHPMailer->addReplyTo("exodiadeini@gmail.com", "Gestão Institucional Simplificada");
+  $PHPMailer->setFrom("apoio@sistemagis.com", "Gestão Institucional Simplificada");
+  $PHPMailer->addReplyTo("apoio@sistemagis.com", "Gestão Institucional Simplificada");
   
 
   $acertos = array();

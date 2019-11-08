@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 require_once 'bd/conexao.php';
 require_once 'classes/Bcrypt.php';
 require_once 'primeiroCadastroMaster/funcoes/funcoes.php';
@@ -99,21 +98,21 @@ if($infoPost){
 
               switch ($nomeTipoUsu) {
                 case 'Master':
-                $selectInst = $pdo->prepare("select instituicao.cod_inst from instituicao inner join unidade on (instituicao.cod_inst = unidade.cod_inst)
-                inner join usuario_unidade on (unidade.cod_unid = usuario_unidade.cod_unid) where usuario_unidade.cod_usu = $codUsu");
-                $selectInst->execute();
-                $pdoInst = $selectInst->fetch(PDO::FETCH_ASSOC);
-                $codInsti = $pdoInst['cod_inst'];
-                $_SESSION['dadosUsu']['codInstituicao'] = $codInsti;
+                    $selectInst = $pdo->prepare("select instituicao.cod_inst from instituicao inner join unidade on (instituicao.cod_inst = unidade.cod_inst)
+                    inner join usuario_unidade on (unidade.cod_unid = usuario_unidade.cod_unid) where usuario_unidade.cod_usu = $codUsu");
+                    $selectInst->execute();
+                    $pdoInst = $selectInst->fetch(PDO::FETCH_ASSOC);
+                    $codInsti = $pdoInst['cod_inst'];
+                    $_SESSION['dadosUsu']['codInstituicao'] = $codInsti;
                 break;
 
                 case 'Professor':
                 case 'Coordenador':
                 case 'Diretor':
-                          $codUnid = get_id($pdo, "cod_unid", "usuario_unidade", "cod_usu", $codUsu);
-                          $nomeUnid = get_id($pdo, "nome_unid", "unidade", "cod_unid", $codUnid);
-                          $_SESSION['dadosUsu']['codUnidadeUsu'] = $codUnid;
-                          $_SESSION['dadosUsu']['nomeUnidadeUsu'] = $nomeUnid;
+                    $codUnid = get_id($pdo, "cod_unid", "usuario_unidade", "cod_usu", $codUsu);
+                    $nomeUnid = get_id($pdo, "nome_unid", "unidade", "cod_unid", $codUnid);
+                    $_SESSION['dadosUsu']['codUnidadeUsu'] = $codUnid;
+                    $_SESSION['dadosUsu']['nomeUnidadeUsu'] = $nomeUnid;
                 break;
             }
 

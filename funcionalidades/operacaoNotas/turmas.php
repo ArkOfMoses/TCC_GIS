@@ -1,7 +1,6 @@
-<?php
+<?php session_start();
 require_once '../../bd/conexao.php';
 require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
-session_start();
 if (isset($_SESSION['logado'])) {
     $dados = $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
@@ -41,7 +40,7 @@ if (isset($_SESSION['logado'])) {
             <div class="header">
 
                 <a class="logo">
-                    <?xml version="1.0" encoding="utf-8"?>
+                     
                     <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                     <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.2 595.3"
@@ -90,7 +89,7 @@ if (isset($_SESSION['logado'])) {
                 </a>
 
                 <label onclick="activateMenu()" class="hamburger">
-                    <?xml version="1.0" encoding="utf-8"?>
+                     
                     <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                     <svg version="1.1" id="Hamburger" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 220 150"

@@ -1,10 +1,15 @@
-<?php
-session_start();
+<?php session_start();
 require_once '../../../primeiroCadastroMaster/funcoes/funcoes.php';
 require_once '../../../bd/conexao.php';
 require_once '../../../classes/Bcrypt.php';
 $codInst = $_SESSION['dadosUsu']['codInstituicao'];
-$unid1 = get_unid($pdo, $codInst);
+$hd = filter_var($_POST['hidden'], FILTER_SANITIZE_NUMBER_INT);
+$comando = $pdo->prepare("select distinct unidade.cod_unid, nome_unid from usuario_unidade inner join unidade on (usuario_unidade.cod_unid = unidade.cod_unid) where unidade.cod_inst = $codInst");
+$comando->execute();
+$info = array_reverse($comando->fetchAll(PDO::FETCH_ASSOC), true);
+$unid1 = array_slice($info, 0, $hd);
+
+$unde = get_unid($pdo, $codInst);
 
 $arrayPost = array();
 for($i = 0; $i < count($unid1); $i++){
@@ -16,7 +21,9 @@ for($i = 0; $i < count($unid1); $i++){
 
 $infoPost = filter_input_array(INPUT_POST, $arrayPost);
 
-if($infoPost){     
+if($infoPost){
+    
+    
 
     $vazio = array();
     $invalido = array();
@@ -26,23 +33,26 @@ if($infoPost){
 
     for($n = 0; $n < count($unid1); $n++){
         $numUnid = $unid1[$n];
-        $codDaUnid = $numUnid['codUnid'];
-        $nomeDaUnid =  $numUnid['nomeUnid'];
+        $codDaUnid = $numUnid['cod_unid'];
+        $nomeDaUnid =  $numUnid['nome_unid'];
 
         $nome = $infoPost['nome_'.$n];
         $email = $infoPost['email_'.$n];     
 
         if($n == (count($unid1)-1)){
 
-            if(empty($invalido)){           
-             
+            
+
+             if(empty($invalido)){           
                 if(!empty($vazio)){
                     echo "<p>Existem campos vazios</p>";
                 }else if(!empty($emailCad)){
                     for($j = 0; $j < count($emailCad); $j++){
                         echo "<p>o email do Diretor $emailCad[$j] já foi cadastrado</p>";
                     }                    
-                }else{
+                 }else{
+
+                    
 
                     if($email === false){
                         echo "<p>Existem emails invalidos ou vazios</p>";
@@ -100,11 +110,11 @@ if($infoPost){
                             "unidade" => $nomeDaUnid
                         ]; 
 
-                       
+                        //var_dump([$infoPost, $unid1, $unde, $posts, $sessao]);
 
                         $add = adicionar_usu($nome, $email, $senhaEncript2, 3, $codDaUnid, $pdo);
                         if($add === true){
-                            echo "<script type='text/javascript'> window.location.href='../confirmarDados.php';</script>";
+                            echo "<script type='text/javascript'> window.location.href='../../../primeiroCadastroMaster/enviarEmail.php';</script>";
                         }else{
                             array_pop($sessao);
                             echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaUnid, $addi<p>";

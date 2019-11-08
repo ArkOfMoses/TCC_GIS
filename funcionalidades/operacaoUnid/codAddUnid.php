@@ -1,13 +1,8 @@
-<?php
-    session_start();
+<?php session_start();
     require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
     require_once '../../bd/conexao.php';
 
-
-
-
     $numDeUnidades = filter_var($_POST['unidades'], FILTER_SANITIZE_NUMBER_INT);
-
     $arrayPost = array();
 
     $arrayPost["unid0"] = FILTER_SANITIZE_SPECIAL_CHARS;
@@ -28,12 +23,15 @@
         $arrayPost["complUnid$i"] = FILTER_SANITIZE_SPECIAL_CHARS;
     }
 
-
     $infoPost = filter_input_array(INPUT_POST, $arrayPost);
     
     if($infoPost){
         $inst = $_SESSION['dadosUsu']['codInstituicao'];
         $codMaster = $_SESSION['dadosUsu']['codUsu'];
+
+        $getQtdUnid = $pdo->prepare("select cod_unid from unidade where cod_inst = $inst;");
+        $getQtdUnid->execute();
+        $qtdUnidAnts = $getQtdUnid->rowCount();
 
         $vazio = array();
         $posts = array();
@@ -72,7 +70,10 @@
                         $numUnide = $unid['numUnid'];
 
                         if(adicionar_unid($nomeUnide, $cepUnide, $ruaUnide, $bairroUnide, $cidadeUnide, $complUnide, $numUnide, $inst, 'A', $pdo)){
-
+                            $idUnid = get_id($pdo, "cod_unid", "unidade", "cod_inst", $inst);
+                            $insertMaster = $pdo->prepare("insert into usuario_unidade (cod_unid, cod_usu) values ($idUnid, $codMaster);");
+                            $insertMaster->execute();
+    
                         }else{
                             echo "<p>Não foi possível efetuar o cadastro da unidade $nomeUnide!!</p>";
                         }  
@@ -82,7 +83,14 @@
                         $idUnid = get_id($pdo, "cod_unid", "unidade", "cod_inst", $inst);
                         $insertMaster = $pdo->prepare("insert into usuario_unidade (cod_unid, cod_usu) values ($idUnid, $codMaster);");
                         $insertMaster->execute();
-                        echo "<script type='text/javascript'> window.location.href='cadastroDeDir/cadastroDeDir.php';</script>";
+
+                        $getQtdUnid = $pdo->prepare("select cod_unid from unidade where cod_inst = $inst;");
+                        $getQtdUnid->execute();
+                        $qtdUnid = $getQtdUnid->rowCount();
+
+                        $qtd = $qtdUnid - $qtdUnidAnts;
+
+                        echo "<script type='text/javascript'> window.location.href='cadastroDeDir/cadastroDeDir.php?qtd=$qtd';</script>";
                     }else{
                         echo "<p>Não foi possível efetuar o cadastro da unidade $nomeUnid!!</p>";
                     }  

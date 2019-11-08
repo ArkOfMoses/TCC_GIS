@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 if(isset($_SESSION['logado'])){
   unset($_SESSION['dadosUsu']);
   unset($_SESSION['logado']);
@@ -66,7 +65,7 @@ if(isset($_SESSION['logado'])){
           <div class="header">
 
             <a class="logo" href="homeLandingPage.php">
-              <?xml version="1.0" encoding="utf-8"?>
+               
               <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
               <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 595.2 595.3" style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve" alt="Logo GIS">
@@ -100,7 +99,7 @@ if(isset($_SESSION['logado'])){
             </a>
 
             <label onclick="activateMenu()" class="hamburger">
-              <?xml version="1.0" encoding="utf-8"?>
+               
               <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
               <svg version="1.1" id="Hamburger" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 220 150" style="enable-background:new 0 0 220 150;" xml:space="preserve" alt="menu">

@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
@@ -77,7 +76,6 @@ if(isset($_SESSION['logado'])){
                             require_once 'funcoes/funcoes.php';
                             require_once '../bd/conexao.php';
 
-
                             $inst = get_inst($pdo, $codInst);
 
 
@@ -89,8 +87,10 @@ if(isset($_SESSION['logado'])){
                             $unid = get_unid($pdo, $codInst);
 
                             $selecionar = ("select usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, url_foto_usu, data_entrada, data_saida, cod_status_usu, acesso.cod_acesso, tipo_usuario.cod_tipo_usu, nome_tipo_usu, senha, email
-From usuario inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
-             inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_tipo_usu) where nome_tipo_usu = 'Diretor';");
+                            From usuario inner join usuario_unidade on (usuario_unidade.cod_usu = usuario.cod_usu)
+                                         inner join unidade on (unidade.cod_unid = usuario_unidade.cod_unid)
+                                         inner join acesso on (usuario.cod_acesso = acesso.cod_acesso)
+                                         inner join tipo_usuario on (acesso.cod_tipo_usu = tipo_usuario.cod_tipo_usu) where nome_tipo_usu = 'Diretor' and cod_inst = $codInst;");
                             $comando = $pdo->prepare($selecionar);
                             $comando->execute();
                               

@@ -706,8 +706,6 @@ insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeO
 insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Ver unidades', 'A', 'funcionalidades/operacaoUnid/unidades.php', 'fas fa-list');
 
 
-
-
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 1, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (4, 1, 'A');
 
@@ -729,6 +727,12 @@ insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_o
 
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (2, 7, 'A');
 
+insert into tipo_avaliacao (nome_tipo_aval) values ("A.D");
+insert into tipo_avaliacao (nome_tipo_aval) values ("A.O");
+insert into tipo_avaliacao (nome_tipo_aval) values ("A.A");
+insert into avaliacao (nome_aval, cod_tipo_aval, cod_status_aval) values ("A.D.", 1, "A");
+insert into avaliacao (nome_aval, cod_tipo_aval, cod_status_aval) values ("A.O.", 2, "A");
+insert into avaliacao (nome_aval, cod_tipo_aval, cod_status_aval) values ("A.A.", 3, "A");
 /*
 insert into acesso (cod_tipo_usu, senha, email) values (3, 'batata', 'batata@gmail.com');
 insert into usuario (nome_usu, cod_acesso) values ('Batata', 1);

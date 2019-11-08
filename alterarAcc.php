@@ -1,7 +1,6 @@
-<?php
+<?php session_start();
 require_once 'bd/conexao.php';
 require_once 'primeiroCadastroMaster/funcoes/funcoes.php';
-session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $nomeTipoUsu = $dados['nomeTipoUsu'];

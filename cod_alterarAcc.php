@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 require_once 'bd/conexao.php';
 require_once 'classes/Bcrypt.php'; 
 require_once 'primeiroCadastroMaster/funcoes/funcoes.php';

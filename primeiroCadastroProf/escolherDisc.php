@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];

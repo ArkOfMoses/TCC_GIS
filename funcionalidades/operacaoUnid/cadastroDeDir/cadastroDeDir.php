@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
@@ -92,30 +91,41 @@ if(isset($_SESSION['logado'])){
                 require_once '../../../primeiroCadastroMaster/funcoes/funcoes.php';
                 require_once '../../../bd/conexao.php';
 
-                $unid = get_unid($pdo, $codInst);
-                if($unid){
-                    $selecionar = ("select unidade.cod_unid from usuario_unidade inner join unidade on (usuario_unidade.cod_unid = unidade.cod_unid) where unidade.cod_inst = $codInst");
-                    $comando = $pdo->prepare($selecionar);
+                // $unid = get_unid($pdo, $codInst);
+                $qtdMais = filter_var($_REQUEST['qtd'], FILTER_SANITIZE_NUMBER_INT);
+                $inst = $_SESSION['dadosUsu']['codInstituicao'];
+
+                
+                echo "<input type='hidden' value='$qtdMais' name='hidden' id='hidden'/>";
+                if($qtdMais != 0){
+                    $comando = $pdo->prepare("select distinct unidade.cod_unid, nome_unid from usuario_unidade inner join unidade on (usuario_unidade.cod_unid = unidade.cod_unid) where unidade.cod_inst = $inst ");
+                    $comando->execute();
+                    $info = array_reverse($comando->fetchAll(PDO::FETCH_ASSOC), true);
+                    $arrayDir = array_slice($info, 0, $qtdMais);
+                    //var_dump($info);
+
+
                     
-                     if ($comando->execute()) {
+                    
+                     //if ($comando->execute()) {
                    
-                    for ($i = 0; $i < count($unid); $i++) {
-                        $xis = $unid[$i];
+                    for ($i = 0; $i < count($arrayDir); $i++) {
+                        $xis = $arrayDir[$i]['nome_unid'];
 
                         echo "
-            <h4>" . $xis['nomeUnid'] . "</h4>
-            <label>Nome do Diretor: </label><input type='text' id='visor' name='nome_" . $i . "' />
-            <label>Email do Diretor: </label><input type='text' id='visor' name='email_" . $i . "' /><br><br>";
-                        
-                    }
-                    echo "<div class='puto'><input type='submit' value='Cadastrar' class='buttonNext'></div>";
-                    // }
+                        <h4>$xis</h4>
+                        <label>Nome do Diretor: </label><input type='text' id='visor' name='nome_". $i ."' />
+                        <label>Email do Diretor: </label><input type='text' id='visor' name='email_". $i ."' /><br><br>";
+                                    
+                        }
+                        echo "<div class='puto'><input type='submit' value='Cadastrar' class='buttonNext'></div>";
+                                // }
+                            // } else {
+                            //     echo 'Diretores Já Cadastrados<br><br><br><br>';
+                            //     echo '<a href="../../primeiroCadastroMaster/confirmarDados.php" class="buttonNext">Próximo passo</a>';
+                            // }
                 } else {
-                    echo 'Diretores Já Cadastrados<br><br><br><br>';
-                    echo '<a href="../../primeiroCadastroMaster/confirmarDados.php" class="buttonNext">Próximo passo</a>';
-                }
-                } else {
-                    echo 'Não existem instituições<br><a href="../../operacaoInst/instituicao.php">Cadastrar Instituições</a><br>';
+                    echo '<p>Você não cadastrou nenhuma nova instituição<br><a href="../../operacaoInst/instituicao.php">Cadastrar novas Instituições</a><br>';
                 }
                 ?>
 

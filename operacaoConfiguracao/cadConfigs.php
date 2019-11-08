@@ -1,9 +1,8 @@
-<?php
+<?php session_start();
 require_once '../primeiroCadastroMaster/funcoes/funcoes.php';
 require_once '../classes/Bcrypt.php';
 require_once '../bd/conexao.php';
 
-session_start();
 $arrayPost = [
     "nomeUsu" => FILTER_SANITIZE_SPECIAL_CHARS,
     "email" => FILTER_VALIDATE_EMAIL,

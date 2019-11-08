@@ -1,6 +1,8 @@
 <?php
-
+require_once 'PHPMailer/src/PHPMailer.php';
+require_once 'PHPMailer/src/SMTP.php';
 require_once 'functions/PHPMailer.php';
+use PHPMailer\PHPMailer\PHPMailer;
 
 
 $filterForm = [
@@ -26,7 +28,8 @@ if($infoPost){
   }else{
     $assunto = "Contato de $nome";
     $mensagem = "<p>".$informacoes."</p>Email para resposta: <p>".$emailEnviando."</p>";
-    $PHPMailer = PHPMailer($assunto, $mensagem);
+    $mailer = new PHPMailer();
+    $PHPMailer = PHPMailer($mailer, $assunto, $mensagem);
 
     if($PHPMailer === true){
       echo "<p>Seu email foi enviado com sucesso!</p>";

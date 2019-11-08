@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 require_once '../../bd/conexao.php';
 require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
 if (isset($_SESSION['logado'])) {
@@ -56,7 +55,7 @@ if (isset($_SESSION['logado'])) {
                 <div class="header">
 
                     <a class="logo">
-                        <?xml version="1.0" encoding="utf-8"?>
+                         
                         <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                         <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 595.2 595.3" style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve">
@@ -90,7 +89,7 @@ if (isset($_SESSION['logado'])) {
                     </a>
 
                     <label onclick="activateMenu()" class="hamburger">
-                        <?xml version="1.0" encoding="utf-8"?>
+                         
                         <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                         <svg version="1.1" id="Hamburger" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 220 150" style="enable-background:new 0 0 220 150;" xml:space="preserve">
@@ -700,26 +699,26 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                         var incrementTabela = $("#hiddenAval").attr("value");
 
 
-<?php
-if (isset($_REQUEST['codTurma']) && isset($_REQUEST['codDis'])) {
-    $codTurco = filter_var($_REQUEST['codTurma'], FILTER_VALIDATE_INT);
-    $codDisco = filter_var($_REQUEST['codDis'], FILTER_VALIDATE_INT);
-    echo "var valButton = $('.disc_$codTurco').attr('value');";
-    echo "changeDisc(valButton, $codUnid, $codProf, $codDisco);";
-}
+                        <?php
+                        if (isset($_REQUEST['codTurma']) && isset($_REQUEST['codDis'])) {
+                            $codTurco = filter_var($_REQUEST['codTurma'], FILTER_VALIDATE_INT);
+                            $codDisco = filter_var($_REQUEST['codDis'], FILTER_VALIDATE_INT);
+                            echo "var valButton = $('.disc_$codTurco').attr('value');";
+                            echo "changeDisc(valButton, $codUnid, $codProf, $codDisco);";
+                        }
 
 
-if (isset($qtdAMais)) {
-    echo "mudarCountAval($qtdAMais);";
-    echo "incrementTabela = $('#hiddenAval').attr('value');";
-}
+                        if (isset($qtdAMais)) {
+                            echo "mudarCountAval($qtdAMais);";
+                            echo "incrementTabela = $('#hiddenAval').attr('value');";
+                        }
 
 
-if (isset($mudarCountUsu)) {
-    echo $mudarCountUsu;
-    echo "var countUsu = $('#hiddenUsu').attr('value');";
-}
-?>
+                        if (isset($mudarCountUsu)) {
+                            echo $mudarCountUsu;
+                            echo "var countUsu = $('#hiddenUsu').attr('value');";
+                        }
+                        ?>
 
 
 

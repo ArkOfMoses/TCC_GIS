@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 require_once '../../../bd/conexao.php';
 
 if(isset($_SESSION['logado'])){

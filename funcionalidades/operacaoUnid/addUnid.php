@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
     $img = $dados['fotoUsu'];
@@ -116,7 +115,7 @@ if(isset($_SESSION['logado'])){
         var increment=1;
         /** Função duplicar formulários - cadastro de unidades */
         $(document).ready(function() {
-
+            console.log(increment);
             $("#IdcepUnid0").mask("00000-000");
 
                 //Quando o campo cep perde o foco.
@@ -207,7 +206,7 @@ if(isset($_SESSION['logado'])){
 
             increment++;
             $('#hidden').attr("value", increment);
-
+            console.log(increment);
             var i;
             for(i = 1; i <= increment; i++){
                 $("#IdcepUnid"+i).mask("00000-000");
@@ -234,14 +233,13 @@ if(isset($_SESSION['logado'])){
             
             $("#rightDiv > div:last").remove();
             increment--;
-            if(increment < 0){
-                increment = 0;
+            if(increment < 1){
+                increment = 1;
             }
             
             $('#hidden').attr("value", increment);
-            
             $("#getCEP"+increment).remove();
-            
+
         });
     function addCEPBlur(increment, n){
 
