@@ -144,8 +144,7 @@
 #linkAdd{
 
   width:auto;
-  margin-left:60px;
-  margin-right:40%;
+  margin:auto;
   height: 50px;
   font-size: 18px;
   background: rgb(1, 39, 77);
@@ -159,7 +158,6 @@
   padding-bottom:15px;
   margin-top:15px;
   border-radius: 12px;
-  position: absolute;
   left:50%;
   margin-left:-70px;
   display:flex;

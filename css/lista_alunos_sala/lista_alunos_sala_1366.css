@@ -1,8 +1,4 @@
-.header {
-    width: calc(100% - 280px);
-    height: 7vh;
-  
-  }
+.header {display: none;}
   
   .logo {
     position: relative;
@@ -82,7 +78,6 @@
   /********* INICIO CABECALHO****************/
   
   #cabecalho{
-    padding-top:30px;
       width: 100%;
       height:240px;
       background-color: #003366;
@@ -130,13 +125,19 @@
         
 
          }
+
+         #scroll{
+           width: 100%;
+          }
+        
       #dadosAluno{
         display: flex;
-              flex-direction: row-reverse;
-           justify-content: space-between;
-            align-items: center;
-            border-bottom:1px solid #ccc;
-            padding:20px 120px;
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom:1px solid #ccc;
+        padding:20px 120px;
       }
   
       #imgAluno{
@@ -154,11 +155,16 @@
       }
 
 
-#linkAdd{
+#conteudotab1 {
+  display: flex;
+    justify-content: center;
+    align-items:
+}
 
-  width:auto;
-  margin-left:60px;
-  margin-right:40%;
+
+#linkAdd{
+  width: 200px;
+  margin: auto;
   height: 50px;
   font-size: 18px;
   background: rgb(1, 39, 77);
@@ -172,9 +178,7 @@
   padding-bottom:15px;
   margin-top:15px;
   border-radius: 12px;
-  position: absolute;
   left:50%;
-  margin-left:-70px;
   display:flex;
   align-items: center;
   justify-content: center;
