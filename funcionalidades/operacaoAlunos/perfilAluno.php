@@ -317,13 +317,20 @@ HERE;
           $foto = $info['url_foto_usu'];
 
           $dataNascProv = $info['data_nasc_usu'];
+          if($dataNascProv != ''){
           $dataNascFormat = date_create_from_format('Y-m-d', "$dataNascProv");
           $dataNasc = date_format($dataNascFormat, 'd/m/Y');
-
-          $dataEntradaProv = $info['data_entrada'];
+        }else{
+          $dataNasc = '';
+        }
+        $dataEntradaProv = $info['data_entrada'];
+        if($dataEntradaProv != ''){
+          
           $dataEntradaFormat = date_create_from_format('Y-m-d', "$dataEntradaProv");
           $dataEntrada = date_format($dataEntradaFormat, 'd/m/Y');
-
+        }else{
+          $dataEntrada = '';
+        }
           $codTur = $info['cod_tur'];
           $siglaTur = $info['sigla_tur'];
           $turno = $info['turno_tur'];
