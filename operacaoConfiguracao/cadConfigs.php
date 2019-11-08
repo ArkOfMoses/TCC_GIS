@@ -55,11 +55,13 @@ switch ($senhaAtual) {
 		case '':
 			$update = $pdo->prepare("update usuario set nome_usu = '' where cod_usu = $codUsu;");
 			$update->execute();
+			$_SESSION['dadosUsu']['nomeUsu'] = '';
 			break;
 
 		case isset($nomeUsu):
 			$update = $pdo->prepare("update usuario set nome_usu = '$nomeUsu' where cod_usu = $codUsu;");
 			$update->execute();
+			$_SESSION['dadosUsu']['nomeUsu'] = $nomeUsu;
 			break;
 		
 	}
@@ -72,6 +74,7 @@ switch ($senhaAtual) {
 		case isset($emailUsu):
 			$update = $pdo->prepare("update acesso set email = '$emailUsu' where cod_acesso = $codAcesso;");
 			$update->execute();
+			$_SESSION['dadosUsu']['emailUsu'] = $emailUsu;
 			break;
 		
 	}
@@ -80,6 +83,7 @@ switch ($senhaAtual) {
 		case '':
 			$update = $pdo->prepare("update usuario set data_nasc_usu = '' where cod_usu = $codUsu;");
 			$update->execute();
+			$_SESSION['dadosUsu']['dataNascUsu'] = '';
 			break;
 
 		case isset($lero):
@@ -87,6 +91,7 @@ switch ($senhaAtual) {
             $NascAluno = date_format($data, 'Y-m-d');
 			$update = $pdo->prepare("update usuario set data_nasc_usu = '$NascAluno' where cod_usu = $codUsu;");
 			$update->execute();
+			$_SESSION['dadosUsu']['dataNascUsu'] = $NascAluno;
 			break;
 		
 	}
@@ -103,6 +108,7 @@ switch ($senhaAtual) {
 		case isset($cpf):
 			$update = $pdo->prepare("update usuario set cpf_usu = '$cpf' where cod_usu = $codUsu;");
 			$update->execute();
+			$_SESSION['dadosUsu']['cpfUsu'] = $cpf;
 			break;
 		
 	}
@@ -115,6 +121,7 @@ switch ($senhaAtual) {
 			$senhaEncript = Bcrypt::hash($senhaNueva);
 			$update = $pdo->prepare("update acesso set senha = '$senhaEncript' where cod_acesso = $codAcesso;");
 			$update->execute();
+			$_SESSION['dadosUsu']['senhaUsu'] = $senhaEncript;
 			break;
 		
 	}
