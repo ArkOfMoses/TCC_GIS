@@ -148,10 +148,70 @@ if(isset($_SESSION['logado'])){
               <div class="animHome">
                 <h1>Faça tudo com o GIS</h1>
                 <div class="horario-icon">
-                  <p>Tenha o controle da sua rotina escolar</p>
+                  <p>Adicione, edite e exclua alunos e funcionários</p>
 
-                  <svg version="1" alt="Ilustração de horários escolares" id="horario_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842 595"><style>.st9{opacity:.5;fill:#00cdcd;enable-background:new}.st10{fill:#9999ad}.st11{opacity:.8;fill:#f2f2f2;enable-background:new}.st12{font-family:&apos;Roboto&apos;;font-weight:500}.st13{font-size:65.0828px}.st14{opacity:.8}.st15{fill:#f2f2f2}.st16{font-size:27.6948px}</style><circle id="Elipse1" class="st9" cx="231" cy="142" r="142"/><circle id="Elipse2" class="st9" cx="671" cy="230" r="111"/><circle id="Elipse3" class="st9" cx="301" cy="471" r="124"/><g id="sete"><path id="retangulo1" class="st10" d="M614 177H264c-24 0-43-19-43-43v-29c0-24 19-43 43-43h350c23 0 43 19 43 43v29c0 24-20 43-43 43z"/><text transform="translate(259 142)" class="st11 st12 st13">07:00</text><g class="st14"><text transform="translate(448 125)" class="st15 st12 st16">Primeira aula</text></g></g><g id="seteciquenta"><path id="retangulo2" d="M678 310H328c-24 0-43-19-43-43v-29c0-24 19-43 43-43h350c23 0 43 19 43 43v29c0 24-20 43-43 43z" fill="#00cdcd"/><text transform="translate(323 273)" class="st11 st12 st13">07:50</text><g class="st14"><text transform="translate(513 257)" class="st15 st12 st16">Segunda aula</text></g></g><g id="oitoequarenta"><path id="retangulo3" class="st10" d="M643 444H293c-24 0-43-20-43-43v-30c0-23 20-43 43-43h350c24 0 43 20 43 43v30c0 23-19 43-43 43z"/><text transform="translate(289 410)" class="st11 st12 st13">08:40</text><g class="st14"><text transform="translate(478 393)" class="st15 st12 st16">Terceira aula</text></g></g></svg>
-
+                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                  width="704.138px" viewBox="0 0 704.138 595.28" enable-background="new 0 0 704.138 595.28"
+                  xml:space="preserve">
+               <g>
+                 <defs>
+                   <rect id="SVGID_1_" x="13.984" y="75.286" width="253.469" height="253.468"/>
+                 </defs>
+                 <clipPath id="SVGID_2_">
+                   <use xlink:href="#SVGID_1_"  overflow="visible"/>
+                 </clipPath>
+                 <path opacity="0.5" clip-path="url(#SVGID_2_)" fill="#45BBC1" d="M267.453,202.021c0,69.992-56.741,126.733-126.735,126.733
+                   c-69.995,0-126.735-56.741-126.735-126.733c0-69.995,56.74-126.735,126.735-126.735
+                   C210.712,75.286,267.453,132.026,267.453,202.021"/>
+               </g>
+               <g>
+                 <defs>
+                   <rect id="SVGID_3_" x="477.419" y="119.418" width="221.844" height="221.845"/>
+                 </defs>
+                 <clipPath id="SVGID_4_">
+                   <use xlink:href="#SVGID_3_"  overflow="visible"/>
+                 </clipPath>
+                 <path opacity="0.5" clip-path="url(#SVGID_4_)" fill="#45BBC1" d="M699.263,230.34c0,61.261-49.662,110.923-110.921,110.923
+                   c-61.261,0-110.922-49.662-110.922-110.923s49.661-110.921,110.922-110.921C649.601,119.418,699.263,169.079,699.263,230.34"/>
+               </g>
+               <g>
+                 <defs>
+                   <rect id="SVGID_5_" x="135.281" y="347.016" width="208.105" height="208.104"/>
+                 </defs>
+                 <clipPath id="SVGID_6_">
+                   <use xlink:href="#SVGID_5_"  overflow="visible"/>
+                 </clipPath>
+                 <path opacity="0.5" clip-path="url(#SVGID_6_)" fill="#45BBC1" d="M343.387,451.067c0,57.467-46.586,104.053-104.053,104.053
+                   s-104.052-46.586-104.052-104.053c0-57.466,46.585-104.052,104.052-104.052S343.387,393.602,343.387,451.067"/>
+               </g>
+               <g opacity="0.9">
+                 <path opacity="0.8" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M145.665,317.113
+                   c5.896-14.971,9.236-26.51,16.841-37.744c13.059-19.288,33.028-29.447,56.186-30.807c20.784-1.22,41.695-0.257,63.395-0.257
+                   c2.238,19.677,8.554,37.532,23.889,52.361c-23.468,8.438-41.406,21.969-53.757,42.459c-12.25,20.326-14.402,42.678-12.726,66.492
+                   c-32.918-1.141-63.542-8.488-93.828-17.709C138.406,358.75,139.769,332.086,145.665,317.113z"/>
+                 <path opacity="0.8" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M566.387,391.908
+                   c-24.949,9.846-50.642,16.469-77.54,17.857c-2.771,0.143-5.544,0.324-9.933,0.584c3.841-51.635-15.318-89.742-66.027-109.602
+                   c13.481-14.706,21.69-31.701,22.875-53.589c23.414,1.04,47.153-0.758,69.616,3.765c32.659,6.578,52.763,34.602,59.402,62.011
+                   C571.418,340.346,566.387,366.977,566.387,391.908z"/>
+                 <path fill-rule="evenodd" clip-rule="evenodd" fill="#E21A43" d="M463.979,416.412c0,10.281-0.309,20.572,0.116,30.832
+                   c0.244,5.867-1.832,8.748-7.336,10.945c-36.645,14.656-74.944,19.07-113.64,15.02c-27.665-2.893-54.891-10.109-82.234-15.777
+                   c-2.56-0.531-6.499-3.795-6.508-5.807c-0.11-24.256-2.058-48.863,1.304-72.697c5.579-39.561,34.744-64.795,74.621-66.84
+                   c22.314-1.143,44.943-1.021,67.129,1.34c36.623,3.9,65.046,36.35,66.323,73.088c0.347,9.955,0.056,19.93,0.056,29.896
+                   C463.865,416.412,463.923,416.412,463.979,416.412z"/>
+                 <path fill-rule="evenodd" clip-rule="evenodd" fill="#E21A43" d="M420.636,246.34c-0.288,34.085-28.292,61.582-62.21,61.088
+                   c-33.705-0.492-60.948-28.045-60.898-61.592c0.052-34.416,28.201-62.003,62.778-61.527
+                   C393.785,184.771,420.924,212.673,420.636,246.34z"/>
+                 <path opacity="0.8" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M250.806,120.67
+                   c32.261-0.024,60.361,25.941,61.131,57.089c0.1,4.011-1.854,9.178-4.68,11.954c-10.97,10.775-18.132,23.416-22.638,38.013
+                   c-1.185,3.839-4.414,8.262-7.904,9.977c-22.71,11.162-49.859,6.495-68.296-11.019c-18.038-17.136-23.906-43.645-14.82-66.934
+                   C202.835,136.077,225.363,120.688,250.806,120.67z"/>
+                 <path opacity="0.8" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M522.712,181.911
+                   c0.189,41.623-40.359,71.413-79.913,58.914c-4.97-1.571-7.762-3.689-8.747-9.16c-3.531-19.521-13.915-34.843-29.317-47.246
+                   c-2.656-2.138-4.683-7.291-4.248-10.699c4.139-32.343,32.605-54.996,65.787-52.953C497.42,122.688,522.567,149.929,522.712,181.911
+                   z"/>
+               </g>
+               </svg>
+               
                 </div>
 
                 <div class="check-icon">
