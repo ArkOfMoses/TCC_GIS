@@ -7,7 +7,7 @@
     box-sizing: border-box;
   }
   
-  .header {
+  .header { background-color: transparent;
     
     display: flex;
     flex-flow: row nowrap;
@@ -29,7 +29,7 @@
     transition: ease .2s;
   }
   
-  .active-menu .header {background-color: rgba(255, 255, 255, 0)}
+  .active-menu .header { background-color: transparent;background-color: rgba(255, 255, 255, 0)}
   
   .fullnav {
     position: fixed;
