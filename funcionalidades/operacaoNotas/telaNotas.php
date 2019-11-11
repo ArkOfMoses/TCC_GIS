@@ -129,7 +129,6 @@ if (isset($_SESSION['logado'])) {
             <main>
 
                 <div class="headerNotas">
-                    <!--Desculpa Front, de verdade memo-->
 
                     <?php
                     $codUnid = $dados['codUnidadeUsu'];
@@ -475,6 +474,7 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                             <td>
                                 <input type='text' disabled class='inputNome' value='$nomeAlun'/>
                             </td>";
+                                                ksort($infoAlun['Notas']);
 
                                                 $count = 1;
 
