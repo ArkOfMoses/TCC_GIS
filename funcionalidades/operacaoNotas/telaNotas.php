@@ -250,7 +250,7 @@ if (isset($_SESSION['logado'])) {
 
                                     $selectAval = $pdo->prepare("select distinct tipo_avaliacao.cod_tipo_aval, nome_tipo_aval, avaliacao.cod_aval, nome_aval 
 from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_avaliacao.cod_tipo_aval)
-                    inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_aval =avaliacao.cod_aval) where turma_aluno_nota_disc.cod_tur = $codTur and cod_turma_disc = $codTurmDisc and cod_status_aval = 'A';");
+                    inner join turma_aluno_nota_disc on (turma_aluno_nota_disc.cod_aval =avaliacao.cod_aval) where turma_aluno_nota_disc.cod_tur = $codTur and cod_turma_disc = $codTurmDisc and cod_status_aval = 'A' order by avaliacao.cod_aval;");
                                     $selectAval->execute();
                                     $numDeAval = $selectAval->rowCount();
 
