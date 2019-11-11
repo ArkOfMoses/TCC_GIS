@@ -42,6 +42,7 @@ if(isset($_SESSION['logado'])){
         <link rel=stylesheet media="screen and (min-width:1025px)" href="css/cssPrimeiroAcesso/style1366.css">
 
         <!-- SCRIPT COM O AJAX -->
+        <script src="js/script.js" type="text/javascript"></script>
         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="js/jquery.mask.min.js" type="text/javascript"></script>
         <script>

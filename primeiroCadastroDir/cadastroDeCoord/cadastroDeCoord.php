@@ -19,6 +19,7 @@ if (isset($_SESSION['logado'])) {
         <title>Primeiro cadastro</title>    
         <link rel="stylesheet" href="../../css/default.css">    
         <script src='../../js/jquery-3.3.1.min.js'></script>
+        <script src='../../js/script.js'></script>
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 

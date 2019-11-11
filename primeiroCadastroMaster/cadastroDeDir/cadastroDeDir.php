@@ -38,6 +38,7 @@ if(isset($_SESSION['logado'])){
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssCadastroMaster/style1366.css">
     
         <script src='../../js/jquery-3.3.1.min.js'></script>
+        <script src='../../js/script.js'></script>
         <script>
           $(function(){
               $('.form').submit(function(){
