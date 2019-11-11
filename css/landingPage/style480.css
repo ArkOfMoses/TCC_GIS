@@ -26,6 +26,8 @@
   transition: all .4s;
 }
 
+#Layer_1 {max-width: 70%;}
+
 .menu {
   height: 100%;
   display: flex;
@@ -209,7 +211,7 @@
   text-align: center;
 }
 
-.animHome .horario-icon {margin-bottom: 30px;}
+.animHome .horario-icon {margin-bottom: 30px; max-width: 100%}
 
 .animHome .check-icon, .animHome .notas-icon, .animHome .horario-icon {
   display: flex;
