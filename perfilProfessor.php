@@ -196,12 +196,12 @@ if(isset($_SESSION['logado'])){
                   $classe = $dados['classeOperacao'][$i];
 
                   if($codStatusUsuOperacao == 'A'){
-                      echo "<a id='botao' href='$linkOperacao'>$nomeOperacao</a>";
+                      echo "<a id='botao' class='bot$i' href='$linkOperacao'>$nomeOperacao</a>";
                   }
               }
             ?>
-            <a id="botao" href="operacaoConfiguracao/configuracoes.php">Configurações</a>
-            <a id="botao" href="sair.php">Sair</a>
+            <a id="botao" href="operacaoConfiguracao/configuracoes.php" class='bot3'>Configurações</a>
+            <a id="botao" href="sair.php" class='bot4'>Sair</a>
           </div>
         </div>
 
