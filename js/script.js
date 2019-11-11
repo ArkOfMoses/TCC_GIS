@@ -134,3 +134,10 @@ $(document).ready(function(){
       $("#semana"+semanavalue).show();
   });
 });
+
+
+//Autocomplete off
+
+$(document).ready(function(){
+  $('form').attr('autocomplete', 'off');
+});
