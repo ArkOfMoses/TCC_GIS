@@ -71,8 +71,8 @@ if($infoPost) {
                                         echo "<script type='text/javascript'> window.location.href='primeiroCadastroProf/escolherTurma.php';</script>";
                                     break;
     
-                                    case 'Saude':
-                                        echo "<script type='text/javascript'> window.location.href='perfilSaude.php';</script>";
+                                    case 'Coordenador':
+                                        echo "<script type='text/javascript'> window.location.href='perfilCoordenador.php';</script>";
                                     break;
 
                                     case 'Diretor':
@@ -114,8 +114,8 @@ if($infoPost) {
                                             echo "<script type='text/javascript'> window.location.href='primeiroCadastroProf/escolherTurma.php';</script>";
                                         break;
         
-                                        case 'Saude':
-                                            echo "<script type='text/javascript'> window.location.href='perfilSaude.php';</script>";
+                                        case 'Coordenador':
+                                            echo "<script type='text/javascript'> window.location.href='perfilCoordenador.php';</script>";
                                         break;
 
                                         case 'Diretor':
