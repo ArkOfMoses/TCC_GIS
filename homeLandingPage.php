@@ -151,7 +151,7 @@ if(isset($_SESSION['logado'])){
                   <p>Adicione, edite e exclua alunos e funcionários</p>
 
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                  width="704.138px" viewBox="0 0 704.138 595.28" enable-background="new 0 0 704.138 595.28"
+                  viewBox="0 0 704.138 595.28" enable-background="new 0 0 704.138 595.28"
                   xml:space="preserve">
                <g>
                  <defs>
