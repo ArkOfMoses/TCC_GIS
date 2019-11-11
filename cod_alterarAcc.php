@@ -56,7 +56,7 @@ if($infoPost) {
                     //date_default_timezone_set('Etc/UTC');
                     //se a gente não for usar o type=date, a gente precisa fazer o rolê de inverter pra ficar no padrão do banco
                     $comando1 = $pdo->prepare("update acesso set senha = '$senhaEncript', email = '{$infoPost['email']}' where cod_acesso = $codAcesso");
-                    $comando2 = $pdo->prepare("update usuario set nome_usu = '{$infoPost['nome_usu']}', cpf_usu = '$cpfValidado', url_foto_usu = null, data_entrada = (cast(NOW() as Date)) where cod_acesso = $codUsu");
+                    $comando2 = $pdo->prepare("update usuario set nome_usu = '{$infoPost['nome_usu']}', cpf_usu = '$cpfValidado', url_foto_usu = null, data_entrada = (cast(NOW() as Date)) where cod_usu = $codUsu");
                     
                     if($comando1->execute() && $comando2->execute()){                
                         $nomeTipoUsu = $_SESSION['dadosUsu']['nomeTipoUsu'];
@@ -99,7 +99,7 @@ if($infoPost) {
                         //date_default_timezone_set('Etc/UTC');
                         //se a gente não for usar o type=date, a gente precisa fazer o rolê de inverter pra ficar no padrão do banco
                         $comando1 = $pdo->prepare("update acesso set senha = '$senhaEncript', email = '{$infoPost['email']}' where cod_acesso = $codAcesso");
-                        $comando2 = $pdo->prepare("update usuario set nome_usu = '{$infoPost['nome_usu']}', cpf_usu = '$cpfValidado', url_foto_usu = '$imagem', data_entrada = (cast(NOW() as Date)) where cod_acesso = $codUsu");
+                        $comando2 = $pdo->prepare("update usuario set nome_usu = '{$infoPost['nome_usu']}', cpf_usu = '$cpfValidado', url_foto_usu = '$imagem', data_entrada = (cast(NOW() as Date)) where cod_usu = $codUsu");
                         
                         if($comando1->execute() && $comando2->execute()){                
                             $nomeTipoUsu = $_SESSION['dadosUsu']['nomeTipoUsu'];
