@@ -15,7 +15,8 @@ if(isset($_SESSION['logado'])){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Primeiro cadastro</title>    
+        <title>Confirmar dados</title>    
+        <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="../css/default.css">    
         <script src='../js/jquery-3.3.1.min.js'></script>        
         <script src="../js/jquery.mask.min.js" type="text/javascript"></script>

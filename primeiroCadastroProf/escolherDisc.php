@@ -15,8 +15,8 @@ if(isset($_SESSION['logado'])){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastro de Professor</title>
-
+        <title>Escolher disciplina</title>
+        <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
         
         <link rel="stylesheet" href="../css/default.css"> 
         <link rel=stylesheet media="screen and (max-width:480px)" href="../css/cssCadastroMaster/style480.css">

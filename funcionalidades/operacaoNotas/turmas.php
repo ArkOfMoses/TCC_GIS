@@ -20,7 +20,7 @@ if(isset($_SESSION['logado'])){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lançar Notas</title>    
+        <title>Lista Turmas</title>    
         <link rel="stylesheet" href="../../css/default.css">    
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">

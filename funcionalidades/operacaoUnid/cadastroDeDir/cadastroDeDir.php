@@ -16,6 +16,7 @@ if(isset($_SESSION['logado'])){
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cadastro de Diretor</title>
+        <link rel="shortcut icon" href="../../../imagens/favicon.ico" type="image/x-icon">
 
         
         <!-- <style>

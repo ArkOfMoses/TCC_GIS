@@ -17,7 +17,7 @@ require_once '../../bd/conexao.php';
 <html lang="pt-br">
     <head>
 
-        <title>pag</title>
+        <title>Minha Instituição</title>
 
         <meta charset=UTF-8>
         <!-- ISO-8859-1 -->
