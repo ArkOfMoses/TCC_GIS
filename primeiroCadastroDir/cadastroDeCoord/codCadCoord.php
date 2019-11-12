@@ -36,7 +36,7 @@ if($infoPost){
                     echo "<p>Existem campos vazios</p>";
                 }else if(!empty($emailCad)){
                     for($j = 0; $j < count($emailCad); $j++){
-                        echo "<p>o email do Diretor $emailCad[$j] já foi cadastrado</p>";
+                        echo "<p>o email do Coordenador $emailCad[$j] já foi cadastrado</p>";
                     }                    
                 }else{
 
@@ -77,7 +77,7 @@ if($infoPost){
                                     "tipo" => "Coordenador"
                                 ]; 
                             }else{
-                                echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaUnidFor, $addi<p>";
+                                echo"<p>Não foi possivel cadastrar o coordenador da unidade $nomeDaUnidFor, $addi<p>";
                             }
                         }
 
@@ -100,7 +100,7 @@ if($infoPost){
     
                             echo "<script type='text/javascript'> window.location.href='../cadastroDeProf/cadastroDeProf.php';</script>";
                         }else{
-                            echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaUnid, $add<p>";
+                            echo"<p>Não foi possivel cadastrar o coordenador da unidade $nomeDaUnid, $add<p>";
                         }
 
                         $_SESSION['EmailListProv'] = [
@@ -108,7 +108,7 @@ if($infoPost){
                         ];
 
                       }else{
-                          echo "<p>o email do Diretor $nome já foi cadastrado</p>";
+                          echo "<p>o email do Coordenador $nome já foi cadastrado</p>";
                       }
 
                     }
