@@ -36,7 +36,7 @@ if($infoPost){
                     echo "<p>Existem campos vazios</p>";
                 }else if(!empty($emailCad)){
                     for($j = 0; $j < count($emailCad); $j++){
-                        echo "<p>o email do Diretor $emailCad[$j] já foi cadastrado</p>";
+                        echo "<p>o email do Professor $emailCad[$j] já foi cadastrado</p>";
                     }                    
                 }else{
 
@@ -77,7 +77,7 @@ if($infoPost){
                                     "tipo" => "Professor"
                                 ]; 
                             }else{
-                                echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaUnidFor, $addi<p>";
+                                echo"<p>Não foi possivel cadastrar o professor da unidade $nomeDaUnidFor, $addi<p>";
                             }
                         }
 
@@ -100,7 +100,7 @@ if($infoPost){
 
                             echo "<script type='text/javascript'> window.location.href='../confirmarDados.php';</script>";
                         }else{
-                            echo"<p>Não foi possivel cadastrar o diretor da unidade $nomeDaUnid, $addi<p>";
+                            echo"<p>Não foi possivel cadastrar o professor da unidade $nomeDaUnid, $addi<p>";
                         }
 
                         $sessaoCoord = $_SESSION['EmailListProv']['Coordenadores'];
@@ -113,7 +113,7 @@ if($infoPost){
                         ];
 
                       }else{
-                          echo "<p>o email do Diretor $nome já foi cadastrado</p>";
+                          echo "<p>o email do Professor $nome já foi cadastrado</p>";
                       }
 
                     }
