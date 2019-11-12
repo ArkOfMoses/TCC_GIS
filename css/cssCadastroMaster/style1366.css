@@ -160,3 +160,13 @@ a.buttonNext {
     justify-content: center;
 
 }
+
+.confirma{
+    font-weight: 600;
+    color: #003366
+}
+
+.endUnid{
+    width: 40%;
+    margin-top: 5%;
+}

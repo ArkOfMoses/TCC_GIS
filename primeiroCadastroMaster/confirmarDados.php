@@ -78,12 +78,12 @@ if(isset($_SESSION['logado'])){
 
                             $inst = get_inst($pdo, $codInst);
 
-
+                        echo "<div class='endUnid'>";
                         echo '<h2>Instituição:</h2>';
-                        echo "<label>Nome Fantasia: </label><p>".$inst[0]['nomeFant']."</p>";
-                        echo "<label>Razão Social: </label><p>".$inst[0]['razaoSocial']."</p>";
-                        echo "<label>CNPJ: </label><p id='cnpj'>".$inst[0]['CNPJ']."</p>";
-
+                        echo "<p class='confirma'>Nome Fantasia: </p><p>".$inst[0]['nomeFant']."</p>";
+                        echo "<p class='confirma'>Razão Social: </p><p>".$inst[0]['razaoSocial']."</p>";
+                        echo "<p class='confirma'>CNPJ: </p><p id='cnpj'>".$inst[0]['CNPJ']."</p>";
+                        echo "</div>";
                             $unid = get_unid($pdo, $codInst);
 
                             $selecionar = ("select usuario.cod_usu, nome_usu, cpf_usu, data_nasc_usu, url_foto_usu, data_entrada, data_saida, cod_status_usu, acesso.cod_acesso, tipo_usuario.cod_tipo_usu, nome_tipo_usu, senha, email
@@ -116,34 +116,32 @@ if(isset($_SESSION['logado'])){
                             
                             for ($i = 0; $i < count($unid); $i++) { 
                                 echo '
-                                        <br>
-                                        <br>
-                                        <br>
+                                        <div class="endUnid">
                                         <h3>Unidade:</h3>
-                                        <p>Nome da Unidade: '.$unid[$i]['nomeUnid'].'</p>
-                                        <label>CEP da Unidade:</label><p class="cep">'.$unid[$i]['cepUnid'].'</p>
-                                        <p>Rua da Unidade: '.$unid[$i]['ruaUnid'].'</p>
-                                        <p>Bairro da Unidade: '.$unid[$i]['bairroUnid'].'</p>
-                                        <p>Cidade da Unidade: '.$unid[$i]['cidadeUnid'].'</p>
-                                        <p>Número da Unidade: '.$unid[$i]['numUnid'].'</p>';
+                                        <p class="confirma">Nome da Unidade: </p><p>'.$unid[$i]['nomeUnid'].'</p>
+                                        <label class="confirma">CEP da Unidade:</label><p class="cep">'.$unid[$i]['cepUnid'].'</p>
+                                        <p class="confirma">Rua da Unidade:</p> <p>'.$unid[$i]['ruaUnid'].'</p>
+                                        <p class="confirma">Bairro da Unidade: </p><p>'.$unid[$i]['bairroUnid'].'</p>
+                                        <p class="confirma">Cidade da Unidade: </p><p>'.$unid[$i]['cidadeUnid'].'</p>
+                                        <p class="confirma">Número da Unidade: </p><p>'.$unid[$i]['numUnid'].'</p>
+                                        ';
                                         
                                 if($unid[$i]['complUnid'] != NULL){
-                                         echo '<p>Complemento da Unidade: '.$unid[$i]['complUnid'].'</p>';
+                                         echo '<p class="confirma">Complemento da Unidade:</p><p> '.$unid[$i]['complUnid'].'</p>';
                                 }
 
                                 echo '
-
-
+                                    </div>
+                                    <div class="endUnid">
                                         <h4>Diretor:</h4>
 
-                                        <p>Nome do diretor:</p>
+                                        <p class="confirma">Nome do diretor:</p>
                                         <p>'.$nomeDir[$i].'</p>
                                         
-                                        <p>Email do diretor:</p>
+                                        <p class="confirma">Email do diretor:</p>
                                         <p>'.$emailDir[$i].'</p>
-                                        <br>
-                                        <br>';
-
+                                        
+                                    </div>';
                                         
                                         // <label>Confirme a senha:</label>
                                         // <input type="password" value="'.$senhaDir.'">';
@@ -162,7 +160,7 @@ if(isset($_SESSION['logado'])){
             $(document).ready(function(){
                 $("#cnpj").mask("00000000/0000-00");
                 $(".cep").mask("00000-000");
-            })        
+            });        
             </script>  
     </body>
 </html>

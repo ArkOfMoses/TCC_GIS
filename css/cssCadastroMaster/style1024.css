@@ -170,3 +170,13 @@ a.buttonNext {
     top: -50px;
     right: -50px;
 }
+
+
+.confirma{
+    font-weight: 600;
+    color: #003366
+}
+.endUnid{
+    width: 40%;
+    margin-top: 5%;
+}

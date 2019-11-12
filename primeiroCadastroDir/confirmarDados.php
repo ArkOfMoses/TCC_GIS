@@ -90,15 +90,15 @@ if(isset($_SESSION['logado'])){
                                 }
 
                             }
-
+                            echo '<div class="endUnid"';
                             echo '<h2>Sua unidade:</h2>';
-                            echo "<label>Nome: </label><p>$nome</p>";
-                            echo "<label>CEP: </label><p class='cep'>$cep</p>";
-                            echo "<label>Numero: </label><p>$numUnid</p>";
+                            echo "<p class='confirma'>Nome: </p><p>$nome</p>";
+                            echo "<p class='confirma'>CEP: </p><p class='cep'>$cep</p>";
+                            echo "<p class='confirma'>Numero: </p><p>$numUnid</p>";
                             if(isset($complemento)){
-                            echo "<label>Complemento: </label><p>$complemento</p>";
+                            echo "<p class='confirma'>Complemento: </p><p>'$complemento'</p>";
                             }
-
+                            echo '</div>';
                             $selectCodUsus = $pdo->prepare("select * from usuario_unidade where cod_unid = $codUnid and cod_usu != $codUsu");
                             $selectCodUsus->execute();
 
@@ -118,7 +118,7 @@ if(isset($_SESSION['logado'])){
                                 }
 
                                 //var_dump($codsUsu);
-                                echo "<br><h4>Coordenadores e Professores</h4>";
+                                echo "<h4>Coordenadores e Professores</h4>";
                                 for($k = 0; $k < count($codsUsu); $k++){
                                     //var_dump($codsUsu[$k]);
                                     $selectUsu = $pdo->prepare("select * from usuario where cod_usu = {$codsUsu[$k]}");
@@ -146,13 +146,14 @@ if(isset($_SESSION['logado'])){
 
                                     if($codTipo == 4){
                                     echo "
-                                        <p>Nome do coordenador:</p>
+                                        <div class='endUnid'>
+                                        <p class='confirma'>Nome do coordenador:</p>
                                         <p>$nome</p>
                                         
-                                        <p>Email do coordenador:</p>
+                                        <p class='confirma'>Email do coordenador:</p>
                                         <p>$email</p>
-                                        <br>
-                                        <br>
+                                        
+                                        
                                         ";
                                     }
 
@@ -160,13 +161,12 @@ if(isset($_SESSION['logado'])){
                                     
                                     if($codTipo == 5){
                                         echo "
-                                        <p>Nome do professor:</p>
+                                        <p class='confirma'>Nome do professor:</p>
                                         <p>$nome</p>
                                         
-                                        <p>Email do professor:</p>
+                                        <p class='confirma'>Email do professor:</p>
                                         <p>$email</p>
-                                        <br>
-                                        <br>
+                                        </div>
                                         ";
                                     }
                                 }
@@ -180,7 +180,7 @@ if(isset($_SESSION['logado'])){
             <script type="text/javascript">
             $(document).ready(function(){
                 $(".cep").mask("00000-000");
-            })        
+            });        
             </script>  
     </body>
 </html>
