@@ -60,8 +60,8 @@ if(isset($_SESSION['logado'])){
             <main>
                 <div class="acessoUm">
                     <!---PERGUNTAR SE O UPLOAD DE FOTOS É NECESSÁRIO-->
-                    <h1>Cadastro concluído!</h1>
-                    <p>Por favor, confirme suas informações abaixo.</p>
+                    <div class="aa"><h1>Cadastro concluído!</h1>
+                    <p>Por favor, confirme suas informações abaixo.</p></div>
                     <?php                      
                         if($img === NULL){
                             echo "<img src='../imagens/perfil.png' class='perfil-foto'/>";

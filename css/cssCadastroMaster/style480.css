@@ -3,6 +3,10 @@
     padding:0;
 }
 
+.aa{
+    text-align: center;
+}
+
 .recebeDados{
     border:none;
     display: flex;
