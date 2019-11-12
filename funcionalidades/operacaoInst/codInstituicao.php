@@ -34,12 +34,12 @@ require_once '../../bd/conexao.php';
       <link href="../../css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssOperacaoCurso/style480.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssOperacaoInst/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
-              href="../../css/cssOperacaoCurso/style768.css">
+              href="../../css/cssOperacaoInst/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
-              href="../../css/cssOperacaoCurso/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssOperacaoCurso/style1366.css">
+              href="../../css/cssOperacaoInst/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/cssOperacaoInst/style1366.css">
         
     
       <!-- Script -->
@@ -207,13 +207,13 @@ function activateMenu(){
       </div>
 
         </header>
-          <div class="setinha">
+          
+            <main>
+            <div class="setinha">
           <a href="../../perfilMaster.php">
             <img id="seta" src="../../imagens/voltar_corAzul.png">
           </a>
 </div>
-            <main>
-            
             <div class="alunos">
                 <h1>Minha Instituição</h1>
                 <?php
@@ -240,7 +240,7 @@ function activateMenu(){
                               <label>Razão Social: </label><input type='text' value='$razaoInst' name='razao' />
                               <label>CNPJ da Instituição: </label><input type='text' id='IdCnpj' value='$cnpjInst' name='cnpj' />
 
-                              <input type='submit' value='Enviar' />
+                              <input type='submit' value='Enviar' class='buttonNext' />
                               </form>
 
                         ";
