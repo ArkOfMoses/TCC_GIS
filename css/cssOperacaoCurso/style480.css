@@ -68,7 +68,7 @@
   main {
     width: 100vw;
     min-height: 100vh;
-    padding: 70px 20px 0;
+   padding: 20px 15px 0;
     background: #F7FDFD; /*ou FAFEFE*/
   }
   
@@ -184,13 +184,16 @@ h1{
   border-radius: 12px;
   }
   
-#seta{
-    text-align: left;
+.setinha{
+ 
+  width:40px;
+
 }
 
 #seta{
- text-align: left;
+margin-left:15px;
  width:40px;
+  margin-top:70px;
  }
 
 table{
@@ -200,6 +203,7 @@ table{
 }
 
 main th{
+  width:150px;
   padding: 10px 15px;
   text-align: center;
   font-weight: bold;
