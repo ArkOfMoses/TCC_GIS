@@ -176,7 +176,7 @@ if(isset($_SESSION['logado'])){
                     Moisés e Luiz que ficaram encarregados da parte de Back-end;
                   </p>
                   <p>
-                    Laura, Maria e Vitor que focaram na parte de Back-end;
+                    Laura, Maria e Vitor que focaram na parte de Front-end;
                   </p>
                   <p>
                     Esther que escreveu documentação do projeto.
