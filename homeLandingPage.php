@@ -64,7 +64,7 @@ if(isset($_SESSION['logado'])){
           <div class="header">
 
             <a class="logo" href="homeLandingPage.php">
-               
+
               <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
               <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 595.2 595.3" style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve" alt="Logo GIS">
@@ -98,7 +98,7 @@ if(isset($_SESSION['logado'])){
             </a>
 
             <label onclick="activateMenu()" class="hamburger">
-               
+
               <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
               <svg version="1.1" id="Hamburger" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 220 150" style="enable-background:new 0 0 220 150;" xml:space="preserve" alt="menu">
@@ -122,7 +122,7 @@ if(isset($_SESSION['logado'])){
               <li><a href="homeLandingPage.php">Home</a></li>
               <li class="login-btn"><a href="loginLandingPage.php">Entrar</a></li>
               <li><a href="contatoLandingPage.php">Contato</a></li>
-              <li><a href="#">Sobre Nós</a></li>
+              <li><a href="sobreNos.php">Sobre Nós</a></li>
             </ul>
 
           </nav>
@@ -211,7 +211,7 @@ if(isset($_SESSION['logado'])){
                    z"/>
                </g>
                </svg>
-               
+
                 </div>
 
                 <div class="check-icon">
@@ -266,7 +266,7 @@ if(isset($_SESSION['logado'])){
           <a class="selecionado">Home</a>
           <a href="loginLandingPage.php">Entrar na Conta</a>
           <a href="contatoLandingPage.php">Contato</a>
-          <a href="#">Sobre Nós</a>
+          <a href="sobreNos.php">Sobre Nós</a>
 
         </footer>
 
