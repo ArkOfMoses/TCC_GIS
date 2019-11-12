@@ -2,7 +2,7 @@
     width: calc(100% - 280px);
     height: 7vh;
   }
-  
+
   .logo {
     position: relative;
     left: calc(100% - (-15em));
@@ -10,14 +10,14 @@
     width: 2em;
     height: 2em;
   }
-  
+
   .header .st0{fill:#fff;}
   .header .st1{fill:#fff;}
   .header .st2{fill:#fff;}
   .header .st3{fill:#fff;}
-  
+
   .hamburger{display: none!important;}
-  
+
   .fullnav {
     width: 280px;
     bottom: 0%;
@@ -26,15 +26,15 @@
     background: rgba(0,204,204,1);
     background: linear-gradient(to bottom, rgba(0,204,204,1) 0%, rgba(0,204,204,1) 30%, rgba(0,102,204,1) 100%);
   }
-  
+
   .menu {
     width: 230px;
     justify-content: space-around;
     background: #051523;
   }
-  
+
   hr {display: none; border: none;}
-  
+
   .menu-buttons {
     margin-top: calc(60px + 5vh);
     flex-grow: 2;
@@ -45,33 +45,33 @@
   }
 
   .menu-buttons li{padding: 10px; width: 100%}
-  
+
   .menu-buttons li:hover{background: linear-gradient(to right, rgba(246, 246, 246, 0) 0%, rgba(255, 255, 255, 0.596) 100%);}
-  
-  
+
+
   .menu-buttons li a{
     font-size: 1em;
     display:flex;
     flex-direction: row-reverse;
     align-items:center;
   }
-  
+
   .menu-buttons i {
     font-size: 1.3em;
     margin-left: 60px
   }
-  
+
   .title, .subtitle {font-size: 1em;}
-  
+
   .title {font-size: 1em}
-  
+
   .profile-photo-menu {
     width: 120px;
     height: 120px;
     border-radius: 60px;
     margin: calc(30px + 3vh) 0 30px;
   }
-  
+
   main {background-color: #f1f1f1; width: 100vw; height: 100vh; }
 
  #pagina{
@@ -84,7 +84,7 @@
   /**********/
 
   .banner {
-    
+
     width: 100%;
     height: 150px;/*
     padding-top:60px;*/
@@ -96,12 +96,12 @@
     background-color: #003366;
     color: white
   }
-  
+
   h2, h1 {
     font-size: 1.4em;
     margin: 7px;
   }
-  
+
   h2 {
     font-weight: bold;
     display:none
@@ -112,9 +112,9 @@
   h3{
       font-style: italic;
       font-size:0.8em;
-      
+
   }
-  
+
   .profile-photo {
     width: 70px;
     height: 70px;
@@ -126,7 +126,7 @@
 
   #conteudo{
     /*  background-color:red;*/
-    
+
       width:100%;
       height:auto;
       display: flex;
@@ -136,8 +136,8 @@
       justify-content: center;
       margin-top:5%;
   }
-  
-  
+
+
   #botao{
     background-color: rgb(0, 205, 205);
     background-size:  cover;
@@ -150,7 +150,7 @@
     text-align: center;
     font-size: 1.5em;
     font-weight: bolder;
-    box-shadow: 0px -2px 17px 5px rgba(0,43,56,.1), 
+    box-shadow: 0px -2px 17px 5px rgba(0,43,56,.1),
                 inset 0px -60px 20px 0px #00000029;
     }
 
@@ -167,45 +167,64 @@
       width: 300px;
       height: 130px;
     }
-    
+
     .bot1 {
       background-image: url(../../imagens/ChamadaOcorr.png);
       width: 300px;
       height: 130px;
     }
-    
+
     .bot2 {
       background-image: url(../../imagens/PesquisaAlunos.png);
       width: 300px;
       height: 130px;
     }
-    
+
     .bot3 {
       background-image: url(../../imagens/Configuracoes.png);
       width: 300px;
       height: 130px;
     }
-    
+
     .bot4 {
       background-image: url(../../imagens/Sair.png);
       width: 300px;
       height: 130px;
+      margin-bottom: 50px;
     }
-    
+
     .bot10 {
       background-image: url(../../imagens/Cursos.png);
       width: 300px;
       height: 130px;
     }
-    
+
     .bot11 {
       background-image: url(../../imagens/Disciplinas.png);
       width: 300px;
       height: 130px;
     }
-    
+
     .bot12 {
       background-image: url(../../imagens/PesquisaAlunos.png);
+      width: 300px;
+      height: 130px;
+    }
+
+    .bot20 {
+      background-image: url(../../imagens/Cursos.png);
+      width: 300px;
+      height: 130px;
+    }
+
+    .bot21 {
+      background-image: url(../../imagens/PesquisaAlunos.png);
+      width: 300px;
+      height: 130px;
+    }
+
+    .bot22 {
+      background-image: url(../../imagens/Disciplinas.png);
       width: 300px;
       height: 130px;
     }

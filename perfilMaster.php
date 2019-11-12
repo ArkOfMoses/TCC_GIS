@@ -58,7 +58,7 @@ if(isset($_SESSION['logado'])){
       <div class="header">
 
         <a class="logo">
-           
+
           <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
           <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             viewBox="0 0 595.2 595.3" style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve">
@@ -101,7 +101,7 @@ if(isset($_SESSION['logado'])){
         </a>
 
         <label onclick="activateMenu()" class="hamburger">
-           
+
           <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
           <svg version="1.1" id="Hamburger" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             viewBox="0 0 220 150" style="enable-background:new 0 0 220 150;" xml:space="preserve">
@@ -123,7 +123,7 @@ if(isset($_SESSION['logado'])){
       <!--FULLNAV VEM DO PERFIL PROFESSOR Q TÁ CMG, SÓ COPIAR COLAR-->
       <div class="fullnav">
         <nav class="menu">
-        <?php 
+        <?php
             if($img === null){
               echo "<a class='profile-photo-menu' style='background-image: url(imagens/perfil.png)!important; background-size: cover; background-position: center;'></a>";
             }else{
@@ -194,12 +194,12 @@ if(isset($_SESSION['logado'])){
                   $classe = $dados['classeOperacao'][$i];
 
                   if($codStatusUsuOperacao == 'A'){
-                      echo "<a id='botao' href='$linkOperacao'>$nomeOperacao</a>";
+                      echo "<a id='botao' href='$linkOperacao' class='bot2$i'>$nomeOperacao</a>";
                   }
               }
             ?>
-            <a id="botao" href="operacaoConfiguracao/configuracoes.php">Configurações</a>
-            <a id="botao" href="sair.php">Sair</a>
+            <a id="botao" href="operacaoConfiguracao/configuracoes.php" class='bot3'>Configurações</a>
+            <a id="botao" href="sair.php" class='bot4'>Sair</a>
           </div>
         </div>
 
