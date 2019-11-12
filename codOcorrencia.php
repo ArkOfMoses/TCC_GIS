@@ -6,7 +6,14 @@ if(isset($_SESSION['logado'])){
     $nomeUnidade = $dados['nomeUnidadeUsu'];
     $img = $dados['fotoUsu'];
     $tipoUsu = $dados['nomeTipoUsu'];
-    $KKKKKKKKKKKKKKKKKK = $dados['codOperacao'];
+
+    /////////////////////
+    $codOperacao = $dados['codOperacao'];
+    $StatusUsuOperacao = $dados['codStatusTipoUsuOperacao'];
+    $nomeOp = $dados['nomeOperacao'];
+    $linkOp = $dados['linkOperacao'];
+    $class = $dados['classeOperacao'];
+    
 }else{
   unset($_SESSION['dadosUsu']);
   unset($_SESSION['logado']);
@@ -178,19 +185,19 @@ $select->execute();
 
           <ul class="menu-buttons">
           <?php
-              //$count = count($dados['codOperacao']);
+              $count = count($codOperacao);
 
-              var_dump([$dados['codOperacao'], $KKKKKKKKKKKKKKKKKK]);
-              // for($i = 0; $i < $count; $i++){
-              //     $codStatusUsuOperacao = $dados['codStatusTipoUsuOperacao'][$i];
-              //     $nomeOperacao = $dados['nomeOperacao'][$i];
-              //     $linkOperacao = $dados['linkOperacao'][$i];
-              //     $classe = $dados['classeOperacao'][$i];
+              //var_dump([$dados['codOperacao'], $KKKKKKKKKKKKKKKKKK]);
+              for($i = 0; $i < $count; $i++){
+                  $codStatusUsuOperacao = $StatusUsuOperacao[$i];
+                  $nomeOperacao = $nomeOp[$i];
+                  $linkOperacao = $linkOp[$i];
+                  $classe = $class[$i];
 
-              //     if($codStatusUsuOperacao == 'A'){
-              //         echo "<li><a href='$linkOperacao'><i class='$classe'></i> $nomeOperacao</a></li>";
-              //     }
-              // }
+                  if($codStatusUsuOperacao == 'A'){
+                      echo "<li><a href='$linkOperacao'><i class='$classe'></i> $nomeOperacao</a></li>";
+                  }
+              }
             ?>
 
             <li>
