@@ -701,7 +701,7 @@ insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeO
 insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Disciplinas', 'A', 'funcionalidades/operacaoDisciplinas/verCursos.php', 'fas fa-book-open');
 insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Minha instituição', 'A', 'funcionalidades/operacaoInst/instituicao.php', 'fas fa-school');
 insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Lançar notas', 'A', 'funcionalidades/operacaoNotas/turmas.php', 'fas fa-list');
-insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Chamada ocorrencia', 'A', 'lista_salas.php', 'fas fa-th-large');
+insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Chamada e Ocorrência', 'A', 'lista_salas.php', 'fas fa-th-large');
 insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Pesquisar alunos', 'A', 'funcionalidades/operacaoPesquisarAlunos/pesquisa.php', 'fas fa-search');
 insert into operacao (nome_operacao, cod_status_operacao, link_operacao, classeOperacao) values ('Ver unidades', 'A', 'funcionalidades/operacaoUnid/unidades.php', 'fas fa-city');
 
