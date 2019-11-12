@@ -179,7 +179,7 @@ if(isset($_SESSION['logado'])){
                     Laura, Maria e Vitor que focaram na parte de Front-end;
                   </p>
                   <p>
-                    Esther que escreveu documentação do projeto.
+                    Esther que escreveu a documentação do projeto.
                   </p>
                 </p>
                 </section>
