@@ -22,11 +22,12 @@ if(isset($_REQUEST['codCurso'])){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Primeiro cadastro</title>    
+        <title>Editar Cursos</title>    
         <link rel="stylesheet" href="../../../css/default.css">    
         <script src='../../../js/jquery-3.3.1.min.js'></script>
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="../../../imagens/favicon.ico" type="image/x-icon">
 
         <!-- Telas Responsivas -->
         <link rel=stylesheet media="screen and (max-width:480px)" href="../../../css/cssCadastroMaster/style480.css">

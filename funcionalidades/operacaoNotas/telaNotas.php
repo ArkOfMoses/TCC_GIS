@@ -18,7 +18,7 @@ if(isset($_SESSION['logado'])){
 <html>
     <head>
 
-        <title>pag</title>
+        <title>Lançar Notas</title>
 
         <meta charset=UTF-8>
         <!-- ISO-8859-1 -->

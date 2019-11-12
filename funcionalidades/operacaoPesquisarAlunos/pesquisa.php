@@ -21,7 +21,7 @@ require_once '../../bd/conexao.php';
 <html lang="pt-br">
 
 <head>
-    <title>GIS - Lista de salas</title>
+    <title>Pesquisar Alunos</title>
 
     <meta charset=UTF-8>
     <!-- ISO-8859-1 -->
@@ -33,7 +33,7 @@ require_once '../../bd/conexao.php';
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
     <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-    <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../imagens/favicon.ico" type="image/x-icon">
 
     <!-- CSS PADRÃO -->
     <link href="../../css/default.css" rel=stylesheet>
