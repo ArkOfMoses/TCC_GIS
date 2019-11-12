@@ -210,7 +210,7 @@ require_once 'bd/conexao.php';
                            <h2 id='turma'>$nomeTurma</h2>
                        </div>
                        <div id=links>
-                           <a href='funcionalidades/operacaoAlunos/lista_alunos.php?codTurma=$codTur'> Lista de Alunos</a>
+                           <a href='funcionalidades/operacaoAlunos/alunos.php?codTurma=$codTur'> Lista de Alunos</a>
                            </br>
                            <a href='chamada-ocorrencia.php?codTurma=$codTur'> Chamada</a>
                        </div>

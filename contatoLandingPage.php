@@ -120,7 +120,7 @@
           <a href="homeLandingPage.php">Home</a>
           <a href="loginLandingPage.php">Entrar na Conta</a>
           <a class="selecionado">Contato</a>
-          <a href="#">Sobre Nós</a>
+          <a href="sobreNos.php">Sobre Nós</a>
 
         </footer>
 

@@ -9,7 +9,7 @@ if(isset($_SESSION['logado'])){
 <html lang="pt-br">
   <head>
 
-      <title>Política de Privacidade | GIS</title>
+      <title>Sobre Nós | GIS</title>
 
       <meta charset=UTF-8>
       <!-- ISO-8859-1 -->
@@ -123,7 +123,7 @@ if(isset($_SESSION['logado'])){
               <li><a href="homeLandingPage.php">Home</a></li>
               <li class="login-btn"><a href="loginLandingPage.php">Entrar</a></li>
               <li><a href="contatoLandingPage.php">Contato</a></li>
-              <li><a href="sobreNos.php">Sobre Nós</a></li>
+              <li><a href="#">Sobre Nós</a></li>
             </ul>
 
           </nav>
@@ -133,70 +133,54 @@ if(isset($_SESSION['logado'])){
 
         <main>
            <section>
-              <!--<div class="Ancoragem">
-                <ul>
-                <li><a href="#visaoGeral">VISÃO GERAL</a></li>
-                <li><a href="#secao1">SEÇÃO 1</a></li>
-                <li><a href="#secao2">SEÇÃO 2</a></li>
-                <li><a href="#secao3">SEÇÃO 3</a></li>
-                <li><a href="#secao4">SEÇÃO 4</a></li>
-                <li><a href="#secao5">SEÇÃO 5</a></li>
-                <li><a href="#secao6">SEÇÃO 6</a></li>
-                <li><a href="#secao7">SEÇÃO 7</a></li>
-                <li><a href="#secao8">SEÇÃO 8</a></li>
-                <li><a href="#secao9">SEÇÃO 9</a></li>
-                <li><a href="#secao10">SEÇÃO 10</a></li>
-                <li><a href="#secao11">SEÇÃO 11</a></li>
-                <li><a href="#secao12">SEÇÃO 12</a></li>
-                <li><a href="#secao13">SEÇÃO 13</a></li>
-                <li><a href="#secao14">SEÇÃO 14</a></li>
-                <li><a href="#secao15">SEÇÃO 15</a></li>
-                <li><a href="#secao16">SEÇÃO 16</a></li>
-                <li><a href="#secao17">SEÇÃO 17</a></li>
-                <li><a href="#secao18">SEÇÃO 18</a></li>
-                <li><a href="#secao19">SEÇÃO 19</a></li>
-                <li><a href="#secao20">SEÇÃO 20</a></li>
-                </ul>
-              </div>-->
 
               <section class="termos">
-                <h1>Política de privacidade para <a href='http://sistemagis.com'>GIS</a></h1>
+                <h1>Sobre Nós</h1>
 
                 <section id="visaoGeral">
                   <p>
-                  Todas as suas informações pessoais recolhidas, serão usadas para o ajudar a tornar a sua visita no nosso site o mais produtiva e agradável possível.</p>
-                  <p>A garantia da confidencialidade dos dados pessoais dos utilizadores do nosso site é importante para o GIS.</p>
-                  <p>Todas as informações pessoais relativas a membros, assinantes, clientes ou visitantes que usem o GIS serão tratadas em concordância com a Lei da Proteção de Dados Pessoais de 26 de outubro de 1998 (Lei n.º 67/98).</p>
-                  <p>A informação pessoal recolhida pode incluir o seu nome, e-mail, número de telefone e/ou telemóvel, morada, data de nascimento e/ou outros.</p>
-                  <p>O uso do GIS pressupõe a aceitação deste acordo de privacidade. A equipa do GIS reserva-se ao direito de alterar este acordo sem aviso prévio. Deste modo, recomendamos que consulte a nossa política de privacidade com regularidade de forma a estar sempre atualizado.
-                  <br><br>
+                    Somos um grupo de estudantes de Informática p/ internet que,
+                    diante dessa proposta de Trabalho de Conclusão de Curso,
+                    tínhamos em mãos um grande desafio: Criar um sistema online
+                    que seria capaz de facilitar a rotina escolar, sendo capaz
+                    de registrar faltas e ocorrências, realizar notas e cadastrar
+                    todos os tipos de usuários.
                   </p>
                 </section>
 
                 <section id="secao1">
-                <h2>Os anúncios</h2>
+                <h2>O GIS</h2>
 
                 <p>
-                Tal como outros websites, coletamos e utilizamos informação contida nos anúncios. A informação contida nos anúncios, inclui o seu endereço IP (Internet Protocol), o seu ISP (Internet Service Provider, como o Sapo, Clix, ou outro), o browser que utilizou ao visitar o nosso website (como o Internet Explorer ou o Firefox), o tempo da sua visita e que páginas visitou dentro do nosso website.
-                <br><br>
+                  Dessa exigência veio a ideia do nome GIS: Gestão Institucional
+                  Simplificada, que, como diz a sigla, se trata de uma
+                  ferramenta para auxiliar, de maneira intuitiva e simples, no
+                  gerenciamento de algumas das tarefas escolares.
+                  <br>
+                  O sistema GIS é o resultado de um ano de muito esforço e noites
+                  em claro de estudantes que, com a realização desse trabalho,
+                  se viram mais capacitados, com um grande aprendizado e uma
+                  grande experiência.
                 </p>
                 </section>
 
                 <section id="secao2">
-                <h2>Os Cookies e Web Beacons</h2>
+                <h2>Os Desenvolvedores</h2>
 
                 <p>
-                Utilizamos cookies para armazenar informação, tais como as suas preferências pessoas quando visita o nosso website. Isto poderá incluir um simples popup, ou uma ligação em vários serviços que providenciamos, tais como fóruns.</p>
-                <p>Em adição também utilizamos publicidade de terceiros no nosso website para suportar os custos de manutenção. Alguns destes publicitários, poderão utilizar tecnologias como os cookies e/ou web beacons quando publicitam no nosso website, o que fará com que esses publicitários (como o Google através do Google AdSense) também recebam a sua informação pessoal, como o endereço IP, o seu ISP, o seu browser, etc. Esta função é geralmente utilizada para geotargeting (mostrar publicidade de Lisboa apenas aos leitores oriundos de Lisboa por ex.) ou apresentar publicidade direcionada a um tipo de utilizador (como mostrar publicidade de restaurante a um utilizador que visita sites de culinária regularmente, por ex.).</p>
-                <p>Você detém o poder de desligar os seus cookies, nas opções do seu browser, ou efetuando alterações nas ferramentas de programas Anti-Virus, como o Norton Internet Security. No entanto, isso poderá alterar a forma como interage com o nosso website, ou outros websites. Isso poderá afetar ou não permitir que faça logins em programas, sites ou fóruns da nossa e de outras redes.
-                <br><br>
-                </p>
-                </section>
-
-                <section id="secao3">
-                <h2>Ligações a Sites de terceiros</h2><p>O GIS possui ligações para outros sites, os quais, a nosso ver, podem conter informações / ferramentas úteis para os nossos visitantes. A nossa política de privacidade não é aplicada a sites de terceiros, pelo que, caso visite outro site a partir do nosso deverá ler a politica de privacidade do mesmo.</p>
-                <p>Não nos responsabilizamos pela política de privacidade ou conteúdo presente nesses mesmos sites.
-                <br><br>
+                  Para a finalização desse sistema, precisou-se emular uma
+                  gama de esforço aliada a uma grande ação colaborativa entre os
+                  desenvolvedores, são eles:
+                  <br><br>
+                  <p>
+                    Moisés e Luiz que ficaram encarregados da parte de Back-end;
+                  </p>
+                  <p>
+                    Laura, Maria e Vitor que focaram na parte de Back-end;
+                  </p>
+                  <p>
+                    Esther que escreveu documentação do projeto.
+                  </p>
                 </p>
                 </section>
               </section>
@@ -211,7 +195,7 @@ if(isset($_SESSION['logado'])){
           <a class="selecionado">Home</a>
           <a href="loginLandingPage.php">Entrar na Conta</a>
           <a href="contatoLandingPage.php">Contato</a>
-          <a href="sobreNos.php">Sobre Nós</a>
+          <a href="#">Sobre Nós</a>
 
         </footer>
 

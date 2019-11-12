@@ -87,20 +87,26 @@ main {
 
 
 .banner {
-  position: relative;
-  min-height: calc(100vh - 90px);
+  position: relative;/*
+  min-height: calc(100vh - 90px);*/
   width: 50%;
   order: -2;
 }
 
+.bannerIlus {max-width: 720px;}
 
-.banner .bannerText {
-  min-height: 53vh;
+
+.banner .bannerText {/*
+  min-height: 53vh;*/
   text-align: center;
   padding: 90px 40px 0;
   background-color: #ebfaff;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .banner .bannerText h1 {
@@ -122,6 +128,7 @@ main {
   color: #333;
   font-size: 1.2em;
   margin: 5px 0 45px 0;
+  max-width: 400px;
 }
 
 .banner .botao-banner a {display: none;}
@@ -145,8 +152,12 @@ main {
   flex-flow: column;
 }
 
+#animHome {width: 100vw;}
+
 .animHome {
   width: 100vw;
+  max-width: 900px;
+  margin: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -236,6 +247,7 @@ footer .selecionado {color: #ccc;}
 
 
 .registro{
+  max-height: 776px;
   text-align: center;
   padding: 90px 25px 0 25px;
   padding: auto;
