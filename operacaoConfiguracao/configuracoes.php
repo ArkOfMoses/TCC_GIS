@@ -1,14 +1,21 @@
 <?php session_start();
 if(isset($_SESSION['logado'])){
-    $dados =  $_SESSION['dadosUsu'];
-    $img = $dados['fotoUsu'];
-    $codUsu = $dados['codUsu'];
-    $nomeTipoUsu = $dados['nomeTipoUsu'];
+  $dados =  $_SESSION['dadosUsu'];
+
+  $codUsu = $dados['codUsu'];
+  $nome = $dados['nomeUsu'];
+  $img = $dados['fotoUsu'];
+  $tipoUsu = $dados['nomeTipoUsu'];
+
+  if($tipoUsu != 'Master'){
+    $nomeUnidade = $dados['nomeUnidadeUsu'];
+  }
+
 }else{
-    unset($_SESSION['dadosUsu']);
-    unset($_SESSION['logado']);
-    session_destroy();
-    header("Location: ../homeLandingPage.php");
+  unset($_SESSION['dadosUsu']);
+  unset($_SESSION['logado']);
+  session_destroy();
+  header("Location: ../homeLandingPage.php");
 }
 
 require_once '../bd/conexao.php';
@@ -195,20 +202,55 @@ require_once '../bd/conexao.php';
           </div>
 
           <div class="fullnav">
-          <nav class="menu">
+        <nav class="menu">
+        <?php 
+            if($img === null){
+              echo "<a class='profile-photo-menu' style='background-image: url(../imagens/perfil.png)!important; background-size: cover; background-position: center;'></a>";
+            }else{
+              echo "<a class='profile-photo-menu' style='background-image: url(../$img)!important; background-size: cover; background-position: center;'></a>";
+            }
+         ?>
 
+          <ul>
+          <?php
+          
+          echo "<li><a href='../perfil$tipoUsu.php' class='title'>$nome</a></li>";
+          if(isset($nomeUnidade)){
+            echo "<li><a href='../perfil$tipoUsu.php' class='subtitle'>$nomeUnidade</a></li>";
+          }
+            
+            ?>
+          </ul>
+          <hr>
 
-            <ul class="menu-buttons">
-              <li><a href="../perfilProfessor.php"><i class="fas fa-home"></i><span>Home</span></a></li>
-              <li><a href="../lista_salas.php"><i class="fas fa-list"></i><span>Lista de Salas</span></a></li>
-              <li><a href="../funcionalidades/operacaoPesquisarAlunos/pesquisa.php"><i class="far fa-clock"></i><span>Pesquisar Alunos</span></a></li>
-              <li><a href="#"><i class="far fa-calendar-alt"></i><span>Disciplinas</span></a></li>
-              <li><a href="#"><i class="fas fa-cogs"></i><span>Configurações</span></a></li>
-              <li><a href="#"><i class="fas fa-sign-out-alt"></i><span>Sair</span></a></li>
-            </ul>
+          <ul class="menu-buttons">
+          <?php
+              $count = count($dados['codOperacao']);
 
-          </nav>
-        </div>
+              for($i = 0; $i < $count; $i++){
+                  $codStatusUsuOperacao = $dados['codStatusTipoUsuOperacao'][$i];
+                  $nomeOperacao = $dados['nomeOperacao'][$i];
+                  $linkOperacao = $dados['linkOperacao'][$i];
+                  $classe = $dados['classeOperacao'][$i];
+
+                  if($codStatusUsuOperacao == 'A'){
+                      echo "<li><a href='../$linkOperacao'><i class='$classe'></i> $nomeOperacao</a></li>";
+                  }
+              }
+            ?>
+
+            <li>
+              <a href="../operacaoConfiguracao/configuracoes.php">
+                <i class="fas fa-cogs"></i> Configurações</a>
+            </li>
+            <li>
+              <a href="../sair.php">
+                <i class="fas fa-sign-out-alt"></i> Sair</a>
+            </li>
+          </ul>
+
+        </nav>
+      </div>
 
         </header>
 

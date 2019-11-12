@@ -36,7 +36,7 @@ if($infoPost){
                 $PHPMailer = PHPMailer($mailer, $assunto, $mensagem, $email);
 
                 if($PHPMailer === true){
-                    echo "Foi lhe enviado um email com sua senha provisória, por favor entre no seu email para conferir";
+                    echo "Foi enviado um email com sua senha provisória, por favor entre no seu email para conferir";
                 }else{
                     echo $PHPMailer;
                 }

@@ -1,10 +1,13 @@
 <?php session_start();
 require_once '../../bd/conexao.php';
 require_once '../../primeiroCadastroMaster/funcoes/funcoes.php';
-if (isset($_SESSION['logado'])) {
-    $dados = $_SESSION['dadosUsu'];
+if(isset($_SESSION['logado'])){
+    $dados =  $_SESSION['dadosUsu'];
+    $nome = $dados['nomeUsu'];
+    $nomeUnidade = $dados['nomeUnidadeUsu'];
     $img = $dados['fotoUsu'];
-} else {
+    $tipoUsu = $dados['nomeTipoUsu'];
+}else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
     session_destroy();
@@ -107,24 +110,51 @@ if (isset($_SESSION['logado'])) {
                 </div>
 
                 <div class="fullnav">
-                    <nav class="menu">
+        <nav class="menu">
+        <?php 
+            if($img === null){
+              echo "<a class='profile-photo-menu' style='background-image: url(../../imagens/perfil.png)!important; background-size: cover; background-position: center;'></a>";
+            }else{
+              echo "<a class='profile-photo-menu' style='background-image: url(../../$img)!important; background-size: cover; background-position: center;'></a>";
+            }
+         ?>
 
-                        <ul>
-                            <li><a href="#" class="title"></a></li>
-                            <li><a href="#" class="subtitle"></a></li>
-                        </ul>
-                        <hr>
+          <ul>
+          <?="
+            <li><a href='../../perfil$tipoUsu.php' class='title'>$nome</a></li>
+            <li><a href='../../perfil$tipoUsu.php' class='subtitle'>$nomeUnidade</a></li>
+            "?>
+          </ul>
+          <hr>
 
-                        <ul class="menu-buttons">
-                            <li><a href="#"><i class="fas fa-list"></i></a></li>
-                            <li><a href="#"><i class="far fa-clock"></i></a></li>
-                            <li><a href="#"><i class="far fa-calendar-alt"></i></a></li>
-                            <li><a href="#"><i class="fas fa-cogs"></i></a></li>
-                            <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
-                        </ul>
+          <ul class="menu-buttons">
+          <?php
+              $count = count($dados['codOperacao']);
 
-                    </nav>
-                </div>
+              for($i = 0; $i < $count; $i++){
+                  $codStatusUsuOperacao = $dados['codStatusTipoUsuOperacao'][$i];
+                  $nomeOperacao = $dados['nomeOperacao'][$i];
+                  $linkOperacao = $dados['linkOperacao'][$i];
+                  $classe = $dados['classeOperacao'][$i];
+
+                  if($codStatusUsuOperacao == 'A'){
+                      echo "<li><a href='../../$linkOperacao'><i class='$classe'></i> $nomeOperacao</a></li>";
+                  }
+              }
+            ?>
+
+            <li>
+              <a href="../../operacaoConfiguracao/configuracoes.php">
+                <i class="fas fa-cogs"></i> Configurações</a>
+            </li>
+            <li>
+              <a href="../../sair.php">
+                <i class="fas fa-sign-out-alt"></i> Sair</a>
+            </li>
+          </ul>
+
+        </nav>
+      </div>
             </header>
             <main>
 

@@ -1,7 +1,10 @@
 <?php session_start();
 if(isset($_SESSION['logado'])){
     $dados =  $_SESSION['dadosUsu'];
+    $nome = $dados['nomeUsu'];
+    $nomeUnidade = $dados['nomeUnidadeUsu'];
     $img = $dados['fotoUsu'];
+    $tipoUsu = $dados['nomeTipoUsu'];
 }else{
     unset($_SESSION['dadosUsu']);
     unset($_SESSION['logado']);
@@ -70,10 +73,6 @@ if(isset($_SESSION['logado'])){
                     success: function (data) {
                         if (data != '') {
                             $('.recebeDados').html(data);
-                            // document.getElementById('visor').value = '';
-                            // document.getElementById('visor1').value = '';
-                            // document.getElementById('visor2').value = '';
-                            // document.getElementById('complUnid').value = '';
                         }
                     }
                 });
@@ -162,27 +161,51 @@ if(isset($_SESSION['logado'])){
             </div>
 
             <div class="fullnav">
-                <nav class="menu">
-                    <a class="profile-photo-menu" style="background-image: url()!important;"></a>
+        <nav class="menu">
+        <?php 
+            if($img === null){
+              echo "<a class='profile-photo-menu' style='background-image: url(../../../imagens/perfil.png)!important; background-size: cover; background-position: center;'></a>";
+            }else{
+              echo "<a class='profile-photo-menu' style='background-image: url(../../../$img)!important; background-size: cover; background-position: center;'></a>";
+            }
+         ?>
 
-                    <ul>
-                        <li><a href="#" class="title">Nome da Professora</a></li>
-                        <li><a href="#" class="subtitle">Nome da Instituição</a></li>
-                    </ul>
-                    <hr>
+          <ul>
+          <?="
+            <li><a href='../../../perfil$tipoUsu.php' class='title'>$nome</a></li>
+            <li><a href='../../../perfil$tipoUsu.php' class='subtitle'>$nomeUnidade</a></li>
+            "?>
+          </ul>
+          <hr>
 
-                    <ul class="menu-buttons">
-                      <li><a href="perfilProfessor.php"><i class="fas fa-home"></i>Home</a></li>
-                      <li><a href="lista_salas.php"><i class="fas fa-list"></i> Lista de Turmas</a></li>
-                      <li><a href="funcionalidades/operacaoPesquisarAlunos/pesquisa.php"><i class="far fa-clock"></i> Pesquisar Alunos</a></li>
-                      <li><a href="#"><i class="far fa-calendar-alt"></i> Eventos</a></li>
-                      <li><a href="#"><i class="fas fa-cogs"></i> Configurações</a></li>
-                      <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-                    </ul>
-                            
+          <ul class="menu-buttons">
+          <?php
+              $count = count($dados['codOperacao']);
 
-                </nav>
-            </div>
+              for($i = 0; $i < $count; $i++){
+                  $codStatusUsuOperacao = $dados['codStatusTipoUsuOperacao'][$i];
+                  $nomeOperacao = $dados['nomeOperacao'][$i];
+                  $linkOperacao = $dados['linkOperacao'][$i];
+                  $classe = $dados['classeOperacao'][$i];
+
+                  if($codStatusUsuOperacao == 'A'){
+                      echo "<li><a href='../../../$linkOperacao'><i class='$classe'></i> $nomeOperacao</a></li>";
+                  }
+              }
+            ?>
+
+            <li>
+              <a href="../../../operacaoConfiguracao/configuracoes.php">
+                <i class="fas fa-cogs"></i> Configurações</a>
+            </li>
+            <li>
+              <a href="../../../sair.php">
+                <i class="fas fa-sign-out-alt"></i> Sair</a>
+            </li>
+          </ul>
+
+        </nav>
+      </div>
             </header>
 
             <main>
