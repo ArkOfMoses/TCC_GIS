@@ -55,6 +55,8 @@ require_once '../../bd/conexao.php';
                             display: flex;
                             flex-direction: column;
                             align-items: center;
+                           
+
                 }
                 .botaozin{
                   color: darkblue;
