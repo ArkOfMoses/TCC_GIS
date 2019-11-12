@@ -31,7 +31,7 @@ if(isset($_REQUEST['codTurma'])){
         <script src='../../../js/jquery-3.3.1.min.js'></script>
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-
+        <link rel="shortcut icon" href="../../../imagens/favicon.ico" type="image/x-icon">
         <!-- Telas Responsivas -->
         <link rel=stylesheet media="screen and (max-width:480px)" href="../../../css/cssCadastrosOutros/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"

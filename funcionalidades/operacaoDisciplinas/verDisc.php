@@ -29,7 +29,7 @@ require_once '../../bd/conexao.php';
         <title>Lista de Disciplinas</title>    
         <link rel="stylesheet" href="../../css/default.css">    
         <script src='../../js/jquery-3.3.1.min.js'></script>
-        <link rel="shortcut icon" href="../../../imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../../imagens/favicon.ico" type="image/x-icon">
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
@@ -63,19 +63,21 @@ require_once '../../bd/conexao.php';
                   
                 }
                 a.botaozera{
-                    text-align: center;
-                    width: 135px;
-                    height: 60px;
-                    font-size: 18px;
-                    background: #00CCCC;
-                    font-weight: bold;
-                    color: white;
-                    border: 0 none;
-                    cursor: pointer;
-                    padding: 10px 5px;
-                    margin: 10px 5px;
-                    text-decoration: none;
-                    border-radius: 15px;
+                    text-align: right;
+  width: auto;
+  height: 50px;
+  font-size: 18px;
+  background: rgb(1, 39, 77);
+  font-weight: bold;
+  color: rgb(255, 255, 255)!important;
+  border: 0 none;
+  cursor: pointer;
+  padding-top: 15px;
+  padding-left: 7px;
+  padding-right: 7px;
+  margin: 10px 5px;
+  
+  border-radius: 12px;
                 }
             </style>
 
