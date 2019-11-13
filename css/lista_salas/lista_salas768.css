@@ -189,3 +189,11 @@ a{
 }
 
 /* ******* FOOTER ******* */
+.aluno {
+    text-align: left;
+    width: 500PX;
+    border-bottom: 2px solid  #B7D6EC;
+    color: #252525;
+    cursor: pointer;
+    border-radius: 15px;
+}

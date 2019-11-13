@@ -89,20 +89,10 @@ require_once '../../bd/conexao.php';
                         style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve">
                         <style type="text/css">
                             a.buttonNexte {
-                              text-align: center;
-                              width: 200px;
-                              height: 50px;
-                              font-size: 26px;
-                              background: #00CCCC;
-                              font-weight: bold;
-                              color: white;
-                              border: 0 none;
-                              border-radius: 1px;
-                              cursor: pointer;
-                              padding: 10px 5px;
-                              margin: 10px 5px;
-                              text-decoration: none;
-                              border-radius: 15px;
+                                color: #051523;
+                                margin-left: 25px;
+                                font-size: 20px;
+                                font-weight: 600;
                             }
 
                             .st0 {

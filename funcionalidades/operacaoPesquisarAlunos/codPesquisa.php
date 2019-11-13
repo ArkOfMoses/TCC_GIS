@@ -31,7 +31,7 @@ $arrayPost = [
                         $nomeAluno = $linha['nome_usu'];
 
 
-                        echo "<a class='buttonNexte' href='../operacaoAlunos/perfilAluno.php?codAlun=$codUsu'>$nomeAluno</a>";
+                        echo "<div class='aluno'><a class='buttonNexte' href='../operacaoAlunos/perfilAluno.php?codAlun=$codUsu'>$nomeAluno</a></div>";
                     }
                 } else {
                     echo '<h1>O aluno não foi encontrado!</h1>';
