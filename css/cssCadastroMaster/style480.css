@@ -74,7 +74,7 @@ p.vsf{
     text-align: center;}
 
 .acessoUm label{
-    font-size: 14px;
+    font-size: 18px;
     color: #000;
     display: block;
 }
@@ -161,3 +161,21 @@ a.buttonNext {
     width: 80%;
     margin-top: 15%;
 }
+h1{
+    font-size:1.6em;
+    text-align: center;
+}
+   
+.setinha{
+    
+     width:40px;
+   
+   }
+   
+   #seta{
+   margin-left: -160px;
+    width:50px;
+   
+    }
+
+ 
