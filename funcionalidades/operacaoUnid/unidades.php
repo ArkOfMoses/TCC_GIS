@@ -34,6 +34,26 @@ require_once '../../bd/conexao.php';
 
       <!-- CSS PADRÃO -->
       <link href="../../css/default.css" rel=stylesheet>
+      <style type="text/css">
+
+               #botaozin {
+    text-align: center;
+    width: auto;
+    height: 50px;
+    font-size: 20px;
+    background: #00CCCC;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 10px;
+    margin: 10px 5px;
+    text-decoration: none;
+    border-radius: 15px;
+}
+                
+        </style>
 
         <!-- Telas Responsivas -->
         <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssOperacaoCurso/style480.css">
@@ -222,7 +242,7 @@ function activateMenu(){
 
                         echo $dale;
                         
-                        echo "<a class='botaozin' href='addUnid.php'>Adicionar Unidades</a>";
+                        echo "<a id='botaozin' href='addUnid.php'>Adicionar Unidades</a>";
                       }
 
 
