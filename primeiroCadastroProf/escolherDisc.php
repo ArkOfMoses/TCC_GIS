@@ -56,6 +56,54 @@ if(isset($_SESSION['logado'])){
             border: 3px solid;
             border-color: #666;
             z-index: 1;
+            
+        }
+        img.perfil-foto{
+
+            width: 176px;
+            height:176px;
+            border-radius: 100%;
+            border: 3px solid;
+            border-color: #666;
+            z-index: 1;
+        }
+
+        
+        .labeltur{
+            width:40px!important;
+          /*  margin-left:50px;*/
+            
+           
+        }
+        label.nometurma{
+            
+            color:black;
+            display:flex;         
+        justify-content:space-between;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: auto;
+       
+           
+           
+        }
+        label.nomecurso{
+            color:black;
+            font-weight:bold;
+            display:flex;
+            justify-content:space-around;
+            flex-direction:row;
+            margin-bottom:10px;
+           
+        }
+        
+       
+        .form{
+         /*   display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            max-width:300px;*/
         }
       </style>
     </head>
@@ -90,7 +138,7 @@ if(isset($_SESSION['logado'])){
                 		$nomeTurma = $dedinhos['sigla_tur'];
                 		$codTurma = $dedinhos['cod_tur'];
 
-                		echo $nomeTurma;
+                		echo "<label class='nomecurso'>$nomeTurma</label>";
 
                 		$selecionara = ("select nome_disc, disciplina.cod_disc from disciplina inner join turma_disciplina on (disciplina.cod_disc = turma_disciplina.cod_disc) where cod_status_disc = 'A' and cod_status_tur_disc = 'A' and cod_tur = $codTurma;");
                 		$dadosDisc = $pdo->prepare($selecionara);
@@ -99,14 +147,14 @@ if(isset($_SESSION['logado'])){
                 			$nomeDisc = $dedoes['nome_disc'];
                 			$codDisc = $dedoes['cod_disc'];
 
-                			echo "<label>$nomeDisc<input type='checkbox' name='opcao[]' value='$codDisc'/></label>";
+                			echo "<label class='nometurma'>$nomeDisc<input class='labeltur' type='checkbox' name='opcao[]' value='$codDisc'/></label>";
 
                 		}
                 	}
                 ?>
 
                 
-                <input type='submit' value='Enviar'/>
+                <input type='submit' value='Enviar' class="buttonNext"/>
             </form>
         <div>
     </body>
