@@ -80,7 +80,7 @@ if(isset($_SESSION['logado'])){
                             $inst = get_inst($pdo, $codInst);
 
                         echo "<div class='endUnid'>";
-                        echo '<h2>Instituição:</h2>';
+                        echo '<h4>Instituição:</h4>';
                         echo "<p class='confirma'>Nome Fantasia: </p><p>".$inst[0]['nomeFant']."</p>";
                         echo "<p class='confirma'>Razão Social: </p><p>".$inst[0]['razaoSocial']."</p>";
                         echo "<p class='confirma'>CNPJ: </p><p id='cnpj'>".$inst[0]['CNPJ']."</p>";
@@ -118,7 +118,7 @@ if(isset($_SESSION['logado'])){
                             for ($i = 0; $i < count($unid); $i++) { 
                                 echo '
                                         <div class="endUnid">
-                                        <h3>Unidade:</h3>
+                                        <h4>Unidade:</h4>
                                         <p class="confirma">Nome da Unidade: </p><p>'.$unid[$i]['nomeUnid'].'</p>
                                         <label class="confirma">CEP da Unidade:</label><p class="cep">'.$unid[$i]['cepUnid'].'</p>
                                         <p class="confirma">Rua da Unidade:</p> <p>'.$unid[$i]['ruaUnid'].'</p>

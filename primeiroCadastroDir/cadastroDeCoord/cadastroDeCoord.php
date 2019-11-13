@@ -92,7 +92,7 @@ if (isset($_SESSION['logado'])) {
                         echo "<img src='../../$img' class='perfil-foto'>";
                     }
                     ?>
-                    <p>Cadastre os coordenadores de sua unidade:</p>
+                    <p class="vsf">Cadastre os coordenadores de sua unidade:</p>
 
                     <form class='form' method='post' action='codCadCoord.php'>
 

@@ -720,7 +720,6 @@ insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_o
 
 
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (1, 6, 'A');
-insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (2, 6, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (3, 6, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (4, 6, 'A');
 insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_operacao) values (5, 6, 'A');

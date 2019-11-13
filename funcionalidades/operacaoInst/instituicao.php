@@ -181,12 +181,13 @@ require_once '../../bd/conexao.php';
                 </div>
 
             </header>
+            
+            <main>
             <div class="setinha">
                 <a href="../../perfilMaster.php">
                     <img id="seta" src="../../imagens/voltar_corAzul.png">
                 </a>
             </div>
-            <main>
 
                 <div class="alunos">
                     <h1>Minha Instituição</h1>

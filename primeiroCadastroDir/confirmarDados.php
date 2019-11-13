@@ -35,7 +35,7 @@ if(isset($_SESSION['logado'])){
               href="../css/cssCadastroMaster/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../css/cssCadastroMaster/style1366.css">
         <style type="text/css">
-                
+                 
                 img.perfil-foto{
 
                     width: 176px;
@@ -91,8 +91,8 @@ if(isset($_SESSION['logado'])){
                                 }
 
                             }
-                            echo '<div class="endUnid"';
-                            echo '<h2>Sua unidade:</h2>';
+                            echo '<div class="endUnid">';
+                            echo "<h4>Sua unidade:</h4>";
                             echo "<p class='confirma'>Nome: </p><p>$nome</p>";
                             echo "<p class='confirma'>CEP: </p><p class='cep'>$cep</p>";
                             echo "<p class='confirma'>Numero: </p><p>$numUnid</p>";
@@ -119,7 +119,8 @@ if(isset($_SESSION['logado'])){
                                 }
 
                                 //var_dump($codsUsu);
-                                echo "<h4>Coordenadores e Professores</h4>";
+                                echo "<div class='endUnid'>";
+                               
                                 for($k = 0; $k < count($codsUsu); $k++){
                                     //var_dump($codsUsu[$k]);
                                     $selectUsu = $pdo->prepare("select * from usuario where cod_usu = {$codsUsu[$k]}");
@@ -147,13 +148,14 @@ if(isset($_SESSION['logado'])){
 
                                     if($codTipo == 4){
                                     echo "
-                                        <div class='endUnid'>
+                                        <h4>Coordenadores:</h4>
                                         <p class='confirma'>Nome do coordenador:</p>
                                         <p>$nome</p>
                                         
                                         <p class='confirma'>Email do coordenador:</p>
                                         <p>$email</p>
-                                        
+                                        <br> 
+                                        <br>
                                         
                                         ";
                                     }
@@ -162,17 +164,19 @@ if(isset($_SESSION['logado'])){
                                     
                                     if($codTipo == 5){
                                         echo "
+                                        <h4>Professores:</h4>
                                         <p class='confirma'>Nome do professor:</p>
                                         <p>$nome</p>
                                         
                                         <p class='confirma'>Email do professor:</p>
                                         <p>$email</p>
-                                        </div>
+                                        <br> 
+                                        <br>
                                         ";
                                     }
                                 }
                             }
-                
+                            echo "</div>";
                        ?>
                     <!-- <a href='enviarEmail.php' class="buttonNext">Voltar</a> -->
                     <a href='../primeiroCadastroMaster/enviarEmail.php' class="buttonNext">Proximo Passo</a>
