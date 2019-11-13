@@ -40,6 +40,9 @@ require_once '../../bd/conexao.php';
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
         <link rel="shortcut icon" href="../../imagens/favicon.ico" type="image/x-icon">
+        
+        <!-- Icon Font -->
+        <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
 
         <!-- CSS PADRÃO -->
         <link href="../../css/default.css" rel=stylesheet>

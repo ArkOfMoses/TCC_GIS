@@ -25,6 +25,9 @@ if(isset($_SESSION['logado'])){
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
+        <!-- Icon Font -->
+        <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
+
         <!-- Telas Responsivas -->
         <link rel=stylesheet media="screen and (max-width:480px)" href="../../../css/cssCadastrosOutros/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
@@ -87,7 +90,7 @@ if(isset($_SESSION['logado'])){
            <header id="on_off">
             <div class="header">
 
-                <a class="logo">
+               <?php echo "<a class='logo' href='perfil$tipoUsu.php'>";?>
                      
                     <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                     <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg"

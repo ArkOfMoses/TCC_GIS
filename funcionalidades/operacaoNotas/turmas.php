@@ -34,6 +34,9 @@ if(isset($_SESSION['logado'])){
               href="../../css/turmas/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/turmas/style1366.css">
 
+        <!-- Icon Font -->
+        <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
+
     </head>
     <body>
 

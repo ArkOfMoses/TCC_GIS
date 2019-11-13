@@ -32,6 +32,9 @@ if(isset($_REQUEST['codTurma'])){
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="../../../imagens/favicon.ico" type="image/x-icon">
+        
+        <!-- Icon Font -->
+        <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
         <!-- Telas Responsivas -->
         <link rel=stylesheet media="screen and (max-width:480px)" href="../../../css/cssCadastrosOutros/style480.css">
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"

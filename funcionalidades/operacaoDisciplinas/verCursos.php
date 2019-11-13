@@ -27,6 +27,9 @@ require_once '../../bd/conexao.php';
         <link rel="shortcut icon" href="../../imagens/favicon.ico" type="image/x-icon">
         <!-- CSS PADRÃO -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        
+        <!-- Icon Font -->
+        <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
 
         <!-- Telas Responsivas -->
         <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/cssOperacaoCurso/style480.css">

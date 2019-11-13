@@ -31,6 +31,9 @@ if(isset($_SESSION['logado'])){
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
         <link rel="shortcut icon" href="../../imagens/favicon.ico" type="image/x-icon">
 
+        <!-- Icon Font -->
+        <script src="https://kit.fontawesome.com/2a85561c69.js"></script>
+
         <!-- CSS PADRÃO -->
         <link href="../../css/default.css" rel=stylesheet>
 
@@ -111,21 +114,6 @@ if(isset($_SESSION['logado'])){
 
                 <div class="fullnav">
         <nav class="menu">
-        <?php 
-            if($img === null){
-              echo "<a class='profile-photo-menu' style='background-image: url(../../imagens/perfil.png)!important; background-size: cover; background-position: center;'></a>";
-            }else{
-              echo "<a class='profile-photo-menu' style='background-image: url(../../$img)!important; background-size: cover; background-position: center;'></a>";
-            }
-         ?>
-
-          <ul>
-          <?="
-            <li><a href='../../perfil$tipoUsu.php' class='title'>$nome</a></li>
-            <li><a href='../../perfil$tipoUsu.php' class='subtitle'>$nomeUnidade</a></li>
-            "?>
-          </ul>
-          <hr>
 
           <ul class="menu-buttons">
           <?php
@@ -138,18 +126,18 @@ if(isset($_SESSION['logado'])){
                   $classe = $dados['classeOperacao'][$i];
 
                   if($codStatusUsuOperacao == 'A'){
-                      echo "<li><a href='../../$linkOperacao'><i class='$classe'></i> $nomeOperacao</a></li>";
+                      echo "<li><a href='../../$linkOperacao'><i class='$classe'></i><span> $nomeOperacao</span></a></li>";
                   }
               }
             ?>
 
             <li>
               <a href="../../operacaoConfiguracao/configuracoes.php">
-                <i class="fas fa-cogs"></i> Configurações</a>
+                <i class="fas fa-cogs"></i><span> Configurações</span></a>
             </li>
             <li>
               <a href="../../sair.php">
-                <i class="fas fa-sign-out-alt"></i> Sair</a>
+                <i class="fas fa-sign-out-alt"></i><span> Sair</span></a>
             </li>
           </ul>
 
