@@ -58,6 +58,43 @@ if(isset($_SESSION['logado'])){
             border-color: #666;
             z-index: 1;
         }
+
+        
+        .labeltur{
+            width:40px!important;
+          /*  margin-left:50px;*/
+            
+           
+        }
+        label.nometurma{
+            color:black;
+            display:flex;         
+        justify-content:space-between;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: auto;
+       
+           
+           
+        }
+        label.nomecurso{
+            color:black;
+            font-weight:bold;
+            display:flex;
+            justify-content:space-around;
+            flex-direction:row;
+            margin-bottom:10px;
+           
+        }
+        
+       
+        .form{
+         /*   display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            max-width:300px;*/
+        }
       </style>
     </head>
     <body><div class="acessoUm">
@@ -96,7 +133,7 @@ if(isset($_SESSION['logado'])){
                 		$nomeCurso = $dedinhos['nome_curso'];
                 		$codCurso = $dedinhos['cod_curso'];
 
-                		echo $nomeCurso;
+                		echo "<label class='nomecurso'>$nomeCurso</label>";
 
                 		$selecionara = ("select sigla_tur, cod_tur from turma where cod_curso = $codCurso and cod_status_tur = 'A';");
                 		$dadosTurma = $pdo->prepare($selecionara);
@@ -105,7 +142,7 @@ if(isset($_SESSION['logado'])){
                 			$nomeTurma = $dedoes['sigla_tur'];
                 			$codTurma = $dedoes['cod_tur'];
 
-                			echo "<label>$nomeTurma<input type='checkbox' name='opcao[]' value='$codTurma'/></label>";
+                			echo "<label class='nometurma'>$nomeTurma<input class='labeltur' type='checkbox' name='opcao[]' value='$codTurma'/></label>";
 
 
 
@@ -113,7 +150,7 @@ if(isset($_SESSION['logado'])){
 
 
                 	}
-                	echo "<input type='submit' value='Enviar'/>
+                	echo "<input type='submit' value='Enviar' class='buttonNext'/>
                 		  </form>";
                 }
 
