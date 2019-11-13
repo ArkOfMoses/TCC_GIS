@@ -109,7 +109,7 @@ require_once '../bd/conexao.php';
           <div class="header">
 
             <a class="logo">
-               
+
               <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
               <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 595.2 595.3" style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve">
@@ -143,7 +143,7 @@ require_once '../bd/conexao.php';
             </a>
 
             <label onclick="activateMenu()" class="hamburger">
-               
+
               <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
               <svg version="1.1" id="Hamburger" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               	 viewBox="0 0 220 150" style="enable-background:new 0 0 220 150;" xml:space="preserve">
@@ -203,24 +203,6 @@ require_once '../bd/conexao.php';
 
           <div class="fullnav">
         <nav class="menu">
-        <?php 
-            if($img === null){
-              echo "<a class='profile-photo-menu' style='background-image: url(../imagens/perfil.png)!important; background-size: cover; background-position: center;'></a>";
-            }else{
-              echo "<a class='profile-photo-menu' style='background-image: url(../$img)!important; background-size: cover; background-position: center;'></a>";
-            }
-         ?>
-
-          <ul>
-          <?php
-          
-          echo "<li><a href='../perfil$tipoUsu.php' class='title'>$nome</a></li>";
-          if(isset($nomeUnidade)){
-            echo "<li><a href='../perfil$tipoUsu.php' class='subtitle'>$nomeUnidade</a></li>";
-          }
-            
-            ?>
-          </ul>
           <hr>
 
           <ul class="menu-buttons">
@@ -234,18 +216,18 @@ require_once '../bd/conexao.php';
                   $classe = $dados['classeOperacao'][$i];
 
                   if($codStatusUsuOperacao == 'A'){
-                      echo "<li><a href='../$linkOperacao'><i class='$classe'></i> $nomeOperacao</a></li>";
+                      echo "<li><a href='../$linkOperacao'><i class='$classe'></i><span> $nomeOperacao<span></a></li>";
                   }
               }
             ?>
 
             <li>
               <a href="../operacaoConfiguracao/configuracoes.php">
-                <i class="fas fa-cogs"></i> Configurações</a>
+                <i class="fas fa-cogs"></i><span> Configurações<span></a>
             </li>
             <li>
               <a href="../sair.php">
-                <i class="fas fa-sign-out-alt"></i> Sair</a>
+                <i class="fas fa-sign-out-alt"></i><span> Sair<span></a>
             </li>
           </ul>
 
@@ -286,7 +268,7 @@ require_once '../bd/conexao.php';
                               <label for=''>Alterar Nome</label>
                             </dt>
                             <dd>
-                              <input type='text' name='nomeUsu' value='$nomeUsu'> 
+                              <input type='text' name='nomeUsu' value='$nomeUsu'>
 
                               <div class='nota-input'>
                                 Esse é nome que aparecerá públicamente e que iremos usar para nos referirmos a você.
@@ -356,14 +338,14 @@ require_once '../bd/conexao.php';
                             <img src='../imagens/perfil.png'  id='dup'/>";
                           }
 
-                        //  
+                        //
                         // <button type='button' name='uploadFoto'><i class=''></i></button>
 
 
-                        echo "  
+                        echo "
                         <label for='selecao-arquivo' class='selecionar-img'>+</label>
                         <input id='selecao-arquivo' type='file' name='img' class='botao-img' onchange='previewImagem()' />
-                            
+
                           </div>
                         </div>
 
@@ -399,7 +381,7 @@ require_once '../bd/conexao.php';
 
 
           ?>
-          
+
 
 
 
@@ -414,9 +396,9 @@ require_once '../bd/conexao.php';
         $(document).ready(function(){
             $("#cpfMano").mask("000.000.000-00");
             $("#dataMano").mask("00/00/0000");
-            
+
         })
-    
+
     </script>
 
   </body>
