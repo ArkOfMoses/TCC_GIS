@@ -239,38 +239,40 @@ a.buttonNext {
     right: -50px;
 }
 
-#line{
-    height:1px;
-    border: 2px solid #B7D6EC;
-    margin-bottom: 10px;
-}
+
 #posiciona{
-    width:600px;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    justify-content: space-between;
-  padding:10px;
-    
-  }
+  display:flex
+
   
-  .centraliza{
-    width:20px;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: center;
-    padding:5px;
-    margin-left:20px;
+}
+
+.centraliza{
+
+
+}
+.form{
+
+}
+.inputRadio{
   
-  }
+  display: inline-block;
+  max-width:25px;
   
-  .inputRadio{
-    max-width:35px;
-  }
-  label{
-    margin:10px;
-  }
+}
+label{
+  margin:10px;
+}
+#seta{
+  text-align: left;
+  width: 40px;
+}
+
+p.puxar{
+    display:inline-block;
+    margin: 10px;
+    font-size: 20px;
+    width: 150px;
+}
   #seta{
     text-align: left;
     width: 40px;

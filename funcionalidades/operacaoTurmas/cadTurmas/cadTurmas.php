@@ -263,27 +263,28 @@ if (isset($_REQUEST['codCurso'])) {
                         $('#coordenadores').clone().appendTo("#rightDiv").removeAttr('id');
 
 
-                        $('#sigla_label').clone().appendTo('#rightDiv').removeAttr('id');
-                        $('#IdSigla0').clone().appendTo('#rightDiv').attr("name", "sigla" + increment).attr("id", "IdSigla" + increment);
-                        document.getElementById('IdSigla' + increment).value = '';
+$('#sigla_label').clone().appendTo('#rightDiv').removeAttr('id');
+$('#IdSigla0').clone().appendTo('#rightDiv').attr("name", "sigla" + increment).attr("id", "IdSigla" + increment);
+document.getElementById('IdSigla' + increment).value = '';
 
 
-                        $('#turno_label').clone().appendTo('#rightDiv').removeAttr('id');
-                        $('#puxar1').clone().appendTo('#rightDiv').removeAttr('id');
-                        $('#IdCheck0').clone().attr("name", 'opcao' + increment + '[]').attr("id", "IdCheck" + increment).prop('checked', false).appendTo('#rightDiv');
+$('#turno_label').clone().appendTo('#rightDiv').removeAttr('id');
 
-                        $('#puxar2').clone().appendTo('#rightDiv').removeAttr('id');
-                        $('#IdChecke0').clone().attr("name", 'opcao' + increment + '[]').attr("id", "IdChecke" + increment).prop('checked', false).appendTo('#rightDiv');
+$('#IdCheck0').clone().attr("name", 'opcao' + increment + '[]').attr("id", "IdCheck" + increment).prop('checked', false).appendTo('#rightDiv');
+$('#puxar1').clone().appendTo('#rightDiv').removeAttr('id');
 
-                        $('#puxar3').clone().appendTo('#rightDiv').removeAttr('id');
-                        $('#IdCheckee0').clone().attr("name", 'opcao' + increment + '[]').attr("id", "IdCheckee" + increment).prop('checked', false).appendTo('#rightDiv');
-                        // $('#email_label').clone().appendTo('#rightDiv');
-                        // 
-                        // document.getElementById('IdemailCoord'+increment).value = '';
-                        $('#line').clone().appendTo('#rightDiv');
-                        increment++;
+$('#IdChecke0').clone().attr("name", 'opcao' + increment + '[]').attr("id", "IdChecke" + increment).prop('checked', false).appendTo('#rightDiv');
+$('#puxar2').clone().appendTo('#rightDiv').removeAttr('id');
 
-                        $('#hidden').attr("value", increment);
+$('#IdCheckee0').clone().attr("name", 'opcao' + increment + '[]').attr("id", "IdCheckee" + increment).prop('checked', false).appendTo('#rightDiv');
+$('#puxar3').clone().appendTo('#rightDiv').removeAttr('id');
+// $('#email_label').clone().appendTo('#rightDiv');
+// 
+// document.getElementById('IdemailCoord'+increment).value = '';
+$('#line').clone().appendTo('#rightDiv');
+increment++;
+
+$('#hidden').attr("value", increment);
 
                     });
 

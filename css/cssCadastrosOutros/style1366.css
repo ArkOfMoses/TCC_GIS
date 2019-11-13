@@ -198,8 +198,7 @@ p.vsf{
     font-size: 20px;
     display: block;
 }
-.acessoUm input{
-  
+.acessoUm input{  
     height: 30px;
     width: 700px;  
     border:none;
@@ -287,28 +286,23 @@ a.buttonNext {
 }
 
 #posiciona{
-  width:600px;
-  display: flex;
-  flex-direction:row;
-  align-items: center;
-  justify-content: space-between;
-padding:10px;
+  display:flex
+
   
 }
 
 .centraliza{
-  width:20px;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  justify-content: center;
-  padding:5px;
-  margin-left:20px;
+
 
 }
+.form{
 
+}
 .inputRadio{
+  
+  display: inline-block;
   max-width:35px;
+  
 }
 label{
   margin:10px;
@@ -316,4 +310,11 @@ label{
 #seta{
   text-align: left;
   width: 40px;
+}
+
+p.puxar{
+    display:inline-block;
+    margin: 10px;
+    font-size: 26px;
+    width: 200px;
 }

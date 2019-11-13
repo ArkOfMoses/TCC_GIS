@@ -231,26 +231,17 @@ h1{
 
 #posiciona{
     width:300px;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    justify-content: space-between;
-  padding:10px;
+    
     
   }
   
   .centraliza{
-    width:20px;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: center;
-    padding:5px;
-    margin-left:20px;
+    
   
   }
   
   .inputRadio{
+    display: inline-block;
     max-width:35px;
   }
   label{
@@ -260,3 +251,11 @@ h1{
     text-align: left;
     width: 40px;
   }
+  
+  
+p.puxar{
+    margin-right: 200px;
+    display:inline-block;    
+    font-size: 20px;
+    
+}
