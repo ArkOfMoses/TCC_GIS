@@ -314,7 +314,17 @@ footer .selecionado {color: #ccc;}
 }
 
 
+@media screen and (min-width: 1440px) {
+  .banner {width: 40%!important;}
 
+  .registro {width: 60%!important;}
+
+  @media screen and (min-width: 1800px) {
+    .banner {width: 35%!important;}
+
+    .registro {width: 65%!important;}
+
+}
 
 
 
