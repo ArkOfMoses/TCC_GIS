@@ -120,7 +120,7 @@ if(isset($_SESSION['logado'])){
                                         <div class="endUnid">
                                         <h4>Unidade:</h4>
                                         <p class="confirma">Nome da Unidade: </p><p>'.$unid[$i]['nomeUnid'].'</p>
-                                        <label class="confirma">CEP da Unidade:</label><p class="cep">'.$unid[$i]['cepUnid'].'</p>
+                                        <p class="confirma">CEP da Unidade:</p><p class="cep">'.$unid[$i]['cepUnid'].'</p>
                                         <p class="confirma">Rua da Unidade:</p> <p>'.$unid[$i]['ruaUnid'].'</p>
                                         <p class="confirma">Bairro da Unidade: </p><p>'.$unid[$i]['bairroUnid'].'</p>
                                         <p class="confirma">Cidade da Unidade: </p><p>'.$unid[$i]['cidadeUnid'].'</p>
