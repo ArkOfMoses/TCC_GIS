@@ -211,6 +211,10 @@ require_once '../../bd/conexao.php';
                                             echo " <a href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>
                                                 <img id='seta' src='../../imagens/voltar.png'>
                                             </a>";
+                                        }else{
+                                            echo " <a href='../../lista_salas.php'>
+                                                <img id='seta' src='../../imagens/voltar.png'>
+                                            </a>";
                                         }
                                         echo "
                                             <div id='sala'>
