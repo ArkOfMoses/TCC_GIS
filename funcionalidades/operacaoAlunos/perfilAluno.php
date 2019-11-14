@@ -400,7 +400,15 @@ HERE;
             <h2>$nomeAlun</h2>
             <h3>$siglaTur</h3>
             <a href='acoes/editarAlun.php?codAlun=$codAluno'>Editar</a>
-            <a href='acoes/excluirAlun.php?codAlun=$codAluno&codTur=$tur' id='confirma'>Excluir</a>
+HERE;
+
+      if($tipoUsu != 'Professor'){
+        $here .= <<<HERE
+        <a href='acoes/excluirAlun.php?codAlun=$codAluno&codTur=$tur' id='confirma'>Excluir</a>
+HERE;
+      }
+
+      $here .= <<<HERE
           </div>
 
           <div class="tabs">
