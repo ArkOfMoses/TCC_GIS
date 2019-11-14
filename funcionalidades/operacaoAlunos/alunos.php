@@ -206,12 +206,13 @@ require_once '../../bd/conexao.php';
                                         $codCurso = $dads['cod_curso'];
                                         $nomeCurso = $dads['nome_curso'];
                                         $sigla = $dads['sigla_tur'];
-            
-                                        echo "
-                                            <a href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>
+                                        
+                                        if($tipoUsu != "Professor"){
+                                            echo " <a href='../operacaoTurmas/turmas.php?codCurso=$codCurso'>
                                                 <img id='seta' src='../../imagens/voltar.png'>
-                                            </a>
-            
+                                            </a>";
+                                        }
+                                        echo "
                                             <div id='sala'>
                                                 <h2 id='curso'>$sigla</h2>
                                             </div>
@@ -322,9 +323,9 @@ require_once '../../bd/conexao.php';
                                             $i++;
                                             }
                                         }
-
+                                        if($tipoUsu != "Professor"){
                                         echo "<a id='linkAdd' href='cadAlunos/cadAlunos.php?codTurma=$codTurma'>Adicionar Alunos</a>";
-    
+                                        }
                                     }else{
                                         echo $msg;
                                     }
