@@ -735,7 +735,7 @@ insert into tipo_usu_operacao (cod_tipo_usu, cod_operacao, cod_status_tipo_usu_o
 
 
 insert into acesso (cod_tipo_usu, senha, email) values (3, '$2y$12$tzXy4Rs6RP7lTJwkSJrFg.Mf/Opd0dymNxnyzrY4qQ77svLZZ7Ji6', 'batata@gmail.com');
-insert into usuario (nome_usu, cod_acesso, data_entrada) values ('Batata', 1, '2019-10-25');
+insert into usuario (nome_usu, cod_acesso) values ('Batata', 1);
 insert into usuario_unidade (cod_unid, cod_usu) values (1, 1);
 
 insert into acesso (cod_tipo_usu, senha, email) values (3, 'potato', 'potato@gmail.com');

@@ -144,6 +144,7 @@ if(isset($_SESSION['logado'])){
             $('#IdemailCoord0').clone().appendTo('#rightDiv').attr("name",'email'+ increment).attr("id", "IdemailCoord"+increment);
             document.getElementById('IdemailCoord'+increment).value = '';
 
+            $('#line').clone().appendTo('#rightDiv');
 
 
             increment++;
