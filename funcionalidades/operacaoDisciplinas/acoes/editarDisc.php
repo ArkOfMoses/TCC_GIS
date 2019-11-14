@@ -52,7 +52,7 @@ if(isset($_REQUEST['codTurma']) && isset($_REQUEST['codDisc'])){
 
                input.VAISEFUDE {
     text-align: center;
-    width: 240px;
+    width: 250px;
     height: 50px;
     font-size: 26px;
     background: #00CCCC;
