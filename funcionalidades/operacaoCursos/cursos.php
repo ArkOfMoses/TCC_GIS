@@ -76,7 +76,9 @@ require_once '../../bd/conexao.php';
               	 viewBox="0 0 595.2 595.3" style="enable-background:new 0 0 595.2 595.3;" xml:space="preserve">
               <style type="text/css">
                 
-              	
+              	.vsf{
+                  text-align: center;
+                }
               </style>
               <linearGradient id="LetraG_2_" gradientUnits="userSpaceOnUse" x1="-130.1162" y1="-1.6877" x2="-127.636" y2="-1.6877" gradientTransform="matrix(120.0332 -207.9035 -207.9035 -120.0332 15416.1299 -26698.6406)">
               	<stop  offset="0" style="stop-color:#00CCCC"/>
@@ -190,9 +192,9 @@ From cursos inner join cursos_unidade on (cursos.cod_curso = cursos_unidade.cod_
 
                 if($numDeLinhas == 0){
                     if($tipoUsu == "Diretor"){
-                      echo 'Você ainda não cadastrou seus cursos, cadastre-os no botão abaixo';
+                      echo '<p class="vsf">Você ainda não cadastrou seus cursos, cadastre-os no botão abaixo</p>';
                     }else{
-                      echo 'O diretor da sua unidade não cadastrou seus cursos!';
+                      echo '<p>O diretor da sua unidade não cadastrou seus cursos!</p>';
                     }
                 }else{
                     echo "<table >

@@ -126,6 +126,8 @@
       }
       
       #imgAluno{
+        margin-left: 10px;
+        border-radius: 100%;
         width:95px;
         height: 95px;
       }

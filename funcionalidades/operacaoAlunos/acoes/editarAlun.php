@@ -102,6 +102,10 @@ if(isset($_REQUEST['codAlun'])){
 
         .botao-img{
           display: none;
+        }  
+
+        .centraliza{
+            align-items: center;
         }
                 
         </style>
@@ -218,8 +222,7 @@ if(isset($_REQUEST['codAlun'])){
                             <img src="<?=$url?>"  id="dup"/>
                             <label for="selecao-arquivo" class="selecionar-img">+</label>
                             <input id="selecao-arquivo" type="file" name="img" class="botao-img" onchange="previewImagem(this)" />
-                        </div>
-
+                        
                         <label id="nome_label">Nome do Aluno: </label>
                         <input class='unid' id='IdNome0' name='nome' type='text' value="<?=$nomeAlun?>" />
 
@@ -231,7 +234,7 @@ if(isset($_REQUEST['codAlun'])){
                         
                         <label id="data_entrada_label">Data de entrada do Aluno: </label>
                         <input class='unid' id='IdDataEntrada0' name='DataEntrada' type='text' value="<?=$dataEntrada?>" />
-
+                        </div>
                         <div class='recebeDados' id='div'></div> <!-- div que recebe dados do ajax -->
                         <div class="puto"><input type="submit" value="Atualizar Aluno" class="VAISEFUDE" /></div> <!-- botão subtmit do formulário -->
                     </form>                    
