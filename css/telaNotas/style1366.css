@@ -2,6 +2,9 @@
     position: absolute;
     
   }
+  .acessDenied{
+      display:none
+  }
   
   .header {
     width: calc(100vw - 50px);

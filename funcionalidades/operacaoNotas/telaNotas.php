@@ -39,6 +39,11 @@ if(isset($_SESSION['logado'])){
 
         <!-- Telas Responsivas -->
 
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../../css/telaNotas/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)"
+              href="../../css/telaNotas/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)"
+              href="../../css/telaNotas/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="../../css/telaNotas/style1366.css">
 
         <!-- Script -->
@@ -800,6 +805,12 @@ from tipo_avaliacao inner join avaliacao on (avaliacao.cod_tipo_aval = tipo_aval
                         });
                     </script>     
                 </div>
+        </div>
+        <div class='acessDenied'>
+            
+            <img src="../../imagens/error.png" alt=""/><br>
+            <p>Por favor, acesse esse site somente em um desktop</p>
+        </div>
             </main>
     </body>
 </html>
