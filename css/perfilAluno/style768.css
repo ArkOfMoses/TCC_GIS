@@ -85,7 +85,7 @@ main {
   top: 60px;
   right: 0;
   width: 100%;
-  height: 250px;
+  height: 268px;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -96,7 +96,7 @@ main {
 
 h2, h1 {
   font-size: 1.3em;
-  margin: 7px;
+  margin: 2px;
 }
 
 h2 {

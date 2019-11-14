@@ -399,12 +399,12 @@ HERE;
             <div class='profile-photo' style='background-image: url($rota)!important; background-size: cover; background-position: center;'></div>
             <h2>$nomeAlun</h2>
             <h3>$siglaTur</h3>
-            <a href='acoes/editarAlun.php?codAlun=$codAluno'>Editar</a>
+            
 HERE;
 
       if($tipoUsu != 'Professor'){
         $here .= <<<HERE
-        <a href='acoes/excluirAlun.php?codAlun=$codAluno&codTur=$tur' id='confirma'>Excluir</a>
+        <p><a href='acoes/editarAlun.php?codAlun=$codAluno'>Editar</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a href='acoes/excluirAlun.php?codAlun=$codAluno&codTur=$tur' id='confirma'>Excluir</a></p>
 HERE;
       }
 
