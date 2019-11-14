@@ -97,7 +97,7 @@ if(isset($_SESSION['logado'])){
                             echo "<p class='confirma'>CEP: </p><p class='cep'>$cep</p>";
                             echo "<p class='confirma'>Numero: </p><p>$numUnid</p>";
                             if(isset($complemento)){
-                            echo "<p class='confirma'>Complemento: </p><p>'$complemento'</p>";
+                            echo "<p class='confirma'>Complemento: </p><p>$complemento</p>";
                             }
                             echo '</div>';
                             $selectCodUsus = $pdo->prepare("select * from usuario_unidade where cod_unid = $codUnid and cod_usu != $codUsu");
