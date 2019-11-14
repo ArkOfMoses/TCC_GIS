@@ -314,7 +314,7 @@ if(isset($_REQUEST['codTurma'])){
             $("#rightDiv > label:last").remove();
             $("#rightDiv > input:last").remove();
             $("#rightDiv > label:last").remove();
-            
+            $("#rightDiv > div:last").remove();
             increment--;
             if(increment < 1){
                 increment = 1;
